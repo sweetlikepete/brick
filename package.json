@@ -23,6 +23,7 @@
     "babel-eslint": "^10.0.1",
     "babel-loader": "^8.0.4",
     "babel-plugin-dynamic-import-node": "^2.2.0",
+    "babel-plugin-universal-import": "^3.1.2",
     "chalk": "^2.4.1",
     "clone": "^2.1.2",
     "codeframe": "^0.0.1",
