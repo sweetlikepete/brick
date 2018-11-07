@@ -4,7 +4,7 @@
  *  in this context. This module is injested directly by eslint so it needs to use the old commonjs
  *  module structure (which also makes it ambiguous).
  */
-/* eslint-disable sort-keys, no-magic-numbers */
+/* eslint-disable sort-keys, no-magic-numbers, import/unambiguous, import/no-commonjs */
 
 
 const extensions = [
@@ -21,7 +21,7 @@ const extensions = [
 ];
 
 
-export default {
+module.exports = {
 
     extends: [
         "eslint:recommended",
@@ -709,4 +709,4 @@ export default {
 
 };
 
-/* eslint-enable sort-keys, no-magic-numbers */
+/* eslint-enable sort-keys, no-magic-numbers, import/unambiguous, import/no-commonjs */
