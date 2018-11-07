@@ -1,6 +1,6 @@
 
 
-const Web = require("./web");
+const Web = require("./src/web");
 
 
 global.AUTOMATION = {
