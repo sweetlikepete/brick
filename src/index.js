@@ -1,6 +1,6 @@
 
 
-const Web = require("./src/web");
+import Web from "./web";
 
 
 global.AUTOMATION = {
@@ -8,7 +8,7 @@ global.AUTOMATION = {
 };
 
 
-module.exports = class Automation{
+export default class Automation{
 
     constructor(){
 

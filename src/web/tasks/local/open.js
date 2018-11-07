@@ -1,13 +1,13 @@
 
 
-const log = require("fancy-log");
-const open = require("open-browsers");
-const ports = require("../../config/ports");
-const request = require("request");
-const Task = require("../../../task");
+import log from "fancy-log";
+import open from "open-browsers";
+import ports from "../../config/ports";
+import request from "request";
+import Task from "../../../task";
 
 
-module.exports = class LocalOpenTask extends Task{
+export default class LocalOpenTask extends Task{
 
     constructor(args = {}){
 
@@ -46,4 +46,4 @@ module.exports = class LocalOpenTask extends Task{
 
     }
 
-};
+}

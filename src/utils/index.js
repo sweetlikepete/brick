@@ -1,10 +1,10 @@
 
 
-const exec = require("./exec");
-const kill = require("./kill");
+import exec from "./exec";
+import kill from "./kill";
 
 
-module.exports = {
+export default {
     exec,
     kill
 };

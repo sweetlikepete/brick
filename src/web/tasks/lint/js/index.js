@@ -1,14 +1,14 @@
 
 
-const cache = require("gulp-cache");
-const eslint = require("gulp-eslint");
-const fs = require("fs");
-const gulpIf = require("gulp-if");
-const path = require("path");
-const print = require("gulp-print").default;
-const Task = require("../../../../task");
-const through = require("through2");
-const touch = require("touch");
+import cache from "gulp-cache";
+import eslint from "gulp-eslint";
+import fs from "fs";
+import gulpIf from "gulp-if";
+import path from "path";
+import print from "gulp-print";
+import Task from "../../../../task";
+import through from "through2";
+import touch from "touch";
 
 
 const baseConfigPath = path.join(__dirname, "../../../config/eslint.js");
@@ -16,12 +16,16 @@ const userConfigPath = path.join(process.cwd(), ".eslintrc.js");
 
 const conf = {
     cache: true,
+    // This is ok because it only happens during the build
+    // eslint-disable-next-line no-sync
     configFile: fs.existsSync(userConfigPath) ? userConfigPath : baseConfigPath,
     fix: true,
     warnFileIgnored: true
 };
 
 const eslintOptions = conf.configFile;
+// This is ok because it only happens during the build
+// eslint-disable-next-line no-sync
 const { devDependencies } = JSON.parse(fs.readFileSync(path.join(process.cwd(), "package.json")));
 const eslintVersionString = Object.keys(devDependencies || {})
 .filter((key) => key.startsWith("eslint"))
@@ -29,7 +33,7 @@ const eslintVersionString = Object.keys(devDependencies || {})
 .join(",");
 
 
-module.exports = class JSLintTast extends Task{
+export default class JSLintTast extends Task{
 
     runner(paths, watching = false){
 
@@ -65,4 +69,4 @@ module.exports = class JSLintTast extends Task{
 
     }
 
-};
+}

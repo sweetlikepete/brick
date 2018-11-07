@@ -1,16 +1,16 @@
 
 
-const AssetsPlugin = require("assets-webpack-plugin");
-const babelConfig = require("../babel");
-const clone = require("clone");
-const generateShared = require("./shared");
-const merge = require("merge");
-const path = require("path");
-const { ReactLoadablePlugin } = require("react-loadable/webpack");
-const webpack = require("webpack");
+import AssetsPlugin from "assets-webpack-plugin";
+import babelConfig from "../babel";
+import clone from "clone";
+import generateShared from "./shared";
+import merge from "merge";
+import path from "path";
+import { ReactLoadablePlugin } from "react-loadable/webpack";
+import webpack from "webpack";
 
 
-module.exports = function clientConfig(){
+export default function clientConfig(){
 
     const shared = generateShared();
     const production = global.AUTOMATION.production;
@@ -66,4 +66,4 @@ module.exports = function clientConfig(){
         target: "web"
     });
 
-};
+}

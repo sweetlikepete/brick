@@ -5,18 +5,18 @@
  */
 
 
-const tslint = require("tslint");
-const chalk = require("chalk");
-const codeframe = require("codeframe");
-const fs = require("fs");
-const gulpTSLint = require("gulp-tslint");
-const path = require("path");
-const print = require("gulp-print").default;
-const Task = require("../../../../task");
-const through = require("through2");
+import * as tslint from "tslint";
+import chalk from "chalk";
+import codeframe from "codeframe";
+import fs from "fs";
+import gulpTSLint from "gulp-tslint";
+import path from "path";
+import print from "gulp-print";
+import Task from "../../../../task";
+import through from "through2";
 
 
-module.exports = class JSLintTast extends Task{
+export default class JSLintTast extends Task{
 
     runner(paths, watching = false){
 
@@ -24,9 +24,13 @@ module.exports = class JSLintTast extends Task{
         const baseConfigPath = path.join(__dirname, "../../../config/tslint.json");
         const userConfigPath = path.join(process.cwd(), "tslint.json");
 
+        // This is ok because it only happens during the build
+        // eslint-disable-next-line no-sync
         if(fs.existsSync(tsConfig)){
 
             const conf = {
+                // This is ok because it only happens during the build
+                // eslint-disable-next-line no-sync
                 configuration: fs.existsSync(userConfigPath) ? userConfigPath : baseConfigPath,
                 fix: true,
                 program: tslint.Linter.createProgram(tsConfig)
@@ -91,4 +95,4 @@ module.exports = class JSLintTast extends Task{
 
     }
 
-};
+}

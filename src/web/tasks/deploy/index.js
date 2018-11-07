@@ -1,10 +1,10 @@
 
 
-const Task = require("../../../task");
-const utils = require("../../../utils");
+import Task from "../../../task";
+import utils from "../../../utils";
 
 
-module.exports = class DeployTask extends Task{
+export default class DeployTask extends Task{
 
     constructor(args = {}){
 
@@ -27,4 +27,4 @@ module.exports = class DeployTask extends Task{
     }
 
 
-};
+}

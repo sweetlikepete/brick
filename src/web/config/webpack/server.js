@@ -1,15 +1,15 @@
 
 
-const babelConfig = require("../babel");
-const clone = require("clone");
-const generateShared = require("./shared");
-const merge = require("merge");
-const nodeExternals = require("webpack-node-externals");
-const path = require("path");
-const webpack = require("webpack");
+import babelConfig from "../babel";
+import clone from "clone";
+import generateShared from "./shared";
+import merge from "merge";
+import nodeExternals from "webpack-node-externals";
+import path from "path";
+import webpack from "webpack";
 
 
-module.exports = function serverConfig(){
+export default function serverConfig(){
 
     const shared = generateShared();
 
@@ -72,4 +72,4 @@ module.exports = function serverConfig(){
         target: "node"
     });
 
-};
+}

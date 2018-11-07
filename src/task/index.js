@@ -1,12 +1,12 @@
 
 
-const gulp = require("gulp");
-const log = require("fancy-log");
-const through = require("through2");
-const watch = require("gulp-watch");
+import gulp from "gulp";
+import log from "fancy-log";
+import through from "through2";
+import watch from "gulp-watch";
 
 
-module.exports = class Task{
+export default class Task{
 
     constructor(args = {}){
 
@@ -103,4 +103,4 @@ module.exports = class Task{
 
     }
 
-};
+}

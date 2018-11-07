@@ -1,12 +1,12 @@
 
 
-const CleanBuildTask = require("./build");
-const CleanCacheTask = require("./cache");
-const gulp = require("gulp");
-const Task = require("../../../task");
+import CleanBuildTask from "./build";
+import CleanCacheTask from "./cache";
+import gulp from "gulp";
+import Task from "../../../task";
 
 
-module.exports = class CleanTask extends Task{
+export default class CleanTask extends Task{
 
     constructor(args = {}){
 
@@ -28,4 +28,4 @@ module.exports = class CleanTask extends Task{
 
     }
 
-};
+}

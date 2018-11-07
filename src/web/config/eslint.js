@@ -21,7 +21,7 @@ const extensions = [
 ];
 
 
-module.exports = {
+export default {
 
     extends: [
         "eslint:recommended",

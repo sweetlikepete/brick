@@ -1,14 +1,14 @@
 
 
-const gulp = require("gulp");
-const LocalDatastoreTask = require("./datastore");
-const LocalMemcacheTask = require("./memcache");
-const LocalOpenTask = require("./open");
-const LocalServerTask = require("./server");
-const Task = require("../../../task");
+import gulp from "gulp";
+import LocalDatastoreTask from "./datastore";
+import LocalMemcacheTask from "./memcache";
+import LocalOpenTask from "./open";
+import LocalServerTask from "./server";
+import Task from "../../../task";
 
 
-module.exports = class LocalTask extends Task{
+export default class LocalTask extends Task{
 
     constructor(args = {}){
 
@@ -34,4 +34,4 @@ module.exports = class LocalTask extends Task{
 
     }
 
-};
+}

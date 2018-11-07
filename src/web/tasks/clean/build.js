@@ -1,12 +1,12 @@
 
 
-const path = require("path");
+import path from "path";
 
-const Task = require("../../../task");
-const utils = require("../../../utils");
+import Task from "../../../task";
+import utils from "../../../utils";
 
 
-module.exports = class CleanCacheTask extends Task{
+export default class CleanCacheTask extends Task{
 
     constructor(args = {}){
 
@@ -22,4 +22,4 @@ module.exports = class CleanCacheTask extends Task{
 
     }
 
-};
+}

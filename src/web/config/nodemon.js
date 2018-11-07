@@ -1,19 +1,19 @@
 
 
-const config = require(".");
-const fs = require("fs");
-const merge = require("merge");
-const path = require("path");
-const ports = require("./ports");
+import config from ".";
+import fs from "fs";
+import merge from "merge";
+import path from "path";
+import ports from "./ports";
 
 
 const userConfigPath = path.resolve("nodemon.config.js");
 // This is ok because it only happens during the build
-// eslint-disable-next-line import/no-dynamic-require
+// eslint-disable-next-line no-sync, import/no-dynamic-require
 const userConfig = fs.existsSync(userConfigPath) ? require(userConfigPath) : {};
 
 
-module.exports = merge.recursive({}, {
+export default merge.recursive({}, {
     colours: true,
     delay: 500,
     env: {

@@ -1,13 +1,13 @@
 
 
-const Clean = require("./tasks/clean");
-const Deploy = require("./tasks/deploy");
-const Lint = require("./tasks/lint");
-const Local = require("./tasks/local");
-const Webpack = require("./tasks/webpack");
+import Clean from "./tasks/clean";
+import Deploy from "./tasks/deploy";
+import Lint from "./tasks/lint";
+import Local from "./tasks/local";
+import Webpack from "./tasks/webpack";
 
 
-module.exports = class Web{
+export default class Web{
 
     constructor(){
 
@@ -19,4 +19,4 @@ module.exports = class Web{
 
     }
 
-};
+}

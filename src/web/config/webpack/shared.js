@@ -1,13 +1,13 @@
 
 
-const HardSourceWebpackPlugin = require("hard-source-webpack-plugin");
-const nodeObjectHash = require("node-object-hash");
-const path = require("path");
-const TsConfigPathsPlugin = require("awesome-typescript-loader");
-const webpack = require("webpack");
+import HardSourceWebpackPlugin from "hard-source-webpack-plugin";
+import nodeObjectHash from "node-object-hash";
+import path from "path";
+import TsConfigPathsPlugin from "awesome-typescript-loader";
+import webpack from "webpack";
 
 
-module.exports = function sharedConfig(){
+export default function sharedConfig(){
 
     const production = global.AUTOMATION.production;
 
@@ -96,4 +96,4 @@ module.exports = function sharedConfig(){
         }
     };
 
-};
+}

@@ -1,9 +1,9 @@
 
 
-const exec = require("./exec");
+import exec from "./exec";
 
 
-module.exports = async function kill(str){
+export default async function kill(str){
 
     await exec([
         "ps -ax",
@@ -15,4 +15,4 @@ module.exports = async function kill(str){
         "xargs kill -9"
     ]);
 
-};
+}

@@ -1,9 +1,9 @@
 
 
-const config = require(".");
+import config from ".";
 
 
-module.exports = {
+export default {
     // Much simpler to just use magic numbers here
     /* eslint-disable no-magic-numbers */
     datastore: config.port + 1,

@@ -1,13 +1,13 @@
 
 
-const chalk = require("chalk");
-const eslintRules = require("eslint-find-rules");
-const log = require("fancy-log");
-const path = require("path");
-const Task = require("../../../../task");
+import chalk from "chalk";
+import eslintRules from "eslint-find-rules";
+import log from "fancy-log";
+import path from "path";
+import Task from "../../../../task";
 
 
-module.exports = class RulesLintTast extends Task{
+export default class RulesLintTast extends Task{
 
     async runner(){
 
@@ -41,4 +41,4 @@ module.exports = class RulesLintTast extends Task{
 
     }
 
-};
+}

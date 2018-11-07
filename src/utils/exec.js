@@ -1,11 +1,11 @@
 
 
-const chalk = require("chalk");
-const exec = require("child_process");
-const log = require("fancy-log");
+import chalk from "chalk";
+import exec from "child_process";
+import log from "fancy-log";
 
 
-module.exports = async function run(command){
+export default async function run(command){
 
     await new Promise((resolve, reject) => {
 
@@ -32,4 +32,4 @@ module.exports = async function run(command){
 
     });
 
-};
+}

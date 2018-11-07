@@ -1,12 +1,12 @@
 
 
-const config = require("../../config/nodemon");
-const nodemon = require("nodemon");
-const Task = require("../../../task");
-const utils = require("../../../utils");
+import config from "../../config/nodemon";
+import nodemon from "nodemon";
+import Task from "../../../task";
+import utils from "../../../utils";
 
 
-module.exports = class LocalServerTask extends Task{
+export default class LocalServerTask extends Task{
 
     constructor(args = {}){
 
@@ -31,4 +31,4 @@ module.exports = class LocalServerTask extends Task{
 
     }
 
-};
+}

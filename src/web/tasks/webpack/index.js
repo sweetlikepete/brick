@@ -1,13 +1,13 @@
 
 
-const config = require("../../config");
-const formatMessages = require("webpack-format-messages");
-const fs = require("fs-extra");
-const generateWebpackConfig = require("../../config/webpack");
-const log = require("fancy-log");
-const path = require("path");
-const Task = require("../../../task");
-const webpack = require("webpack");
+import config from "../../config";
+import formatMessages from "webpack-format-messages";
+import fs from "fs-extra";
+import generateWebpackConfig from "../../config/webpack";
+import log from "fancy-log";
+import path from "path";
+import Task from "../../../task";
+import webpack from "webpack";
 
 
 const callback = (err, stats, resolve, reject) => {
@@ -50,7 +50,7 @@ const callback = (err, stats, resolve, reject) => {
 };
 
 
-module.exports = class WebpackTask extends Task{
+export default class WebpackTask extends Task{
 
     constructor(args = {}){
 
@@ -65,6 +65,8 @@ module.exports = class WebpackTask extends Task{
         const webpackConfig = generateWebpackConfig();
         const keys = Object.keys(webpackConfig);
 
+        // This is ok because it only happens during the build
+        // eslint-disable-next-line no-sync
         keys.forEach((key) => fs.ensureDirSync(path.join(process.cwd(), `src/web/build/${ key }`)));
 
         const configs = keys.map((key) => webpackConfig[key]);
@@ -101,4 +103,4 @@ module.exports = class WebpackTask extends Task{
 
     }
 
-};
+}

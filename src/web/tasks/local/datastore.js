@@ -1,11 +1,11 @@
 
 
-const ports = require("../../config/ports");
-const Task = require("../../../task");
-const utils = require("../../../utils");
+import ports from "../../config/ports";
+import Task from "../../../task";
+import utils from "../../../utils";
 
 
-module.exports = class LocalDataStoreTask extends Task{
+export default class LocalDataStoreTask extends Task{
 
     constructor(args = {}){
 
@@ -29,4 +29,4 @@ module.exports = class LocalDataStoreTask extends Task{
 
     }
 
-};
+}

@@ -1,13 +1,13 @@
 
 
-const gulp = require("gulp");
-const JSLintTask = require("./js");
-const RulesLintTask = require("./rules");
-const Task = require("../../../task");
-const TSLintTask = require("./ts");
+import gulp from "gulp";
+import JSLintTask from "./js";
+import RulesLintTask from "./rules";
+import Task from "../../../task";
+import TSLintTask from "./ts";
 
 
-module.exports = class LintTask extends Task{
+export default class LintTask extends Task{
 
     constructor(args = {}){
 
@@ -67,4 +67,4 @@ module.exports = class LintTask extends Task{
 
     }
 
-};
+}

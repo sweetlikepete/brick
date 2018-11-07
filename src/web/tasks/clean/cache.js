@@ -1,12 +1,12 @@
 
 
-const cache = require("gulp-cache");
-const path = require("path");
-const Task = require("../../../task");
-const utils = require("../../../utils");
+import cache from "gulp-cache";
+import path from "path";
+import Task from "../../../task";
+import utils from "../../../utils";
 
 
-module.exports = class CleanCacheTask extends Task{
+export default class CleanCacheTask extends Task{
 
     constructor(args = {}){
 
@@ -24,4 +24,4 @@ module.exports = class CleanCacheTask extends Task{
 
     }
 
-};
+}

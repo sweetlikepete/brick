@@ -1,10 +1,10 @@
 
 
 const gulp = require("gulp");
-const Brick = require(".");
+const Brick = require("./lib");
 
 
-const automation = new Brick();
+const automation = new Brick.default();
 
 
 gulp.task("lint", gulp.series(

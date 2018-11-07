@@ -1,10 +1,10 @@
 
 
-const Task = require("../../../task");
-const utils = require("../../../utils");
+import Task from "../../../task";
+import utils from "../../../utils";
 
 
-module.exports = class LocalMemcacheTask extends Task{
+export default class LocalMemcacheTask extends Task{
 
     constructor(args = {}){
 
@@ -23,4 +23,4 @@ module.exports = class LocalMemcacheTask extends Task{
 
     }
 
-};
+}
