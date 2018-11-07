@@ -12,7 +12,7 @@ const touch = require("touch");
 
 
 const baseConfigPath = path.join(__dirname, "../../../config/eslint.js");
-const userConfigPath = path.join(process.cwd(), "eslint.js");
+const userConfigPath = path.join(process.cwd(), ".eslintrc.js");
 
 const conf = {
     cache: true,

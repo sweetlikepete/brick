@@ -21,12 +21,13 @@ module.exports = class JSLintTast extends Task{
     runner(paths, watching = false){
 
         const tsConfig = path.join(process.cwd(), "tsconfig.json");
-        const tsLintConfig = path.join(__dirname, "../../../config/tslint.json");
+        const baseConfigPath = path.join(__dirname, "../../../config/tslint.json");
+        const userConfigPath = path.join(process.cwd(), "tslint.json");
 
         if(fs.existsSync(tsConfig)){
 
             const conf = {
-                configuration: tsLintConfig,
+                configuration: fs.existsSync(userConfigPath) ? userConfigPath : baseConfigPath,
                 fix: true,
                 program: tslint.Linter.createProgram(tsConfig)
             };
