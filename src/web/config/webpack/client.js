@@ -2,6 +2,7 @@
 
 import AssetsPlugin from "assets-webpack-plugin";
 import babelConfig from "../babel";
+import { BundleAnalyzerPlugin } from "webpack-bundle-analyzer";
 import clone from "clone";
 import generateShared from "./shared";
 import merge from "merge";
@@ -58,7 +59,8 @@ export default function clientConfig(){
             }),
             new webpack.optimize.ModuleConcatenationPlugin(),
             new webpack.optimize.OccurrenceOrderPlugin(),
-            new webpack.HashedModuleIdsPlugin()
+            new webpack.HashedModuleIdsPlugin(),
+            new BundleAnalyzerPlugin()
         ],
         stats: {
             publicPath: true
