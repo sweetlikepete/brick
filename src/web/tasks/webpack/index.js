@@ -1,9 +1,9 @@
 
 
 import config from "../../config";
+import createWebpackConfig from "../../config/webpack";
 import formatMessages from "webpack-format-messages";
 import fs from "fs-extra";
-import generateWebpackConfig from "../../config/webpack";
 import log from "fancy-log";
 import path from "path";
 import Task from "../../../task";
@@ -62,7 +62,7 @@ export default class WebpackTask extends Task{
 
     async runner(paths, watching = false){
 
-        const webpackConfig = generateWebpackConfig();
+        const webpackConfig = createWebpackConfig(watching);
         const keys = Object.keys(webpackConfig);
 
         // This is ok because it only happens during the build

@@ -2,6 +2,7 @@
 
 import AssetsPlugin from "assets-webpack-plugin";
 import babelConfig from "../babel";
+import { BundleAnalyzerPlugin } from "webpack-bundle-analyzer";
 import clone from "clone";
 import generateShared from "./shared";
 import merge from "merge";
@@ -10,7 +11,7 @@ import { ReactLoadablePlugin } from "react-loadable/webpack";
 import webpack from "webpack";
 
 
-export default function clientConfig(){
+export default function clientConfig(watching = false){
 
     const shared = generateShared();
     const production = global.AUTOMATION.production;
@@ -59,7 +60,20 @@ export default function clientConfig(){
             new webpack.optimize.ModuleConcatenationPlugin(),
             new webpack.optimize.OccurrenceOrderPlugin(),
             new webpack.HashedModuleIdsPlugin()
-        ],
+        ].concat(watching ? [
+            new BundleAnalyzerPlugin({
+                analyzerHost: "127.0.0.1",
+                analyzerMode: "server",
+                analyzerPort: 30000,
+                defaultSizes: "parsed",
+                generateStatsFile: false,
+                logLevel: "info",
+                openAnalyzer: false,
+                reportFilename: "report.html",
+                statsFilename: "stats.json",
+                statsOptions: null
+            })
+        ] : []),
         stats: {
             publicPath: true
         },

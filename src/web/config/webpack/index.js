@@ -4,11 +4,11 @@ import client from "./client";
 import server from "./server";
 
 
-export default function webpackConfig(){
+export default function webpackConfig(watching = false){
 
     return {
-        client: client(),
-        server: server()
+        client: client(watching),
+        server: server(watching)
     };
 
 }
