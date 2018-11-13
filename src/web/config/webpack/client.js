@@ -17,8 +17,8 @@ export default function clientConfig(watching = false){
     const production = global.AUTOMATION.production;
 
     return merge.recursive({}, clone(shared), {
-        entry: path.join(process.cwd(), "src/web/client/index.js"),
         devtool: production ? "none" : "source-maps",
+        entry: path.join(process.cwd(), "src/web/client/index.js"),
         mode: production ? "production" : "development",
         module: {
             rules: clone(shared).module.rules.concat([
