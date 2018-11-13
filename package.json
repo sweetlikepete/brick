@@ -65,7 +65,6 @@
     "react-loadable": "^5.5.0",
     "react-universal-component": "^3.0.3",
     "request": "^2.88.0",
-    "source-map-support": "^0.5.9",
     "through2": "^3.0.0",
     "touch": "^3.1.0",
     "ts-loader": "^5.3.0",
