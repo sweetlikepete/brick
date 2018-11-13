@@ -13,8 +13,8 @@ export default function sharedConfig(){
 
     return {
         cache: !production,
-        devtool: production ? "none" : "source-maps",
-        mode: production ? "production" : "development",
+        devtool: "source-maps",
+        mode: "development",
         module: {
             rules: [
                 {

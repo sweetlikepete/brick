@@ -18,6 +18,8 @@ export default function clientConfig(watching = false){
 
     return merge.recursive({}, clone(shared), {
         entry: path.join(process.cwd(), "src/web/client/index.js"),
+        devtool: production ? "none" : "source-maps",
+        mode: production ? "production" : "development",
         module: {
             rules: clone(shared).module.rules.concat([
                 {
