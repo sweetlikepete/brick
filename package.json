@@ -4,7 +4,7 @@
   "description": "",
   "main": "lib/index.js",
   "scripts": {
-    "build": "gulp lint; node_modules/@babel/cli/bin/babel.js src --out-dir lib",
+    "build": "gulp lint; rm -rf lib; node_modules/@babel/cli/bin/babel.js src --out-dir lib",
     "prepublishOnly": "npm run build"
   },
   "engines": {
