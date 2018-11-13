@@ -59,7 +59,10 @@ export default function clientConfig(watching = false){
             }),
             new webpack.optimize.ModuleConcatenationPlugin(),
             new webpack.optimize.OccurrenceOrderPlugin(),
-            new webpack.HashedModuleIdsPlugin()
+            new webpack.HashedModuleIdsPlugin(),
+            new webpack.DefinePlugin({
+                "process.env.ENVIRONMENT": JSON.stringify("client")
+            })
         ].concat(watching ? [
             new BundleAnalyzerPlugin({
                 analyzerHost: "127.0.0.1",
