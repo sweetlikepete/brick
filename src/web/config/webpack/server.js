@@ -1,5 +1,7 @@
 
 
+import automationConfig from "../automation";
+import autoprefixer from "autoprefixer";
 import babelConfig from "../babel";
 import clone from "clone";
 import generateShared from "./shared";
@@ -14,6 +16,18 @@ import webpack from "webpack";
 export default function serverConfig(){
 
     const shared = generateShared();
+    const config = automationConfig();
+
+    const postCSSLoader = {
+        loader: "postcss-loader",
+        options: {
+            ident: "postcss",
+            plugins: () => [
+                autoprefixer({ browsers: config.browsers })
+            ],
+            sourceMap: true
+        }
+    };
 
     return merge.recursive({}, clone(shared), {
         entry: path.join(process.cwd(), "src/web/server/index.js"),
@@ -31,7 +45,7 @@ export default function serverConfig(){
                     test: /\.js$/,
                     use: {
                         loader: "babel-loader",
-                        options: babelConfig.server
+                        options: babelConfig().server
                     }
                 },
                 {
@@ -40,11 +54,43 @@ export default function serverConfig(){
                     use: [
                         {
                             loader: "babel-loader",
-                            options: babelConfig.server
+                            options: babelConfig().server
                         },
                         {
                             loader: "ts-loader"
                         }
+                    ]
+                },
+                {
+                    exclude: /\.module\.scss$/,
+                    test: /\.scss$/,
+                    use: [
+                        {
+                            loader: "css-loader",
+                            options: {
+                                minimize: true,
+                                modules: false,
+                                sourceMap: true
+                            }
+                        },
+                        postCSSLoader,
+                        "sass-loader"
+                    ]
+                },
+                {
+                    test: /\.module\.scss$/,
+                    use: [
+                        {
+                            loader: "css-loader",
+                            options: {
+                                localIdentName: "[local]__[hash:base64:5]",
+                                minimize: true,
+                                modules: true,
+                                sourceMap: true
+                            }
+                        },
+                        postCSSLoader,
+                        "sass-loader",
                     ]
                 }
             ])
@@ -88,9 +134,7 @@ export default function serverConfig(){
                 banner: "require(\"source-map-support\").install();",
                 entryOnly: false,
                 raw: true
-            }),
-            new webpack.IgnorePlugin(/\.(css|scss)$/),
-            new webpack.NormalModuleReplacementPlugin(/\.css|scss$/, "node-noop")
+            })
         ]),
         target: "node"
     });

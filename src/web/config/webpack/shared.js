@@ -2,6 +2,7 @@
 
 import BrotliPlugin from "brotli-webpack-plugin";
 import CompressionPlugin from "compression-webpack-plugin";
+import automationConfig from "../automation";
 import path from "path";
 import TsConfigPathsPlugin from "awesome-typescript-loader";
 import webpack from "webpack";
@@ -9,10 +10,10 @@ import webpack from "webpack";
 
 export default function sharedConfig(){
 
-    const production = global.AUTOMATION.production;
+    const config = automationConfig();
 
     return {
-        cache: !production,
+        cache: !config.production,
         devtool: "source-maps",
         mode: "development",
         module: {
@@ -23,9 +24,9 @@ export default function sharedConfig(){
                         {
                             loader: "file-loader",
                             options: {
-                                name: production ? "[hash:20].[ext]" : "[path][name].[ext]",
+                                name: config.production ? "[hash:20].[ext]" : "[path][name].[ext]",
                                 outputPath: "../client",
-                                publicPath: "/💩/"
+                                publicPath: `/${ config.staticFolder }/`
                             }
                         }
                     ]

@@ -1,5 +1,6 @@
 
 
+import merge from "merge";
 import Web from "./web";
 
 
@@ -10,7 +11,13 @@ global.AUTOMATION = {
 
 export default class Automation{
 
-    constructor(){
+    constructor(config = {}){
+
+        global.AUTOMATION.config = merge.recursive({}, {
+            browsers: ["last 1 version"],
+            staticFolder: "static",
+            production: false
+        }, config);
 
         this.web = new Web();
 
@@ -22,7 +29,7 @@ export default class Automation{
         // eslint-disable-next-line require-await
         return async () => {
 
-            global.AUTOMATION.production = true;
+            global.AUTOMATION.config.production = true;
 
         };
 
