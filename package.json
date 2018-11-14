@@ -4,8 +4,8 @@
   "description": "",
   "main": "lib/index.js",
   "scripts": {
-    "build": "gulp lint; rm -rf lib; node_modules/@babel/cli/bin/babel.js src --out-dir lib",
-    "prepublishOnly": "npm run build"
+    "build": "rm -rf lib && node_modules/@babel/cli/bin/babel.js src --out-dir lib",
+    "prepublishOnly": "gulp lint && npm run build"
   },
   "engines": {
     "node": ">=8.0.0"
@@ -32,9 +32,11 @@
     "babel-loader": "^8.0.4",
     "babel-plugin-dynamic-import-node": "^2.2.0",
     "babel-plugin-universal-import": "^3.1.2",
+    "brotli-webpack-plugin": "^1.0.0",
     "chalk": "^2.4.1",
     "clone": "^2.1.2",
     "codeframe": "^0.0.1",
+    "compression-webpack-plugin": "^2.0.0",
     "eslint": "^5.8.0",
     "eslint-find-rules": "^3.3.1",
     "eslint-plugin-array-func": "^3.0.0",

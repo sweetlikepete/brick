@@ -1,7 +1,7 @@
 
 
-import HardSourceWebpackPlugin from "hard-source-webpack-plugin";
-import nodeObjectHash from "node-object-hash";
+import BrotliPlugin from "brotli-webpack-plugin";
+import CompressionPlugin from "compression-webpack-plugin";
 import path from "path";
 import TsConfigPathsPlugin from "awesome-typescript-loader";
 import webpack from "webpack";
@@ -18,7 +18,7 @@ export default function sharedConfig(){
         module: {
             rules: [
                 {
-                    test: /\.(svg|png|jpg|jpeg|gif|ico|txt|json)$/,
+                    test: /\.(svg|png|jpg|jpeg|gif|ico|txt|json|txt)$/,
                     use: [
                         {
                             loader: "file-loader",
@@ -34,29 +34,18 @@ export default function sharedConfig(){
         },
         plugins: [
             new webpack.optimize.ModuleConcatenationPlugin(),
-            new HardSourceWebpackPlugin({
-                cacheDirectory: path.join(process.cwd(), "node_modules/.cache/hard-source/[confighash]"),
-                cachePrune: {
-                    // 2 Days
-                    // eslint-disable-next-line no-magic-numbers
-                    maxAge: 2 * 24 * 60 * 60 * 1000,
-                    // 50 Megabytes
-                    // eslint-disable-next-line no-magic-numbers
-                    sizeThreshold: 50 * 1024 * 1024
-                },
-                configHash: (webpackConfig) => nodeObjectHash({ sort: false }).hash(webpackConfig),
-                environmentHash: {
-                    directories: [],
-                    files: [
-                        "package-lock.json",
-                        "yarn.lock"
-                    ],
-                    root: process.cwd()
-                },
-                info: {
-                    level: "debug",
-                    mode: "none"
-                }
+            new webpack.optimize.OccurrenceOrderPlugin(),
+            new webpack.HashedModuleIdsPlugin(),
+            new CompressionPlugin({
+                algorithm: "gzip",
+                filename: "[path].gz[query]",
+                minRatio: 1,
+                test: /\.*$/
+            }),
+            new BrotliPlugin({
+                asset: "[path].br[query]",
+                minRatio: 1,
+                test: /\.*$/
             })
         ],
         resolve: {

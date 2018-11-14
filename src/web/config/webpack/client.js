@@ -25,10 +25,12 @@ export default function clientConfig(watching = false){
                 {
                     exclude: /node_modules/,
                     test: /\.js$/,
-                    use: {
-                        loader: "babel-loader",
-                        options: babelConfig.client
-                    }
+                    use: [
+                        {
+                            loader: "babel-loader",
+                            options: babelConfig.client
+                        }
+                    ]
                 },
                 {
                     exclude: /node_modules/,
@@ -51,7 +53,7 @@ export default function clientConfig(watching = false){
             path: path.join(process.cwd(), "src/web/build/client"),
             publicPath: "/💩/"
         },
-        plugins: [
+        plugins: shared.plugins.concat([
             new AssetsPlugin({
                 filename: "src/web/build/client/webpack-assets.json",
                 fullpath: true
@@ -59,9 +61,6 @@ export default function clientConfig(watching = false){
             new ReactLoadablePlugin({
                 filename: path.join(process.cwd(), "src/web/build/client/react-loadable-stats.json")
             }),
-            new webpack.optimize.ModuleConcatenationPlugin(),
-            new webpack.optimize.OccurrenceOrderPlugin(),
-            new webpack.HashedModuleIdsPlugin(),
             new webpack.DefinePlugin({
                 "process.env.ENVIRONMENT": JSON.stringify("client")
             })
@@ -78,7 +77,7 @@ export default function clientConfig(watching = false){
                 statsFilename: "stats.json",
                 statsOptions: null
             })
-        ] : []),
+        ] : [])),
         stats: {
             publicPath: true
         },
