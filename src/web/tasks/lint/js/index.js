@@ -23,7 +23,9 @@ const conf = {
     warnFileIgnored: true
 };
 
-const eslintOptions = conf.configFile;
+// This is ok because it only happens during the build
+// eslint-disable-next-line no-sync
+const eslintOptionsString = fs.readFileSync(conf.configFile);
 // This is ok because it only happens during the build
 // eslint-disable-next-line no-sync
 const { devDependencies } = JSON.parse(fs.readFileSync(path.join(process.cwd(), "package.json")));
@@ -49,7 +51,7 @@ export default class JSLintTast extends Task{
         // Cache if not watching
         .pipe(watching ? eslint(conf) : cache(eslint(conf), {
             // Cache key based on the file contents, eslint + plugin versions and eslint options
-            key: (file) => `${ file.contents.toString("utf8") }${ eslintVersionString }${ eslintOptions }`,
+            key: (file) => `${ file.contents.toString("utf8") }${ eslintVersionString }${ eslintOptionsString }`,
             success: (file) => file.eslint.errorCount === 0,
             value: (file) => ({ eslint: file.eslint })
         }))

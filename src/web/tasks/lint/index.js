@@ -3,6 +3,7 @@
 import gulp from "gulp";
 import JSLintTask from "./js";
 import RulesLintTask from "./rules";
+import SCSSLintTask from "./scss";
 import Task from "../../../task";
 import TSLintTask from "./ts";
 
@@ -20,6 +21,10 @@ export default class LintTask extends Task{
                 ext: "{js,jsx}",
                 task: JSLintTask
             },
+            scss: {
+                ext: "scss",
+                task: SCSSLintTask
+            },
             ts: {
                 ext: "{ts,tsx}",
                 task: TSLintTask
@@ -34,7 +39,6 @@ export default class LintTask extends Task{
                 name: `web.lint.${ ext }`,
                 paths: [
                     `src/**/*.${ linter.ext }`,
-                    `automation/**/*.${ linter.ext }`,
                     `!**/build/**/*.${ linter.ext }`,
                     `!node_modules/**/*.${ linter.ext }`
                 ]
@@ -53,6 +57,7 @@ export default class LintTask extends Task{
         return gulp.parallel(
             this.js.run(),
             this.rules.run(),
+            this.scss.run(),
             this.ts.run()
         );
 
@@ -62,6 +67,7 @@ export default class LintTask extends Task{
 
         return gulp.parallel(
             this.js.watch(),
+            this.scss.watch(),
             this.ts.watch()
         );
 
