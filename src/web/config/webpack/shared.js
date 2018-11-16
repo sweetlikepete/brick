@@ -69,6 +69,11 @@ export default function sharedConfig(){
                 }
             ]
         },
+        optimization: {
+            minimizer: [
+                new OptimizeCSSAssetsPlugin({})
+            ]
+        },
         plugins: [
             new webpack.optimize.ModuleConcatenationPlugin(),
             new webpack.optimize.OccurrenceOrderPlugin(),
