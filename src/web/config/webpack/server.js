@@ -13,7 +13,6 @@ import webpack from "webpack";
 
 export default function serverConfig(){
 
-    const config = automationConfig();
     const shared = generateShared("server");
 
     return merge.recursive({}, clone(shared), {

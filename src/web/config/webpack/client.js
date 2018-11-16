@@ -24,7 +24,7 @@ export default function clientConfig(watching = false){
             }),
             new ReactLoadablePlugin({
                 filename: path.join(process.cwd(), "src/web/build/client/react-loadable-stats.json")
-            }),
+            })
         ].concat(watching ? [
             new BundleAnalyzerPlugin({
                 analyzerHost: "127.0.0.1",
