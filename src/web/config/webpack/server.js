@@ -1,6 +1,5 @@
 
 
-import automationConfig from "../automation";
 import clone from "clone";
 import generateShared from "./shared";
 import HardSourceWebpackPlugin from "hard-source-webpack-plugin";
