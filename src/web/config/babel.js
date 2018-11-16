@@ -1,11 +1,6 @@
 
 
-import automationConfig from "./automation";
-
-
 export default function generateBabelConfig(){
-
-    const config = automationConfig();
 
     return {
         client: {
@@ -51,4 +46,4 @@ export default function generateBabelConfig(){
         }
     };
 
-};
+}

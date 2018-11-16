@@ -15,8 +15,8 @@ export default class Automation{
 
         global.AUTOMATION.config = merge.recursive({}, {
             browsers: ["last 1 version"],
-            staticFolder: "static",
-            production: false
+            production: false,
+            staticFolder: "static"
         }, config);
 
         this.web = new Web();

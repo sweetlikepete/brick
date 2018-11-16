@@ -5,7 +5,8 @@
   "main": "lib/index.js",
   "scripts": {
     "build": "rm -rf lib && node_modules/@babel/cli/bin/babel.js src --out-dir lib",
-    "prepublishOnly": "gulp lint && npm run build"
+    "lint": "gulp lint",
+    "prepublishOnly": "npm run lint && npm run build"
   },
   "engines": {
     "node": ">=8.0.0"
@@ -21,10 +22,10 @@
   },
   "homepage": "https://github.com/sweetlikepete/brick#readme",
   "dependencies": {
-    "@babel/core": "^7.1.5",
+    "@babel/core": "^7.1.6",
     "@babel/plugin-proposal-class-properties": "^7.1.0",
     "@babel/plugin-syntax-dynamic-import": "^7.0.0",
-    "@babel/preset-env": "^7.1.5",
+    "@babel/preset-env": "^7.1.6",
     "@babel/preset-react": "^7.0.0",
     "assets-webpack-plugin": "^3.9.7",
     "autoprefixer": "^9.3.1",
@@ -63,10 +64,12 @@
     "gulp-watch": "^5.0.1",
     "hard-source-webpack-plugin": "^0.12.0",
     "merge": "^1.2.1",
+    "mini-css-extract-plugin": "^0.4.4",
     "node-object-hash": "^1.4.1",
     "node-sass": "^4.10.0",
     "nodemon": "^1.18.6",
     "open-browsers": "^1.1.1",
+    "optimize-css-assets-webpack-plugin": "^5.0.1",
     "postcss-loader": "^3.0.0",
     "react": "^16.6.1",
     "react-loadable": "^5.5.0",

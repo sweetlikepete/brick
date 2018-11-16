@@ -1,7 +1,5 @@
 
 
-import automationConfig from "../automation";
-import autoprefixer from "autoprefixer";
 import babelConfig from "../babel";
 import clone from "clone";
 import generateShared from "./shared";
@@ -16,20 +14,9 @@ import webpack from "webpack";
 export default function serverConfig(){
 
     const shared = generateShared();
-    const config = automationConfig();
-
-    const postCSSLoader = {
-        loader: "postcss-loader",
-        options: {
-            ident: "postcss",
-            plugins: () => [
-                autoprefixer({ browsers: config.browsers })
-            ],
-            sourceMap: true
-        }
-    };
 
     return merge.recursive({}, clone(shared), {
+        devtool: "source-maps",
         entry: path.join(process.cwd(), "src/web/server/index.js"),
         externals: [
             nodeExternals({
@@ -38,6 +25,7 @@ export default function serverConfig(){
                 ]
             })
         ],
+        mode: "development",
         module: {
             rules: clone(shared).module.rules.concat([
                 {
@@ -60,42 +48,11 @@ export default function serverConfig(){
                             loader: "ts-loader"
                         }
                     ]
-                },
-                {
-                    exclude: /\.module\.scss$/,
-                    test: /\.scss$/,
-                    use: [
-                        {
-                            loader: "css-loader",
-                            options: {
-                                minimize: true,
-                                modules: false,
-                                sourceMap: true
-                            }
-                        },
-                        postCSSLoader,
-                        "sass-loader"
-                    ]
-                },
-                {
-                    test: /\.module\.scss$/,
-                    use: [
-                        {
-                            loader: "css-loader",
-                            options: {
-                                localIdentName: "[local]__[hash:base64:5]",
-                                minimize: true,
-                                modules: true,
-                                sourceMap: true
-                            }
-                        },
-                        postCSSLoader,
-                        "sass-loader",
-                    ]
                 }
             ])
         },
         output: {
+            chunkFilename: "[name].js",
             filename: "[name].js",
             path: path.join(process.cwd(), "src/web/build/server")
         },
