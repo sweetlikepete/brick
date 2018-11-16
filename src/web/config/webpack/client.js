@@ -7,6 +7,7 @@ import generateShared from "./shared";
 import merge from "merge";
 import path from "path";
 import { ReactLoadablePlugin } from "react-loadable/webpack";
+import TerserPlugin from "terser-webpack-plugin";
 
 
 export default function clientConfig(watching = false){
@@ -16,6 +17,17 @@ export default function clientConfig(watching = false){
     return merge.recursive({}, clone(shared), {
         module: {
             rules: clone(shared).module.rules.concat([])
+        },
+        optimization: {
+            minimizer: clone(shared).optimization.minimizer.concat([
+                new TerserPlugin({
+                    terserOptions: {
+                        output: {
+                            comments: false
+                        }
+                    }
+                })
+            ])
         },
         plugins: shared.plugins.concat([
             new AssetsPlugin({

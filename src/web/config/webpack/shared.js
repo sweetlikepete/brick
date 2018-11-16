@@ -28,7 +28,7 @@ export default function sharedConfig(env){
 
     return {
         cache: !config.production,
-        devtool: "source-map",
+        devtool: config.production && env !== "server" ? "none" : "source-map",
         entry: path.join(process.cwd(), `src/web/${ env }/index.js`),
         mode: config.production && env !== "server" ? "production" : "development",
         module: {
