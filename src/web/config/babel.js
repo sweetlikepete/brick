@@ -1,8 +1,8 @@
 
 
-export default function generateBabelConfig(){
+export default function generateBabelConfig(env){
 
-    return {
+    const config = {
         client: {
             babelrc: false,
             comments: true,
@@ -45,5 +45,7 @@ export default function generateBabelConfig(){
             ]
         }
     };
+
+    return config[env];
 
 }

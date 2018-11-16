@@ -1,22 +1,36 @@
 
 
 import automationConfig from "../automation";
-import BrotliPlugin from "brotli-webpack-plugin";
-import CompressionPlugin from "compression-webpack-plugin";
+import autoprefixer from "autoprefixer";
+import babelConfig from "../babel";
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
+import OptimizeCSSAssetsPlugin from "optimize-css-assets-webpack-plugin";
 import path from "path";
 import TsConfigPathsPlugin from "awesome-typescript-loader";
 import webpack from "webpack";
 
 
-export default function sharedConfig(){
+export default function sharedConfig(env){
 
     const config = automationConfig();
+    const hash = config.production && env !== "server";
+
+    const postCSSLoader = {
+        loader: "postcss-loader",
+        options: {
+            ident: "postcss",
+            plugins: () => [
+                autoprefixer({ browsers: config.browsers })
+            ],
+            sourceMap: true
+        }
+    };
 
     return {
         cache: !config.production,
-        devtool: config.production ? "none" : "source-maps",
-        mode: config.production ? "production" : "development",
+        devtool: "source-map",
+        entry: path.join(process.cwd(), `src/web/${ env }/index.js`),
+        mode: config.production && env !== "server" ? "production" : "development",
         module: {
             rules: [
                 {
@@ -31,25 +45,80 @@ export default function sharedConfig(){
                             }
                         }
                     ]
+                },
+                {
+                    exclude: /node_modules/,
+                    test: /\.js$/,
+                    use: [
+                        {
+                            loader: "babel-loader",
+                            options: babelConfig(env)
+                        }
+                    ]
+                },
+                {
+                    exclude: /node_modules/,
+                    test: /\.tsx?$/,
+                    use: [
+                        {
+                            loader: "babel-loader",
+                            options: babelConfig(env)
+                        },
+                        {
+                            loader: "ts-loader"
+                        }
+                    ]
+                },
+                {
+                    test: /\.scss$/,
+                    use: [
+                        {
+                            loader: MiniCssExtractPlugin.loader,
+                            options: {
+                                publicPath: `/${ config.staticFolder }/`
+                            }
+                        },
+                        {
+                            loader: "css-loader",
+                            options: {
+                                localIdentName: "[hash:8]",
+                                minimize: true,
+                                modules: true,
+                                sourceMap: true
+                            }
+                        },
+                        postCSSLoader,
+                        {
+                            loader: "sass-loader",
+                            options: {
+                                sourceMap: true
+                            }
+                        }
+                    ]
                 }
             ]
+        },
+        optimization: {
+            minimizer: [
+                new OptimizeCSSAssetsPlugin({})
+            ]
+        },
+        output: {
+            chunkFilename: hash ? "[chunkhash].js" : "[name].js",
+            filename: hash ? "[chunkhash].js" : "[name].js",
+            path: path.join(process.cwd(), `src/web/build/${ env }`),
+            publicPath: `/${ config.staticFolder }/`
         },
         plugins: [
             new webpack.optimize.ModuleConcatenationPlugin(),
             new webpack.optimize.OccurrenceOrderPlugin(),
             new webpack.HashedModuleIdsPlugin(),
-            new CompressionPlugin({
-                algorithm: "gzip",
-                filename: "[path].gz[query]",
-                minRatio: 1,
-                test: /\.*$/,
-                threshold: 0
+            new webpack.DefinePlugin({
+                "process.env.ENVIRONMENT": JSON.stringify(env)
             }),
-            new BrotliPlugin({
-                asset: "[path].br[query]",
-                minRatio: 1,
-                test: /\.*$/,
-                threshold: 0
+            new MiniCssExtractPlugin({
+                chunkFilename: hash ? "[chunkhash].css" : "[name].css",
+                filename: hash ? "[chunkhash].css" : "[name].css"
             })
         ],
         resolve: {
