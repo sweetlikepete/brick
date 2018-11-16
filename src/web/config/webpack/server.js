@@ -1,10 +1,13 @@
 
 
+import autoprefixer from "autoprefixer";
+import automationConfig from "../automation";
 import babelConfig from "../babel";
 import clone from "clone";
 import generateShared from "./shared";
 import HardSourceWebpackPlugin from "hard-source-webpack-plugin";
 import merge from "merge";
+import MiniCssExtractPlugin from "mini-css-extract-plugin";
 import nodeExternals from "webpack-node-externals";
 import nodeObjectHash from "node-object-hash";
 import path from "path";
@@ -13,7 +16,19 @@ import webpack from "webpack";
 
 export default function serverConfig(){
 
+    const config = automationConfig();
     const shared = generateShared();
+
+    const postCSSLoader = {
+        loader: "postcss-loader",
+        options: {
+            ident: "postcss",
+            plugins: () => [
+                autoprefixer({ browsers: config.browsers })
+            ],
+            sourceMap: true
+        }
+    };
 
     return merge.recursive({}, clone(shared), {
         devtool: "source-maps",
@@ -48,6 +63,33 @@ export default function serverConfig(){
                             loader: "ts-loader"
                         }
                     ]
+                },
+                {
+                    test: /\.scss$/,
+                    use: [
+                        {
+                            loader: MiniCssExtractPlugin.loader,
+                            options: {
+                                publicPath: `/${ config.staticFolder }/`
+                            }
+                        },
+                        {
+                            loader: "css-loader",
+                            options: {
+                                localIdentName: "[hash:8]",
+                                minimize: true,
+                                modules: true,
+                                sourceMap: true
+                            }
+                        },
+                        postCSSLoader,
+                        {
+                            loader: "sass-loader",
+                            options: {
+                                sourceMap: true
+                            }
+                        }
+                    ]
                 }
             ])
         },
@@ -57,6 +99,10 @@ export default function serverConfig(){
             path: path.join(process.cwd(), "src/web/build/server")
         },
         plugins: shared.plugins.concat([
+            new MiniCssExtractPlugin({
+                chunkFilename: "[name].css",
+                filename: "[name].css"
+            }),
             new HardSourceWebpackPlugin({
                 cacheDirectory: path.join(process.cwd(), "node_modules/.cache/hard-source/[confighash]"),
                 cachePrune: {
