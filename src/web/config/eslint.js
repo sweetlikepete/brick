@@ -105,7 +105,7 @@ module.exports = {
         "import/export": 2,
         "import/exports-last": 2,
         "import/extensions": [2, "never", {
-            "scss": "always"
+            scss: "always"
         }],
         "import/first": 2,
         "import/group-exports": 2,
