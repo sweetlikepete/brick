@@ -13,6 +13,7 @@ const extensions = [
     ".json",
     ".ts",
     ".tsx",
+    ".scss",
     ".ico",
     ".png",
     ".jpg",
@@ -103,7 +104,9 @@ module.exports = {
         "import/dynamic-import-chunkname": 2,
         "import/export": 2,
         "import/exports-last": 2,
-        "import/extensions": 2,
+        "import/extensions": [2, "never", {
+            "scss": "always"
+        }],
         "import/first": 2,
         "import/group-exports": 2,
         "import/max-dependencies": [2, {

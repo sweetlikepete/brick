@@ -51,6 +51,12 @@ export default function clientConfig(watching = false){
                 statsOptions: null
             })
         ] : [])),
+        resolve: {
+            alias: {
+                "react": "preact-compat",
+                "react-dom": "preact-compat"
+            }
+        },
         stats: {
             publicPath: true
         },
