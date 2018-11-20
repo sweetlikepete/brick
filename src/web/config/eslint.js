@@ -10,6 +10,7 @@
 const extensions = [
     ".js",
     ".jsx",
+    ".mjs",
     ".json",
     ".ts",
     ".tsx",
