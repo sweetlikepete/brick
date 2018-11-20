@@ -16,6 +16,7 @@ export default function generateBabelConfig(env){
                 [
                     "@babel/preset-env",
                     {
+                        modules: false,
                         targets: {
                             esmodules: true
                         }

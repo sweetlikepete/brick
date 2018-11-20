@@ -47,6 +47,11 @@ export default function sharedConfig(env){
                     ]
                 },
                 {
+                    test: /\.mjs$/,
+                    type: "javascript/auto",
+                    use: []
+                },
+                {
                     exclude: /node_modules/,
                     test: /\.js$/,
                     use: [
@@ -132,6 +137,7 @@ export default function sharedConfig(env){
              * extension in the path
              */
             extensions: [
+                ".mjs",
                 ".ts",
                 ".tsx",
                 ".js"

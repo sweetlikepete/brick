@@ -18,7 +18,7 @@ export default class LintTask extends Task{
 
         this.linters = {
             js: {
-                ext: "{js,jsx}",
+                ext: "{js,jsx,mjs}",
                 task: JSLintTask
             },
             scss: {
