@@ -56,7 +56,8 @@ export default function serverConfig(){
             new webpack.BannerPlugin({
                 banner: "require(\"source-map-support\").install();",
                 entryOnly: false,
-                raw: true
+                raw: true,
+                test: /\.js$/
             })
         ]),
         target: "node"

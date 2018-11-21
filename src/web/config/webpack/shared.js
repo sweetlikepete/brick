@@ -2,7 +2,6 @@
 
 import automationConfig from "../automation";
 import autoprefixer from "autoprefixer";
-import babelConfig from "../babel";
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
 import OptimizeCSSAssetsPlugin from "optimize-css-assets-webpack-plugin";
 import path from "path";
@@ -13,7 +12,7 @@ import webpack from "webpack";
 export default function sharedConfig(env){
 
     const config = automationConfig();
-    const hash = config.production && env !== "server";
+    const hash = config.production && env === "client";
 
     const postCSSLoader = {
         loader: "postcss-loader",
@@ -26,11 +25,36 @@ export default function sharedConfig(env){
         }
     };
 
+    const babelLoader = {
+        loader: "babel-loader",
+        options: {
+            babelrc: false,
+            comments: env === "client",
+            plugins: [
+                "react-loadable/babel",
+                "@babel/plugin-syntax-dynamic-import",
+                "@babel/plugin-proposal-class-properties"
+            ],
+            presets: [
+                [
+                    "@babel/preset-env",
+                    {
+                        modules: env === "client" ? false : "auto",
+                        targets: {
+                            esmodules: true
+                        }
+                    }
+                ],
+                "@babel/preset-react"
+            ]
+        }
+    };
+
     return {
         cache: !config.production,
-        devtool: config.production && env !== "server" ? "none" : "source-map",
+        devtool: "source-map",
         entry: path.join(process.cwd(), `src/web/${ env }/index.js`),
-        mode: config.production && env !== "server" ? "production" : "development",
+        mode: "production",
         module: {
             rules: [
                 {
@@ -49,26 +73,22 @@ export default function sharedConfig(env){
                 {
                     test: /\.mjs$/,
                     type: "javascript/auto",
-                    use: []
+                    use: [
+                        babelLoader
+                    ]
                 },
                 {
                     exclude: /node_modules/,
-                    test: /\.js$/,
+                    test: /\.m?js$/,
                     use: [
-                        {
-                            loader: "babel-loader",
-                            options: babelConfig(env)
-                        }
+                        babelLoader
                     ]
                 },
                 {
                     exclude: /node_modules/,
                     test: /\.tsx?$/,
                     use: [
-                        {
-                            loader: "babel-loader",
-                            options: babelConfig(env)
-                        },
+                        babelLoader,
                         {
                             loader: "ts-loader"
                         }
@@ -104,9 +124,45 @@ export default function sharedConfig(env){
             ]
         },
         optimization: {
+            concatenateModules: true,
+            flagIncludedChunks: true,
+            mangleWasmImports: true,
+            mergeDuplicateChunks: true,
+            minimize: Boolean(hash),
             minimizer: [
                 new OptimizeCSSAssetsPlugin({})
-            ]
+            ],
+            moduleIds: config.production ? "hashed" : "named",
+            nodeEnv: "production",
+            occurrenceOrder: true,
+            providedExports: true,
+            removeAvailableModules: true,
+            removeEmptyChunks: true,
+            sideEffects: true,
+            splitChunks: {
+                automaticNameDelimiter: "~",
+                cacheGroups: {
+                    default: {
+                        minChunks: 2,
+                        priority: -20,
+                        reuseExistingChunk: true
+                    },
+                    vendors: {
+                        name: "vendor",
+                        priority: -10,
+                        test: /[\\/]node_modules[\\/]/
+                    }
+                },
+                chunks: "async",
+                maxAsyncRequests: 5,
+                maxInitialRequests: 3,
+                maxSize: 0,
+                minChunks: 1,
+                minSize: 30000,
+                name: true
+
+            },
+            usedExports: true
         },
         output: {
             chunkFilename: hash ? "[chunkhash].js" : "[name].js",
@@ -115,9 +171,6 @@ export default function sharedConfig(env){
             publicPath: `/${ config.staticFolder }/`
         },
         plugins: [
-            new webpack.optimize.ModuleConcatenationPlugin(),
-            new webpack.optimize.OccurrenceOrderPlugin(),
-            new webpack.HashedModuleIdsPlugin(),
             new webpack.DefinePlugin({
                 "process.env.ENVIRONMENT": JSON.stringify(env)
             }),
@@ -128,6 +181,8 @@ export default function sharedConfig(env){
         ],
         resolve: {
             alias: {
+                react: "preact-compat",
+                "react-dom": "preact-compat",
                 src: path.join(process.cwd(), "src")
             },
 
