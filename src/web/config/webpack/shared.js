@@ -1,10 +1,13 @@
 
 
 import automationConfig from "../automation";
-import autoprefixer from "autoprefixer";
+import babelConfig from "../babel";
+import cleanCSSConfig from "../cleancss";
+import imageConfig from "../image";
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
 import OptimizeCSSAssetsPlugin from "optimize-css-assets-webpack-plugin";
 import path from "path";
+import postCSSConfig from "../postcss";
 import TsConfigPathsPlugin from "awesome-typescript-loader";
 import webpack from "webpack";
 
@@ -14,39 +17,17 @@ export default function sharedConfig(env){
     const config = automationConfig();
     const hash = config.production && env === "client";
 
-    const postCSSLoader = {
-        loader: "postcss-loader",
-        options: {
-            ident: "postcss",
-            plugins: () => [
-                autoprefixer({ browsers: config.browsers })
-            ],
-            sourceMap: true
-        }
-    };
-
     const babelLoader = {
         loader: "babel-loader",
+        options: babelConfig(env)
+    };
+
+    const fileLoader = {
+        loader: "file-loader",
         options: {
-            babelrc: false,
-            comments: env === "client",
-            plugins: [
-                "react-loadable/babel",
-                "@babel/plugin-syntax-dynamic-import",
-                "@babel/plugin-proposal-class-properties"
-            ],
-            presets: [
-                [
-                    "@babel/preset-env",
-                    {
-                        modules: env === "client" ? false : "auto",
-                        targets: {
-                            esmodules: true
-                        }
-                    }
-                ],
-                "@babel/preset-react"
-            ]
+            name: config.production ? "[hash:20].[ext]" : "[path][name].[ext]",
+            outputPath: "../client",
+            publicPath: `/${ config.staticFolder }/`
         }
     };
 
@@ -58,15 +39,18 @@ export default function sharedConfig(env){
         module: {
             rules: [
                 {
-                    test: /\.(svg|png|jpg|jpeg|gif|ico|txt|json|txt)$/,
+                    test: /\.(ico|txt|json|txt|ttf|otf|eot|woff(2))$/,
                     use: [
+                        fileLoader
+                    ]
+                },
+                {
+                    test: /\.(svg|png|jpg|jpeg|gif)$/,
+                    use: [
+                        fileLoader,
                         {
-                            loader: "file-loader",
-                            options: {
-                                name: config.production ? "[hash:20].[ext]" : "[path][name].[ext]",
-                                outputPath: "../client",
-                                publicPath: `/${ config.staticFolder }/`
-                            }
+                            loader: "image-webpack-loader",
+                            options: imageConfig(env)
                         }
                     ]
                 },
@@ -112,7 +96,14 @@ export default function sharedConfig(env){
                                 sourceMap: true
                             }
                         },
-                        postCSSLoader,
+                        {
+                            loader: "clean-css-loader",
+                            options: cleanCSSConfig
+                        },
+                        {
+                            loader: "postcss-loader",
+                            options: postCSSConfig()
+                        },
                         {
                             loader: "sass-loader",
                             options: {
