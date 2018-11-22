@@ -14,18 +14,26 @@ export default class CompressTask extends Task{
 
         this.name = args.name || "web.compress";
 
+        const extensions = [
+            "js",
+            "css",
+            "svg",
+            "txt",
+            "json"
+        ];
+
+        const paths = [
+            `src/web/build/client/**/*.{${ extensions.join(",") }}`
+        ];
+
         this.brotli = new CompressBrotliTask({
             name: "web.compress.brotli",
-            paths: [
-                `src/web/build/client/**/*.{js,css}`
-            ]
+            paths
         });
 
         this.gzip = new CompressGzipTask({
             name: "web.compress.gzip",
-            paths: [
-                `src/web/build/client/**/*.{js,css}`
-            ]
+            paths
         });
 
     }

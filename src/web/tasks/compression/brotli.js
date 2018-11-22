@@ -11,7 +11,7 @@ export default class CompressionEncodeTask extends Task{
     runner(paths){
 
         return this.src(paths || this.paths)
-        .pipe(print((p) => `Brotli compress: ${ p }`))
+        .pipe(print((p) => `BR compress: ${ p }`))
         .pipe(brotli.compress({
             extension: "br"
         }))
