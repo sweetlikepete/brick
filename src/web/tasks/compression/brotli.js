@@ -1,7 +1,7 @@
 
 
-import gulp from "gulp";
 import brotli from "gulp-brotli";
+import gulp from "gulp";
 import print from "gulp-print";
 import Task from "../../../task";
 

@@ -1,9 +1,9 @@
 
 
 import gulp from "gulp";
-import zopfli from "gulp-zopfli-green";
 import print from "gulp-print";
 import Task from "../../../task";
+import zopfli from "gulp-zopfli-green";
 
 
 export default class CompressionEncodeTask extends Task{

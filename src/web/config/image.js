@@ -3,7 +3,7 @@
 import automationConfig from "./automation";
 
 
-export default function generateConfig(env){
+export default function generateConfig(){
 
     const config = automationConfig();
 
@@ -17,7 +17,7 @@ export default function generateConfig(env){
             quality: 65
         },
         optipng: {
-            enabled: false,
+            enabled: false
         },
         pngquant: {
             quality: "65-90",
@@ -25,4 +25,4 @@ export default function generateConfig(env){
         }
     };
 
-};
+}

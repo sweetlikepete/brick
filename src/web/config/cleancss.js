@@ -7,4 +7,4 @@ export default {
             specialComments: 0
         }
     }
-}
+};
