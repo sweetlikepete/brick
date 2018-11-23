@@ -1,5 +1,6 @@
 
 
+import cache from "gulp-cache";
 import gulp from "gulp";
 import print from "gulp-print";
 import Task from "../../../task";
@@ -12,7 +13,7 @@ export default class CompressionEncodeTask extends Task{
 
         return this.src(paths || this.paths)
         .pipe(print((p) => `GZ compress: ${ p }`))
-        .pipe(zopfli())
+        .pipe(cache(zopfli()))
         .pipe(gulp.dest("."));
 
     }

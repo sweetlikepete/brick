@@ -260,7 +260,8 @@ module.exports = {
         "react/jsx-max-depth": [2, {
             max: 10
         }],
-        "react/jsx-max-props-per-line": [2, {
+        // Causes an issue with indent, have to turn off to keep --fix from going into a loop
+        "react/jsx-max-props-per-line": [0, {
             maximum: 2
         }],
         "react/jsx-no-bind": 2,
