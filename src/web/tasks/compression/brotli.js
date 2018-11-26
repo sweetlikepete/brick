@@ -1,7 +1,7 @@
 
 
-import cache from "gulp-cache";
 import brotli from "gulp-brotli";
+import cache from "gulp-cache";
 import gulp from "gulp";
 import print from "gulp-print";
 import Task from "../../../task";
