@@ -3,6 +3,7 @@
 import automationConfig from "../automation";
 import babelConfig from "../babel";
 import cleanCSSConfig from "../cleancss";
+import DuplicatePackageCheckerPlugin from "duplicate-package-checker-webpack-plugin";
 import imageConfig from "../image";
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
 import OptimizeCSSAssetsPlugin from "optimize-css-assets-webpack-plugin";
@@ -16,6 +17,7 @@ export default function sharedConfig(env){
 
     const config = automationConfig();
     const hash = config.production && env === "client";
+    const alias = (src) => path.resolve(process.cwd(), path.join("node_modules", src));
 
     const babelLoader = {
         loader: "babel-loader",
@@ -162,6 +164,7 @@ export default function sharedConfig(env){
             publicPath: `/${ config.staticFolder }/`
         },
         plugins: [
+            new DuplicatePackageCheckerPlugin(),
             new webpack.DefinePlugin({
                 "process.env.ENVIRONMENT": JSON.stringify(env)
             }),
@@ -172,9 +175,24 @@ export default function sharedConfig(env){
         ],
         resolve: {
             alias: {
-                react: "preact-compat",
-                "react-dom": "preact-compat",
-                src: path.join(process.cwd(), "src")
+                // Different versions of the same package were being referenced
+                "hoist-non-react-statics": alias("hoist-non-react-statics"),
+                // Use the es version only
+                "history": alias("history/es"),
+                // Use preact instead of react to save some weight
+                react: alias("preact-compat/dist/preact-compat.es.js"),
+                // Use preact instead of react to save some weight
+                "react-dom": alias("preact-compat/dist/preact-compat.es.js"),
+                // Use the es version only
+                "react-redux": alias("react-redux/es"),
+                // Use the es version only
+                "react-router-dom": alias("react-router-dom/es"),
+                // Use the es version only
+                "redux": alias("redux/es/redux.js"),
+                // Source code alias
+                src: path.join(process.cwd(), "src"),
+                // Different versions of the same package were being referenced
+                "warning": alias("warning"),
             },
 
             /*
