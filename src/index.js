@@ -14,6 +14,7 @@ export default class Automation{
     constructor(config = {}){
 
         global.AUTOMATION.config = merge.recursive({}, {
+            aliases: config.aliases || {},
             browsers: ["last 1 version"],
             production: config.production || false,
             staticFolder: "static"
