@@ -102,7 +102,7 @@ module.exports = {
         // Plugin: import
 
         "import/default": 2,
-        "import/dynamic-import-chunkname": 2,
+        "import/dynamic-import-chunkname": 0,
         "import/export": 2,
         "import/exports-last": 2,
         "import/extensions": [2, "never", {

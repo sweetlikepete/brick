@@ -34,7 +34,7 @@ export default function sharedConfig(env){
     };
 
     return {
-        cache: !config.production,
+        cache: false,
         devtool: "source-map",
         entry: path.join(process.cwd(), `src/web/${ env }/index.js`),
         mode: "production",
