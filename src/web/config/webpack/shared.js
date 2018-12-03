@@ -17,6 +17,7 @@ import webpack from "webpack";
 export default function sharedConfig(env){
 
     const config = automationConfig();
+    const cwd = process.cwd();
     const hash = config.production && env === "client";
 
     const babelLoader = {
@@ -36,7 +37,7 @@ export default function sharedConfig(env){
     return {
         cache: false,
         devtool: "source-map",
-        entry: path.join(process.cwd(), `src/web/${ env }/index.js`),
+        entry: path.join(cwd, `src/web/${ env }/index.js`),
         mode: "production",
         module: {
             rules: [
@@ -160,7 +161,7 @@ export default function sharedConfig(env){
         output: {
             chunkFilename: hash ? "[chunkhash].js" : "[name].js",
             filename: hash ? "[chunkhash].js" : "[name].js",
-            path: path.join(process.cwd(), `src/web/build/${ env }`),
+            path: path.join(cwd, `src/web/build/${ env }`),
             publicPath: `/${ config.staticFolder }/`
         },
         plugins: [
@@ -174,8 +175,28 @@ export default function sharedConfig(env){
             })
         ],
         resolve: {
+            // alias: merge.recursive({}, config.aliases, {
+            //     src: path.join(cwd, "src")
+            // }),
             alias: merge.recursive({}, config.aliases, {
-                src: path.join(process.cwd(), "src")
+                // Use the es version only
+                history: path.resolve(cwd, path.join("node_modules", "history/es")),
+                // Different versions of the same package were being referenced
+                "hoist-non-react-statics": path.resolve(cwd, path.join("node_modules", "hoist-non-react-statics")),
+                // Use preact instead of react to save some weight
+                react: path.resolve(cwd, path.join("node_modules", "preact-compat/dist/preact-compat.es.js")),
+                // Use preact instead of react to save some weight
+                "react-dom": path.resolve(cwd, path.join("node_modules", "preact-compat/dist/preact-compat.es.js")),
+                // Use the es version only
+                "react-redux": path.resolve(cwd, path.join("node_modules", "react-redux/es")),
+                // Use the es version only
+                "react-router-dom": path.resolve(cwd, path.join("node_modules", "react-router-dom/es")),
+                // Use preact instead of react to save some weight
+                "redux": path.resolve(cwd, path.join("node_modules", "redux/src")),
+                // Src alias
+                src: path.join(cwd, "src"),
+                // Different versions of the same package were being referenced
+                warning: path.resolve(cwd, path.join("node_modules", "warning"))
             }),
 
             /*
@@ -196,7 +217,7 @@ export default function sharedConfig(env){
             plugins: [
                 new TsConfigPathsPlugin.TsConfigPathsPlugin({
                     compiler: "typescript",
-                    tsconfig: path.join(process.cwd(), "tsconfig.json")
+                    tsconfig: path.join(cwd, "tsconfig.json")
                 })
             ],
             symlinks: false

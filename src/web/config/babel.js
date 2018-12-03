@@ -1,10 +1,9 @@
 
-
 export default function generateConfig(env){
 
     return {
         babelrc: false,
-        comments: env === "client",
+        comments: true,
         plugins: [
             "react-loadable/babel",
             "@babel/plugin-syntax-dynamic-import",
