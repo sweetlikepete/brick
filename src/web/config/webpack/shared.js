@@ -175,9 +175,12 @@ export default function sharedConfig(env){
             })
         ],
         resolve: {
-            // alias: merge.recursive({}, config.aliases, {
-            //     src: path.join(cwd, "src")
-            // }),
+
+            /*
+             * Alias: merge.recursive({}, config.aliases, {
+             *     src: path.join(cwd, "src")
+             * }),
+             */
             alias: merge.recursive({}, config.aliases, {
                 // Use the es version only
                 history: path.resolve(cwd, path.join("node_modules", "history/es")),
@@ -192,7 +195,7 @@ export default function sharedConfig(env){
                 // Use the es version only
                 "react-router-dom": path.resolve(cwd, path.join("node_modules", "react-router-dom/es")),
                 // Use preact instead of react to save some weight
-                "redux": path.resolve(cwd, path.join("node_modules", "redux/src")),
+                redux: path.resolve(cwd, path.join("node_modules", "redux/src")),
                 // Src alias
                 src: path.join(cwd, "src"),
                 // Different versions of the same package were being referenced
