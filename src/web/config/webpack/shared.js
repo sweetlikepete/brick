@@ -18,7 +18,7 @@ export default function sharedConfig(env){
 
     const config = automationConfig();
     const cwd = process.cwd();
-    const hash = config.production && env === "client";
+    const hash = env === "client" && config.production;
 
     const babelLoader = {
         loader: "babel-loader",
@@ -191,7 +191,7 @@ export default function sharedConfig(env){
                 // Use preact instead of react to save some weight
                 "react-dom": path.resolve(cwd, path.join("node_modules", "preact-compat/dist/preact-compat.es.js")),
                 // Use the es version only
-                "react-redux": path.resolve(cwd, path.join("node_modules", "react-redux/es")),
+                "react-redux": path.resolve(cwd, path.join("node_modules", "preact-redux/dist/preact-redux.esm.js")),
                 // Use the es version only
                 "react-router-dom": path.resolve(cwd, path.join("node_modules", "react-router-dom/es")),
                 // Use preact instead of react to save some weight
