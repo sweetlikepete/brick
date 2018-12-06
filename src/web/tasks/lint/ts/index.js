@@ -10,6 +10,7 @@ import chalk from "chalk";
 import codeframe from "codeframe";
 import fs from "fs";
 import gulpTSLint from "gulp-tslint";
+import log from "fancy-log";
 import path from "path";
 import print from "gulp-print";
 import Task from "../../../../task";
@@ -64,7 +65,7 @@ export default class JSLintTast extends Task{
 
                     errors.push(file);
 
-                    console.log(errorOutput);
+                    log(errorOutput);
 
                 }
 

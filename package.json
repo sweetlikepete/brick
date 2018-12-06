@@ -101,7 +101,8 @@
     "webpack": "^4.27.1",
     "webpack-bundle-analyzer": "^3.0.3",
     "webpack-format-messages": "^2.0.5",
-    "webpack-node-externals": "^1.7.2"
+    "webpack-node-externals": "^1.7.2",
+    "webpack-urlsafehash-plugin": "^1.0.1"
   },
   "devDependencies": {
     "@babel/cli": "^7.2.0",

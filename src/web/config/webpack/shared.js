@@ -11,6 +11,7 @@ import OptimizeCSSAssetsPlugin from "optimize-css-assets-webpack-plugin";
 import path from "path";
 import postCSSConfig from "../postcss";
 import TsConfigPathsPlugin from "awesome-typescript-loader";
+import UrlSafeHashPlugin from "webpack-urlsafehash-plugin";
 import webpack from "webpack";
 
 
@@ -93,7 +94,7 @@ export default function sharedConfig(env){
                         {
                             loader: "css-loader",
                             options: {
-                                localIdentName: "[hash:8]",
+                                localIdentName: "[hash:base64:8]",
                                 minimize: true,
                                 modules: true,
                                 sourceMap: true
@@ -159,19 +160,21 @@ export default function sharedConfig(env){
             usedExports: true
         },
         output: {
-            chunkFilename: hash ? "[chunkhash].js" : "[name].js",
-            filename: hash ? "[chunkhash].js" : "[name].js",
+            chunkFilename: hash ? "[chunkhash:8].js" : "[name].js",
+            filename: hash ? "[chunkhash:8].js" : "[name].js",
+            hashDigest: "base64",
             path: path.join(cwd, `src/web/build/${ env }`),
             publicPath: `/${ config.staticFolder }/`
         },
         plugins: [
+            new UrlSafeHashPlugin(),
             new DuplicatePackageCheckerPlugin(),
             new webpack.DefinePlugin({
                 "process.env.ENVIRONMENT": JSON.stringify(env)
             }),
             new MiniCssExtractPlugin({
-                chunkFilename: hash ? "[chunkhash].css" : "[name].css",
-                filename: hash ? "[chunkhash].css" : "[name].css"
+                chunkFilename: hash ? "[chunkhash:8].css" : "[name].css",
+                filename: hash ? "[chunkhash:8].css" : "[name].css"
             })
         ],
         resolve: {

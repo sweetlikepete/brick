@@ -26,7 +26,7 @@ const callback = (err, stats, resolve, reject) => {
 
         }
 
-        console.log(stats.toString({ colors: true }));
+        log(stats.toString({ colors: true }));
 
         log("Webpack compiled successfully!");
 

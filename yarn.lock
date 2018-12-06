@@ -10842,6 +10842,11 @@ webpack-node-externals@^1.7.2:
   resolved "https://registry.yarnpkg.com/webpack-node-externals/-/webpack-node-externals-1.7.2.tgz#6e1ee79ac67c070402ba700ef033a9b8d52ac4e3"
   integrity sha512-ajerHZ+BJKeCLviLUUmnyd5B4RavLF76uv3cs6KNuO8W+HuQaEs0y0L7o40NQxdPy5w0pcv8Ew7yPUAQG0UdCg==
 
+webpack-plugin-compat@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/webpack-plugin-compat/-/webpack-plugin-compat-1.0.1.tgz#7fb420bad4d68d2d0dc5d4de3e1da6b9ee7a49b3"
+  integrity sha512-mCFeieoXJDqFecib1ofvpHB+NqxRWHbZ5/NSlUa7Myb1j24zkCUS/0+r+i5VPyvUvCxQ/cLvMc5pj+6CHmv/gA==
+
 webpack-sources@^1.0.1, webpack-sources@^1.1.0, webpack-sources@^1.3.0:
   version "1.3.0"
   resolved "https://registry.yarnpkg.com/webpack-sources/-/webpack-sources-1.3.0.tgz#2a28dcb9f1f45fe960d8f1493252b5ee6530fa85"
@@ -10849,6 +10854,13 @@ webpack-sources@^1.0.1, webpack-sources@^1.1.0, webpack-sources@^1.3.0:
   dependencies:
     source-list-map "^2.0.0"
     source-map "~0.6.1"
+
+webpack-urlsafehash-plugin@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/webpack-urlsafehash-plugin/-/webpack-urlsafehash-plugin-1.0.1.tgz#ebb89fb9ea97ab5b1087bbaee53aa308fd5a0984"
+  integrity sha512-2K7NvJ3VKNxo07hHrYt++/oE4aa5T/YETjOQdjqDi7LxPPIldSlbcMwwRVpkbiXJAda29FoKsT7QjylMMvgSig==
+  dependencies:
+    webpack-plugin-compat "^1.0.1"
 
 webpack@^4.27.1:
   version "4.27.1"
