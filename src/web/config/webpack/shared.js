@@ -95,7 +95,6 @@ export default function sharedConfig(env){
                             loader: "css-loader",
                             options: {
                                 localIdentName: "[hash:base64:8]",
-                                minimize: true,
                                 modules: true,
                                 sourceMap: true
                             }

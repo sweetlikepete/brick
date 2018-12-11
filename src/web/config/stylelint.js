@@ -33,7 +33,7 @@ export default {
             ignore: ["after-comment"]
         }],
         "at-rule-name-case": "lower",
-        "at-rule-name-newline-after": "always-multi-line",
+        "at-rule-name-newline-after": null,
         "at-rule-name-space-after": "always",
         "at-rule-no-unknown": [true, {
             ignoreAtRules: atRules
