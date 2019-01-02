@@ -87,6 +87,8 @@ module.exports = {
         "array-func/from-map": 2,
         "array-func/no-unnecessary-this-arg": 2,
         "array-func/prefer-array-from": 0,
+        "array-func/prefer-flat": 2,
+        "array-func/prefer-flat-map": 2,
 
         // Plugin: eslint-comments
 
@@ -253,6 +255,7 @@ module.exports = {
         "react/jsx-equals-spacing": 2,
         "react/jsx-filename-extension": 0,
         "react/jsx-first-prop-new-line": 2,
+        "react/jsx-fragments": 2,
         "react/jsx-handler-names": 2,
         "react/jsx-indent": 2,
         "react/jsx-indent-props": 2,

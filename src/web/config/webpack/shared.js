@@ -122,7 +122,7 @@ export default function sharedConfig(env){
             flagIncludedChunks: true,
             mangleWasmImports: true,
             mergeDuplicateChunks: true,
-            minimize: false,
+            minimize: config.production,
             minimizer: [
                 new OptimizeCSSAssetsPlugin({})
             ],

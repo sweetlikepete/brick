@@ -88,7 +88,6 @@
     "sass-loader": "^7.1.0",
     "style-loader": "^0.23.1",
     "stylelint": "^9.9.0",
-    "stylelint-find-rules": "^1.1.1",
     "stylelint-order": "^2.0.0",
     "stylelint-scss": "^3.4.1",
     "terser-webpack-plugin": "^1.1.0",
