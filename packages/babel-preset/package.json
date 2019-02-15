@@ -1,0 +1,55 @@
+{
+  "name": "@sweetlikepete/babel-preset",
+  "version": "1.0.4",
+  "description": "Shared preset for babel",
+  "main": "lib/index.js",
+  "scripts": {
+    "build": "rm -rf lib && babel src --config-file --out-dir lib",
+    "lint": "eslint src test",
+    "prelint": "npm run build",
+    "prepublishOnly": "npm run test",
+    "pretest": "npm run lint",
+    "test": "babel-tape-runner ./test/*.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sweetlikepete/automation.git"
+  },
+  "author": "Peter Bodechtel (https://www.sweetlikepete.com)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/sweetlikepete/automation/issues"
+  },
+  "homepage": "https://github.com/sweetlikepete/automation/tree/master/packages/babel-preset#readme",
+  "dependencies": {
+    "@babel/helper-plugin-utils": "^7.0.0",
+    "@babel/plugin-proposal-class-properties": "^7.3.0",
+    "@babel/plugin-transform-typescript": "^7.3.2",
+    "@babel/preset-env": "^7.3.1",
+    "@babel/preset-react": "^7.0.0",
+    "@babel/preset-typescript": "^7.1.0",
+    "babel-plugin-add-module-exports": "^1.0.0",
+    "babel-plugin-shebang": "^1.0.0"
+  },
+  "peerDependencies": {
+    "@babel/core": "^7.0.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.2.3",
+    "@babel/core": "^7.2.2",
+    "babel-tape-runner": "^3.0.0",
+    "eslint": "^5.13.0",
+    "eslint-plugin-array-func": "^3.1.2",
+    "eslint-plugin-compat": "^2.6.3",
+    "eslint-plugin-eslint-comments": "^3.0.1",
+    "eslint-plugin-import": "^2.15.0",
+    "eslint-plugin-no-loops": "^0.3.0",
+    "eslint-plugin-node": "^8.0.1",
+    "eslint-plugin-optimize-regex": "^1.1.6",
+    "eslint-plugin-promise": "^4.0.1",
+    "eslint-plugin-react": "^7.12.4",
+    "eslint-plugin-security": "^1.4.0",
+    "eslint-plugin-unicorn": "^7.1.0",
+    "tape": "^4.9.2"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "extends": "@sweetlikepete",
+  "rules": {
+    "global-require": "off",
+    "import/no-dynamic-require": "off",
+    "import/unambiguous": "off",
+    "no-sync": "off"
+  }
+}

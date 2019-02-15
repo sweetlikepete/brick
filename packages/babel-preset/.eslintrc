@@ -1,0 +1,6 @@
+{
+  "extends": "../eslint-config/lib/configs/index.js",
+  "rules": {
+    "no-process-env": "off"
+  }
+}
