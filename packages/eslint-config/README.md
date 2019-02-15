@@ -53,7 +53,7 @@ Our default export contains all of our ESLint rules, including ECMAScript 6+ and
 4. If you want to lint typescript, add this to your .eslintrc instead.
 
   ```json
-    "extends": "@sweetlikepete/eslint-config/typescript"
+    "extends": "@sweetlikepete/eslint-config/lib/configs/typescript"
   ```
 
 ## Maintenance
