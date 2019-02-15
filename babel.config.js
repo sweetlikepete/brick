@@ -2,6 +2,8 @@
 
 module.exports = function(api){
 
+    api.cache(false);
+
     const modules = process.env["OUTPUT_MODULES"] === "1";
 
     return {
