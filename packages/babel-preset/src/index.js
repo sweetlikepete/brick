@@ -37,8 +37,8 @@ export default declare((api, options) => {
             ] : null
         ].filter(Boolean),
         presets: [
+            "@babel/preset-typescript",
             [
-                "@babel/preset-typescript",
                 "@babel/preset-env",
                 {
                     debug,

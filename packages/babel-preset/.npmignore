@@ -4,3 +4,7 @@
 .eslintrc
 TODO.md
 yarn.lock
+yarn-error.log
+package-lock.json
+setup-local.sh
+setup-publish.sh

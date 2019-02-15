@@ -1,5 +1,5 @@
 {
-  "extends": "../eslint-config/lib/configs/index.js",
+  "extends": "@sweetlikepete",
   "rules": {
     "no-process-env": "off"
   }

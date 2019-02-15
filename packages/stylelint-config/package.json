@@ -33,21 +33,14 @@
   ],
   "homepage": "https://github.com/sweetlikepete/brick/tree/master/packages/stylelint-config#readme",
   "devDependencies": {
-    "@babel/cli": "^7.2.3",
-    "@babel/core": "^7.2.2",
-    "@sweetlikepete/babel-preset": "^1.0.2",
-    "@sweetlikepete/linters": "^1.0.2",
+    "@sweetlikepete/brick": "file:../../../sweetlikepete-brick-1.0.0.tgz",
     "babel-tape-runner": "^3.0.0",
-    "stylelint": "^9.10.1",
-    "stylelint-cli": "^1.0.0",
     "stylelint-find-new-rules": "^1.0.1",
-    "stylelint-order": "^2.0.0",
-    "stylelint-scss": "^3.5.1",
     "tape": "^4.9.2"
   },
   "peerDependencies": {
     "stylelint": "^9.10.1",
     "stylelint-order": "^2.0.0",
-    "stylelint-scss": "^3.5.1"
+    "stylelint-scss": "^3.5.3"
   }
 }

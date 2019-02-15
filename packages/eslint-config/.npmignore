@@ -6,3 +6,6 @@ TODO.md
 yarn.lock
 tsconfig.json
 yarn-error.log
+package-lock.json
+setup-local.sh
+setup-publish.sh

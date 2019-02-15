@@ -1,7 +1,8 @@
 src
 packages
 babel.config.js
-local-update.sh
+setup-local.sh
+setup-publish.sh
 TODO.md
 tsconfig.json
 yarn-error.log
