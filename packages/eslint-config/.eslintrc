@@ -1,0 +1,6 @@
+{
+  "extends": "./lib/configs/index.js",
+  "parserOptions": {
+    "project": "./tsconfig.json"
+  }
+}

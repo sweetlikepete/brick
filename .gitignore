@@ -1,3 +1,7 @@
-/node_modules/
-/lib/
+node_modules
+
 .DS_Store
+# Only apps should have lockfiles
+yarn.lock
+yarn-error.log
+package-lock.json

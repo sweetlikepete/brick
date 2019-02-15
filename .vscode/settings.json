@@ -1,5 +1,4 @@
 {
-    "git.ignoreLimitWarning": true,
     "[javascript]": {
         "editor.tabSize": 4,
         "editor.insertSpaces": true,
@@ -9,5 +8,19 @@
         "editor.tabSize": 4,
         "editor.insertSpaces": true,
         "editor.detectIndentation": false
-    }
+    },
+    "[json]": {
+        "editor.tabSize": 2,
+        "editor.insertSpaces": true,
+        "editor.detectIndentation": false
+    },
+    "eslint.validate": [
+        "javascript",
+        {
+            "language": "typescript",
+            "autoFix": true
+        }
+    ],
+    "eslint.autoFixOnSave": true,
+    "git.ignoreLimitWarning": true
 }

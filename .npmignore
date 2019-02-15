@@ -1,6 +1,8 @@
-/src/
-.babelrc.js
-/.vscode/
-gulpfile.js
-README.md
+src
+packages
+babel.config.js
+local-update.sh
+TODO.md
+tsconfig.json
+yarn-error.log
 yarn.lock
