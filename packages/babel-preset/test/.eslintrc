@@ -1,5 +1,5 @@
 {
-  "extends": "@sweetlikepete",
+  "extends": "@sweetlikepete/eslint-config/lib/configs/base",
   "rules": {
     "global-require": "off",
     "import/no-dynamic-require": "off",

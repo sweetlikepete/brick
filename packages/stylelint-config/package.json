@@ -1,6 +1,6 @@
 {
   "name": "@sweetlikepete/stylelint-config",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Shared config for stylelint",
   "main": "lib/index.js",
   "scripts": {
@@ -33,7 +33,7 @@
   ],
   "homepage": "https://github.com/sweetlikepete/brick/tree/master/packages/stylelint-config#readme",
   "devDependencies": {
-    "@sweetlikepete/brick": "file:../../../sweetlikepete-brick-1.0.0.tgz",
+    "@sweetlikepete/brick": "^1.0.1",
     "babel-tape-runner": "^3.0.0",
     "stylelint-find-new-rules": "^1.0.1",
     "tape": "^4.9.2"
@@ -42,5 +42,6 @@
     "stylelint": "^9.10.1",
     "stylelint-order": "^2.0.0",
     "stylelint-scss": "^3.5.3"
-  }
+  },
+  "dependencies": {}
 }
