@@ -4,7 +4,7 @@ module.exports = function(api){
 
     api.cache(false);
 
-    const modules = process.env["OUTPUT_MODULES"] === "1";
+    const modules = process.env["BUILD_MJS"] === "1";
 
     return {
         presets: [

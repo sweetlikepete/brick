@@ -8,7 +8,7 @@
     "build": "rm -rf lib && npm run build:script",
     "build:script": "npm run build:script:module && npm run build:script:common",
     "build:script:common": "babel src --out-dir lib --extensions '.js,.ts'",
-    "build:script:module": "OUTPUT_MODULES=1 npm run build:script:common && renamer --find js --replace mjs lib/**",
+    "build:script:module": "BUILD_MJS=1 npm run build:script:common && renamer --find js --replace mjs lib/**",
     "prepublishOnly": "npm run build"
   },
   "repository": {
@@ -29,10 +29,10 @@
     "@sweetlikepete/stylelint-config": "file:../sweetlikepete-stylelint-config-1.0.3.tgz",
     "@typescript-eslint/eslint-plugin": "^1.3.0",
     "@typescript-eslint/parser": "^1.3.0",
-    "eslint": "^5.13.0",
-    "eslint-plugin-array-func": "^3.1.2",
+    "eslint": "^5.14.1",
+    "eslint-plugin-array-func": "^3.1.3",
     "eslint-plugin-compat": "^2.7.0",
-    "eslint-plugin-eslint-comments": "^3.1.0",
+    "eslint-plugin-eslint-comments": "^3.1.1",
     "eslint-plugin-import": "^2.16.0",
     "eslint-plugin-no-loops": "^0.3.0",
     "eslint-plugin-node": "^8.0.1",
