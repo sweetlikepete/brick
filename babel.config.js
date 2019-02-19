@@ -4,17 +4,19 @@ module.exports = function(api){
 
     api.cache(false);
 
-    const modules = process.env["BUILD_MJS"] === "1";
+    const mjs = process.env["BUILD_MJS"] === "1";
+    const shebang = process.env["BUILD_SHEBANG"] === "1";
 
     return {
         presets: [
             [
                 "@sweetlikepete/babel-preset",
                 {
-                    addModuleExports: !modules,
-                    modules: modules,
+                    addModuleExports: !mjs,
+                    modules: !mjs,
+                    shebang,
                     targets: {
-                        node: modules ? true : 4
+                        node: mjs ? true : 4
                     }
                 }
             ]
