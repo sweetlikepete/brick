@@ -4,8 +4,8 @@ module.exports = function(api){
 
     api.cache(false);
 
-    const mjs = process.env["BUILD_MJS"] === "1";
-    const shebang = process.env["BUILD_SHEBANG"] === "1";
+    const mjs = process.env.BUILD_MJS === "1";
+    const shebang = process.env.BUILD_SHEBANG === "1";
 
     return {
         presets: [

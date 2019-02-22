@@ -1,0 +1,3 @@
+{
+  "extends": "@sweetlikepete/eslint-config/lib/configs/base"
+}

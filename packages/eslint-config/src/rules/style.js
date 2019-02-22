@@ -360,7 +360,7 @@ export default {
         "max-lines-per-function": [
             "error",
             {
-                max: 50
+                max: 100
             }
         ],
 

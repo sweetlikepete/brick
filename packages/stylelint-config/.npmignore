@@ -2,6 +2,7 @@
 /test/
 .babelrc
 .eslintrc
+.vscode
 TODO.md
 yarn.lock
 yarn-error.log

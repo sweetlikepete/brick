@@ -21,6 +21,7 @@
             "autoFix": true
         }
     ],
+    "editor.rulers": [80, 160],
     "eslint.autoFixOnSave": true,
     "git.ignoreLimitWarning": true
 }

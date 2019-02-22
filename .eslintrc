@@ -1,0 +1,8 @@
+{
+  "extends": "@sweetlikepete/eslint-config/lib/configs/base",
+  "rules": {
+    "compat/compat": "off",
+    "security/detect-non-literal-fs-filename": "off",
+    "no-sync": "off"
+  }
+}

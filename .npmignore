@@ -1,9 +1,15 @@
-src
+/src/
+/test/
 packages
 babel.config.js
+setup-cli.sh
+.babelrc
+.eslintrc
+.vscode
 setup-local.sh
 setup-publish.sh
 TODO.md
 tsconfig.json
 yarn-error.log
 yarn.lock
+TODO.md

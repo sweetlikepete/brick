@@ -1,6 +1,6 @@
 {
   "name": "@sweetlikepete/eslint-config",
-  "version": "1.0.17",
+  "version": "1.0.18",
   "description": "Shared config for eslint",
   "main": "lib/configs",
   "scripts": {
@@ -39,7 +39,7 @@
   ],
   "homepage": "https://github.com/sweetlikepete/brick/tree/master/packages/eslint-config#readme",
   "devDependencies": {
-    "@sweetlikepete/brick": "^1.0.1",
+    "@sweetlikepete/brick": "^1.0.2",
     "babel-tape-runner": "^3.0.0",
     "tape": "^4.9.2"
   },
