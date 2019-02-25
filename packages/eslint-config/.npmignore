@@ -3,6 +3,7 @@
 .babelrc
 .eslintrc
 .vscode
+README.md
 TODO.md
 yarn.lock
 tsconfig.json

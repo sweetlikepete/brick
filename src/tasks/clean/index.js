@@ -8,7 +8,6 @@ import { task } from "../../utils/task";
 
 const label = "Clean";
 
-
 const clean = task(label, async (config) => {
 
     await utils.exec(`rm -rf ${ path.join(process.cwd(), config.output) }`, label);

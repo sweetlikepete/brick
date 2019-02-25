@@ -12,6 +12,10 @@
     "build:script:module": "BUILD_MJS=1 npm run build:script:common && renamer --find js --replace mjs \"lib/**\"",
     "prepublishOnly": "npm run build"
   },
+  "browserslist": "node 8",
+  "engines": {
+    "node": ">= 8"
+  },
   "bin": {
     "brick": "./lib/cli/index.js"
   },
@@ -29,11 +33,11 @@
     "@babel/cli": "^7.2.3",
     "@babel/core": "^7.3.3",
     "@babel/polyfill": "^7.2.5",
-    "@sweetlikepete/babel-preset": "file:../sweetlikepete-babel-preset-1.0.7.tgz",
-    "@sweetlikepete/eslint-config": "file:../sweetlikepete-eslint-config-1.0.18.tgz",
-    "@sweetlikepete/stylelint-config": "file:../sweetlikepete-stylelint-config-1.0.4.tgz",
-    "@typescript-eslint/eslint-plugin": "^1.4.0",
-    "@typescript-eslint/parser": "^1.4.0",
+    "@sweetlikepete/babel-preset": "^1.0.7",
+    "@sweetlikepete/eslint-config": "^1.0.19",
+    "@sweetlikepete/stylelint-config": "^1.0.4",
+    "@typescript-eslint/eslint-plugin": "^1.4.1",
+    "@typescript-eslint/parser": "^1.4.1",
     "chalk": "^2.4.2",
     "codeframe": "^0.0.1",
     "commander": "^2.19.0",
@@ -59,9 +63,9 @@
     "gulp-watch": "^5.0.1",
     "rc-config-loader": "^2.0.2",
     "stylelint": "^9.10.1",
-    "stylelint-cli": "^1.0.0",
+    "stylelint-cli": "^1.1.0",
     "stylelint-order": "^2.0.0",
-    "stylelint-scss": "^3.5.3",
+    "stylelint-scss": "^3.5.4",
     "through2": "^3.0.0",
     "touch": "^3.1.0",
     "typescript": "^3.3.3333"

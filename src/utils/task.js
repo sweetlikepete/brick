@@ -12,7 +12,7 @@ const task = function(name, func){
 
         await func(...args);
 
-        log(`${ name }: ${ chalk.green("✔︎ complete") }`);
+        log(`${ name }: ${ chalk.green("✔︎") }`);
 
     };
 

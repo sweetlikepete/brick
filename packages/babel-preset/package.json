@@ -11,6 +11,10 @@
     "pretest": "npm run lint",
     "test": "babel-tape-runner ./test/*.js"
   },
+  "browserslist": "node 8",
+  "engines": {
+    "node": ">= 8"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/sweetlikepete/brick.git"

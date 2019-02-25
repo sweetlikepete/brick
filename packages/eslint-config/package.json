@@ -1,6 +1,6 @@
 {
   "name": "@sweetlikepete/eslint-config",
-  "version": "1.0.18",
+  "version": "1.0.19",
   "description": "Shared config for eslint",
   "main": "lib/configs",
   "scripts": {
@@ -12,8 +12,9 @@
     "pretest": "npm run lint",
     "test": "babel-tape-runner ./test/*.js"
   },
+  "browserslist": "node 8",
   "engines": {
-    "node": ">= 4"
+    "node": ">= 8"
   },
   "repository": {
     "type": "git",

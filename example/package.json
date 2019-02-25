@@ -1,0 +1,12 @@
+{
+  "devDependencies": {
+    "@newsteam/brick": "^1.0.2"
+  },
+  "name": "brick-example",
+  "scripts": {
+    "lint": "brick lint"
+  },
+  "version": "1.0.0",
+  "dependencies": {},
+  "license": "UNLICENSED"
+}

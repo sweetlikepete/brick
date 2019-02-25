@@ -74,9 +74,12 @@ export default {
         /*
          * Enforce consistent indentation (indent from TSLint)
          *
+         * This is off because it's handled by the built in eslint indent rule,
+         * and in some cases it can conflict.
+         *
          * https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/indent.md
          */
-        "@typescript-eslint/indent": "error",
+        "@typescript-eslint/indent": "off",
 
         /*
          * Require that interface names be prefixed with I (interface-name from TSLint)

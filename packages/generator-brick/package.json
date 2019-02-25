@@ -1,16 +1,18 @@
 {
-  "name": "@sweetlikepete/generator-brick-app",
+  "name": "@sweetlikepete/generator-brick",
   "version": "1.0.0",
   "description": "Yeoman generator for @sweetlikepete/brick",
   "main": "lib",
   "scripts": {
-    "build": "rm -rf lib && babel src --config-file --out-dir lib",
+    "build": "rm -rf lib && babel src --config-file --out-dir lib && cp -av src/generators/app/templates lib/generators/app/templates",
+    "link": "npm run build && npm link",
     "lint": "eslint src --ext .jsx,.js,.tsx,.ts",
     "prelint": "npm run build",
     "prepublishOnly": "npm run lint"
   },
+  "browserslist": "node 8",
   "engines": {
-    "node": ">= 4"
+    "node": ">= 8"
   },
   "repository": {
     "type": "git",
@@ -32,7 +34,7 @@
     "sweetlikepete",
     "@sweetlikepete"
   ],
-  "homepage": "https://github.com/sweetlikepete/brick/tree/master/packages/generator-brick-app#readme",
+  "homepage": "https://github.com/sweetlikepete/brick/tree/master/packages/generator-brick#readme",
   "files": [
     "app"
   ],
