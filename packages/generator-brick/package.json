@@ -42,7 +42,7 @@
     "app"
   ],
   "devDependencies": {
-    "@sweetlikepete/brick": "file:../../../sweetlikepete-brick-1.0.3.tgz",
+    "@sweetlikepete/brick": "^1.0.4",
     "babel-tape-runner": "^3.0.0",
     "tape": "^4.9.2"
   },
