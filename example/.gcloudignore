@@ -1,0 +1,16 @@
+.eslintignore
+.eslintrc
+.gcloudignore
+.stylelintignore
+.stylelintrc
+.git
+.gitignore
+README.md
+tsconfig.json
+yarn.lock
+yarn-error.log
+
+node_modules/
+
+*.ts
+*.tsx

@@ -1,0 +1,11 @@
+{
+  "license": "UNLICENSED",
+  "name": "generator-brick-template",
+  "scripts": {
+    "lint": "brick lint"
+  },
+  "version": "1.0.0",
+  "devDependencies": {
+    "@sweetlikepete/brick": "^1.0.3"
+  }
+}
