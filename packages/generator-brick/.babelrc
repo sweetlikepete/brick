@@ -1,12 +1,12 @@
 
 {
-    "presets": [
-      [
-        "@sweetlikepete/babel-preset",
-        {
-          "addModuleExports": true
-        }
-      ]
+  "presets": [
+    [
+      "@sweetlikepete/babel-preset",
+      {
+        "addModuleExports": true
+      }
     ]
-  }
+  ]
+}
 

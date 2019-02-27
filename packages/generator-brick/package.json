@@ -4,7 +4,10 @@
   "description": "Yeoman generator for @sweetlikepete/brick",
   "main": "lib",
   "scripts": {
-    "build": "rm -rf lib && babel src --config-file --out-dir lib && cp -av src/generators/app/templates lib/generators/app/templates",
+    "build": "npm run clean && npm run build:js && npm run build:templates",
+    "build:js": "babel src --ignore **/node_modules --out-dir lib",
+    "build:templates": "rsync -av src/generators/app/templates lib/generators/app --exclude node_modules",
+    "clean": "rm -rf lib",
     "link": "npm run build && npm link",
     "lint": "eslint src --ext .jsx,.js,.tsx,.ts",
     "prelint": "npm run build",
@@ -39,7 +42,7 @@
     "app"
   ],
   "devDependencies": {
-    "@sweetlikepete/brick": "^1.0.2",
+    "@sweetlikepete/brick": "file:../../../sweetlikepete-brick-1.0.3.tgz",
     "babel-tape-runner": "^3.0.0",
     "tape": "^4.9.2"
   },

@@ -20,34 +20,26 @@ class AppGenerator extends Generator{
 
         this.yarnInstall();
 
+        this.spawnCommand("yarn", ["install"], {
+            cwd: "src/web"
+        });
+
     }
 
     writing(){
-
-        const pkgJson = {
-            dependencies: {
-                express: "^4.16.4"
-            },
-            devDependencies: {
-                "@newsteam/brick": "^1.0.2"
-            },
-            license: "UNLICENSED",
-            name: this.options.appName,
-            scripts: {
-                lint: "brick lint"
-            },
-            version: "1.0.0"
-        };
-
-        // Extend or create package.json file in destination path
-        this.fs.extendJSON(this.destinationPath("package.json"), pkgJson);
 
         const params = {
             appName: this.options.appName
         };
 
         this.fs.copyTpl(
-            this.templatePath("."),
+            this.templatePath("./src"),
+            this.destinationPath("./src"),
+            params
+        );
+
+        this.fs.copyTpl(
+            this.templatePath("./*.*"),
             this.destinationPath("."),
             params
         );
@@ -57,6 +49,13 @@ class AppGenerator extends Generator{
             this.destinationPath("."),
             params
         );
+
+        const packageJSON = {
+            name: this.options.appName
+        };
+
+        // Extend or create package.json file in destination path
+        this.fs.extendJSON(this.destinationPath("package.json"), packageJSON);
 
     }
 
