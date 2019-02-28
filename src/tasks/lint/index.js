@@ -6,7 +6,7 @@ import js from "./js";
 import { task } from "../../utils/task";
 
 
-const lint = task("Lint", async (config, watch = false) => {
+const lintTask = task("Lint", async (config, watch = false) => {
 
     await Promise.all([
         css(config.lint.css, watch),
@@ -15,4 +15,4 @@ const lint = task("Lint", async (config, watch = false) => {
 
 });
 
-export default lint;
+export default lintTask;

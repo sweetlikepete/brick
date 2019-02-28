@@ -20,7 +20,7 @@ const conf = {
 const rawPackageJSON = String(fs.readFileSync(path.join(process.cwd(), "package.json")));
 
 
-const lintJS = lintUtils.task((paths, watching) => {
+const lintJsTask = lintUtils.task((paths, watching) => {
 
     // Returns true if eslint has made any automatic fixes to a file
     const fixed = (file) => Boolean(
@@ -54,4 +54,4 @@ const lintJS = lintUtils.task((paths, watching) => {
 });
 
 
-export default lintJS;
+export default lintJsTask;

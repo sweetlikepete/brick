@@ -9,7 +9,7 @@ class AppGenerator extends Generator{
 
         super(args, opts);
 
-        this.argument("appName", {
+        this.argument("project", {
             required: true,
             type: String
         });
@@ -29,29 +29,47 @@ class AppGenerator extends Generator{
     writing(){
 
         const params = {
-            appName: this.options.appName
+            project: this.options.project
         };
 
-        this.fs.copyTpl(
-            this.templatePath("./src"),
-            this.destinationPath("./src"),
-            params
-        );
+        [
+            [
+                "./src",
+                "./src"
+            ],
+            [
+                "./setup",
+                "./setup"
+            ],
+            [
+                "./vscode",
+                "./.vscode"
+            ],
+            [
+                "./*.*",
+                "."
+            ],
+            [
+                "./.*",
+                "."
+            ]
+        ].forEach((cp) => {
 
-        this.fs.copyTpl(
-            this.templatePath("./*.*"),
-            this.destinationPath("."),
-            params
-        );
+            const [
+                from,
+                to
+            ] = cp;
 
-        this.fs.copyTpl(
-            this.templatePath("./.*"),
-            this.destinationPath("."),
-            params
-        );
+            this.fs.copyTpl(
+                this.templatePath(from),
+                this.destinationPath(to),
+                params
+            );
+
+        });
 
         const packageJSON = {
-            name: this.options.appName
+            name: this.options.project
         };
 
         // Extend or create package.json file in destination path

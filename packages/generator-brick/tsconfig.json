@@ -3,7 +3,11 @@
     "allowSyntheticDefaultImports": true,
     "declaration": true,
     "jsx": "react",
-    "lib": ["es2015"],
+    "lib": [
+      "es5",
+      "es6",
+      "dom"
+    ],
     "module": "commonjs",
     "outDir": "./lib",
     "strict": true,

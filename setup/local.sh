@@ -30,3 +30,13 @@ cd $cwd
 npm install "~/code/brick-test/$package"
 # stylelint-config peer dependencies
 yarn add stylelint stylelint-order stylelint-scss
+
+# local install webpack-config
+cd ~/code/brick-test/brick/packages/webpack-config
+npm run prepublishOnly
+package=$(npm pack)
+mv $package ~/code/brick-test
+cd $cwd
+npm install "~/code/brick-test/$package"
+# webpack-config peer dependencies
+yarn add webpack webpack-cli

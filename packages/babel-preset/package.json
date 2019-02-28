@@ -1,6 +1,6 @@
 {
   "name": "@sweetlikepete/babel-preset",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "Shared preset for babel",
   "main": "lib/index.js",
   "scripts": {
@@ -37,7 +37,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.3.4",
-    "@sweetlikepete/brick": "^1.0.4",
+    "@sweetlikepete/brick": "^1.0.5",
     "babel-tape-runner": "^3.0.0",
     "tape": "^4.10.1"
   },

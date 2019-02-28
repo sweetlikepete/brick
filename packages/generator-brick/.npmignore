@@ -1,9 +1,9 @@
 /setup/
 /src/
 /test/
+/.vscode/
 .babelrc
 .eslintrc
-.vscode
 README.md
 TODO.md
 yarn.lock

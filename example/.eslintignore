@@ -1,2 +1,3 @@
-build
 node_modules
+src/web/build
+src/web/node_modules

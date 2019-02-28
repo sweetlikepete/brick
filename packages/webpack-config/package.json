@@ -1,0 +1,57 @@
+{
+  "name": "@sweetlikepete/webpack-config",
+  "version": "1.0.0",
+  "description": "Shared config for webpack",
+  "main": "lib",
+  "scripts": {
+    "build": "rm -rf lib && npm run build:script",
+    "build:script": "npm run build:script:module && npm run build:script:common",
+    "build:script:common": "babel src --ignore src/cli --out-dir lib --extensions '.js,.ts'",
+    "build:script:module": "BUILD_MJS=1 npm run build:script:common && renamer --find js --replace mjs \"lib/**\"",
+    "lint": "eslint src test",
+    "prelint": "npm run build",
+    "prepublishOnly": "npm run test",
+    "pretest": "npm run lint",
+    "test": "babel-tape-runner ./test/*.js"
+  },
+  "browserslist": "node 8",
+  "engines": {
+    "node": ">= 8"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sweetlikepete/brick.git"
+  },
+  "author": "Peter Bodechtel (https://www.sweetlikepete.com)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/sweetlikepete/brick/issues"
+  },
+  "homepage": "https://github.com/sweetlikepete/brick/tree/master/packages/webpack-config#readme",
+  "dependencies": {
+    "assets-webpack-plugin": "^3.9.8",
+    "autoprefixer": "^9.4.9",
+    "awesome-typescript-loader": "^5.2.1",
+    "duplicate-package-checker-webpack-plugin": "^3.0.0",
+    "merge": "^1.2.1",
+    "mini-css-extract-plugin": "^0.5.0",
+    "optimize-css-assets-webpack-plugin": "^5.0.1",
+    "postcss-font-smoothing": "^0.1.0",
+    "postcss-font-variant": "^4.0.0",
+    "postcss-image-set-polyfill": "^0.4.4",
+    "react-loadable": "^5.5.0",
+    "terser-webpack-plugin": "^1.2.3",
+    "webpack-bundle-analyzer": "^3.0.4",
+    "webpack-node-externals": "^1.7.2",
+    "webpack-urlsafehash-plugin": "^1.0.1"
+  },
+  "devDependencies": {
+    "@sweetlikepete/brick": "^1.0.5",
+    "babel-tape-runner": "^3.0.0",
+    "renamer": "^1.1.1",
+    "tape": "^4.9.2"
+  },
+  "peerDependencies": {
+    "webpack": "^4.29.5"
+  }
+}

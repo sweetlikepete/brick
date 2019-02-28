@@ -34,9 +34,9 @@
     "@babel/cli": "^7.2.3",
     "@babel/core": "^7.3.4",
     "@babel/polyfill": "^7.2.5",
-    "@sweetlikepete/babel-preset": "^1.0.7",
-    "@sweetlikepete/eslint-config": "^1.0.19",
-    "@sweetlikepete/stylelint-config": "^1.0.4",
+    "@sweetlikepete/babel-preset": "^1.0.8",
+    "@sweetlikepete/eslint-config": "^1.0.21",
+    "@sweetlikepete/stylelint-config": "^1.0.5",
     "@typescript-eslint/eslint-plugin": "^1.4.2",
     "@typescript-eslint/parser": "^1.4.2",
     "chalk": "^2.4.2",
@@ -70,7 +70,9 @@
     "stylelint-scss": "^3.5.4",
     "through2": "^3.0.0",
     "touch": "^3.1.0",
-    "typescript": "^3.3.3333"
+    "typescript": "^3.3.3333",
+    "webpack": "^4.29.6",
+    "webpack-cli": "^3.2.3"
   },
   "devDependencies": {
     "renamer": "^1.1.1"

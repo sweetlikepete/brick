@@ -3,8 +3,6 @@
 import { declare } from "@babel/helper-plugin-utils";
 
 
-// This function returns a configuration, it's ok if it's long
-// eslint-disable-next-line max-lines-per-function
 export default declare((api, options) => {
 
     // See docs about api at https://babeljs.io/docs/en/config-files#apicache

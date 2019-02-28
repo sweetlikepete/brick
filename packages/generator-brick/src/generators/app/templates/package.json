@@ -2,6 +2,8 @@
   "license": "UNLICENSED",
   "name": "generator-brick-template",
   "scripts": {
+    "build": "brick build",
+    "deploy": "brick deploy --project <%= project %>",
     "lint": "brick lint"
   },
   "version": "1.0.0",

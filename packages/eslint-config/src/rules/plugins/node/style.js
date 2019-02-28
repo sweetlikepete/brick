@@ -17,7 +17,7 @@ export default {
          */
         "node/exports-style": [
             "error",
-            "exports"
+            "module.exports"
         ],
 
         /*

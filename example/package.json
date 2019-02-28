@@ -2,10 +2,12 @@
   "license": "UNLICENSED",
   "name": "brick-example",
   "scripts": {
+    "build": "brick build",
+    "deploy": "brick deploy --project brick-example",
     "lint": "brick lint"
   },
   "version": "1.0.0",
   "devDependencies": {
-    "@sweetlikepete/brick": "^1.0.3"
+    "@sweetlikepete/brick": "file:../../sweetlikepete-brick-1.0.5.tgz"
   }
 }
