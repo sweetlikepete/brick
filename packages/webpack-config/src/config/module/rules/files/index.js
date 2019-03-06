@@ -12,7 +12,7 @@ export default function configure(config, options){
             rules: [
                 // .txt and .json file extensions
                 {
-                    test: /\\.(txt|json)$/u,
+                    test: /\.(txt|json)$/u,
                     use: [fileLoader(config, options)]
                 }
             ]

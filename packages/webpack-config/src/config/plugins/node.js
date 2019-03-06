@@ -14,7 +14,7 @@ export default function configure(){
                 banner: "require(\"source-map-support\").install();",
                 entryOnly: false,
                 raw: true,
-                test: /\\.js$/u
+                test: /\.js$/u
             })
         ]
     };

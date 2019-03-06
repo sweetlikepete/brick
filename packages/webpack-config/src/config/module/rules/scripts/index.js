@@ -3,6 +3,7 @@
 import merge from "webpack-merge";
 
 import babelLoader from "../../../../shared/loaders/babel";
+import fileLoader from "../../../../shared/loaders/file";
 
 
 export default function configure(config, options){
@@ -14,7 +15,7 @@ export default function configure(config, options){
             rules: [
                 // .mjs script extension
                 {
-                    test: /\\.mjs$/u,
+                    test: /\.mjs$/u,
 
                     /*
                      * Bypasses webpack's built-in json importing, we want to
@@ -27,14 +28,14 @@ export default function configure(config, options){
                 // .js and .jsx script extensions
                 {
                     exclude: /node_modules/u,
-                    test: /\\.jsx?$/u,
+                    test: /\.jsx?$/u,
                     use: [loader]
                 },
                 // .ts and .tsx script extensions
                 {
                     exclude: /node_modules/u,
-                    test: /\\.tsx?$/u,
-                    use: [loader]
+                    test: /\.ts$/u,
+                    use: [fileLoader(config, options)]
                 }
             ]
         }

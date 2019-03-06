@@ -15,7 +15,7 @@ export default function configure(config, options){
             rules: [
                 // .scss and .css style extensions
                 {
-                    test: /\\.s?css$/u,
+                    test: /\.s?css$/u,
                     use: [
 
                         /*

@@ -12,7 +12,7 @@ export default function configure(config, options){
             rules: [
                 // .ttf .otf .eot .woff and .woff2 font extensions
                 {
-                    test: /\\.(ttf|otf|eot|woff(2))$/u,
+                    test: /\.(ttf|otf|eot|woff(2))$/u,
                     use: [fileLoader(config, options)]
                 }
             ]
