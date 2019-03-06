@@ -15,5 +15,17 @@ export default {
         "./style",
         "./warnings"
     ].map(require.resolve),
-    plugins: ["import"]
+    plugins: ["import"],
+    settings: {
+        "import/resolver": {
+            node: {
+                extensions: [
+                    ".js",
+                    ".jsx",
+                    ".ts",
+                    ".tsx"
+                ]
+            }
+        }
+    }
 };

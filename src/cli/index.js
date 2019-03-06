@@ -8,26 +8,26 @@ import program from "commander";
 
 import packageJSON from "../../package.json";
 import { config } from "../config";
-
-import {
-    build,
-    clean,
-    lint
-} from "..";
+import build from "../tasks/build";
+import clean from "../tasks/clean";
+import lint from "../tasks/lint";
 
 
 program.version(packageJSON.version);
 
 
-program.command("build")
+program
+.command("build")
 .action(() => build(config));
 
 
-program.command("clean")
+program
+.command("clean")
 .action(() => clean(config));
 
 
-program.command("deploy")
+program
+.command("deploy")
 .action(() => {
 
     console.log("build");
@@ -35,12 +35,14 @@ program.command("deploy")
 });
 
 
-program.command("lint")
+program
+.command("lint")
 .option("-w, --watch", "Watch the lint")
 .action((options) => lint(config, options.watch));
 
 
-program.command("local")
+program
+.command("local")
 .action(() => {
 
     console.log("build");
@@ -48,7 +50,8 @@ program.command("local")
 });
 
 
-program.command("optimize")
+program
+.command("optimize")
 .action(() => {
 
     console.log("build");
@@ -56,7 +59,8 @@ program.command("optimize")
 });
 
 
-program.command("promote")
+program
+.command("promote")
 .action(() => {
 
     console.log("build");

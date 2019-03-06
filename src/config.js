@@ -8,11 +8,11 @@ const { config } = rcfile("brick") || {
         lint: {
             css: [
                 "src/**/*.{css,scss}",
-                "!**/node_modules/**/*.{css,scss}"
+                "!**/{build,node_modules}/**/*.{css,scss}"
             ],
             js: [
                 "src/**/*.{js,ts}",
-                "!**/node_modules/**/*.{js,ts}"
+                "!**/{build,node_modules}/**/*.{js,ts}"
             ]
         },
         output: "build"

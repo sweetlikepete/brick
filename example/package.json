@@ -8,6 +8,9 @@
   },
   "version": "1.0.0",
   "devDependencies": {
-    "@sweetlikepete/brick": "file:../../sweetlikepete-brick-1.0.5.tgz"
+    "@sweetlikepete/brick": "file:../../sweetlikepete-brick-1.0.6.tgz"
+  },
+  "dependencies": {
+    "@sweetlikepete/webpack-config": "file:../../sweetlikepete-webpack-config-1.0.0.tgz"
   }
 }

@@ -1,5 +1,8 @@
 
 
+import importTest from "./import";
+
+
 interface IConfig {
     name?: string;
     globs?: string | string[];
@@ -16,6 +19,8 @@ abstract class Task{
 
         this.globs = config.globs;
         this.name = config.name;
+
+        importTest();
 
     }
 

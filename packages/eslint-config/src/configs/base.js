@@ -1,6 +1,10 @@
 
 
 export default {
+    env: {
+        browser: true,
+        node: true
+    },
     extends: [
         "../rules/plugins/array-func",
         "../rules/plugins/compat",
