@@ -34,7 +34,7 @@
     "@babel/cli": "^7.2.3",
     "@babel/core": "^7.3.4",
     "@babel/polyfill": "^7.2.5",
-    "@sweetlikepete/babel-preset": "^1.0.8",
+    "@sweetlikepete/babel-preset": "^1.0.9",
     "@sweetlikepete/eslint-config": "^1.0.24",
     "@sweetlikepete/stylelint-config": "^1.0.5",
     "@typescript-eslint/eslint-plugin": "^1.4.2",

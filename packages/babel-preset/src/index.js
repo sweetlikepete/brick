@@ -25,6 +25,7 @@ export default declare((api, options) => {
     const config = {
         plugins: [
             "@babel/plugin-proposal-class-properties",
+            "@babel/plugin-syntax-dynamic-import",
             addModuleExports ? "add-module-exports" : null,
             shebang ? [
                 "shebang",

@@ -3,7 +3,6 @@
 import merge from "webpack-merge";
 
 import babelLoader from "../../../../shared/loaders/babel";
-import fileLoader from "../../../../shared/loaders/file";
 
 
 export default function configure(config, options){
@@ -34,8 +33,8 @@ export default function configure(config, options){
                 // .ts and .tsx script extensions
                 {
                     exclude: /node_modules/u,
-                    test: /\.ts$/u,
-                    use: [fileLoader(config, options)]
+                    test: /\.tsx?$/u,
+                    use: [loader]
                 }
             ]
         }

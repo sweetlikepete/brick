@@ -18,13 +18,16 @@ export default function loader(config, options){
              */
             comments: true,
             presets: [
-                "@sweetlikepete/babel-preset",
-                {
-                    modules: options.target === "web" ? false : "auto",
-                    targets: {
-                        esmodules: true
+                [
+                    "@sweetlikepete/babel-preset",
+                    {
+                        development: options.mode === "development",
+                        modules: options.target === "web" ? false : "auto",
+                        targets: {
+                            esmodules: true
+                        }
                     }
-                }
+                ]
             ]
         }
     };
