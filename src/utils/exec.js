@@ -16,6 +16,8 @@ export default async function run(command, label = "Anonymous"){
 
         log(`${ label }: ${ chalk.yellow("[exec]") } ${ chalk.magenta(cmd) }`);
 
+        console.log("");
+
         const proc = exec.exec(cmd, {
             stdio: [
                 0,
@@ -25,9 +27,15 @@ export default async function run(command, label = "Anonymous"){
         }, (error, stdout, stderr) => {
 
             if(error){
+
                 reject(error, stderr);
+
             }else{
+
+                console.log("");
+
                 resolve(stdout);
+
             }
 
         });

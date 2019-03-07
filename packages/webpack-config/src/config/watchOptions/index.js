@@ -1,6 +1,6 @@
 
 
-export default function configure(){
+export default function configure(config, options){
 
     return {
         watchOptions: {
@@ -20,7 +20,10 @@ export default function configure(){
              *
              * https://webpack.js.org/configuration/watch/#watchoptionsignored
              */
-            ignored: ["node_modules"],
+            ignored: [
+                "node_modules",
+                `src/${ options.platform }/node_modules`
+            ],
 
             /*
              * Turn on polling by passing true, or specifying a poll interval in milliseconds

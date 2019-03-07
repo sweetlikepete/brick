@@ -1,5 +1,7 @@
 
 
+import path from "path";
+
 import nodeExternals from "webpack-node-externals";
 
 
@@ -14,7 +16,7 @@ export default function configure(config, options){
 
     const targets = {
 
-        node: [
+        server: [
 
             /*
              * When bundling with Webpack for the backend - you usually don't want
@@ -24,6 +26,8 @@ export default function configure(config, options){
              * https://www.npmjs.com/package/webpack-node-externals
              */
             nodeExternals({
+
+                target: "node",
 
                 /*
                  * An array for the externals to whitelist, so they will be included

@@ -12,6 +12,21 @@ import { task } from "../../utils/task";
 const label = "Clean";
 
 
+const remove = async (removePath) => {
+
+    const exists = await fs.exists(removePath);
+
+    log(`${ label }: ${ chalk[exists ? "magenta" : "gray"](removePath) }`);
+
+    if(exists){
+
+        await fs.remove(removePath);
+
+    }
+
+};
+
+
 const cleanTask = task(label, (config) => {
 
     const cwd = process.cwd();
@@ -20,19 +35,7 @@ const cleanTask = task(label, (config) => {
     .map((target) => path.join(cwd, "src", target, "build"))
     .concat([path.join(cwd, "node_modules/.cache")]);
 
-    return Promise.all(paths.map((pth) => async () => {
-
-        const exists = await fs.exists(pth);
-
-        log(`${ label }: ${ chalk.magenta(pth) }`);
-
-        if(exists){
-
-            await fs.remove(pth);
-
-        }
-
-    }));
+    return Promise.all(paths.map((pth) => remove(pth)));
 
 });
 

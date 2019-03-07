@@ -10,7 +10,8 @@
   },
   "version": "1.0.0",
   "devDependencies": {
-    "@sweetlikepete/brick": "file:../../sweetlikepete-brick-1.0.9.tgz"
+    "@sweetlikepete/brick": "file:../../sweetlikepete-brick-1.0.10.tgz",
+    "webpack-cli": "^3.2.3"
   },
   "dependencies": {
     "@sweetlikepete/webpack-config": "file:../../sweetlikepete-webpack-config-1.0.0.tgz"

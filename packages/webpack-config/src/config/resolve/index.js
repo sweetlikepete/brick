@@ -3,7 +3,7 @@
 import path from "path";
 
 
-export default function configure(){
+export default function configure(config, options){
 
     return {
         resolve: {
@@ -24,6 +24,7 @@ export default function configure(){
             ],
             modules: [
                 "node_modules",
+                `src/${ options.platform }/node_modules`,
                 "src"
             ],
             symlinks: false

@@ -4,6 +4,8 @@ import merge from "merge";
 import rcfile from "rc-config-loader";
 
 
+const rc = rcfile("brick");
+
 const config = merge(
     {
         lint: {
@@ -22,7 +24,7 @@ const config = merge(
             }
         }
     },
-    rcfile("brick").config || {},
+    rc ? rc.config : {},
     {
         targets: [
             "desktop",
