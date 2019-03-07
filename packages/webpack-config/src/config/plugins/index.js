@@ -6,9 +6,9 @@ import MiniCssExtractPlugin from "mini-css-extract-plugin";
 import UrlSafeHashPlugin from "webpack-urlsafehash-plugin";
 import webpack from "webpack";
 
-import node from "./node";
+import client from "./client";
+import server from "./server";
 import watching from "./watching";
-import web from "./web";
 
 
 export default function configure(config, options){
@@ -32,7 +32,7 @@ export default function configure(config, options){
     return merge(
         base,
         options.watching ? watching : {},
-        options.target === "web" ? web : node,
+        options.target === "client" ? client : server
     );
 
 }

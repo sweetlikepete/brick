@@ -1,0 +1,12 @@
+{
+  "platform": {
+    "web": {
+      "environments": [
+        {
+          "name": "production",
+          "project": "<%= project %>"
+        }
+      ]
+    }
+  }
+}

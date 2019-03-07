@@ -3,8 +3,10 @@
   "name": "generator-brick-template",
   "scripts": {
     "build": "brick build",
+    "clean": "brick clean",
     "deploy": "brick deploy --project <%= project %>",
-    "lint": "brick lint"
+    "lint": "brick lint",
+    "local": "brick local"
   },
   "version": "1.0.0",
   "devDependencies": {

@@ -6,7 +6,9 @@ import js from "./js";
 import { task } from "../../utils/task";
 
 
-const lintTask = task("Lint", async (config, watch = false) => {
+const lintTask = task("Lint", async (config, options = {}) => {
+
+    const watch = options.watch || false;
 
     await Promise.all([
         css(config.lint.css, watch),

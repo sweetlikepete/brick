@@ -136,7 +136,12 @@ export default {
          *
          * https://github.com/benmosher/eslint-plugin-import/blob/HEAD/docs/rules/no-unassigned-import.md
          */
-        "import/no-unassigned-import": "error",
+        "import/no-unassigned-import": [
+            "error",
+            {
+                allow: ["@babel/polyfill"]
+            }
+        ],
 
         /*
          * Enforce a convention in module import order

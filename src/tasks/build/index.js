@@ -5,11 +5,11 @@ import lint from "../lint";
 import webpack from "../webpack";
 
 
-const buildTask = async function(config){
+const buildTask = async function(...args){
 
-    await clean(config);
-    await lint(config);
-    await webpack(config);
+    await clean(...args);
+    await lint(...args);
+    await webpack(...args);
 
 };
 

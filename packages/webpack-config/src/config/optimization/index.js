@@ -14,7 +14,7 @@ export default function configure(config, options){
             mergeDuplicateChunks: true,
             minimize: options.mode === "production",
             minimizer: [new OptimizeCSSAssetsPlugin({})].concat(
-                options.env === "web" ? [
+                options.env === "client" ? [
                     new TerserPlugin({
                         terserOptions: {
                             mangle: true,

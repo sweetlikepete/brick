@@ -3,12 +3,14 @@
   "name": "brick-example",
   "scripts": {
     "build": "brick build",
-    "deploy": "brick deploy --project brick-example",
-    "lint": "brick lint"
+    "clean": "brick clean",
+    "deploy": "brick deploy --project <%= project %>",
+    "lint": "brick lint",
+    "local": "brick local"
   },
   "version": "1.0.0",
   "devDependencies": {
-    "@sweetlikepete/brick": "file:../../sweetlikepete-brick-1.0.8.tgz"
+    "@sweetlikepete/brick": "file:../../sweetlikepete-brick-1.0.9.tgz"
   },
   "dependencies": {
     "@sweetlikepete/webpack-config": "file:../../sweetlikepete-webpack-config-1.0.0.tgz"

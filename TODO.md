@@ -1,4 +1,7 @@
 
+why are files not minified
+why is build not cleaning
+
 create a cli
     brick build
         - run clean

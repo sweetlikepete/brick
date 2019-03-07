@@ -1,40 +1,53 @@
 
 
+import path from "path";
+
 import merge from "webpack-merge";
 
 import config from "./config";
 
 
-export default function configure(webpackConfig, webpackOptions){
+export default function configure(webpackConfig = {}, webpackOptions = {}){
 
-    const options = merge({
-        bundleAnalyzerPort: 3000,
-        hashFileNames: false,
-        hashLength: 8,
-        mode: "production",
-        platform: "web",
-        target: "web"
-    }, webpackOptions);
+    return (env) => {
 
-    options.hashFileNames = options.target === "web" && options.mode === "production";
+        const options = merge({
+            bundleAnalyzerPort: 3000,
+            hashFileNames: false,
+            hashLength: 8
+        }, webpackOptions, {
+            mode: env.mode || "development",
+            platform: env.platform || "web",
+            target: env.target || "client"
+        });
 
-    /*
-     * Output configuration is used in by other configurations, so we set it up
-     * first and pass it in the other configurations.
-     */
-    const conf = merge(config.output(webpackConfig, options), webpackConfig);
+        options.hashFileNames = options.target === "client" && options.mode === "production";
 
-    return merge(
-        config.devtool(conf, options),
-        config.externals(conf, options),
-        config.mode(conf, options),
-        config.module(conf, options),
-        config.optimization(conf, options),
-        config.plugins(conf, options),
-        config.resolve(conf, options),
-        config.target(conf, options),
-        config.watchOptions(conf, options),
-        conf
-    );
+        /*
+         * Output configuration is used in by other configurations, so we set it up
+         * first and pass it in the other configurations.
+         */
+        const conf = merge(config.output(webpackConfig, options), {
+            entry: `src/${ env.platform }/${ env.target }/index.ts`,
+            output: {
+                path: path.join(process.cwd(), `src/${ env.platform }/build/${ env.target }`),
+                publicPath: "/static/"
+            }
+        }, webpackConfig);
+
+        return merge(
+            config.devtool(conf, options),
+            config.externals(conf, options),
+            config.mode(conf, options),
+            config.module(conf, options),
+            config.optimization(conf, options),
+            config.plugins(conf, options),
+            config.resolve(conf, options),
+            config.target(conf, options),
+            config.watchOptions(conf, options),
+            conf
+        );
+
+    };
 
 }

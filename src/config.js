@@ -1,10 +1,11 @@
 
 
+import merge from "merge";
 import rcfile from "rc-config-loader";
 
 
-const { config } = rcfile("brick") || {
-    config: {
+const config = merge(
+    {
         lint: {
             css: [
                 "src/**/*.{css,scss}",
@@ -15,9 +16,21 @@ const { config } = rcfile("brick") || {
                 "!**/{build,node_modules}/**/*.{js,ts}"
             ]
         },
-        output: "build"
+        platform: {
+            web: {
+                environments: []
+            }
+        }
+    },
+    rcfile("brick").config || {},
+    {
+        targets: [
+            "desktop",
+            "mobile",
+            "web"
+        ]
     }
-};
+);
 
 
 export {

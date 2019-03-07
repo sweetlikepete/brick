@@ -22,7 +22,7 @@ export default function loader(config, options){
                     "@sweetlikepete/babel-preset",
                     {
                         development: options.mode === "development",
-                        modules: options.target === "web" ? false : "auto",
+                        modules: options.target === "client" ? false : "auto",
                         targets: {
                             esmodules: true
                         }
