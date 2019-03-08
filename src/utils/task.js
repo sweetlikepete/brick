@@ -1,7 +1,6 @@
 
 
-import chalk from "chalk";
-import log from "fancy-log";
+import logger from "./logger";
 
 
 const task = function(name, func){
@@ -12,7 +11,7 @@ const task = function(name, func){
 
         await func(...args);
 
-        log(`${ name }: ${ chalk.green("✔︎") }`);
+        logger.log(name, true);
 
     };
 

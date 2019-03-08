@@ -2,11 +2,10 @@
 
 import exec from "child_process";
 
-import chalk from "chalk";
-import log from "fancy-log";
+import logger from "./logger";
 
 
-export default async function run(command, label = "Anonymous"){
+export default async function run(command, label = "anonymous"){
 
     await new Promise((resolve, reject) => {
 
@@ -14,7 +13,10 @@ export default async function run(command, label = "Anonymous"){
 
         cmd = cmd.replace(/\r\n|\r|\n/gu, "").replace(/\s\s+/gu, " ");
 
-        log(`${ label }: ${ chalk.yellow("[exec]") } ${ chalk.magenta(cmd) }`);
+        logger.log([
+            label,
+            "exec"
+        ], cmd);
 
         console.log("");
 

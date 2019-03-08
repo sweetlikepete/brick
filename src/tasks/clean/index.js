@@ -2,21 +2,20 @@
 
 import path from "path";
 
-import chalk from "chalk";
 import fs from "fs-extra";
-import log from "fancy-log";
 
 import { task } from "../../utils/task";
+import logger from "../../utils/logger";
 
 
-const label = "Clean";
+const label = "clean";
 
 
 const remove = async (removePath) => {
 
     const exists = await fs.exists(removePath);
 
-    log(`${ label }: ${ chalk[exists ? "magenta" : "gray"](removePath) }`);
+    logger.log(label, removePath, exists ? "cyan" : "gray");
 
     if(exists){
 

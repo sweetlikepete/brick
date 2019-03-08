@@ -48,7 +48,8 @@ program
 .command("local")
 .option("-p, --platform [platform]", "device platform (defaults to 'web')")
 .action((options) => local(config, {
-    platform: options.platform || "web"
+    platform: options.platform || "web",
+    watch: true
 }));
 
 

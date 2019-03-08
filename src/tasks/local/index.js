@@ -1,15 +1,15 @@
 
 
-import utils from "../../utils";
-import { task } from "../../utils/task";
+import clean from "../clean";
+import webpack from "../webpack";
 
 
-const label = "Local";
+const localTask = async function(...args){
 
-const localTask = task(label, async () => {
+    await clean(...args);
+    await webpack(...args);
 
-    await utils.exec("echo wtf", label);
+};
 
-});
 
 export default localTask;

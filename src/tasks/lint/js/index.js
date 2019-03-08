@@ -32,7 +32,7 @@ const lintJsTask = lintUtils.task((paths, watching) => {
     return new Promise((resolve) => {
 
         gulp.src(paths)
-        .pipe(lintUtils.print())
+        .pipe(lintUtils.print("script"))
         .pipe(watching ? eslint(conf) : cache(eslint(conf), {
             // Cache key based on the file contents, eslint + plugin versions and eslint options
             key: (file) => `${ file.contents.toString("utf8") }${ rawPackageJSON }`,

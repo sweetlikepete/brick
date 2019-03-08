@@ -1,10 +1,11 @@
 
 
-import chalk from "chalk";
 import gulpPrint from "gulp-print";
 import gulpWatch from "gulp-watch";
 import log from "fancy-log";
 import through from "through2";
+
+import logger from "./logger";
 
 
 const fail = function(message){
@@ -18,9 +19,14 @@ const fail = function(message){
 
 };
 
-const print = function(){
+const print = function(label){
 
-    return gulpPrint((filePath) => `Lint: ${ filePath }`);
+    const lbl = label ? [
+        "lint",
+        label
+    ] : label;
+
+    return gulpPrint((filePath) => logger.format(lbl, filePath, "cyan"));
 
 };
 
