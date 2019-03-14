@@ -2,12 +2,14 @@
 
 import exec from "child_process";
 
+import through from "through2";
+
 import logger from "./logger";
 
 
-export default async function run(command, label = "anonymous"){
+export default function run(command, label = "anonymous"){
 
-    await new Promise((resolve, reject) => {
+    return new Promise((resolve, reject) => {
 
         let cmd = Array.isArray(command) ? command.join(" ") : command;
 
@@ -18,9 +20,7 @@ export default async function run(command, label = "anonymous"){
             "exec"
         ], cmd);
 
-        console.log("");
-
-        const proc = exec.exec(cmd, {
+        const subprocess = exec.exec(cmd, {
             stdio: [
                 0,
                 1,
@@ -34,16 +34,41 @@ export default async function run(command, label = "anonymous"){
 
             }else{
 
-                console.log("");
-
                 resolve(stdout);
 
             }
 
         });
 
-        proc.stdout.pipe(process.stdout);
-        proc.stderr.pipe(process.stderr);
+        process.stdin.pipe(subprocess.stdin);
+
+        const piper = (std) => {
+
+            let first = true;
+
+            subprocess[std].pipe(through.obj((string, encoding, done) => {
+
+                logger.write(label, string, first);
+
+                first = false;
+
+                done();
+
+            }));
+
+        };
+
+        piper("stdout");
+        piper("stderr");
+
+        subprocess.stdout.on("end", () => {
+
+            console.log("\n");
+
+            process.stdin.unref();
+
+        });
+
 
     });
 

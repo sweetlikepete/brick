@@ -10,6 +10,7 @@ import build from "../tasks/build";
 import clean from "../tasks/clean";
 import lint from "../tasks/lint";
 import local from "../tasks/local";
+import setup from "../tasks/setup";
 
 
 program.version(packageJSON.version);
@@ -60,6 +61,11 @@ program
     console.log("build");
 
 });
+
+
+program
+.command("setup")
+.action(() => setup());
 
 
 program

@@ -6,7 +6,6 @@ import chalk from "chalk";
 import codeframe from "codeframe";
 import gulp from "gulp";
 import gulpIf from "gulp-if";
-import log from "fancy-log";
 import stylelint from "gulp-stylelint";
 import touch from "touch";
 
@@ -37,7 +36,7 @@ const conf = {
 
                         }).join("\n");
 
-                        log(errorOutput);
+                        console.log(errorOutput);
 
                         process.stdout.write("\u0007");
 

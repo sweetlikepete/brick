@@ -62,7 +62,6 @@ export default {
          */
         "node/prefer-global/url": "error",
 
-
         /*
          * Enforce either URLSearchParams or require("url").URLSearchParams
          *

@@ -28,14 +28,17 @@ export default function configure(webpackConfig = {}, webpackOptions = {}){
          * first and pass it in the other configurations.
          */
         const conf = merge(config.output(webpackConfig, options), {
-            entry: `src/${ env.platform }/${ env.target }/index.ts`,
+            entry: {
+                index: `src/${ env.platform }/${ env.target }/index.ts`
+            },
             output: {
-                path: path.join(process.cwd(), `src/${ env.platform }/build/${ env.target }`),
+                path: path.join(process.cwd(), `src/${ env.platform }/dist/${ env.target }`),
                 publicPath: "/static/"
             }
         }, webpackConfig);
 
         return merge(
+            config.devServer(conf, options),
             config.devtool(conf, options),
             config.externals(conf, options),
             config.mode(conf, options),
@@ -43,6 +46,7 @@ export default function configure(webpackConfig = {}, webpackOptions = {}){
             config.optimization(conf, options),
             config.plugins(conf, options),
             config.resolve(conf, options),
+            config.stats(conf, options),
             config.target(conf, options),
             config.watchOptions(conf, options),
             conf

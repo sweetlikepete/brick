@@ -1,8 +1,6 @@
 
 
-import gulpPrint from "gulp-print";
 import gulpWatch from "gulp-watch";
-import log from "fancy-log";
 import through from "through2";
 
 import logger from "./logger";
@@ -11,7 +9,7 @@ import logger from "./logger";
 const fail = function(message){
 
     if(message && typeof message === "string"){
-        log(message);
+        console.log(message);
     }
 
     // Make it beep like a jeep
@@ -21,12 +19,26 @@ const fail = function(message){
 
 const print = function(label){
 
-    const lbl = label ? [
-        "lint",
-        label
-    ] : label;
+    return through({ objectMode: true }, function blank(file, encoding, done){
 
-    return gulpPrint((filePath) => logger.format(lbl, filePath, "cyan"));
+        if(file.isNull()){
+            return done();
+        }
+
+        const lbl = label ? [
+            "lint",
+            label
+        ] : label;
+
+        logger.log(lbl, file.path, "cyan");
+
+        // Not invalid since that function is bound by the through library
+        // eslint-disable-next-line no-invalid-this
+        this.push(file);
+
+        return done();
+
+    });
 
 };
 

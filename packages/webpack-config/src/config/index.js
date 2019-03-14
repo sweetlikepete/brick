@@ -1,5 +1,6 @@
 
 
+import devServer from "./devServer";
 import devtool from "./devtool";
 import externals from "./externals";
 import mode from "./mode";
@@ -8,11 +9,13 @@ import optimization from "./optimization";
 import output from "./output";
 import plugins from "./plugins";
 import resolve from "./resolve";
+import stats from "./stats";
 import target from "./target";
 import watchOptions from "./watchOptions";
 
 
 export default {
+    devServer,
     devtool,
     externals,
     mode,
@@ -21,6 +24,7 @@ export default {
     output,
     plugins,
     resolve,
+    stats,
     target,
     watchOptions
 };

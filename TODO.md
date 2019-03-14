@@ -1,6 +1,5 @@
 
-why are files not minified
-why is build not cleaning
+
 
 create a cli
     brick build
@@ -30,6 +29,18 @@ create a cli
             - scss
     brick setup
         - symlinks in the .vscode folder from node_modules/brick/.vscode
+
+create the application
+    - use graphql
+    - use typescript
+    - use react suspence
+    - use webpack-hot-middleware
+    - use webpack-dev-middleware
+    - use react-intl
+    - use extract-react-intl
+    - use ssr
+    - use https://github.com/jamiebuilds/react-loadable
+
 
 create a babel preset
 create a eslint preset

@@ -3,9 +3,7 @@
   "name": "generator-brick-template-web",
   "version": "1.0.0",
   "dependencies": {
-    "express": "^4.16.4"
+    "@sweetlikepete/scotch": "file:../../../../sweetlikepete-scotch-1.0.0.tgz"
   },
-  "devDependencies": {
-    "@types/express": "^4.16.1"
-  }
+  "devDependencies": {}
 }

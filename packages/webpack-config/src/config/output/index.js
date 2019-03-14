@@ -10,7 +10,7 @@ export default function configure(config, options){
             chunkFilename: options.hashFileNames ? `[chunkhash:${ options.hashLength }].js` : "[name].js",
             filename: options.hashFileNames ? `[chunkhash:${ options.hashLength }].js` : "[name].js",
             hashDigest: "base64",
-            path: path.join(process.cwd(), "build"),
+            path: path.join(process.cwd(), "dist"),
             publicPath: "/static/"
         }
     };

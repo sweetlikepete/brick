@@ -31,7 +31,7 @@ const cleanTask = task(label, (config) => {
     const cwd = process.cwd();
 
     const paths = config.targets
-    .map((target) => path.join(cwd, "src", target, "build"))
+    .map((target) => path.join(cwd, "src", target, "dist"))
     .concat([path.join(cwd, "node_modules/.cache")]);
 
     return Promise.all(paths.map((pth) => remove(pth)));

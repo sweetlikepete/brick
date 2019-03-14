@@ -1,5 +1,7 @@
 
 
+import server from "./server";
+
 import clean from "../clean";
 import webpack from "../webpack";
 
@@ -7,7 +9,11 @@ import webpack from "../webpack";
 const localTask = async function(...args){
 
     await clean(...args);
-    await webpack(...args);
+
+    await Promise.all([
+        server(...args),
+        webpack(...args)
+    ]);
 
 };
 

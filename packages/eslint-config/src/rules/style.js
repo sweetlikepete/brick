@@ -24,10 +24,7 @@ export default {
          */
         "array-bracket-newline": [
             "error",
-            {
-                minItems: 2,
-                multiline: true
-            }
+            "consistent"
         ],
 
         /*
@@ -44,10 +41,7 @@ export default {
          */
         "array-element-newline": [
             "error",
-            {
-                minItems: 2,
-                multiline: true
-            }
+            "consistent"
         ],
 
         /*
@@ -119,10 +113,7 @@ export default {
          *
          * https://eslint.org/docs/rules/consistent-this
          */
-        "consistent-this": [
-            "error",
-            "self"
-        ],
+        "consistent-this": ["error", "self"],
 
         /*
          * Require or disallow newline at the end of files
@@ -152,10 +143,7 @@ export default {
          *
          * https://eslint.org/docs/rules/func-names
          */
-        "func-names": [
-            "error",
-            "as-needed"
-        ],
+        "func-names": ["error", "as-needed"],
 
         /*
          * Enforce the consistent use of either function declarations or expressions
@@ -169,10 +157,7 @@ export default {
          *
          * https://eslint.org/docs/rules/function-paren-newline
          */
-        "function-paren-newline": [
-            "error",
-            "consistent"
-        ],
+        "function-paren-newline": ["error", "consistent"],
 
         /*
          * Disallow specified identifiers
@@ -424,10 +409,7 @@ export default {
          *
          * https://eslint.org/docs/rules/multiline-ternary
          */
-        "multiline-ternary": [
-            "error",
-            "never"
-        ],
+        "multiline-ternary": ["error", "never"],
 
         /*
          * Require constructor names to begin with a capital letter
@@ -633,10 +615,7 @@ export default {
          *
          * https://eslint.org/docs/rules/object-curly-spacing
          */
-        "object-curly-spacing": [
-            "error",
-            "always"
-        ],
+        "object-curly-spacing": ["error", "always"],
 
         /*
          * Enforce placing object properties on separate lines
@@ -650,10 +629,7 @@ export default {
          *
          * https://eslint.org/docs/rules/one-var
          */
-        "one-var": [
-            "error",
-            "never"
-        ],
+        "one-var": ["error", "never"],
 
         /*
          * Require or disallow newlines around variable declarations
@@ -727,10 +703,7 @@ export default {
          *
          * https://eslint.org/docs/rules/quote-props
          */
-        "quote-props": [
-            "error",
-            "as-needed"
-        ],
+        "quote-props": ["error", "as-needed"],
 
         /*
          * Enforce the consistent use of either backticks, double, or single quotes
@@ -758,10 +731,7 @@ export default {
          *
          * https://eslint.org/docs/rules/semi-style
          */
-        "semi-style": [
-            "error",
-            "last"
-        ],
+        "semi-style": ["error", "last"],
 
         /*
          * Require object keys to be sorted
@@ -816,10 +786,7 @@ export default {
          *
          * https://eslint.org/docs/rules/space-in-parens
          */
-        "space-in-parens": [
-            "error",
-            "never"
-        ],
+        "space-in-parens": ["error", "never"],
 
         /*
          * Require spacing around infix operators

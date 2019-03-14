@@ -6,11 +6,14 @@
     "clean": "brick clean",
     "deploy": "brick deploy --project <%= project %>",
     "lint": "brick lint",
-    "local": "brick local"
+    "local": "brick local",
+    "setup": "brick setup"
   },
   "version": "1.0.0",
   "devDependencies": {
     "@sweetlikepete/brick": "file:../../sweetlikepete-brick-1.0.10.tgz",
+    "babel-tape-runner": "^3.0.0",
+    "tape": "^4.10.1",
     "webpack-cli": "^3.2.3"
   },
   "dependencies": {

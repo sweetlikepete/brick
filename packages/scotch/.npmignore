@@ -1,0 +1,16 @@
+/build/
+/example/
+/packages/
+/setup/
+/src/
+/test/
+/web/
+.babelrc
+.eslintrc
+.vscode
+babel.config.js
+package-lock.json
+TODO.md
+tsconfig.json
+yarn-error.log
+yarn.lock
