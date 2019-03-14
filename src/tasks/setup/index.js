@@ -1,17 +1,13 @@
 
 
-import exec from "../../utils/exec";
-import { task } from "../../utils/task";
+import gcloud from "./gcloud";
 
 
-const label = "setup";
+const setupTask = async function(){
 
+    await gcloud();
 
-const setupTask = task(label, async () => {
-
-    await exec("ls -al", label);
-
-});
+};
 
 
 export default setupTask;

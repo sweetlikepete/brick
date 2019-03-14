@@ -10,6 +10,7 @@ export default declare((api, options) => {
 
     const {
         addModuleExports = false,
+        comments = false,
         modules,
         shebang = false,
         targets
@@ -23,6 +24,7 @@ export default declare((api, options) => {
     const development = typeof options.development === "boolean" ? options.development : api.cache.using(() => process.env.NODE_ENV === "development");
 
     const config = {
+        comments,
         plugins: [
             "@babel/plugin-proposal-class-properties",
             "@babel/plugin-syntax-dynamic-import",

@@ -1,6 +1,6 @@
 {
   "name": "@sweetlikepete/babel-preset",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "description": "Shared preset for babel",
   "main": "lib/index.js",
   "scripts": {

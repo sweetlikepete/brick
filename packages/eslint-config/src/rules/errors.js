@@ -108,7 +108,12 @@ export default {
          *
          * https://eslint.org/docs/rules/no-empty
          */
-        "no-empty": "error",
+        "no-empty": [
+            "error",
+            {
+                allowEmptyCatch: true
+            }
+        ],
 
         /*
          * Disallow empty character classes in regular expressions

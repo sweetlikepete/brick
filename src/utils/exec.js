@@ -7,7 +7,7 @@ import through from "through2";
 import logger from "./logger";
 
 
-export default function run(command, label = "anonymous"){
+export default function run(command, label = "anonymous", detatch = false){
 
     return new Promise((resolve, reject) => {
 
@@ -40,7 +40,9 @@ export default function run(command, label = "anonymous"){
 
         });
 
-        process.stdin.pipe(subprocess.stdin);
+        if(!detatch){
+            process.stdin.pipe(subprocess.stdin);
+        }
 
         const piper = (std) => {
 
@@ -48,7 +50,9 @@ export default function run(command, label = "anonymous"){
 
             subprocess[std].pipe(through.obj((string, encoding, done) => {
 
-                logger.write(label, string, first);
+                if(!detatch){
+                    logger.write(label, string, first);
+                }
 
                 first = false;
 
@@ -63,9 +67,13 @@ export default function run(command, label = "anonymous"){
 
         subprocess.stdout.on("end", () => {
 
-            console.log("\n");
+            if(!detatch){
 
-            process.stdin.unref();
+                process.stdin.unref();
+
+                console.log("");
+
+            }
 
         });
 
