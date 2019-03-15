@@ -3,30 +3,29 @@
 import exec from "../../utils/exec";
 
 
-const label = ["setup gcloud"];
+const gcloud = async function(){
 
-
-const installGoogleCloud = async function(){
-
-    let gcloudVersion = null;
+    let installed = false;
 
     try{
 
-        gcloudVersion = await exec("gcloud --version", label, true);
+        installed = await exec("gcloud --version", "setup gcloud check", true);
 
-    }catch(err){}
+    }catch(err){
 
-    if(gcloudVersion){
+    }
 
-        await exec("gcloud components update", label);
+    if(installed){
+
+        await exec("gcloud components update", "setup gcloud upgrade");
 
     }else{
 
-        await exec("gcloud components update", label);
+        await exec("curl https://sdk.cloud.google.com | bash", "setup gcloud install");
 
     }
 
 };
 
 
-export default installGoogleCloud;
+export default gcloud;

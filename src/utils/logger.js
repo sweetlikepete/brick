@@ -6,20 +6,30 @@ import strip from "strip-color";
 
 const formatLabel = function(label){
 
-    let label1 = label;
-    let label2 = "";
+    // These are rgb values defining the level of gray in each labal chunk
+    /* eslint-disable no-magic-numbers */
+    const colors = [
+        50,
+        60,
+        70,
+        80,
+        90,
+        100
+    ];
+    /* eslint-enable no-magic-numbers */
 
-    const label1Color = 60;
-    const label2Color = 100;
+    return label
+    .split(" ")
+    .filter(Boolean)
+    .map((chunk, index) => {
 
-    if(Array.isArray(label)){
-        [label1, label2] = label;
-    }
+        const color = index < colors.length - 1 ? colors[index] : colors[colors.length - 1];
 
-    label1 = label1 ? chalk.whiteBright.bgRgb(label1Color, label1Color, label1Color)(` ${ label1 } `) : "";
-    label2 = label2 ? chalk.whiteBright.bgRgb(label2Color, label2Color, label2Color)(` ${ label2 } `) : "";
+        return chalk.hex("#eeeeee").bgRgb(color, color, color)(` ${ chunk } `);
 
-    return `${ label1 }${ label2 }`;
+    })
+    .join("");
+
 
 };
 
@@ -66,7 +76,13 @@ const write = function(label, message, first = false){
         process.stdout.write(`${ lbl } `);
     }
 
-    process.stdout.write(message.replace(/\n/gu, `\n${ lbl } `));
+    process.stdout.write(
+        message
+        .replace(/\n\r/gu, "\r")
+        .replace(/\r\n/gu, `\r${ lbl } `)
+        .replace(/\n/gu, `\n${ lbl } `)
+        .replace(/\r/gu, `\r${ lbl } `)
+    );
 
 };
 

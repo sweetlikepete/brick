@@ -21,7 +21,7 @@ const log = (label2) => (err, stats, configFile) => {
 
     }else{
 
-        logger.log([label, label2], configFile);
+        logger.log(`${ label } ${ label2 }`, configFile);
 
         logger.log(label);
 

@@ -25,12 +25,7 @@ const print = function(label){
             return done();
         }
 
-        const lbl = label ? [
-            "lint",
-            label
-        ] : label;
-
-        logger.log(lbl, file.path, "cyan");
+        logger.log(label ? `lint ${ label }` : "lint", file.path, "cyan");
 
         // Not invalid since that function is bound by the through library
         // eslint-disable-next-line no-invalid-this

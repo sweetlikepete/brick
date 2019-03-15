@@ -2,6 +2,7 @@
 
 import exec from "child_process";
 
+import chalk from "chalk";
 import through from "through2";
 
 import logger from "./logger";
@@ -15,10 +16,7 @@ export default function run(command, label = "anonymous", detatch = false){
 
         cmd = cmd.replace(/\r\n|\r|\n/gu, "").replace(/\s\s+/gu, " ");
 
-        logger.log([
-            label,
-            "exec"
-        ], cmd);
+        logger.log(label, `${ chalk.hex("#e87e00")("bash") } ${ chalk.hex("#ffc600")(cmd) }`, true);
 
         const subprocess = exec.exec(cmd, {
             stdio: [
@@ -44,9 +42,9 @@ export default function run(command, label = "anonymous", detatch = false){
             process.stdin.pipe(subprocess.stdin);
         }
 
-        const piper = (std) => {
+        let first = true;
 
-            let first = true;
+        const piper = (std) => {
 
             subprocess[std].pipe(through.obj((string, encoding, done) => {
 
@@ -76,7 +74,6 @@ export default function run(command, label = "anonymous", detatch = false){
             }
 
         });
-
 
     });
 

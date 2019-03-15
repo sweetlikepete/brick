@@ -8,8 +8,6 @@ import nodemon from "nodemon";
 import logger from "../../utils/logger";
 
 
-const label = "server";
-
 const awaitServerScript = function(){
 
     const intervalTime = 100;
@@ -62,11 +60,11 @@ const startNodemonServer = function(script){
 
         nodemon.on("start", () => {
 
-            logger.log([label, "started"], script);
+            logger.log("server started", script);
 
         }).on("quit", () => {
 
-            logger.log([label, "quit"]);
+            logger.log("server quit");
 
             process.exit();
 
@@ -74,12 +72,12 @@ const startNodemonServer = function(script){
 
             if(files.length === 1){
 
-                logger.log([label, "restarted"], files[0], "gray");
+                logger.log("server restarted", files[0], "gray");
 
             }else{
 
                 files.forEach((file) => {
-                    logger.log([label, "restarted"], file, "gray");
+                    logger.log("server restarted", file, "gray");
                 });
 
             }
@@ -92,7 +90,7 @@ const startNodemonServer = function(script){
                 const string = data.toString();
 
                 if(string){
-                    logger.log(label, string.replace(/(?:\r\n|\r|\n)/gu, ""), color);
+                    logger.log("server log", string.replace(/(?:\r\n|\r|\n)/gu, ""), color);
                 }
 
             };
