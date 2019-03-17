@@ -2,6 +2,7 @@
   "extends": "@sweetlikepete/eslint-config/lib/configs/base",
   "rules": {
     "compat/compat": "off",
+    "import/named": "off",
     "security/detect-non-literal-fs-filename": "off",
     "no-process-exit": "off",
     "no-sync": "off"

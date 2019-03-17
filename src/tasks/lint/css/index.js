@@ -49,7 +49,7 @@ const conf = {
     ]
 };
 
-const lintCssTask = lintUtils.task((paths, watching) => {
+const lintCss = lintUtils.task((paths, watching) => {
 
     const autofixed = [];
 
@@ -113,4 +113,4 @@ const lintCssTask = lintUtils.task((paths, watching) => {
 });
 
 
-export default lintCssTask;
+export default lintCss;

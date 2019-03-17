@@ -1,22 +1,31 @@
 
 
 import chalk from "chalk";
+import getCursorPosition from "get-cursor-position";
 import strip from "strip-color";
 
 
-const formatLabel = function(label){
+const formatLabel = function(label, error = false){
 
-    // These are rgb values defining the level of gray in each labal chunk
-    /* eslint-disable no-magic-numbers */
     const colors = [
-        50,
-        60,
-        70,
-        80,
-        90,
-        100
+        "#222",
+        "#333",
+        "#444",
+        "#555",
+        "#666",
+        "#777",
+        "#888"
     ];
-    /* eslint-enable no-magic-numbers */
+
+    const errors = [
+        "#200",
+        "#500",
+        "#800",
+        "#a00",
+        "#c00",
+        "#c00",
+        "#c00"
+    ];
 
     return label
     .split(" ")
@@ -24,8 +33,9 @@ const formatLabel = function(label){
     .map((chunk, index) => {
 
         const color = index < colors.length - 1 ? colors[index] : colors[colors.length - 1];
+        const errorColor = index < errors.length - 1 ? errors[index] : errors[errors.length - 1];
 
-        return chalk.hex("#eeeeee").bgRgb(color, color, color)(` ${ chunk } `);
+        return chalk.hex("#eeeeee").bgHex(error ? errorColor : color)(` ${ chunk } `);
 
     })
     .join("");
@@ -33,14 +43,13 @@ const formatLabel = function(label){
 
 };
 
-const format = function(label, message, color = "cyan"){
+const format = function(label, message = "", color, error = false){
 
-    let msg = message === true ? "✔" : message;
+    let msg = message ? strip(message) : "";
 
-    msg = msg ? strip(msg) : "";
-    msg = color === true ? message : chalk[message === true ? "green" : color](message === true ? "✔" : msg);
+    msg = color ? chalk.hex(color)(msg) : message;
 
-    return msg.split("\n").map((line) => `${ formatLabel(label) } ${ line }`).join("\n");
+    return msg.split("\n").map((line) => `${ formatLabel(label, error) } ${ line }`).join("\n");
 
 };
 
@@ -48,46 +57,64 @@ const format = function(label, message, color = "cyan"){
 let lastLabel = null;
 
 
-const log = function(label, message, color = "cyan"){
+const logger = {
 
-    const testLabel = Array.isArray(label) ? label.join("-") : label;
+    error(label = "", message = ""){
 
-    const msg = format(label, message, color);
+        this.log(`${ label }`, message, "red", true);
 
-    if(lastLabel && lastLabel !== testLabel){
-        console.log(formatLabel(""));
+    },
+
+    log(label = "", message = "", color, error = false){
+
+        const testLabel = `${ label } ${ String(error) }`;
+
+        const msg = format(label, String(message), color, error);
+
+        if(lastLabel !== testLabel){
+            console.log(getCursorPosition.sync().col > 1 ? "\n" : "");
+        }
+
+        lastLabel = testLabel;
+
+        msg.split("\n").forEach((line) => {
+
+            console.log(line);
+
+        });
+
+    },
+
+    write(label = "", message = "", first = false, error = false){
+
+        const lbl = formatLabel(label, error);
+        const testLabel = `${ label } ${ String(error) }`;
+
+        if(first || lastLabel !== testLabel){
+
+            if(lastLabel !== testLabel){
+                console.log(getCursorPosition.sync().col > 1 ? "\n" : "");
+            }
+
+            process.stdout.write(`${ lbl } `);
+
+        }
+
+        lastLabel = testLabel;
+
+        const msg = message.replace(/([\n]+)$/gu, "\n");
+
+        process.stdout.write(
+            (error ? chalk.red(msg) : msg)
+            .replace(/\n\r/gu, "\r")
+            .replace(/\r\n/gu, `\r${ lbl } `)
+            .replace(/\n/gu, `\n${ lbl } `)
+            .replace(/\r/gu, `\r${ lbl } `)
+        );
+
     }
 
-    lastLabel = testLabel;
-
-    msg.split("\n").forEach((line) => {
-
-        console.log(line);
-
-    });
-
 };
 
-const write = function(label, message, first = false){
 
-    const lbl = formatLabel(label);
-
-    if(first){
-        process.stdout.write(`${ lbl } `);
-    }
-
-    process.stdout.write(
-        message
-        .replace(/\n\r/gu, "\r")
-        .replace(/\r\n/gu, `\r${ lbl } `)
-        .replace(/\n/gu, `\n${ lbl } `)
-        .replace(/\r/gu, `\r${ lbl } `)
-    );
-
-};
-
-export default {
-    format,
-    log,
-    write
-};
+export default logger;

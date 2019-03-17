@@ -33,7 +33,7 @@ const log = (label2) => (err, stats, configFile) => {
             modules: false,
             timings: false,
             version: false
-        }), true);
+        }));
 
         logger.log(label);
 

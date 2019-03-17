@@ -5,7 +5,10 @@ import path from "path";
 import fs from "fs-extra";
 import nodemon from "nodemon";
 
-import logger from "../../utils/logger";
+import {
+    kill,
+    logger
+} from "../../utils";
 
 
 const awaitServerScript = function(){
@@ -72,12 +75,12 @@ const startNodemonServer = function(script){
 
             if(files.length === 1){
 
-                logger.log("server restarted", files[0], "gray");
+                logger.log("server restarted", files[0], "#d3d3d3");
 
             }else{
 
                 files.forEach((file) => {
-                    logger.log("server restarted", file, "gray");
+                    logger.log("server restarted", file, "#d3d3d3");
                 });
 
             }
@@ -97,8 +100,8 @@ const startNodemonServer = function(script){
 
             /* eslint-disable no-invalid-this */
 
-            this.stdout.on("data", output("gray"));
-            this.stderr.on("data", output("red"));
+            this.stdout.on("data", output("#ffffff"));
+            this.stderr.on("data", output("#ff0000"));
 
             /* eslint-enable no-invalid-this */
 
@@ -108,13 +111,15 @@ const startNodemonServer = function(script){
 
 };
 
-const localServerTask = async function(){
+const server = async function(){
 
     const script = await awaitServerScript();
+
+    await kill(script);
 
     await startNodemonServer(script);
 
 };
 
 
-export default localServerTask;
+export default server;

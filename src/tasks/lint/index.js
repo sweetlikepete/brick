@@ -6,7 +6,7 @@ import js from "./js";
 import { task } from "../../utils/task";
 
 
-const lintTask = task("Lint", async (config, options = {}) => {
+const lint = task("Lint", async (config, options = {}) => {
 
     const watch = options.watch || false;
 
@@ -17,4 +17,4 @@ const lintTask = task("Lint", async (config, options = {}) => {
 
 });
 
-export default lintTask;
+export default lint;

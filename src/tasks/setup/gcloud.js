@@ -1,27 +1,75 @@
 
 
-import exec from "../../utils/exec";
+import {
+    exec,
+    logger
+} from "../../utils";
 
 
-const gcloud = async function(){
+let versions = null;
 
-    let installed = false;
 
-    try{
+const gcloud = async function(component){
 
-        installed = await exec("gcloud --version", "setup gcloud check", true);
+    if(component){
 
-    }catch(err){
+        if(!versions){
 
-    }
+            const rawVersions = await exec({
+                command: "gcloud components list --format=json",
+                detatch: true
+            });
 
-    if(installed){
+            versions = JSON.parse(rawVersions);
 
-        await exec("gcloud components update", "setup gcloud upgrade");
+        }
+
+        const [version] = versions.filter((item) => item.id === component);
+
+        if(version.latest_version_string === version.current_version_string){
+
+            logger.log("setup", `✔ gcloud ${ component }`, "#00ff00");
+
+        }else{
+
+            await exec({
+                command: `gcloud components install ${ component }`,
+                label: `setup gcloud ${ component }`
+            });
+
+        }
 
     }else{
 
-        await exec("curl https://sdk.cloud.google.com | bash", "setup gcloud install");
+        let installed = false;
+
+        try{
+
+            // Check if the Google Cloud SDK is installed
+            installed = await exec({
+                command: "gcloud --version",
+                detatch: true
+            });
+
+            logger.log("setup", "✔ gcloud", "#00ff00");
+
+        }catch(err){}
+
+        if(!installed){
+
+            // Install the Google Cloud SDK
+            await exec({
+                command: "curl https://sdk.cloud.google.com | bash",
+                label: "setup gcloud"
+            });
+
+            // Initialized the Google Cloud SDK
+            await exec({
+                command: "gcloud init",
+                label: "setup gcloud"
+            });
+
+        }
 
     }
 

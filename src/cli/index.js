@@ -8,6 +8,7 @@ import packageJSON from "../../package.json";
 import { config } from "../config";
 import build from "../tasks/build";
 import clean from "../tasks/clean";
+import deploy from "../tasks/deploy";
 import lint from "../tasks/lint";
 import local from "../tasks/local";
 import setup from "../tasks/setup";
@@ -32,7 +33,7 @@ program
 program
 .command("deploy")
 .option("-p, --platform [platform]", "device platform (defaults to 'web')")
-.action((options) => build(config, {
+.action((options) => deploy(config, {
     platform: options.platform || "web"
 }));
 

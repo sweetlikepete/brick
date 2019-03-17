@@ -5,7 +5,7 @@ import lint from "../lint";
 import webpack from "../webpack";
 
 
-const buildTask = async function(...args){
+const build = async function(...args){
 
     await clean(...args);
     await lint(...args);
@@ -14,4 +14,4 @@ const buildTask = async function(...args){
 };
 
 
-export default buildTask;
+export default build;

@@ -15,7 +15,7 @@ const remove = async (removePath) => {
 
     const exists = await fs.exists(removePath);
 
-    logger.log(label, removePath, exists ? "cyan" : "gray");
+    logger.log(label, removePath, exists ? "#ffffff" : "#777777");
 
     if(exists){
 
@@ -26,7 +26,7 @@ const remove = async (removePath) => {
 };
 
 
-const cleanTask = task(label, (config) => {
+const clean = task(label, (config) => {
 
     const cwd = process.cwd();
 
@@ -39,4 +39,4 @@ const cleanTask = task(label, (config) => {
 });
 
 
-export default cleanTask;
+export default clean;

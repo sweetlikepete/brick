@@ -25,7 +25,7 @@ const print = function(label){
             return done();
         }
 
-        logger.log(label ? `lint ${ label }` : "lint", file.path, "cyan");
+        logger.log(label ? `lint ${ label }` : "lint", file.path, "#00ffff");
 
         // Not invalid since that function is bound by the through library
         // eslint-disable-next-line no-invalid-this

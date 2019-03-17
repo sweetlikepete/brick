@@ -8,15 +8,30 @@ import through from "through2";
 import logger from "./logger";
 
 
-export default function run(command, label = "anonymous", detatch = false){
+export default function run(options = {}){
+
+    const {
+        command,
+        filter = [],
+        detatch = false,
+        label = "anonymous"
+    } = options;
 
     return new Promise((resolve, reject) => {
 
         let cmd = Array.isArray(command) ? command.join(" ") : command;
 
-        cmd = cmd.replace(/\r\n|\r|\n/gu, "").replace(/\s\s+/gu, " ");
+        cmd = cmd
+        .replace(/\r\n|\r|\n/gu, "")
+        .replace(/\s\s+/gu, " ")
+        .replace(/^\s/gu, "");
 
-        logger.log(label, `${ chalk.hex("#e87e00")("bash") } ${ chalk.hex("#ffc600")(cmd) }`, true);
+        const bashTag = chalk.hex("#000000").bgHex("#c99c00")(" bash ");
+        const bashCmd = cmd;
+
+        if(!detatch){
+            logger.log(label, `${ bashTag } ${ bashCmd }`);
+        }
 
         const subprocess = exec.exec(cmd, {
             stdio: [
@@ -27,6 +42,14 @@ export default function run(command, label = "anonymous", detatch = false){
         }, (error, stdout, stderr) => {
 
             if(error){
+
+                if(!detatch){
+
+                    console.log("");
+
+                    logger.error(label, error.stack);
+
+                }
 
                 reject(error, stderr);
 
@@ -48,8 +71,14 @@ export default function run(command, label = "anonymous", detatch = false){
 
             subprocess[std].pipe(through.obj((string, encoding, done) => {
 
+                let str = string;
+
+                (Array.isArray(filter) ? filter : [filter]).forEach((filt) => {
+                    str = str.replace(filt, "");
+                });
+
                 if(!detatch){
-                    logger.write(label, string, first);
+                    logger.write(label, str, first);
                 }
 
                 first = false;
@@ -68,8 +97,6 @@ export default function run(command, label = "anonymous", detatch = false){
             if(!detatch){
 
                 process.stdin.unref();
-
-                console.log("");
 
             }
 

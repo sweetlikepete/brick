@@ -8,6 +8,12 @@ const rc = rcfile("brick");
 
 const config = merge(
     {
+        emulators: {
+            firestore: {
+                host: "127.0.0.1",
+                port: 9811
+            }
+        },
         lint: {
             css: [
                 "src/**/*.{css,scss}",

@@ -1,16 +1,20 @@
 
 
+import firestore from "./firestore";
+import memcached from "./memcached";
 import server from "./server";
 
 import clean from "../clean";
 import webpack from "../webpack";
 
 
-const localTask = async function(...args){
+const local = async function(...args){
 
     await clean(...args);
 
     await Promise.all([
+        firestore(...args),
+        memcached(...args),
         server(...args),
         webpack(...args)
     ]);
@@ -18,4 +22,4 @@ const localTask = async function(...args){
 };
 
 
-export default localTask;
+export default local;

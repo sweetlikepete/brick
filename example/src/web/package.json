@@ -2,6 +2,9 @@
   "license": "UNLICENSED",
   "name": "generator-brick-template-web",
   "version": "1.0.0",
+  "scripts": {
+    "start": "node src/web/dist/server/index.js"
+  },
   "dependencies": {
     "@sweetlikepete/scotch": "file:../../../../sweetlikepete-scotch-1.0.0.tgz"
   },
