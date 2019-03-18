@@ -17,7 +17,7 @@ const fail = function(message){
 
 };
 
-const print = function(label){
+const print = function(label, color = "#00ffff"){
 
     return through({ objectMode: true }, function blank(file, encoding, done){
 
@@ -25,7 +25,7 @@ const print = function(label){
             return done();
         }
 
-        logger.log(label ? `lint ${ label }` : "lint", file.path, "#00ffff");
+        logger.log(label ? `${ label }` : "gulp", file.path, color);
 
         // Not invalid since that function is bound by the through library
         // eslint-disable-next-line no-invalid-this

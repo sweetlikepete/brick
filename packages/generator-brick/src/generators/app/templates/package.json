@@ -4,9 +4,11 @@
   "scripts": {
     "build": "brick build",
     "clean": "brick clean",
-    "deploy": "brick deploy --project <%= project %>",
+    "deploy": "brick deploy",
     "lint": "brick lint",
-    "local": "brick local"
+    "local": "brick local",
+    "optimize": "brick optimize",
+    "setup": "brick setup"
   },
   "version": "1.0.0",
   "devDependencies": {

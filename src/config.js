@@ -6,6 +6,12 @@ import rcfile from "rc-config-loader";
 
 const rc = rcfile("brick");
 
+
+const base = {
+    exclude: "!**/{dist,node_modules}/**/*",
+    include: "src/**/*"
+};
+
 const config = merge(
     {
         emulators: {
@@ -16,13 +22,39 @@ const config = merge(
         },
         lint: {
             css: [
-                "src/**/*.{css,scss}",
-                "!**/{build,node_modules}/**/*.{css,scss}"
+                `${ base.include }.{css,scss}`,
+                `${ base.exclude }.{css,scss}`
             ],
             js: [
-                "src/**/*.{js,ts}",
-                "!**/{build,node_modules}/**/*.{js,ts}"
+                `${ base.include }.{js,jsx,ts,tsx}`,
+                `${ base.exclude }.{js,jsx,ts,tsx}`
             ]
+        },
+        optimize: {
+            image: {
+                paths: [
+                    `${ base.include }.{png,gif,jpg,jpeg,svg}`,
+                    `${ base.exclude }.{png,gif,jpg,jpeg,svg}`
+                ],
+                settings: {
+                    gifsicle: {
+                        interlaced: true
+                    },
+                    jpegtran: {
+                        progressive: true
+                    },
+                    optipng: {
+                        optimizationLevel: 5
+                    },
+                    svgo: {
+                        plugins: [
+                            {
+                                removeViewBox: true
+                            }
+                        ]
+                    }
+                }
+            }
         },
         platform: {
             web: {

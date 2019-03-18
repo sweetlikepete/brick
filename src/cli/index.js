@@ -11,6 +11,7 @@ import clean from "../tasks/clean";
 import deploy from "../tasks/deploy";
 import lint from "../tasks/lint";
 import local from "../tasks/local";
+import optimize from "../tasks/optimize";
 import setup from "../tasks/setup";
 
 
@@ -57,11 +58,7 @@ program
 
 program
 .command("optimize")
-.action(() => {
-
-    console.log("build");
-
-});
+.action(() => optimize(config));
 
 
 program

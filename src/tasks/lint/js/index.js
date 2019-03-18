@@ -8,7 +8,7 @@ import eslint from "gulp-eslint";
 import gulp from "gulp";
 import gulpIf from "gulp-if";
 
-import lintUtils from "../../../utils/lint";
+import gulpUtils from "../../../utils/gulp";
 
 
 const conf = {
@@ -20,7 +20,7 @@ const conf = {
 const rawPackageJSON = String(fs.readFileSync(path.join(process.cwd(), "package.json")));
 
 
-const lintJs = lintUtils.task((paths, watching) => {
+const lintJs = gulpUtils.task((paths, watching) => {
 
     // Returns true if eslint has made any automatic fixes to a file
     const fixed = (file) => Boolean(
@@ -32,17 +32,17 @@ const lintJs = lintUtils.task((paths, watching) => {
     return new Promise((resolve) => {
 
         gulp.src(paths)
-        .pipe(lintUtils.print("script"))
+        .pipe(gulpUtils.print("lint script"))
         .pipe(watching ? eslint(conf) : cache(eslint(conf), {
             // Cache key based on the file contents, eslint + plugin versions and eslint options
             key: (file) => `${ file.contents.toString("utf8") }${ rawPackageJSON }`,
             success: (file) => file.eslint.errorCount === 0,
             value: (file) => ({ eslint: file.eslint })
         }))
-        .pipe(eslint.format("codeframe", lintUtils.fail))
+        .pipe(eslint.format("codeframe", gulpUtils.fail))
         .pipe(gulpIf(fixed, gulp.dest(".")))
-        .pipe(lintUtils.touch(fixed))
-        .pipe(watching ? lintUtils.skip() : eslint.failAfterError())
+        .pipe(gulpUtils.touch(fixed))
+        .pipe(watching ? gulpUtils.skip() : eslint.failAfterError())
         .on("finish", () => {
 
             resolve();

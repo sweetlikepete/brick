@@ -9,7 +9,7 @@ import gulpIf from "gulp-if";
 import stylelint from "gulp-stylelint";
 import touch from "touch";
 
-import lintUtils from "../../../utils/lint";
+import gulpUtils from "../../../utils/gulp";
 
 
 const conf = {
@@ -49,7 +49,7 @@ const conf = {
     ]
 };
 
-const lintCss = lintUtils.task((paths, watching) => {
+const lintCss = gulpUtils.task((paths, watching) => {
 
     const autofixed = [];
 
@@ -58,7 +58,7 @@ const lintCss = lintUtils.task((paths, watching) => {
     return new Promise((resolve) => {
 
         gulp.src(paths)
-        .pipe(lintUtils.print("style"))
+        .pipe(gulpUtils.print("lint style"))
         .pipe(stylelint(conf))
         .pipe(gulpIf((file) => {
 
