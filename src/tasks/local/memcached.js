@@ -17,7 +17,7 @@ const memcached = async function(){
             label: "memcached"
         });
 
-    }catch(err){}
+    }catch(error){}
 
 };
 

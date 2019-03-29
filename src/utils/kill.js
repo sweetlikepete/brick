@@ -3,13 +3,13 @@
 import exec from "./exec";
 
 
-const kill = async function(str){
+const kill = async function(string){
 
     await exec({
         command: [
             "ps -ax",
             "|",
-            `grep '[${ String(str)[0] }]${ String(str).substring(1, String(str).length) }'`,
+            `grep '[${ String(string)[0] }]${ String(string).substring(1, String(string).length) }'`,
             "|",
             "awk '{print $1}'",
             "|",

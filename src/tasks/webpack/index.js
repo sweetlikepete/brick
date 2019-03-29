@@ -11,11 +11,11 @@ import { task } from "../../utils/task";
 
 const label = "webpack";
 
-const log = (label2) => (err, stats, configFile) => {
+const log = (label2) => (error, stats, configFile) => {
 
-    if(err){
+    if(error){
 
-        console.error(err);
+        console.error(error);
 
         process.exit();
 
@@ -71,11 +71,9 @@ const webpackTask = task(label, async (config, options) => {
                 ],
                 poll: false
             },
-            // We don't have an option here, webpack doesn't export a promise
-            // eslint-disable-next-line promise/prefer-await-to-callbacks
-            (err, stats) => {
+            (error, stats) => {
 
-                log("watch")(err, stats, webpackConfigFile);
+                log("watch")(error, stats, webpackConfigFile);
 
                 resolve();
 
@@ -83,11 +81,9 @@ const webpackTask = task(label, async (config, options) => {
 
         }else{
 
-            // We don't have an option here, webpack doesn't export a promise
-            // eslint-disable-next-line promise/prefer-await-to-callbacks
-            compiler.run((err, stats) => {
+            compiler.run((error, stats) => {
 
-                log("run")(err, stats, webpackConfigFile);
+                log("run")(error, stats, webpackConfigFile);
 
                 resolve();
 

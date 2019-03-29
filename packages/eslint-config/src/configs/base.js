@@ -25,7 +25,6 @@ export default {
         "../rules/plugins/optimize-regex",
         "../rules/plugins/prefer-object-spread",
         "../rules/plugins/promise",
-        "../rules/plugins/proper-arrows",
         "../rules/plugins/react",
         "../rules/plugins/react-filenames",
         "../rules/plugins/react-hooks",

@@ -16,10 +16,13 @@ export default {
          * Files that dont have a default export will be ignored. The exports of
          * index.js are matched against their parent directory.
          *
+         * This is off for now because it's really hard to do this without jumping
+         * through a million hoops and it's not worth the effort.
+         *
          * https://www.npmjs.com/package/eslint-plugin-filenames#matching-exported-values-match-exported
          */
         "filenames/match-exported": [
-            "error",
+            "off",
             "kebab"
         ],
 

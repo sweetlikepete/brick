@@ -19,7 +19,7 @@ const brew = async function(formula){
         .replace(/\n/gu, " ")
         .split(" ")
         .filter(Boolean)
-        .indexOf(formula) > -1;
+        .includes(formula);
 
         const rawJSON = await exec({
             command: `brew info ${ formula } --json`,
@@ -54,7 +54,7 @@ const brew = async function(formula){
 
             logger.log("setup", "✔ brew", "#00ff00");
 
-        }catch(err){
+        }catch(error){
 
             await exec({
                 command: "/usr/bin/ruby -e \"$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)\"",

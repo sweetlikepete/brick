@@ -71,14 +71,14 @@ export default function run(options = {}){
 
             subprocess[std].pipe(through.obj((string, encoding, done) => {
 
-                let str = string;
+                let formattedString = string;
 
                 (Array.isArray(filter) ? filter : [filter]).forEach((filt) => {
-                    str = str.replace(filt, "");
+                    formattedString = formattedString.replace(filt, "");
                 });
 
                 if(!detatch){
-                    logger.write(label, str, first);
+                    logger.write(label, formattedString, first);
                 }
 
                 first = false;

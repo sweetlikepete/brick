@@ -23,7 +23,7 @@ const firestore = async function(config){
             label: "firstore"
         });
 
-    }catch(err){}
+    }catch(error){}
 
 };
 

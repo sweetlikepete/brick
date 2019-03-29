@@ -12,13 +12,13 @@ import touch from "touch";
 import gulpUtils from "../../../utils/gulp";
 
 
-const conf = {
+const config = {
     fix: true,
     reporters: [
         {
-            formatter: (errFiles) => {
+            formatter: (errorFiles) => {
 
-                errFiles.forEach((ef) => {
+                errorFiles.forEach((ef) => {
 
                     if(ef.errored && ef.warnings && ef.warnings.length > 0){
 
@@ -53,13 +53,13 @@ const lintCss = gulpUtils.task((paths, watching) => {
 
     const autofixed = [];
 
-    conf.failAfterError = !watching;
+    config.failAfterError = !watching;
 
     return new Promise((resolve) => {
 
         gulp.src(paths)
         .pipe(gulpUtils.print("lint style"))
-        .pipe(stylelint(conf))
+        .pipe(stylelint(config))
         .pipe(gulpIf((file) => {
 
             const [p] = file.history;
@@ -80,7 +80,7 @@ const lintCss = gulpUtils.task((paths, watching) => {
 
                     isJSON = true;
 
-                }catch(err){
+                }catch(error){
 
                     isJSON = false;
 

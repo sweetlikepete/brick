@@ -19,7 +19,7 @@ export default {
         "unicorn/catch-error-name": [
             "error",
             {
-                name: "err"
+                name: "error"
             }
         ],
 
@@ -258,7 +258,16 @@ export default {
                  * We disable this because of how often Objects are used to interface
                  * with third party code, and we don't want to eslint-ignore all of that.
                  */
-                checkProperties: false
+                checkProperties: false,
+                replacements: {
+                    args: {
+                        // This is a reserved keyword in sone cases - don't replace into this
+                        arguments: false
+                    },
+                    envs: {
+                        environments: true
+                    }
+                }
             }
         ],
 

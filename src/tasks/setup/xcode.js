@@ -20,7 +20,7 @@ const gcloud = async function(){
 
         logger.log("setup", "✔ xcode-select", "#00ff00");
 
-    }catch(err){}
+    }catch(error){}
 
     if(!installed){
 

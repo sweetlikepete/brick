@@ -10,10 +10,7 @@ add a step to the build that extracts format message strings for translation
 after implementing graphql have a look at https://www.npmjs.com/package/eslint-plugin-graphql
 
 
-
-add https://www.npmjs.com/package/eslint-plugin-sort-class-members
 add https://www.npmjs.com/package/eslint-plugin-spellcheck
-add https://www.npmjs.com/package/eslint-plugin-standard
 
 
 

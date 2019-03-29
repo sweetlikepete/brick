@@ -18,7 +18,7 @@ const ruby = async function(){
 
         logger.log("setup", "✔ ruby", "#00ff00");
 
-    }catch(err){
+    }catch(error){
 
         logger.error("check installed ruby", [
             "",

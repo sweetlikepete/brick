@@ -45,11 +45,11 @@ const formatLabel = function(label, error = false){
 
 const format = function(label, message = "", color, error = false){
 
-    let msg = message ? strip(message) : "";
+    let formattedMessage = message ? strip(message) : "";
 
-    msg = color ? chalk.hex(color)(msg) : message;
+    formattedMessage = color ? chalk.hex(color)(formattedMessage) : message;
 
-    return msg.split("\n").map((line) => `${ formatLabel(label, error) } ${ line }`).join("\n");
+    return formattedMessage.split("\n").map((line) => `${ formatLabel(label, error) } ${ line }`).join("\n");
 
 };
 
@@ -69,7 +69,7 @@ const logger = {
 
         const testLabel = `${ label } ${ String(error) }`;
 
-        const msg = format(label, String(message), color, error);
+        const formattedMessage = format(label, String(message), color, error);
 
         if(lastLabel !== testLabel){
             console.log(getCursorPosition.sync().col > 1 ? "\n" : "");
@@ -77,7 +77,7 @@ const logger = {
 
         lastLabel = testLabel;
 
-        msg.split("\n").forEach((line) => {
+        formattedMessage.split("\n").forEach((line) => {
 
             console.log(line);
 
@@ -102,10 +102,10 @@ const logger = {
 
         lastLabel = testLabel;
 
-        const msg = message.replace(/([\n]+)$/gu, "\n");
+        const formattedMessage = message.replace(/[\n]+$/gu, "\n");
 
         process.stdout.write(
-            (error ? chalk.red(msg) : msg)
+            (error ? chalk.red(formattedMessage) : formattedMessage)
             .replace(/\n\r/gu, "\r")
             .replace(/\r\n/gu, `\r${ lbl } `)
             .replace(/\n/gu, `\n${ lbl } `)

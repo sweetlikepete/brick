@@ -42,7 +42,7 @@ const openBrowser = async function(config){
 
         });
 
-    }catch(err){}
+    }catch(error){}
 
 };
 

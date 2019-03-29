@@ -51,12 +51,12 @@ const awaitServerScript = function(){
 
 };
 
-const startNodemonServer = function(script, env){
+const startNodemonServer = function(script, environment){
 
     return new Promise(() => {
 
         nodemon({
-            env,
+            env: environment,
             ext: "js json",
             script,
             stdout: false

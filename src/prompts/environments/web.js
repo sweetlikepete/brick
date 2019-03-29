@@ -4,22 +4,22 @@ import { config } from "../../config";
 import { prompt } from "../../utils";
 
 
-const webEnvironmentPrompt = function(){
+const web = function(){
 
-    const envs = config.platform.web.environments || [];
+    const environments = config.platform.web.environments || [];
 
-    if(envs.length === 0){
+    if(environments.length === 0){
 
         throw new Error("Brick project has no environments configured");
 
     }
 
-    return prompt("Web Environment", envs.map((env) => ({
-        name: env.name,
-        value: env.project
+    return prompt("Web Environment", environments.map((environment) => ({
+        name: environment.name,
+        value: environment.project
     })));
 
 };
 
 
-export default webEnvironmentPrompt;
+export default web;

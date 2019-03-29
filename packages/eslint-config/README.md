@@ -17,16 +17,38 @@ Our default export contains all of our ESLint rules, including ECMAScript 6+ and
     @typescript-eslint/parser
     eslint
     eslint-plugin-array-func
+    eslint-plugin-async-await
     eslint-plugin-compat
+    eslint-plugin-css-modules
+    eslint-plugin-es
     eslint-plugin-eslint-comments
+    eslint-plugin-filenames
+    eslint-plugin-format-message
     eslint-plugin-import
+    eslint-plugin-jsx-control-statements
+    eslint-plugin-lean-imports
+    eslint-plugin-more
     eslint-plugin-no-loops
+    eslint-plugin-no-unsanitized
+    eslint-plugin-no-useless-assign
     eslint-plugin-node
     eslint-plugin-optimize-regex
+    eslint-plugin-prefer-object-spread
     eslint-plugin-promise
     eslint-plugin-react
+    eslint-plugin-react-filenames
+    eslint-plugin-react-hooks
+    eslint-plugin-react-native
+    eslint-plugin-react-perf
+    eslint-plugin-react-redux
+    eslint-plugin-react-ssr
     eslint-plugin-security
+    eslint-plugin-sort-class-members
+    eslint-plugin-sort-keys-fix
     eslint-plugin-unicorn
+    eslint-plugin-webassembly
+    eslint-plugin-you-dont-need-lodash-underscore
+    eslint-plugin-you-dont-need-momentjs
     typescript
 ```
 

@@ -1,6 +1,6 @@
 {
   "name": "@sweetlikepete/eslint-config",
-  "version": "1.0.33",
+  "version": "1.0.40",
   "description": "Shared config for eslint",
   "main": "lib/configs",
   "scripts": {
@@ -40,7 +40,6 @@
   ],
   "homepage": "https://github.com/sweetlikepete/brick/tree/master/packages/eslint-config#readme",
   "devDependencies": {
-    "@getify/eslint-plugin-proper-arrows": "^7.1.0",
     "@sweetlikepete/brick": "^1.0.11",
     "@typescript-eslint/eslint-plugin": "^1.5.0",
     "@typescript-eslint/parser": "^1.5.0",
@@ -87,7 +86,6 @@
     "confusing-browser-globals": "^1.0.6"
   },
   "peerDependencies": {
-    "@getify/eslint-plugin-proper-arrows": "^7.1.0",
     "@typescript-eslint/eslint-plugin": "^1.5.0",
     "@typescript-eslint/parser": "^1.5.0",
     "eslint": "^5.15.3",
@@ -119,6 +117,7 @@
     "eslint-plugin-react-ssr": "^1.0.3",
     "eslint-plugin-security": "^1.4.0",
     "eslint-plugin-sort-class-members": "^1.4.0",
+    "eslint-plugin-sort-keys-fix": "^1.0.1",
     "eslint-plugin-unicorn": "^8.0.1",
     "eslint-plugin-webassembly": "^1.8.5",
     "eslint-plugin-you-dont-need-lodash-underscore": "^6.4.0",

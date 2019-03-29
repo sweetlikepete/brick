@@ -53,7 +53,7 @@ const gcloud = async function(component){
 
             logger.log("setup", "✔ gcloud", "#00ff00");
 
-        }catch(err){}
+        }catch(error){}
 
         if(!installed){
 
