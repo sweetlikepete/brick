@@ -24,22 +24,15 @@ export default function configure(webpackConfig = {}, webpackOptions = {}){
         options.hashFileNames = options.target === "client" && options.mode === "production";
 
         /*
-         * Output configuration is used in by other configurations, so we set it up
+         * Output configuration is used by other configurations, so we set it up
          * first and pass it in the other configurations.
          */
-        const conf = merge(config.output(webpackConfig, options), {
-            entry: {
-                index: `src/${ env.platform }/${ env.target }/index.ts`
-            },
-            output: {
-                path: path.join(process.cwd(), `src/${ env.platform }/dist/${ env.target }`),
-                publicPath: "/static/"
-            }
-        }, webpackConfig);
+        const conf = merge(config.output(webpackConfig, options), webpackConfig);
 
         return merge(
             config.devServer(conf, options),
             config.devtool(conf, options),
+            config.entry(conf, options),
             config.externals(conf, options),
             config.mode(conf, options),
             config.module(conf, options),

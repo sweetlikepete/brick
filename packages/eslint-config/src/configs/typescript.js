@@ -1,10 +1,10 @@
 
 
-import config from "./base";
+import base from "./base";
 
 
 export default {
-    ...config,
-    extends: ["../rules/plugins/typescript"].map(require.resolve).concat(config.extends)
+    ...base,
+    extends: ["../rules/plugins/typescript"].map(require.resolve).concat(base.extends)
 };
 

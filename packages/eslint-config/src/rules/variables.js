@@ -63,7 +63,7 @@ export default {
 
         /*
          * Disallow the use of undeclared variables unless mentioned in
-         * \/* global *\/ comments
+         * \/* global *\/ comments.
          *
          * https://eslint.org/docs/rules/no-undef
          */

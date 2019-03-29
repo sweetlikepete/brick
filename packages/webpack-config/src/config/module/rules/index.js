@@ -4,6 +4,7 @@ import merge from "webpack-merge";
 
 import files from "./files";
 import fonts from "./fonts";
+import html from "./html";
 import images from "./images";
 import scripts from "./scripts";
 import styles from "./styles";
@@ -21,6 +22,7 @@ export default function configure(config, options){
     return merge(
         files(config, options),
         fonts(config, options),
+        html(config, options),
         images(config, options),
         scripts(config, options),
         styles(config, options)

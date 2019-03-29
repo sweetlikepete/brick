@@ -30,6 +30,13 @@ export default {
         "@typescript-eslint/array-type": "error",
 
         /*
+         * Bans “// @ts-ignore” comments from being used (ban-ts-ignore)
+         *
+         * https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/ban-ts-ignore.md
+         */
+        "@typescript-eslint/ban-ts-ignore": "error",
+
+        /*
          * Enforces that types will not to be used (ban-types from TSLint)
          *
          * https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/ban-types.md
@@ -148,6 +155,13 @@ export default {
         "@typescript-eslint/no-extraneous-class": "error",
 
         /*
+         * Disallow iterating over an array with a for-in loop (no-for-in-array)
+         *
+         * https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-for-in-array.md
+         */
+        "@typescript-eslint/no-for-in-array": "error",
+
+        /*
          * Disallows explicit type declarations for variables or parameters initialized to a number, string, or boolean. (no-inferrable-types from TSLint)
          *
          * https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-inferrable-types.md
@@ -190,6 +204,13 @@ export default {
         "@typescript-eslint/no-parameter-properties": "error",
 
         /*
+         * Prefer the newer ES6-style imports over require().
+         *
+         * https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-require-imports.md
+         */
+        "@typescript-eslint/no-require-imports": "error",
+
+        /*
          * Disallow aliasing this (no-this-assignment from TSLint)
          *
          * https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-this-alias.md
@@ -209,6 +230,13 @@ export default {
          * https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-type-alias.md
          */
         "@typescript-eslint/no-type-alias": "error",
+
+        /*
+         * Warns when a namespace qualifier is unnecessary.
+         *
+         * https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-unnecessary-qualifier.md
+         */
+        "@typescript-eslint/no-unnecessary-qualifier": "error",
 
         /*
          * Warns if a type assertion does not change the type of an expression (no-unnecessary-type-assertion from TSLint)
@@ -246,6 +274,13 @@ export default {
         "@typescript-eslint/no-var-requires": "error",
 
         /*
+         * Use function types instead of interfaces with call signatures
+         *
+         * https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/prefer-function-type.md
+         */
+        "@typescript-eslint/prefer-function-type": "error",
+
+        /*
          * Prefer an interface declaration over a type literal (type T = { ... }) (interface-over-type-literal from TSLint)
          *
          * https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/prefer-interface.md
@@ -260,6 +295,22 @@ export default {
         "@typescript-eslint/prefer-namespace-keyword": "error",
 
         /*
+         * Functions that return promises must be async
+         *
+         * This is off for now because it conflicts with require-await in some cases
+         *
+         * https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/promise-function-async.md
+         */
+        "@typescript-eslint/promise-function-async": "off",
+
+        /*
+         * Enforce giving compare argument to Array#sort
+         *
+         * https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/require-array-sort-compare.md
+         */
+        "@typescript-eslint/require-array-sort-compare": "error",
+
+        /*
          * When adding two variables, operands must both be of type number or of type string. (restrict-plus-operands from TSLint)
          *
          * https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/restrict-plus-operands.md
@@ -271,7 +322,14 @@ export default {
          *
          * https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/type-annotation-spacing.md
          */
-        "@typescript-eslint/type-annotation-spacing": "error"
+        "@typescript-eslint/type-annotation-spacing": "error",
+
+        /*
+         * Warns for any two overloads that could be unified into one by using a union or an optional/rest parameter.
+         *
+         * https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/unified-signatures.md
+         */
+        "@typescript-eslint/unified-signatures": "error"
 
     }
 };

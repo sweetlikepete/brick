@@ -1,0 +1,12 @@
+/setup/
+/src/
+/test/
+.babelrc
+.eslintrc
+.vscode
+README.md
+TODO.md
+yarn.lock
+babel.config.js
+yarn-error.log
+package-lock.json

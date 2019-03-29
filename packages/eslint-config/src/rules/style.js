@@ -736,6 +736,9 @@ export default {
         /*
          * Require object keys to be sorted
          *
+         * This is currently being overwritten by eslint-plugin-sort-key-fix
+         * to enable autofixing of this error
+         *
          * https://eslint.org/docs/rules/sort-keys
          */
         "sort-keys": [

@@ -1,3 +1,6 @@
 {
-  "extends": "./lib/configs/base.js"
+  "extends": "./lib/configs/base.js",
+  "rules": {
+    "no-sync": "off"
+  }
 }

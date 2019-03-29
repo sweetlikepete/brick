@@ -1,5 +1,21 @@
 
 
+add a modernizr step (finish testing it after the client webpack build is done)
+finish off the webpack hot and dev loader for client code
+add a test harness
+add format message harness with https://www.npmjs.com/package/format-message
+enable this for translation https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-no-literals.md
+add a step to the build that extracts format message strings for translation
+
+after implementing graphql have a look at https://www.npmjs.com/package/eslint-plugin-graphql
+
+
+
+add https://www.npmjs.com/package/eslint-plugin-sort-class-members
+add https://www.npmjs.com/package/eslint-plugin-spellcheck
+add https://www.npmjs.com/package/eslint-plugin-standard
+
+
 
 create a cli
     brick build
@@ -31,9 +47,12 @@ create a cli
         - symlinks in the .vscode folder from node_modules/brick/.vscode
 
 create the application
+    - use react native for the --platform=mobile
+    - use electron for the --platform=desktop
+    - use google firestore
     - use graphql
     - use typescript
-    - use react suspence
+    - use react suspence/lazy
     - use webpack-hot-middleware
     - use webpack-dev-middleware
     - use react-intl

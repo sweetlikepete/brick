@@ -38,7 +38,10 @@ export default function configure(config, options){
                  * names as modules in node_modules, you need to whitelist them
                  * so Webpack will know they should be bundled.
                  */
-                whitelist: [/^babel-plugin-universal-import/u]
+                whitelist: [
+                    /^babel-plugin-universal-import/u,
+                    /^modernizr/u
+                ]
             })
         ]
 

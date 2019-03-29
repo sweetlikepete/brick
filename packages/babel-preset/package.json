@@ -1,6 +1,6 @@
 {
   "name": "@sweetlikepete/babel-preset",
-  "version": "1.0.10",
+  "version": "1.0.12",
   "description": "Shared preset for babel",
   "main": "lib/index.js",
   "scripts": {
@@ -27,18 +27,20 @@
   "homepage": "https://github.com/sweetlikepete/brick/tree/master/packages/babel-preset#readme",
   "dependencies": {
     "@babel/helper-plugin-utils": "^7.0.0",
-    "@babel/plugin-proposal-class-properties": "^7.3.4",
+    "@babel/plugin-proposal-class-properties": "^7.4.0",
     "@babel/plugin-syntax-dynamic-import": "^7.2.0",
-    "@babel/plugin-transform-typescript": "^7.3.2",
-    "@babel/preset-env": "^7.3.4",
+    "@babel/plugin-transform-named-capturing-groups-regex": "^7.4.2",
+    "@babel/plugin-transform-typescript": "^7.4.0",
+    "@babel/preset-env": "^7.4.2",
     "@babel/preset-react": "^7.0.0",
     "@babel/preset-typescript": "^7.3.3",
     "babel-plugin-add-module-exports": "^1.0.0",
+    "babel-plugin-jsx-control-statements": "^4.0.0",
     "babel-plugin-shebang": "^1.0.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.3.4",
-    "@sweetlikepete/brick": "^1.0.8",
+    "@babel/core": "^7.4.0",
+    "@sweetlikepete/brick": "^1.0.11",
     "babel-tape-runner": "^3.0.0",
     "tape": "^4.10.1"
   },

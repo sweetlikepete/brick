@@ -1,6 +1,6 @@
 
 
-import config from "./typescript";
+import configs from "./typescript";
 
 
-export default config;
+export default configs;

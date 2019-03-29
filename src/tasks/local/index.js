@@ -2,6 +2,7 @@
 
 import firestore from "./firestore";
 import memcached from "./memcached";
+import open from "./open";
 import server from "./server";
 
 import clean from "../clean";
@@ -15,6 +16,7 @@ const local = async function(...args){
     await Promise.all([
         firestore(...args),
         memcached(...args),
+        open(...args),
         server(...args),
         webpack(...args)
     ]);

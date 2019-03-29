@@ -106,6 +106,13 @@ export default {
         "unicorn/no-fn-reference-in-iterator": "error",
 
         /*
+         * Do not use a for loop that can be replaced with a for-of loop
+         *
+         * https://github.com/sindresorhus/eslint-plugin-unicorn/blob/master/docs/rules/no-for-loop.md
+         */
+        "unicorn/no-for-loop": "error",
+
+        /*
          * Enforce the use of unicode escapes instead of hexadecimal escapes. (fixable)
          *
          * https://github.com/sindresorhus/eslint-plugin-unicorn/blob/master/docs/rules/no-hex-escape.md
@@ -152,6 +159,13 @@ export default {
         "unicorn/no-unused-properties": "error",
 
         /*
+         * Disallow number literals with zero fractions or dangling dots
+         *
+         * https://github.com/sindresorhus/eslint-plugin-unicorn/blob/master/docs/rules/no-zero-fractions.md
+         */
+        "unicorn/no-zero-fractions": "error",
+
+        /*
          * Enforce lowercase identifier and uppercase value for number literals. (fixable)
          *
          * https://github.com/sindresorhus/eslint-plugin-unicorn/blob/master/docs/rules/number-literal-case.md
@@ -173,11 +187,25 @@ export default {
         "unicorn/prefer-exponentiation-operator": "error",
 
         /*
+         * Prefer .includes() over .indexOf() when checking for existence or non-existence
+         *
+         * https://github.com/sindresorhus/eslint-plugin-unicorn/blob/master/docs/rules/prefer-includes.md
+         */
+        "unicorn/prefer-includes": "error",
+
+        /*
          * Prefer append over appendChild. (fixable)
          *
          * https://github.com/sindresorhus/eslint-plugin-unicorn/blob/master/docs/rules/prefer-node-append.md
          */
         "unicorn/prefer-node-append": "error",
+
+        /*
+         * Prefer remove over parentNode.removeChild and parentElement.removeChild
+         *
+         * https://github.com/sindresorhus/eslint-plugin-unicorn/blob/master/docs/rules/prefer-node-remove.md
+         */
+        "unicorn/prefer-node-remove": "error",
 
         /*
          * Prefer querySelector over getElementById, querySelectorAll over getElementsByClassName and getElementsByTagName. (partly fixable)
@@ -201,11 +229,38 @@ export default {
         "unicorn/prefer-starts-ends-with": "error",
 
         /*
+         * Prefer textContent over innerText
+         *
+         * https://github.com/sindresorhus/eslint-plugin-unicorn/blob/master/docs/rules/prefer-text-content.md
+         */
+        "unicorn/prefer-text-content": "error",
+
+        /*
          * Enforce throwing TypeError in type checking conditions. (fixable)
          *
          * https://github.com/sindresorhus/eslint-plugin-unicorn/blob/master/docs/rules/prefer-type-error.md
          */
         "unicorn/prefer-type-error": "error",
+
+        /*
+         * Prevent abbreviations
+         *
+         * Heres a list of the defaults:
+         * https://github.com/sindresorhus/eslint-plugin-unicorn/blob/master/rules/prevent-abbreviations.js#L13
+         *
+         * https://github.com/sindresorhus/eslint-plugin-unicorn/blob/master/docs/rules/prevent-abbreviations.md
+         */
+        "unicorn/prevent-abbreviations": [
+            "error",
+            {
+
+                /*
+                 * We disable this because of how often Objects are used to interface
+                 * with third party code, and we don't want to eslint-ignore all of that.
+                 */
+                checkProperties: false
+            }
+        ],
 
         /*
          * Enforce the use of regex shorthands to improve readability. (fixable)
@@ -223,3 +278,4 @@ export default {
 
     }
 };
+

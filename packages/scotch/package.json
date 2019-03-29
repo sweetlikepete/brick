@@ -30,7 +30,7 @@
   },
   "homepage": "https://github.com/sweetlikepete/brick/tree/master/packages/scotch#readme",
   "devDependencies": {
-    "@sweetlikepete/brick": "^1.0.9",
+    "@sweetlikepete/brick": "^1.0.11",
     "babel-tape-runner": "^3.0.0",
     "renamer": "^1.1.1",
     "tape": "^4.10.1"

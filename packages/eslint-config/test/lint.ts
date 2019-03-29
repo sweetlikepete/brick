@@ -1,6 +1,6 @@
 
 
-import importTest from "./import";
+import testImport from "./test-import";
 
 
 interface IConfig {
@@ -20,7 +20,7 @@ abstract class Task{
         this.globs = config.globs;
         this.name = config.name;
 
-        importTest();
+        testImport();
 
     }
 
@@ -28,4 +28,5 @@ abstract class Task{
 
 export {
     Task
+
 };

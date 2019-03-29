@@ -1,8 +1,12 @@
 
 
-import { app } from "./app";
+import {
+    app,
+    start
+} from "./app";
 
 
 export {
-    app
+    app,
+    start
 };

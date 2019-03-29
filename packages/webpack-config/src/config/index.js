@@ -2,6 +2,7 @@
 
 import devServer from "./devServer";
 import devtool from "./devtool";
+import entry from "./entry";
 import externals from "./externals";
 import mode from "./mode";
 import module from "./module";
@@ -17,6 +18,7 @@ import watchOptions from "./watchOptions";
 export default {
     devServer,
     devtool,
+    entry,
     externals,
     mode,
     module,

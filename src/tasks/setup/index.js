@@ -21,7 +21,6 @@ const setup = async function(){
     await brew("graphicsmagick");
     await brew("imagemagick");
     await brew("memcached");
-    await brew("yarn");
 
 };
 

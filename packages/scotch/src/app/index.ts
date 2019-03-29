@@ -2,6 +2,8 @@
 
 import express from "express";
 
+import start from "./start";
+
 
 const app = express();
 
@@ -13,6 +15,8 @@ app.get("*", (req, res) => {
 
 });
 
+
 export {
-    app
+    app,
+    start
 };

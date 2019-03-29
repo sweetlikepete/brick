@@ -1,5 +1,7 @@
 
 
+import path from "path";
+
 import merge from "webpack-merge";
 
 import babelLoader from "../../../../shared/loaders/babel";
@@ -12,6 +14,14 @@ export default function configure(config, options){
     return merge(config, {
         module: {
             rules: [
+                // Modernizr.js
+                {
+                    test: /modernizr.js$/u,
+                    use: [
+                        "modernizr-loader",
+                        loader
+                    ]
+                },
                 // .mjs script extension
                 {
                     test: /\.mjs$/u,
@@ -37,6 +47,11 @@ export default function configure(config, options){
                     use: [loader]
                 }
             ]
+        },
+        resolve: {
+            alias: {
+                modernizr$: path.resolve(__dirname, "../../../../modernizr.js")
+            }
         }
     });
 

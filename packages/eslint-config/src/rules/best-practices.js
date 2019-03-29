@@ -568,6 +568,13 @@ export default {
         "no-with": "error",
 
         /*
+         * Enforce using named capture group in regular expression
+         *
+         * https://eslint.org/docs/rules/prefer-named-capture-group
+         */
+        "prefer-named-capture-group": "error",
+
+        /*
          * Require using Error objects as Promise rejection reasons
          *
          * https://eslint.org/docs/rules/prefer-promise-reject-errors

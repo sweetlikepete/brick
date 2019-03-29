@@ -8,5 +8,8 @@
         }
       ]
     }
+  },
+  "modernizr": {
+    "features": []
   }
 }
