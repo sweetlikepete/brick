@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
     "declaration": true,
+    "incremental": true,
     "jsx": "react",
     "lib": ["es2015"],
     "module": "commonjs",

@@ -1,16 +1,15 @@
 
 
+pull out imagemin stuff in brick into @sweetlikepete/imagemin and @sweetlikepete/imagemin-config
 add a modernizr step (finish testing it after the client webpack build is done)
 finish off the webpack hot and dev loader for client code
 add a test harness
 add format message harness with https://www.npmjs.com/package/format-message
 enable this for translation https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-no-literals.md
 add a step to the build that extracts format message strings for translation
+try using https://www.npmjs.com/package/react-ssr-prepass to resolve suspense calls
 
 after implementing graphql have a look at https://www.npmjs.com/package/eslint-plugin-graphql
-
-
-add https://www.npmjs.com/package/eslint-plugin-spellcheck
 
 
 

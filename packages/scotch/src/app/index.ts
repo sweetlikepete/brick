@@ -7,11 +7,11 @@ import start from "./start";
 
 const app = express();
 
-app.get("*", (req, res) => {
+app.get("*", (request, response) => {
 
-    res.set("content-type", "text/html");
-    res.send("hello world");
-    res.end();
+    response.set("content-type", "text/html");
+    response.send("hello world");
+    response.end();
 
 });
 

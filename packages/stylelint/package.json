@@ -1,0 +1,29 @@
+{
+  "name": "@sweetlikepete/stylelint",
+  "version": "1.0.0",
+  "description": "Collection of stylelint dependencies",
+  "browserslist": "node 8",
+  "engines": {
+    "node": ">= 8"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sweetlikepete/brick"
+  },
+  "author": "Peter Bodechtel (https://www.sweetlikepete.com)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/sweetlikepete/brick/issues"
+  },
+  "keywords": [
+    "sweetlikepete",
+    "@sweetlikepete"
+  ],
+  "homepage": "https://github.com/sweetlikepete/brick/tree/master/packages/stylelint#readme",
+  "dependencies": {
+    "@sweetlikepete/stylelint-config": "1.0.6",
+    "stylelint": "^9.10.1",
+    "stylelint-order": "^2.1.0",
+    "stylelint-scss": "^3.5.4"
+  }
+}

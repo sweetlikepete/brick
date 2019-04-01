@@ -9,16 +9,16 @@ import config from "./config";
 
 export default function configure(webpackConfig = {}, webpackOptions = {}){
 
-    return (env) => {
+    return (environment) => {
 
         const options = merge({
             bundleAnalyzerPort: 3000,
             hashFileNames: false,
             hashLength: 8
         }, webpackOptions, {
-            mode: env.mode || "development",
-            platform: env.platform || "web",
-            target: env.target || "client"
+            mode: environment.mode || "development",
+            platform: environment.platform || "web",
+            target: environment.target || "client"
         });
 
         options.hashFileNames = options.target === "client" && options.mode === "production";
@@ -27,22 +27,22 @@ export default function configure(webpackConfig = {}, webpackOptions = {}){
          * Output configuration is used by other configurations, so we set it up
          * first and pass it in the other configurations.
          */
-        const conf = merge(config.output(webpackConfig, options), webpackConfig);
+        const configuration = merge(config.output(webpackConfig, options), webpackConfig);
 
         return merge(
-            config.devServer(conf, options),
-            config.devtool(conf, options),
-            config.entry(conf, options),
-            config.externals(conf, options),
-            config.mode(conf, options),
-            config.module(conf, options),
-            config.optimization(conf, options),
-            config.plugins(conf, options),
-            config.resolve(conf, options),
-            config.stats(conf, options),
-            config.target(conf, options),
-            config.watchOptions(conf, options),
-            conf
+            config.devServer(configuration, options),
+            config.devtool(configuration, options),
+            config.entry(configuration, options),
+            config.externals(configuration, options),
+            config.mode(configuration, options),
+            config.module(configuration, options),
+            config.optimization(configuration, options),
+            config.plugins(configuration, options),
+            config.resolve(configuration, options),
+            config.stats(configuration, options),
+            config.target(configuration, options),
+            config.watchOptions(configuration, options),
+            configuration
         );
 
     };

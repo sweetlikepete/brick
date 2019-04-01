@@ -1,6 +1,6 @@
 {
   "name": "@sweetlikepete/scotch",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Node.js SSR application framework",
   "main": "lib",
   "scripts": {
@@ -30,7 +30,8 @@
   },
   "homepage": "https://github.com/sweetlikepete/brick/tree/master/packages/scotch#readme",
   "devDependencies": {
-    "@sweetlikepete/brick": "^1.0.11",
+    "@sweetlikepete/babel": "^1.0.1",
+    "@sweetlikepete/eslint": "^1.0.0",
     "babel-tape-runner": "^3.0.0",
     "renamer": "^1.1.1",
     "tape": "^4.10.1"

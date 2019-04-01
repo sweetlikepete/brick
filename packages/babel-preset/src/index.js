@@ -23,7 +23,7 @@ export default declare((api, options) => {
     const debug = typeof options.debug === "boolean" ? options.debug : false;
     const development = typeof options.development === "boolean" ? options.development : api.cache.using(() => process.env.NODE_ENV === "development");
 
-    const config = {
+    return {
         comments,
         plugins: [
             "@babel/plugin-proposal-class-properties",
@@ -55,7 +55,5 @@ export default declare((api, options) => {
             ]
         ]
     };
-
-    return config;
 
 });

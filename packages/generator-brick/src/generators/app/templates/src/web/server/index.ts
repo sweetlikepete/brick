@@ -7,11 +7,11 @@ const app = express();
 const port = 8080;
 
 
-app.get("/", (req, res) => {
+app.get("/", (request, response) => {
 
     const success = 200;
 
-    res
+    response
     .status(success)
     .send("Hello, world!")
     .end();

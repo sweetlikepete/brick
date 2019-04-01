@@ -2,6 +2,7 @@
   "compilerOptions": {
     "allowSyntheticDefaultImports": true,
     "declaration": true,
+    "incremental": true,
     "jsx": "react",
     "lib": [
       "es5",

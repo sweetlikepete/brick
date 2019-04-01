@@ -63,7 +63,8 @@
     "webpack-urlsafehash-plugin": "^1.0.1"
   },
   "devDependencies": {
-    "@sweetlikepete/brick": "^1.0.11",
+    "@sweetlikepete/babel": "^1.0.0",
+    "@sweetlikepete/eslint": "^1.0.0",
     "babel-tape-runner": "^3.0.0",
     "renamer": "^1.1.1",
     "tape": "^4.10.1"

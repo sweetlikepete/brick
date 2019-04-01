@@ -1,6 +1,7 @@
 {
   "extends": "@sweetlikepete/eslint-config/lib/configs/base",
   "rules": {
+    "@typescript-eslint/no-require-imports": "off",
     "global-require": "off",
     "import/no-dynamic-require": "off",
     "import/no-unresolved": "off",

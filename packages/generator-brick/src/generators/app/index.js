@@ -5,9 +5,9 @@ import Generator from "yeoman-generator";
 
 class AppGenerator extends Generator{
 
-    constructor(args, opts){
+    constructor(args, options){
 
-        super(args, opts);
+        super(args, options);
 
         this.argument("project", {
             required: true,
@@ -69,7 +69,7 @@ class AppGenerator extends Generator{
         });
 
         const packageJSON = {
-            name: this.options.project
+            name: params.project
         };
 
         // Extend or create package.json file in destination path

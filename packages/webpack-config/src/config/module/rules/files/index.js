@@ -13,7 +13,7 @@ export default function configure(config, options){
                 // .txt and .json file extensions
                 {
                     exclude: /node_modules/u,
-                    test: /\.(txt|json)$/u,
+                    test: /\.(?:txt|json)$/u,
                     use: [fileLoader(config, options)]
                 }
             ]
