@@ -1,10 +1,8 @@
 
 
-const test = function(): number{
+const test = function(): string{
 
-    const int = 3000;
-
-    return int;
+    return "something";
 
 };
 

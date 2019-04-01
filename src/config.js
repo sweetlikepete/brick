@@ -8,7 +8,7 @@ const userConfig = rcfile("brick").config || {};
 
 
 const base = {
-    exclude: "!**/{dist,node_modules}/**/*",
+    exclude: "!**/{dist,build,node_modules}/**/*",
     include: "src/**/*"
 };
 
