@@ -85,7 +85,13 @@ const logger = {
         const formattedMessage = format(label, String(message), color, error);
 
         if(lastLabel !== testLabel){
-            console.log(getCursorPosition.sync().col > 1 ? `\n${ blank }` : blank);
+
+            const cursor = getCursorPosition.sync();
+
+            if(cursor){
+                console.log(cursor.col > 1 ? `\n${ blank }` : blank);
+            }
+
         }
 
         lastLabel = testLabel;
@@ -106,7 +112,13 @@ const logger = {
         if(first || lastLabel !== testLabel){
 
             if(lastLabel !== testLabel){
-                console.log(getCursorPosition.sync().col > 1 ? `\n${ blank }` : blank);
+
+                const cursor = getCursorPosition.sync();
+
+                if(cursor){
+                    console.log(cursor.col > 1 ? `\n${ blank }` : blank);
+                }
+
             }
 
             process.stdout.write(`${ lbl } `);
