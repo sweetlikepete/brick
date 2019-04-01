@@ -58,6 +58,7 @@
     "imagemin-optipng": "^6.0.0",
     "imagemin-svgo": "^7.0.0",
     "inquirer": "^6.2.2",
+    "justify-text": "^1.0.1",
     "merge": "^1.2.1",
     "nodemon": "^1.18.10",
     "open-browsers": "^1.1.1",

@@ -4,17 +4,28 @@ import chalk from "chalk";
 import getCursorPosition from "get-cursor-position";
 import strip from "strip-color";
 import stripAnsi from "strip-ansi";
+import { rjust } from "justify-text";
 
 
 const nonBreakingCharacterCode = 160;
 const nonBreakingCharacter = String.fromCharCode(nonBreakingCharacterCode);
+
+const emojis = {
+    clean: "💖",
+    firestore: "🔥",
+    lint: "🤨",
+    memcached: "🧠",
+    server: "💻",
+    webpack: "📦"
+};
+
 
 const formatLabel = function(label, error = false){
 
     const cleanedLabel = stripAnsi(label);
 
     const colors = [
-        "#333",
+        "#222",
         "#333",
         "#444",
         "#555",
@@ -24,7 +35,7 @@ const formatLabel = function(label, error = false){
     ];
 
     const errors = [
-        "#200",
+        "#a00",
         "#500",
         "#800",
         "#a00",
@@ -38,16 +49,14 @@ const formatLabel = function(label, error = false){
     .filter(Boolean)
     .map((chunk, index) => {
 
-        let formattedChunk = chunk;
-
-        if(index === 0 && chunk.length === 2){
-            formattedChunk = `${ formattedChunk }`;
-        }
+        const justify = 12;
+        const emoji = index === 0 && emojis[chunk] ? ` ${ emojis[chunk] }` : "";
+        const formattedChunk = index === 0 ? rjust(`${ chunk }${ emoji }`, justify) : chunk;
 
         const color = index < colors.length - 1 ? colors[index] : colors[colors.length - 1];
         const errorColor = index < errors.length - 1 ? errors[index] : errors[errors.length - 1];
 
-        return chalk.hex("#eeeeee").bgHex(error ? errorColor : color)(` ${ formattedChunk } `);
+        return `${ index === 0 ? "" : " " }${ chalk.hex("#eeeeee").bgHex(error ? errorColor : color)(` ${ formattedChunk } `) }`;
 
     })
     .join("");
@@ -67,15 +76,14 @@ const format = function(label, message = "", color, error = false){
 
 
 let lastLabel = null;
-
-const blank = formatLabel(`${ nonBreakingCharacter }${ nonBreakingCharacter }`);
+let started = false;
 
 
 const logger = {
 
     error(label = "", message = ""){
 
-        this.log(`${ label }`, message, "red", true);
+        this.log(`${ label }`, message, "#ff0000", true);
 
     },
 
@@ -83,8 +91,9 @@ const logger = {
 
         const testLabel = `${ label } ${ String(error) }`;
         const formattedMessage = format(label, String(message), color, error);
+        const blank = started ? formatLabel(`${ nonBreakingCharacter }`) : "";
 
-        if(lastLabel !== testLabel){
+        if(lastLabel !== testLabel && started){
 
             const cursor = getCursorPosition.sync();
 
@@ -102,12 +111,15 @@ const logger = {
 
         });
 
+        started = true;
+
     },
 
     write(label = "", message = "", first = false, error = false){
 
         const lbl = formatLabel(label, error);
         const testLabel = `${ label } ${ String(error) }`;
+        const blank = started ? formatLabel(`${ nonBreakingCharacter }`) : "";
 
         if(first || lastLabel !== testLabel){
 
@@ -136,6 +148,8 @@ const logger = {
             .replace(/\n/gu, `\n${ lbl } `)
             .replace(/\r/gu, `\r${ lbl } `)
         );
+
+        started = true;
 
     }
 

@@ -8,7 +8,7 @@ import { task } from "../../utils/task";
 import logger from "../../utils/logger";
 
 
-const label = "💀 clean";
+const label = "clean";
 
 
 const remove = async (removePath) => {

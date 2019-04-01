@@ -6,7 +6,7 @@ import request from "request";
 import { logger } from "../../utils";
 
 
-const label = "💻 server";
+const label = "server";
 
 
 const openBrowser = async function(config){

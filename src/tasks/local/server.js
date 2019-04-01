@@ -10,7 +10,7 @@ import {
     logger
 } from "../../utils";
 
-const label = "💻 server";
+const label = "server";
 
 
 const awaitServerScript = function(){

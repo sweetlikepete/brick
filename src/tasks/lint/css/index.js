@@ -58,7 +58,7 @@ const lintCss = gulpUtils.task((paths, watching) => {
     return new Promise((resolve) => {
 
         gulp.src(paths)
-        .pipe(gulpUtils.print("🤨 lint style"))
+        .pipe(gulpUtils.print("lint style"))
         .pipe(stylelint(config))
         .pipe(gulpIf((file) => {
 

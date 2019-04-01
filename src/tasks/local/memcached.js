@@ -14,7 +14,7 @@ const memcached = async function(){
 
         await exec({
             command: "memcached",
-            label: "🧠 memcached"
+            label: "memcached"
         });
 
     }catch(error){}
