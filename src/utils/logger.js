@@ -3,12 +3,18 @@
 import chalk from "chalk";
 import getCursorPosition from "get-cursor-position";
 import strip from "strip-color";
+import stripAnsi from "strip-ansi";
 
+
+const nonBreakingCharacterCode = 160;
+const nonBreakingCharacter = String.fromCharCode(nonBreakingCharacterCode);
 
 const formatLabel = function(label, error = false){
 
+    const cleanedLabel = stripAnsi(label);
+
     const colors = [
-        "#222",
+        "#333",
         "#333",
         "#444",
         "#555",
@@ -27,15 +33,21 @@ const formatLabel = function(label, error = false){
         "#c00"
     ];
 
-    return label
+    return cleanedLabel
     .split(" ")
     .filter(Boolean)
     .map((chunk, index) => {
 
+        let formattedChunk = chunk;
+
+        if(index === 0 && chunk.length === 2){
+            formattedChunk = `${ formattedChunk }`;
+        }
+
         const color = index < colors.length - 1 ? colors[index] : colors[colors.length - 1];
         const errorColor = index < errors.length - 1 ? errors[index] : errors[errors.length - 1];
 
-        return chalk.hex("#eeeeee").bgHex(error ? errorColor : color)(` ${ chunk } `);
+        return chalk.hex("#eeeeee").bgHex(error ? errorColor : color)(` ${ formattedChunk } `);
 
     })
     .join("");
@@ -56,6 +68,8 @@ const format = function(label, message = "", color, error = false){
 
 let lastLabel = null;
 
+const blank = formatLabel(`${ nonBreakingCharacter }${ nonBreakingCharacter }`);
+
 
 const logger = {
 
@@ -68,11 +82,10 @@ const logger = {
     log(label = "", message = "", color, error = false){
 
         const testLabel = `${ label } ${ String(error) }`;
-
         const formattedMessage = format(label, String(message), color, error);
 
         if(lastLabel !== testLabel){
-            console.log(getCursorPosition.sync().col > 1 ? "\n" : "");
+            console.log(getCursorPosition.sync().col > 1 ? `\n${ blank }` : blank);
         }
 
         lastLabel = testLabel;
@@ -93,7 +106,7 @@ const logger = {
         if(first || lastLabel !== testLabel){
 
             if(lastLabel !== testLabel){
-                console.log(getCursorPosition.sync().col > 1 ? "\n" : "");
+                console.log(getCursorPosition.sync().col > 1 ? `\n${ blank }` : blank);
             }
 
             process.stdout.write(`${ lbl } `);

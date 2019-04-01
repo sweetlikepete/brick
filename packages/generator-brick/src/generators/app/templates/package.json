@@ -12,6 +12,6 @@
   },
   "version": "1.0.0",
   "devDependencies": {
-    "@sweetlikepete/brick": "^1.0.3"
+    "@sweetlikepete/brick": "^1.0.13"
   }
 }

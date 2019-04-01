@@ -9,7 +9,7 @@ import logger from "../../utils/logger";
 import { task } from "../../utils/task";
 
 
-const label = "webpack";
+const label = "📦 webpack";
 
 const log = (label2) => (error, stats, configFile) => {
 

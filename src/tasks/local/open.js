@@ -6,6 +6,9 @@ import request from "request";
 import { logger } from "../../utils";
 
 
+const label = "💻 server";
+
+
 const openBrowser = async function(config){
 
     try{
@@ -21,7 +24,7 @@ const openBrowser = async function(config){
 
                     if(error){
 
-                        logger.log("server open", `Retrying ${ path } in ${ retry } ${ retry === 1 ? "second" : "seconds" }`);
+                        logger.log(`${ label }  open`, `Retrying ${ path } in ${ retry } ${ retry === 1 ? "second" : "seconds" }`);
 
                         setTimeout(() => test(retry * 2), retry * oneSecond);
 

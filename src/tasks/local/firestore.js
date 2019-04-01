@@ -20,7 +20,7 @@ const firestore = async function(config){
         await exec({
             command: `gcloud beta emulators firestore start --host-port=${ host }:${ port }`,
             filter: /\[firestore\]\s/gu,
-            label: "firstore"
+            label: "🔥 firstore"
         });
 
     }catch(error){}

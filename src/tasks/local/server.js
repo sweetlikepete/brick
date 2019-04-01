@@ -10,6 +10,8 @@ import {
     logger
 } from "../../utils";
 
+const label = "💻 server";
+
 
 const awaitServerScript = function(){
 
@@ -64,11 +66,11 @@ const startNodemonServer = function(script, environment){
 
         nodemon.on("start", () => {
 
-            logger.log("server started", script);
+            logger.log(`${ label } started`, script);
 
         }).on("quit", () => {
 
-            logger.log("server quit");
+            logger.log(`${ label } quit`);
 
             process.exit();
 
@@ -76,12 +78,12 @@ const startNodemonServer = function(script, environment){
 
             if(files.length === 1){
 
-                logger.log("server restarted", files[0], "#d3d3d3");
+                logger.log(`${ label } restarted`, files[0], "#d3d3d3");
 
             }else{
 
                 files.forEach((file) => {
-                    logger.log("server restarted", file, "#d3d3d3");
+                    logger.log(`${ label } restarted`, file, "#d3d3d3");
                 });
 
             }
@@ -94,7 +96,7 @@ const startNodemonServer = function(script, environment){
                 const string = data.toString();
 
                 if(string){
-                    logger.log("server log", string.replace(/(?:\r\n|\r|\n)/gu, ""), color);
+                    logger.log(`${ label }`, string.replace(/(?:\r\n|\r|\n)/gu, ""), color);
                 }
 
             };
