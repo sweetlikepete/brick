@@ -30,6 +30,13 @@ const gcloud = async function(component){
 
             logger.log("setup", `✔ gcloud ${ component }`, "#00ff00");
 
+        }else if(version){
+
+            await exec({
+                command: "gcloud components update",
+                label: "setup gcloud"
+            });
+
         }else{
 
             await exec({

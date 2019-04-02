@@ -13,12 +13,14 @@ const nonBreakingCharacter = String.fromCharCode(nonBreakingCharacterCode);
 const emojis = {
     clean: "💖",
     firestore: "🔥",
-    lint: "🤨",
+    lint: "🔎",
     memcached: "🧠",
     server: "💻",
+    setup: "💿",
     webpack: "📦"
 };
 
+const lastLabelChunks = [];
 
 const formatLabel = function(label, error = false){
 
@@ -49,14 +51,22 @@ const formatLabel = function(label, error = false){
     .filter(Boolean)
     .map((chunk, index) => {
 
+        lastLabelChunks[index] = lastLabelChunks[index] || null;
+
+        const clearedChunk = chunk;
         const justify = 12;
         const emoji = index === 0 && emojis[chunk] ? ` ${ emojis[chunk] }` : "";
-        const formattedChunk = index === 0 ? rjust(`${ chunk }${ emoji }`, justify) : chunk;
+        const formattedChunk = index === 0 ? rjust(`${ clearedChunk }${ emoji }`, justify) : chunk;
 
         const color = index < colors.length - 1 ? colors[index] : colors[colors.length - 1];
         const errorColor = index < errors.length - 1 ? errors[index] : errors[errors.length - 1];
+        const firstColor = chunk === lastLabelChunks[index] ? "#555555" : "#eeeeee";
 
-        return `${ index === 0 ? "" : " " }${ chalk.hex("#eeeeee").bgHex(error ? errorColor : color)(` ${ formattedChunk } `) }`;
+        if(chunk && chunk.trim()){
+            lastLabelChunks[index] = chunk;
+        }
+
+        return `${ index === 0 ? "" : " " }${ chalk.hex(index === 0 ? firstColor : "#eeeeee").bgHex(error ? errorColor : color)(` ${ formattedChunk } `) }`;
 
     })
     .join("");
@@ -120,6 +130,7 @@ const logger = {
         const lbl = formatLabel(label, error);
         const testLabel = `${ label } ${ String(error) }`;
         const blank = started ? formatLabel(`${ nonBreakingCharacter }`) : "";
+        const lblRepeat = formatLabel(label, error);
 
         if(first || lastLabel !== testLabel){
 
@@ -144,9 +155,9 @@ const logger = {
         process.stdout.write(
             (error ? chalk.red(formattedMessage) : formattedMessage)
             .replace(/\n\r/gu, "\r")
-            .replace(/\r\n/gu, `\r${ lbl } `)
-            .replace(/\n/gu, `\n${ lbl } `)
-            .replace(/\r/gu, `\r${ lbl } `)
+            .replace(/\r\n/gu, `\r${ lblRepeat } `)
+            .replace(/\n/gu, `\n${ lblRepeat } `)
+            .replace(/\r/gu, `\r${ lblRepeat } `)
         );
 
         started = true;

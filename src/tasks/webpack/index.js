@@ -21,7 +21,7 @@ const log = (label2) => (error, stats, configFile) => {
 
     }else{
 
-        logger.log(`${ label } ${ label2 }`, configFile);
+        logger.log(label, `${ label2 } ${ configFile }`);
 
         logger.log(label);
 
@@ -73,7 +73,7 @@ const webpackTask = task(label, async (config, options) => {
             },
             (error, stats) => {
 
-                log("watch")(error, stats, webpackConfigFile);
+                log("Watching")(error, stats, webpackConfigFile);
 
                 resolve();
 
@@ -83,7 +83,7 @@ const webpackTask = task(label, async (config, options) => {
 
             compiler.run((error, stats) => {
 
-                log("run")(error, stats, webpackConfigFile);
+                log("Running")(error, stats, webpackConfigFile);
 
                 resolve();
 

@@ -11,6 +11,7 @@ try using https://www.npmjs.com/package/react-ssr-prepass to resolve suspense ca
 
 after implementing graphql have a look at https://www.npmjs.com/package/eslint-plugin-graphql
 
+add more stylelint plugins through npm search for stylelint-plugin
 
 
 create a cli

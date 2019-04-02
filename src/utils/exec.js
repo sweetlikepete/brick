@@ -26,11 +26,10 @@ export default function run(options = {}){
         .replace(/\s\s+/gu, " ")
         .replace(/^\s/gu, "");
 
-        const bashTag = chalk.hex("#000000").bgHex("#c99c00")(" bash ");
         const bashCmd = cmd;
 
         if(!detatch){
-            logger.log(label, `${ bashTag } ${ bashCmd }`);
+            logger.log(label, chalk.hex("#c99c00")(bashCmd));
         }
 
         const subprocess = exec.exec(cmd, {

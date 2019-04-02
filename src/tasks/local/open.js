@@ -17,6 +17,9 @@ const openBrowser = async function(config){
 
             const oneSecond = 1000;
             const path = `http://localhost:${ config.local.env.PORT }`;
+            const retryLogMinimum = 4;
+
+            logger.log(`${ label }`, `Opening ${ path } in your default browser`);
 
             const test = (retry = 1) => {
 
@@ -24,7 +27,11 @@ const openBrowser = async function(config){
 
                     if(error){
 
-                        logger.log(`${ label }  open`, `Retrying ${ path } in ${ retry } ${ retry === 1 ? "second" : "seconds" }`);
+                        if(retry > retryLogMinimum){
+
+                            logger.log(`${ label }`, `Opening ${ path } in your default browser: retry in ${ retry } ${ retry === 1 ? "second" : "seconds" }`);
+
+                        }
 
                         setTimeout(() => test(retry * 2), retry * oneSecond);
 
