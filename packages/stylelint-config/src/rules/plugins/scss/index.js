@@ -25,5 +25,8 @@ export default {
         "./rule",
         "./selector",
         "./variable"
-    ].map(require.resolve)
+    ].map(require.resolve),
+    plugins: [
+        "stylelint-scss"
+    ]
 };

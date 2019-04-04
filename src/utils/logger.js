@@ -11,7 +11,7 @@ const nonBreakingCharacterCode = 160;
 const nonBreakingCharacter = String.fromCharCode(nonBreakingCharacterCode);
 
 const emojis = {
-    clean: "💖",
+    clean: "🌟",
     firestore: "🔥",
     lint: "🔎",
     memcached: "🧠",

@@ -8,6 +8,9 @@
 
 
 export default {
+    plugins: [
+        "stylelint-order"
+    ],
     rules: {
 
         /*

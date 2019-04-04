@@ -1,6 +1,27 @@
 
+$color: pink\9;
+
 body{
 
-    background: #f00;
+    background-color: $color;
+    display: inline;
+
+    div.test{
+
+        color: $color;
+
+        a.class1{
+
+            margin: 0;
+
+        }
+
+        a.class2{
+
+            margin: 8px;
+
+        }
+
+    }
 
 }
