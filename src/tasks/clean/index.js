@@ -26,13 +26,17 @@ const remove = async (removePath) => {
 };
 
 
-const clean = task(label, (config) => {
+const clean = task(label, (config, options) => {
 
     const cwd = process.cwd();
+    const targets = options.platform ? [options.platform] : config.targets;
 
-    const paths = config.targets
+    const paths = targets
     .map((target) => path.join(cwd, "src", target, "dist"))
+    .concat(targets.map((target) => path.join(cwd, "src", target, "node_modules/.cache")))
     .concat([path.join(cwd, "node_modules/.cache")]);
+
+    paths.sort();
 
     return Promise.all(paths.map((pth) => remove(pth)));
 

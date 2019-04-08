@@ -68,6 +68,15 @@ const startNodemonServer = function(script, environment){
 
             logger.log(label, `Started ${ script }\n`);
 
+            logger.table(
+                "server",
+                ["process.env", "value"],
+                Object.keys(environment).map((key) => [key, environment[key]]),
+                {
+                    align: ["r", "l"]
+                }
+            );
+
         }).on("quit", () => {
 
             logger.log(label, `Quit ${ script }`);
@@ -96,7 +105,7 @@ const startNodemonServer = function(script, environment){
                 const string = data.toString();
 
                 if(string){
-                    logger.log(label, string.replace(/(?:\r\n|\r|\n)/gu, ""), color);
+                    logger.log(label, string, color);
                 }
 
             };
@@ -120,7 +129,10 @@ const server = async function(config){
 
     await kill(script);
 
-    await startNodemonServer(script, config.local.env);
+    await startNodemonServer(script, {
+        FIRESTORE_EMULATOR_HOST: `${ config.firestore.host }:${ config.firestore.port }`,
+        PORT: config.nodemon.port
+    });
 
 };
 

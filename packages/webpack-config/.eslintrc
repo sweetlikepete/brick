@@ -1,5 +1,5 @@
 {
-  "extends": "@sweetlikepete/eslint-config/lib/configs/base",
+  "extends": "@sweetlikepete",
   "rules": {
     "no-process-env": "off",
     "max-lines-per-function": "off"

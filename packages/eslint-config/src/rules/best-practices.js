@@ -570,9 +570,13 @@ export default {
         /*
          * Enforce using named capture group in regular expression
          *
+         * This is off for now because it clashes with no-template-curly-in-string
+         * since when you use this in String.replace functions the replacement
+         * string has the same format as a template curly and triggers that lint
+         *
          * https://eslint.org/docs/rules/prefer-named-capture-group
          */
-        "prefer-named-capture-group": "error",
+        "prefer-named-capture-group": "off",
 
         /*
          * Require using Error objects as Promise rejection reasons

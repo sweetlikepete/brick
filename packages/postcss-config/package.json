@@ -1,0 +1,65 @@
+{
+  "name": "@sweetlikepete/postcss-config",
+  "version": "1.0.0",
+  "description": "Shared config for postcss",
+  "main": "lib/index.js",
+  "scripts": {
+    "build": "rm -rf lib && babel src --config-file --out-dir lib",
+    "lint": "eslint src test",
+    "prelint": "npm run build",
+    "prepublishOnly": "npm run test",
+    "pretest": "npm run lint",
+    "test": "babel-tape-runner ./test/*.js"
+  },
+  "browserslist": "node 8",
+  "engines": {
+    "node": ">= 8"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sweetlikepete/brick"
+  },
+  "author": "Peter Bodechtel (https://www.sweetlikepete.com)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/sweetlikepete/brick/issues"
+  },
+  "keywords": [
+    "postcss",
+    "postcss-config",
+    "sweetlikepete",
+    "@sweetlikepete"
+  ],
+  "homepage": "https://github.com/sweetlikepete/brick/tree/master/packages/postcss-config#readme",
+  "devDependencies": {
+    "@sweetlikepete/babel": "^1.0.1",
+    "@sweetlikepete/eslint": "^1.0.0",
+    "babel-tape-runner": "^3.0.0",
+    "tape": "^4.10.1"
+  },
+  "dependencies": {
+    "autoprefixer": "^9.5.1",
+    "postcss-calc": "^7.0.1",
+    "postcss-clean": "^1.1.0",
+    "postcss-colormin": "^4.0.3",
+    "postcss-discard-comments": "^4.0.2",
+    "postcss-discard-duplicates": "^4.0.2",
+    "postcss-discard-empty": "^4.0.1",
+    "postcss-font-smoothing": "^0.1.0",
+    "postcss-font-variant": "^4.0.0",
+    "postcss-image-set-polyfill": "^1.0.0",
+    "postcss-merge-longhand": "^4.0.11",
+    "postcss-merge-rules": "^4.0.3",
+    "postcss-minify-font-values": "^4.0.2",
+    "postcss-minify-gradients": "^4.0.2",
+    "postcss-minify-params": "^4.0.2",
+    "postcss-minify-selectors": "^4.0.2",
+    "postcss-normalize-positions": "^4.0.2",
+    "postcss-normalize-url": "^4.0.1",
+    "postcss-normalize-whitespace": "^4.0.2",
+    "postcss-ordered-values": "^4.1.2",
+    "postcss-preset-env": "^6.6.0",
+    "postcss-reduce-initial": "^4.0.3",
+    "postcss-reduce-transforms": "^4.0.2"
+  }
+}

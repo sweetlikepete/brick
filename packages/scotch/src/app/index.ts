@@ -7,6 +7,7 @@ import start from "./start";
 
 const app = express();
 
+
 app.get("*", (request, response) => {
 
     response.set("content-type", "text/html");

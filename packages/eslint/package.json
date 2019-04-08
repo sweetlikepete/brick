@@ -1,6 +1,6 @@
 {
   "name": "@sweetlikepete/eslint",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "Collection of eslint dependencies",
   "browserslist": "node 8",
   "engines": {
@@ -27,9 +27,9 @@
   ],
   "homepage": "https://github.com/sweetlikepete/brick/tree/master/packages/eslint#readme",
   "dependencies": {
-    "@sweetlikepete/eslint-config": "1.0.40",
-    "@typescript-eslint/eslint-plugin": "^1.5.0",
-    "@typescript-eslint/parser": "^1.5.0",
+    "@sweetlikepete/eslint-config": "1.0.43",
+    "@typescript-eslint/eslint-plugin": "^1.6.0",
+    "@typescript-eslint/parser": "^1.6.0",
     "eslint": "^5.16.0",
     "eslint-plugin-array-func": "^3.1.3",
     "eslint-plugin-async-await": "^0.0.0",
@@ -49,7 +49,7 @@
     "eslint-plugin-node": "^8.0.1",
     "eslint-plugin-optimize-regex": "^1.1.6",
     "eslint-plugin-prefer-object-spread": "^1.2.1",
-    "eslint-plugin-promise": "^4.0.1",
+    "eslint-plugin-promise": "^4.1.1",
     "eslint-plugin-react": "^7.12.4",
     "eslint-plugin-react-filenames": "^0.0.2",
     "eslint-plugin-react-hooks": "^1.6.0",

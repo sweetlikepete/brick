@@ -1,6 +1,6 @@
 {
   "name": "@sweetlikepete/stylelint",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Collection of stylelint dependencies",
   "browserslist": "node 8",
   "engines": {
@@ -21,9 +21,16 @@
   ],
   "homepage": "https://github.com/sweetlikepete/brick/tree/master/packages/stylelint#readme",
   "dependencies": {
-    "@sweetlikepete/stylelint-config": "1.0.6",
+    "@sweetlikepete/stylelint-config": "1.0.8",
     "stylelint": "^9.10.1",
+    "stylelint-a11y": "^1.1.10",
+    "stylelint-declaration-block-no-ignored-properties": "^1.1.0",
+    "stylelint-declaration-strict-value": "^1.1.2",
+    "stylelint-high-performance-animation": "^1.1.1",
+    "stylelint-no-unsupported-browser-features": "^3.0.2",
     "stylelint-order": "^2.1.0",
-    "stylelint-scss": "^3.5.4"
+    "stylelint-scss": "^3.5.4",
+    "stylelint-selector-tag-no-without-class": "^2.0.0",
+    "stylelint-use-nesting": "^1.2.1"
   }
 }

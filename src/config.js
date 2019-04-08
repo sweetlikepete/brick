@@ -13,11 +13,9 @@ const base = {
 };
 
 const defaults = {
-    emulators: {
-        firestore: {
-            host: "127.0.0.1",
-            port: 9811
-        }
+    firestore: {
+        host: "127.0.0.1",
+        port: 9811
     },
     lint: {
         css: [
@@ -29,13 +27,11 @@ const defaults = {
             `${ base.exclude }.{js,jsx,ts,tsx}`
         ]
     },
-    local: {
-        env: {
-            PORT: 5555
-        }
-    },
     modernizr: {
         features: []
+    },
+    nodemon: {
+        port: 5555
     },
     optimize: {
         image: {
@@ -65,7 +61,10 @@ const defaults = {
     },
     platform: {
         web: {
-            environments: []
+            environments: [],
+            webpack: {
+                configFile: "src/web/webpack.config.js"
+            }
         }
     }
 };

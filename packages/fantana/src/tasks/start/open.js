@@ -13,7 +13,7 @@ const openBrowser = async function(config){
         await new Promise((resolve) => {
 
             const oneSecond = 1000;
-            const path = `http://localhost:${ config.local.env.PORT }`;
+            const path = `http://localhost:${ config.nodemon.port }`;
 
             const test = (retry = 1) => {
 

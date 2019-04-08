@@ -2,6 +2,7 @@
 
 import "@babel/polyfill";
 
+
 import program from "commander";
 
 import packageJSON from "../../package.json";
@@ -13,6 +14,12 @@ import lint from "../tasks/lint";
 import local from "../tasks/local";
 import optimize from "../tasks/optimize";
 import setup from "../tasks/setup";
+import { logger } from "../utils";
+
+
+process.on("unhandledRejection", (error) => logger.error(error));
+
+process.on("uncaughtException", (error) => logger.error(error));
 
 
 program.version(packageJSON.version);

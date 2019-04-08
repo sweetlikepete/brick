@@ -13,6 +13,32 @@ after implementing graphql have a look at https://www.npmjs.com/package/eslint-p
 
 add more stylelint plugins through npm search for stylelint-plugin
 
+move postcss plugins out to a postcss config like it says in https://github.com/postcss/postcss
+https://www.npmjs.com/package/postcss-discard-comments
+https://www.npmjs.com/package/postcss-colormin
+https://www.npmjs.com/package/postcss-calc
+https://www.npmjs.com/package/postcss-discard-duplicates
+https://www.npmjs.com/package/postcss-merge-longhand
+https://www.npmjs.com/package/postcss-ordered-values
+https://www.npmjs.com/package/postcss-minify-gradients
+https://www.npmjs.com/package/postcss-merge-rules
+https://www.npmjs.com/package/postcss-reduce-transforms
+https://www.npmjs.com/package/postcss-reduce-initial
+https://www.npmjs.com/package/postcss-minify-selectors
+https://www.npmjs.com/package/postcss-minify-params
+https://www.npmjs.com/package/postcss-font-smoothing
+https://www.npmjs.com/package/postcss-font-variant
+https://www.npmjs.com/package/postcss-image-set-polyfill
+https://www.npmjs.com/package/postcss-discard-empty
+https://www.npmjs.com/package/postcss-minify-font-values
+https://www.npmjs.com/package/postcss-normalize-url
+https://www.npmjs.com/package/postcss-normalize-positions
+https://www.npmjs.com/package/postcss-normalize-whitespace
+https://www.npmjs.com/package/postcss-clean
+https://www.npmjs.com/package/postcss-preset-env
+
+make logging a separate package in brick
+make brick into it's own npm namespace @brick and move brick into newsteam
 
 create a cli
     brick build

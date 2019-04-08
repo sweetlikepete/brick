@@ -11,7 +11,7 @@ const firestore = async function(config){
     const {
         host,
         port
-    } = config.emulators.firestore;
+    } = config.firestore;
 
     try{
 

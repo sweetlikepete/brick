@@ -50,7 +50,7 @@ const webpackTask = task(label, async (config, options) => {
 
     const webpackPromise = (target, mode, platform) => () => new Promise((resolve) => {
 
-        const webpackConfigFile = `src/${ platform || "web" }/webpack.config.js`;
+        const webpackConfigFile = config.platform[platform].webpack.configFile;
 
         // This doesn't present any danger and is necessary in this case.
         // eslint-disable-next-line import/no-dynamic-require, security/detect-non-literal-require, global-require
@@ -93,22 +93,9 @@ const webpackTask = task(label, async (config, options) => {
 
     });
 
-    /*
-     * Const webpack = (target, mode, platform, useDevServer = false) => () => utils.exec([
-     * useDevServer ? "webpack-dev-server" : "webpack",
-     * `--config src/${ platform || "web" }/webpack.config.js`,
-     * `--env.target=${ target || "node" }`,
-     * `--env.mode=${ mode || "production" }`,
-     * `--env.platform=${ platform || "web" }`,
-     * `${ watch && !useDevServer ? "--watch" : "" }`,
-     * // `${ useDevServer ? "--open" : "" }`,
-     * "--color"
-     *].filter(Boolean).join(" "), label);
-     */
-
     const commands = [
         // Webpack("client", "production", "web", serve),
-        webpackPromise("server", "production", "web")
+        webpackPromise("server", "development", "web")
     ];
 
     if(watch || serve){

@@ -14,15 +14,12 @@ export default {
         /*
          * Enforce a leading comment with the webpackChunkName for dynamic imports
          *
+         * This is turned off for now because it doesn't work correctly. Says
+         * that valid comments are invalid. Likely a bug in the plugin.
+         *
          * https://github.com/benmosher/eslint-plugin-import/blob/HEAD/docs/rules/dynamic-import-chunkname.md
          */
-        "import/dynamic-import-chunkname": [
-            "error",
-            {
-                importFunctions: ["dynamicImport"],
-                webpackChunknameFormat: "[a-zA-Z0-57-9-/_]"
-            }
-        ],
+        "import/dynamic-import-chunkname": "off",
 
         /*
          * Ensure all exports appear after other statements
@@ -139,7 +136,12 @@ export default {
         "import/no-unassigned-import": [
             "error",
             {
-                allow: ["@babel/polyfill"]
+                allow: [
+                    "@babel/polyfill",
+                    "@babel/register",
+                    "*.scss",
+                    "*.css"
+                ]
             }
         ],
 

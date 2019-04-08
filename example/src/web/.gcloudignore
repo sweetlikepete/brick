@@ -9,6 +9,7 @@ README.md
 tsconfig.json
 yarn.lock
 yarn-error.log
+webpack.config.js
 
 node_modules/
 

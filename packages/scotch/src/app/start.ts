@@ -1,9 +1,15 @@
 
 
 import express from "express";
+import webpack from "webpack";
 
 
-const start = function(app: express.Application): void {
+const start = function(
+    app: express.Application,
+    webpackConfig?: webpack.Configuration
+): void {
+
+    console.log(["webpackConfig", webpackConfig]);
 
     const port = 8080;
 

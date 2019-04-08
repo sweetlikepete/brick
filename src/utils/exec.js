@@ -29,7 +29,7 @@ export default function run(options = {}){
         const bashCmd = cmd;
 
         if(!detatch){
-            logger.log(label, chalk.hex("#c99c00")(bashCmd));
+            logger.log(label, chalk.hex("#ff5400")(bashCmd));
         }
 
         const subprocess = exec.exec(cmd, {
