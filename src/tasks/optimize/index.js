@@ -42,7 +42,7 @@ const optimize = async function(globalConfig){
             const arrow = `${ filesize(sizes[index]) } > ${ filesize(file.data.byteLength) }`;
             const percentage = chalk.hex(diff < 0 ? "#ff0000" : "#00ff00")(`${ (diff / sizes[index] * percentageBase).toFixed(1) }%`);
 
-            logger.log("optimize image", `${ percentage } ${ arrow } ${ chalk.hex("#666")(pth) }`);
+            logger.log("optimize", `${ percentage } ${ arrow } ${ chalk.hex("#666")(pth) }`);
 
             resolve(diff);
 
@@ -54,9 +54,17 @@ const optimize = async function(globalConfig){
 
     })));
 
-    const saved = filesize(savings.reduce((acc, cur) => cur + acc));
+    if(savings.length > 0){
 
-    logger.log("optimize image", `Saved a total of ${ chalk.hex("#00ff00")(saved) }`);
+        const saved = filesize(savings.reduce((acc, cur) => cur + acc));
+
+        logger.log("optimize", `Saved a total of ${ chalk.hex("#00ff00")(saved) }`);
+
+    }else{
+
+        logger.log("optimize", "No images found");
+
+    }
 
 };
 

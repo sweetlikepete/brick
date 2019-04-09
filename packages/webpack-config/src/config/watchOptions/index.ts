@@ -1,15 +1,9 @@
 
 
-import {
-    IWebpackCompiledOptions,
-    IWebpackConfiguration
-} from "../../interfaces";
+import { IWebpackConfiguration } from "../../interfaces";
 
 
-export default function configuration(
-    config: IWebpackConfiguration,
-    options: IWebpackCompiledOptions
-): IWebpackConfiguration{
+export default function configuration(): IWebpackConfiguration{
 
     return {
         watchOptions: {
@@ -30,8 +24,7 @@ export default function configuration(
              * https://webpack.js.org/configuration/watch/#watchoptionsignored
              */
             ignored: [
-                "node_modules",
-                `src/${ options.platform }/node_modules`
+                "node_modules"
             ],
 
             /*

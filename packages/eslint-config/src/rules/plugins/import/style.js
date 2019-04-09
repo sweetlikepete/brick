@@ -139,8 +139,8 @@ export default {
                 allow: [
                     "@babel/polyfill",
                     "@babel/register",
-                    "*.scss",
-                    "*.css"
+                    "**/*.scss",
+                    "**/*.css"
                 ]
             }
         ],

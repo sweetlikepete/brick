@@ -1,23 +1,12 @@
 
 
-import path from "path";
-
-import {
-    IWebpackCompiledOptions,
-    IWebpackConfiguration
-} from "../../interfaces";
+import { IWebpackConfiguration } from "../../interfaces";
 
 
-export default function configuration(
-    config: IWebpackConfiguration,
-    options: IWebpackCompiledOptions
-): IWebpackConfiguration{
+export default function configuration(): IWebpackConfiguration{
 
     return {
         resolve: {
-            alias: {
-                src: path.join(process.cwd(), "src")
-            },
 
             /*
              * The order of these is significant. It determinds which extension
@@ -32,8 +21,7 @@ export default function configuration(
             ],
             modules: [
                 "node_modules",
-                `src/${ options.platform }/node_modules`,
-                "src"
+                "../../node_modules"
             ],
             symlinks: false
         }

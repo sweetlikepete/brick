@@ -3,7 +3,7 @@
 import test from "./test";
 
 
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", (): void => {
 
     console.log(`lload bitch ${ test() }`);
 

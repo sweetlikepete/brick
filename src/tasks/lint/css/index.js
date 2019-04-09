@@ -2,14 +2,13 @@
 
 import fs from "fs";
 
-import chalk from "chalk";
-import codeframe from "codeframe";
 import gulp from "gulp";
 import gulpIf from "gulp-if";
 import stylelint from "gulp-stylelint";
 import touch from "touch";
 
 import gulpUtils from "../../../utils/gulp";
+import logger from "../../../utils/logger";
 
 
 const config = {
@@ -18,31 +17,15 @@ const config = {
         {
             formatter: (errorFiles) => {
 
-                errorFiles.forEach((ef) => {
-
-                    if(ef.errored && ef.warnings && ef.warnings.length > 0){
-
-                        const errorOutput = ef.warnings.map((error) => {
-
-                            const errorFrame = codeframe.get({
-                                column: error.column,
-                                file: ef.source,
-                                line: error.line - 1
-                            });
-
-                            const errorPointer = `${ ef.source }:${ error.line }:${ error.column }`;
-
-                            return `${ chalk.red("SASS Lint Error ") }:\n${ errorPointer }\n${ error.text }\n\n${ errorFrame }\n`;
-
-                        }).join("\n");
-
-                        console.log(errorOutput);
-
-                        process.stdout.write("\u0007");
-
-                    }
-
-                });
+                logger.lint(errorFiles.map((errorFile) => ({
+                    errors: errorFile.warnings.map((error) => ({
+                        column: error.column,
+                        file: errorFile.source,
+                        line: error.line + 1,
+                        message: error.text
+                    })),
+                    filePath: errorFile.source
+                })));
 
             }
         }
@@ -58,7 +41,7 @@ const lintCss = gulpUtils.task((paths, watching) => {
     return new Promise((resolve) => {
 
         gulp.src(paths)
-        .pipe(gulpUtils.print("lint style"))
+        .pipe(gulpUtils.print("lint"))
         .pipe(stylelint(config))
         .pipe(gulpIf((file) => {
 

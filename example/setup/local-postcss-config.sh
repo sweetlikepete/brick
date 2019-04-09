@@ -1,5 +1,5 @@
 
-cwd=$(pwd)
+cwd=$(pwd)/src/web
 
 # local install postcss-config
 cd ~/code/brick-test/brick/packages/postcss-config

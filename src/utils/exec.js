@@ -2,7 +2,6 @@
 
 import exec from "child_process";
 
-import chalk from "chalk";
 import through from "through2";
 
 import logger from "./logger";
@@ -29,7 +28,7 @@ export default function run(options = {}){
         const bashCmd = cmd;
 
         if(!detatch){
-            logger.log(label, chalk.hex("#ff5400")(bashCmd));
+            logger.log(label, bashCmd, "#ff5400");
         }
 
         const subprocess = exec.exec(cmd, {

@@ -20,7 +20,7 @@ export default function configuration(
 
     return {
         entry: {
-            index: `src/${ options.platform }/${ options.target }/index.ts`
+            index: `./${ options.target }/index.ts`
         }
     };
 

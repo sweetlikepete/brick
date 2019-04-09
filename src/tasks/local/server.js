@@ -17,7 +17,7 @@ const awaitServerScript = function(){
 
     const intervalTime = 100;
     const maxWaitTime = 10000;
-    const serverScript = path.join(process.cwd(), "src/web/dist/server/index.js");
+    const serverScript = path.join(process.cwd(), "dist/server/index.js");
 
     let waited = 0;
 
@@ -76,6 +76,8 @@ const startNodemonServer = function(script, environment){
                     align: ["r", "l"]
                 }
             );
+
+            logger.log(label, "");
 
         }).on("quit", () => {
 

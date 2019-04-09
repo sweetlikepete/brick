@@ -1,6 +1,7 @@
 
 
 import chalk from "chalk";
+import codeframe from "codeframe";
 import getCursorPosition from "get-cursor-position";
 import strip from "strip-color";
 import stripAnsi from "strip-ansi";
@@ -12,11 +13,13 @@ const nonBreakingCharacterCode = 160;
 const nonBreakingCharacter = String.fromCharCode(nonBreakingCharacterCode);
 
 const emojis = {
-    clean: "🌟",
+    clean: "🧻",
+    datastore: "💾",
     error: "💥",
     firestore: "🔥",
     lint: "🔎",
     memcached: "🧠",
+    optimize: "🌟",
     server: "💻",
     setup: "💿",
     webpack: "📦"
@@ -39,7 +42,7 @@ const formatLabel = function(label, error = false){
     ];
 
     const errors = [
-        "#a00",
+        "#7a170e",
         "#500",
         "#800",
         "#a00",
@@ -62,8 +65,8 @@ const formatLabel = function(label, error = false){
 
         const bgColor = index < colors.length - 1 ? colors[index] : colors[colors.length - 1];
         const errorBgColor = index < errors.length - 1 ? errors[index] : errors[errors.length - 1];
-        const firstColor = error ? "#ffffff" : "#eeeeee";
-        const secondColor = error ? "#888888" : "#555555";
+        const firstColor = error ? "#eeeeee" : "#eeeeee";
+        const secondColor = error ? "#eeeeee" : "#555555";
 
         let color = chunk === lastLabelChunks[index] ? secondColor : firstColor;
 
@@ -94,10 +97,7 @@ const format = function(label, message = "", color, error = false){
 const inLineFormat = function(line, color){
 
     return line
-    .replace(/(https?:\/\/[a-zA-Z0-9-_:./]*)/gu, chalk.hex(color || "#00b1e1")("$1"))
-    .replace(/(\s)(src\/.*)($|\\s)/gu, `$1${ chalk.hex(color || "#ffea00")("$2") }$3`)
-    // eslint-disable-next-line security/detect-non-literal-regexp
-    .replace(new RegExp(`${ process.cwd().replace("/", "\\/") }\\/(.*?)($|\\s)`, "gu"), chalk.hex(color || "#ffea00")("$1"));
+    .replace(/(https?:\/\/[a-zA-Z0-9-_:./]*)/gu, chalk.hex(color || "#00b1e1")("$1"));
 
 };
 
@@ -108,21 +108,53 @@ let started = false;
 
 const logger = {
 
-    error(label = "", message = ""){
+    error(label = "", message = "", preserveColor = false){
 
         let formattedLabel = label;
         let formattedMessage = message;
 
-        if(!message && label.stack){
+        if(!message){
             formattedLabel = "Error";
             formattedMessage = label;
         }
 
-        if(formattedMessage.stack){
+        if(formattedMessage.stack && formattedMessage.name){
             formattedMessage = `${ formattedMessage.name }\n\n${ formattedMessage.stack }`;
+        }else if(formattedMessage.message){
+            formattedMessage = formattedMessage.message;
         }
 
-        this.log(`${ formattedLabel }`, formattedMessage, "#ff0000", true);
+        this.log(`${ formattedLabel }`, formattedMessage, preserveColor ? null : "#ff0000", true);
+
+    },
+
+    lint(files){
+
+        files.forEach((errorFile) => {
+
+            if(errorFile.errors && errorFile.errors.length > 0){
+
+                const errorOutput = errorFile.errors.map((error) => {
+
+                    const errorFrame = codeframe.get({
+                        column: error.column,
+                        file: errorFile.filePath,
+                        line: error.line - 1
+                    });
+
+                    const errorPointer = `${ errorFile.filePath }:${ error.line }:${ error.column }`;
+
+                    return `${ errorPointer }\n${ chalk.hex("#999999")(error.message) }\n\n${ errorFrame }\n`;
+
+                }).join("\n");
+
+                this.error("lint", errorOutput, true);
+
+                process.stdout.write("\u0007");
+
+            }
+
+        });
 
     },
 

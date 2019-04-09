@@ -25,11 +25,20 @@ process.on("uncaughtException", (error) => logger.error(error));
 program.version(packageJSON.version);
 
 
+const platform = function(id = "web"){
+
+    process.chdir(`src/${ id }`);
+
+    return id;
+
+};
+
+
 program
 .command("build")
 .option("-p, --platform [platform]", "device platform (defaults to 'web')")
 .action((options) => build(config, {
-    platform: options.platform || "web"
+    platform: platform(options.platform)
 }));
 
 
@@ -42,14 +51,16 @@ program
 .command("deploy")
 .option("-p, --platform [platform]", "device platform (defaults to 'web')")
 .action((options) => deploy(config, {
-    platform: options.platform || "web"
+    platform: platform(options.platform)
 }));
 
 
 program
 .command("lint")
 .option("-w, --watch", "Watch the lint")
+.option("-p, --platform [platform]", "device platform (defaults to 'web')")
 .action((options) => lint(config, {
+    platform: platform(options.platform),
     watch: options.watch || false
 }));
 
@@ -58,7 +69,7 @@ program
 .command("local")
 .option("-p, --platform [platform]", "device platform (defaults to 'web')")
 .action((options) => local(config, {
-    platform: options.platform || "web",
+    platform: platform(options.platform),
     watch: true
 }));
 

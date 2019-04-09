@@ -17,8 +17,5 @@
     "tape": "^4.10.1",
     "webpack-cli": "^3.2.3"
   },
-  "dependencies": {
-    "@sweetlikepete/postcss-config": "file:../../sweetlikepete-postcss-config-1.0.0.tgz",
-    "@sweetlikepete/webpack-config": "file:../../sweetlikepete-webpack-config-1.0.0.tgz"
-  }
+  "dependencies": {}
 }

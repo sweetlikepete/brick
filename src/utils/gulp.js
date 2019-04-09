@@ -6,10 +6,10 @@ import through from "through2";
 import logger from "./logger";
 
 
-const fail = function(message){
+const fail = function(label, message){
 
     if(message && typeof message === "string"){
-        console.log(message);
+        logger.log(label, message);
     }
 
     // Make it beep like a jeep
@@ -17,7 +17,7 @@ const fail = function(message){
 
 };
 
-const print = function(label, color = "#00ffff"){
+const print = function(label, color = "#ffffff"){
 
     return through({ objectMode: true }, function blank(file, encoding, done){
 

@@ -8,8 +8,8 @@ const userConfig = rcfile("brick").config || {};
 
 
 const base = {
-    exclude: "!**/{dist,build,node_modules}/**/*",
-    include: "src/**/*"
+    exclude: "!**/{dist,node_modules}/**/*",
+    include: "**/*"
 };
 
 const defaults = {
@@ -61,10 +61,7 @@ const defaults = {
     },
     platform: {
         web: {
-            environments: [],
-            webpack: {
-                configFile: "src/web/webpack.config.js"
-            }
+            environments: []
         }
     }
 };

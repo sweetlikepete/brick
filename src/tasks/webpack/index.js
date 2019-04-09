@@ -50,11 +50,11 @@ const webpackTask = task(label, async (config, options) => {
 
     const webpackPromise = (target, mode, platform) => () => new Promise((resolve) => {
 
-        const webpackConfigFile = config.platform[platform].webpack.configFile;
+        const webpackConfigFile = path.join(process.cwd(), "webpack.config.js");
 
         // This doesn't present any danger and is necessary in this case.
         // eslint-disable-next-line import/no-dynamic-require, security/detect-non-literal-require, global-require
-        const webpackConfig = require(path.join(process.cwd(), webpackConfigFile));
+        const webpackConfig = require(webpackConfigFile);
         const compiler = webpack(webpackConfig({
             mode,
             platform,

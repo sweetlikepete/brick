@@ -20,35 +20,35 @@ export default function configuration(
     options: IWebpackCompiledOptions
 ): IWebpackConfiguration{
 
-    const server = [
-
-        /*
-         * When bundling with Webpack for the backend - you usually don't want
-         * to bundle its node_modules dependencies. This library creates an
-         * externals function that ignores node_modules when bundling in Webpack.
-         *
-         * https://www.npmjs.com/package/webpack-node-externals
-         */
-        nodeExternals({
+    const server = {
+        externals: [
 
             /*
-             * An array for the externals to whitelist, so they will be included
-             * in the bundle. Can accept exact strings ('module_name'), regex
-             * patterns (/^module_name/), or a function that accepts the module
-             * name and returns whether it should be included. Important - if
-             * you have set aliases in your webpack config with the exact same
-             * names as modules in node_modules, you need to whitelist them
-             * so Webpack will know they should be bundled.
+             * When bundling with Webpack for the backend - you usually don't want
+             * to bundle its node_modules dependencies. This library creates an
+             * externals function that ignores node_modules when bundling in Webpack.
+             *
+             * https://www.npmjs.com/package/webpack-node-externals
              */
-            whitelist: [
-                /^babel-plugin-universal-import/u,
-                /^modernizr/u
-            ]
-        })
-    ];
+            nodeExternals({
 
-    return {
-        externals: options.target === "server" ? server : []
+                /*
+                 * An array for the externals to whitelist, so they will be included
+                 * in the bundle. Can accept exact strings ('module_name'), regex
+                 * patterns (/^module_name/), or a function that accepts the module
+                 * name and returns whether it should be included. Important - if
+                 * you have set aliases in your webpack config with the exact same
+                 * names as modules in node_modules, you need to whitelist them
+                 * so Webpack will know they should be bundled.
+                 */
+                whitelist: [
+                    /^babel-plugin-universal-import/u,
+                    /^modernizr/u
+                ]
+            })
+        ]
     };
+
+    return options.target === "server" ? server : {};
 
 }

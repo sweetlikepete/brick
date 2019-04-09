@@ -1,6 +1,6 @@
 {
   "name": "@sweetlikepete/stylelint-config",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "Shared config for stylelint",
   "main": "lib/index.js",
   "scripts": {
@@ -35,16 +35,16 @@
   "homepage": "https://github.com/sweetlikepete/brick/tree/master/packages/stylelint-config#readme",
   "devDependencies": {
     "@sweetlikepete/babel": "^1.0.1",
-    "@sweetlikepete/eslint": "^1.0.0",
+    "@sweetlikepete/eslint": "^1.0.3",
     "babel-tape-runner": "^3.0.0",
     "stylelint": "^9.10.1",
-    "stylelint-a11y": "^1.1.10",
+    "stylelint-a11y": "^1.1.11",
     "stylelint-declaration-block-no-ignored-properties": "^1.1.0",
     "stylelint-declaration-strict-value": "^1.1.2",
     "stylelint-find-new-rules": "^1.0.1",
     "stylelint-high-performance-animation": "^1.1.1",
     "stylelint-no-unsupported-browser-features": "^3.0.2",
-    "stylelint-order": "^2.1.0",
+    "stylelint-order": "^2.2.0",
     "stylelint-scss": "^3.5.4",
     "stylelint-selector-tag-no-without-class": "^2.0.0",
     "stylelint-use-nesting": "^1.2.1",
@@ -52,12 +52,12 @@
   },
   "peerDependencies": {
     "stylelint": "^9.10.1",
-    "stylelint-a11y": "^1.1.10",
+    "stylelint-a11y": "^1.1.11",
     "stylelint-declaration-block-no-ignored-properties": "^1.1.0",
     "stylelint-declaration-strict-value": "^1.1.2",
     "stylelint-high-performance-animation": "^1.1.1",
     "stylelint-no-unsupported-browser-features": "^3.0.2",
-    "stylelint-order": "^2.1.0",
+    "stylelint-order": "^2.2.0",
     "stylelint-scss": "^3.5.4",
     "stylelint-selector-tag-no-without-class": "^2.0.0",
     "stylelint-use-nesting": "^1.2.1"

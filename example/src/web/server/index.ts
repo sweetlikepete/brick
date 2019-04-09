@@ -4,17 +4,17 @@ import {
     app,
     start
 } from "@sweetlikepete/scotch";
-import config from "@sweetlikepete/webpack-config";
-
 
 import "./index.scss";
 
 
+// Needed so webpack strips this in production
+// eslint-disable-next-line no-process-env
 if(process.env.mode === "development"){
 
-    const go = async function(): Promise<void>{
+    const go = function(): void{
 
-        start(app, config.default);
+        start(app);
 
     };
 

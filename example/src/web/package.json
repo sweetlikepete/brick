@@ -6,7 +6,9 @@
     "start": "node dist/server/index.js"
   },
   "dependencies": {
-    "@sweetlikepete/scotch": "file:../../../../sweetlikepete-scotch-1.0.1.tgz"
+    "@sweetlikepete/postcss-config": "file:../../../../sweetlikepete-postcss-config-1.0.0.tgz",
+    "@sweetlikepete/scotch": "file:../../../../sweetlikepete-scotch-1.0.1.tgz",
+    "@sweetlikepete/webpack-config": "file:../../../../sweetlikepete-webpack-config-1.0.0.tgz"
   },
   "devDependencies": {}
 }

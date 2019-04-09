@@ -26,15 +26,14 @@ const remove = async (removePath) => {
 };
 
 
-const clean = task(label, (config, options) => {
+const clean = task(label, () => {
 
     const cwd = process.cwd();
-    const targets = options.platform ? [options.platform] : config.targets;
 
-    const paths = targets
-    .map((target) => path.join(cwd, "src", target, "dist"))
-    .concat(targets.map((target) => path.join(cwd, "src", target, "node_modules/.cache")))
-    .concat([path.join(cwd, "node_modules/.cache")]);
+    const paths = [
+        path.join(cwd, "node_modules/.cache"),
+        path.join(cwd, "dist")
+    ];
 
     paths.sort();
 

@@ -9,6 +9,7 @@ import gulp from "gulp";
 import gulpIf from "gulp-if";
 
 import gulpUtils from "../../../utils/gulp";
+import logger from "../../../utils/logger";
 
 
 const config = {
@@ -32,14 +33,30 @@ const lintJs = gulpUtils.task((paths, watching) => {
     return new Promise((resolve) => {
 
         gulp.src(paths)
-        .pipe(gulpUtils.print("lint script"))
+        .pipe(gulpUtils.print("lint"))
         .pipe(watching ? eslint(config) : cache(eslint(config), {
             // Cache key based on the file contents, eslint + plugin versions and eslint options
             key: (file) => `${ file.contents.toString("utf8") }${ rawPackageJSON }`,
             success: (file) => file.eslint.errorCount === 0,
             value: (file) => ({ eslint: file.eslint })
         }))
-        .pipe(eslint.format("codeframe", gulpUtils.fail))
+        .pipe(eslint.format((errorFiles) => {
+
+            logger.lint(errorFiles.map((errorFile) => ({
+                errors: errorFile.messages.map((error) => ({
+                    column: error.column,
+                    file: errorFile.filePath,
+                    line: error.line + 1,
+                    message: `${ error.message } (${ error.ruleId })`
+                })),
+                filePath: errorFile.filePath
+            })));
+
+        }, (message) => {
+
+            gulpUtils.fail("lint", message);
+
+        }))
         .pipe(gulpIf(fixed, gulp.dest(".")))
         .pipe(gulpUtils.touch(fixed))
         .pipe(watching ? gulpUtils.skip() : eslint.failAfterError())

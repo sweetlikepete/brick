@@ -50,10 +50,10 @@ const configure = function(
             config.module(configuration, options),
             config.optimization(configuration, options),
             config.plugins(configuration, options),
-            config.resolve(configuration, options),
+            config.resolve(),
             config.stats(),
             config.target(configuration, options),
-            config.watchOptions(configuration, options),
+            config.watchOptions(),
             configuration
         );
 
