@@ -4,8 +4,8 @@ import path from "path";
 
 import sequential from "promise-sequential";
 import webpack from "webpack";
+import logger from "@sweetlikepete/logger";
 
-import logger from "../../utils/logger";
 import { task } from "../../utils/task";
 
 

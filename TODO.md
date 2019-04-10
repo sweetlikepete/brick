@@ -1,8 +1,6 @@
 
 
 
-make logging a separate package in brick
-pull out imagemin stuff in brick into @sweetlikepete/imagemin and @sweetlikepete/imagemin-config
 finish off the webpack hot and dev loader for client code
 
 add a modernizr step (finish testing it after the client webpack build is done)

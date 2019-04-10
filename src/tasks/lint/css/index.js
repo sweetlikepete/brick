@@ -6,9 +6,9 @@ import gulp from "gulp";
 import gulpIf from "gulp-if";
 import stylelint from "gulp-stylelint";
 import touch from "touch";
+import logger from "@sweetlikepete/logger";
 
 import gulpUtils from "../../../utils/gulp";
-import logger from "../../../utils/logger";
 
 
 const config = {

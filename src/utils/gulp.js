@@ -2,8 +2,7 @@
 
 import gulpWatch from "gulp-watch";
 import through from "through2";
-
-import logger from "./logger";
+import logger from "@sweetlikepete/logger";
 
 
 const fail = function(label, message){

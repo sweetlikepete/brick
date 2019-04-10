@@ -18,13 +18,7 @@ Our default export contains all of our postcss plugins.
   yarn add --dev @sweetlikepete/postcss-config
   ```
 
-2. Install the shared configuration peer dependencies (npm 5+):
-
-  ```sh
-  npx install-peerdeps --dev @sweetlikepete/postcss-config
-  ```
-
-3. Add to your postcss.config.js.
+2. Add to your postcss.config.js.
   ```js
   const config = require("@sweetlikepete/postcss-config");
 

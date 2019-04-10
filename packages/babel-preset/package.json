@@ -34,7 +34,6 @@
     "@babel/preset-env": "^7.4.2",
     "@babel/preset-react": "^7.0.0",
     "@babel/preset-typescript": "^7.3.3",
-    "@sweetlikepete/eslint": "^1.0.0",
     "babel-plugin-add-module-exports": "^1.0.0",
     "babel-plugin-jsx-control-statements": "^4.0.0",
     "babel-plugin-shebang": "^1.0.0"
@@ -42,6 +41,7 @@
   "devDependencies": {
     "@babel/cli": "^7.2.3",
     "@babel/core": "^7.4.0",
+    "@sweetlikepete/eslint": "^1.0.4",
     "babel-tape-runner": "^3.0.0",
     "tape": "^4.10.1"
   },

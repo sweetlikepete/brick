@@ -3,9 +3,9 @@
 import path from "path";
 
 import fs from "fs-extra";
+import logger from "@sweetlikepete/logger";
 
 import { task } from "../../utils/task";
-import logger from "../../utils/logger";
 
 
 const label = "clean";

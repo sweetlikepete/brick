@@ -38,25 +38,7 @@ const defaults = {
             paths: [
                 `${ base.include }.{png,gif,jpg,jpeg,svg}`,
                 `${ base.exclude }.{png,gif,jpg,jpeg,svg}`
-            ],
-            settings: {
-                gifsicle: {
-                    interlaced: true
-                },
-                jpegtran: {
-                    progressive: true
-                },
-                optipng: {
-                    optimizationLevel: 5
-                },
-                svgo: {
-                    plugins: [
-                        {
-                            removeViewBox: true
-                        }
-                    ]
-                }
-            }
+            ]
         }
     },
     platform: {

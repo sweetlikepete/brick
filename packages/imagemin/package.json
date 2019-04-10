@@ -1,0 +1,46 @@
+{
+  "name": "@sweetlikepete/imagemin",
+  "version": "1.0.0",
+  "description": "Preconfigured imagemin function",
+  "main": "lib/index.js",
+  "scripts": {
+    "build": "rm -rf lib && babel src --config-file --out-dir lib",
+    "lint": "eslint src test",
+    "prelint": "npm run build",
+    "prepublishOnly": "npm run test",
+    "pretest": "npm run lint",
+    "test": "babel-tape-runner ./test/*.js"
+  },
+  "browserslist": "node 8",
+  "engines": {
+    "node": ">= 8"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sweetlikepete/brick"
+  },
+  "author": "Peter Bodechtel (https://www.sweetlikepete.com)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/sweetlikepete/brick/issues"
+  },
+  "keywords": [
+    "imagemin",
+    "sweetlikepete",
+    "@sweetlikepete"
+  ],
+  "homepage": "https://github.com/sweetlikepete/brick/tree/master/packages/imagemin#readme",
+  "devDependencies": {
+    "@sweetlikepete/babel": "^1.0.1",
+    "@sweetlikepete/eslint": "^1.0.0",
+    "babel-tape-runner": "^3.0.0",
+    "tape": "^4.10.1"
+  },
+  "dependencies": {
+    "imagemin": "^6.1.0",
+    "imagemin-gifsicle": "^6.0.1",
+    "imagemin-jpegtran": "^6.0.0",
+    "imagemin-optipng": "^6.0.0",
+    "imagemin-svgo": "^7.0.0"
+  }
+}

@@ -4,6 +4,7 @@ import "@babel/polyfill";
 
 
 import program from "commander";
+import logger from "@sweetlikepete/logger";
 
 import packageJSON from "../../package.json";
 import { config } from "../config";
@@ -14,7 +15,6 @@ import lint from "../tasks/lint";
 import local from "../tasks/local";
 import optimize from "../tasks/optimize";
 import setup from "../tasks/setup";
-import { logger } from "../utils";
 
 
 process.on("unhandledRejection", (error) => logger.error(error));

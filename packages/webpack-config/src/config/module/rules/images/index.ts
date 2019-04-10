@@ -25,36 +25,12 @@ export default function configuration(
                 // .svg .png .jpg .jpeg .gif and .webp image extensions
                 {
                     test: /\.(?:svg|png|jpg|jpeg|gif|webp)$/u,
-                    use: [
-                        fileLoader(config, options),
 
-                        /*
-                         * Image loader module for webpack. Minifies png, jpeg, gif, svg
-                         * and webp images with imagemin
-                         *
-                         * https://www.npmjs.com/package/image-webpack-loader
-                         */
-                        {
-                            loader: "image-webpack-loader",
-                            options: {
-                                disable: options.mode !== "production",
-                                gifsicle: {
-                                    interlaced: false
-                                },
-                                mozjpeg: {
-                                    progressive: true,
-                                    quality: 65
-                                },
-                                optipng: {
-                                    enabled: false
-                                },
-                                pngquant: {
-                                    quality: "65-90",
-                                    speed: 4
-                                }
-                            }
-                        }
-                    ]
+                    /*
+                     * We don't use an optimizer like image-webpack-loader because
+                     * we optimize images manually using brick optimize
+                     */
+                    use: [fileLoader(config, options)]
                 }
             ]
         }

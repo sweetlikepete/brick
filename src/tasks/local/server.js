@@ -4,11 +4,9 @@ import path from "path";
 
 import fs from "fs-extra";
 import nodemon from "nodemon";
+import logger from "@sweetlikepete/logger";
 
-import {
-    kill,
-    logger
-} from "../../utils";
+import { kill } from "../../utils";
 
 const label = "server";
 

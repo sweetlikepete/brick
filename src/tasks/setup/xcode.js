@@ -1,9 +1,7 @@
 
+import logger from "@sweetlikepete/logger";
 
-import {
-    exec,
-    logger
-} from "../../utils";
+import { exec } from "../../utils";
 
 
 const gcloud = async function(){

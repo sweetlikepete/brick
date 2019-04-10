@@ -7,9 +7,9 @@ import cache from "gulp-cache";
 import eslint from "gulp-eslint";
 import gulp from "gulp";
 import gulpIf from "gulp-if";
+import logger from "@sweetlikepete/logger";
 
 import gulpUtils from "../../../utils/gulp";
-import logger from "../../../utils/logger";
 
 
 const config = {

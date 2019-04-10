@@ -25,62 +25,41 @@ const emojis = {
     webpack: "📦"
 };
 
-const lastLabelChunks = [];
+const colors = {
+    errorColor: "#ff0000",
+    errorLabelBgColor: "#7a170e",
+    errorLabelColor: "#eeeeee",
+    errorLabelColorRepeat: "#eeeeee",
+    labelBgColor: "#222222",
+    labelColor: "#eeeeee",
+    labelColorRepeat: "#555555",
+    lintErrorMessageColor: "#999999",
+    urlColor: "#00b1e1"
+};
 
-const formatLabel = function(label, error = false){
+let lastFormattedLabel = null;
+let lastLabel = null;
+let started = false;
 
-    const cleanedLabel = stripAnsi(label);
+const formatLabel = function(string, error = false){
 
-    const colors = [
-        "#222",
-        "#333",
-        "#444",
-        "#555",
-        "#666",
-        "#777",
-        "#888"
-    ];
+    const label = stripAnsi(string);
+    const clearedLabel = label;
+    const justify = 12;
+    const emoji = emojis[label.toLowerCase()] ? ` ${ emojis[label.toLowerCase()] }` : "";
+    const formattedLabel = rjust(`${ clearedLabel }${ emoji }`, justify);
+    const bgColor = colors.labelBgColor;
+    const errorBgColor = colors.errorLabelBgColor;
+    const firstColor = error ? colors.errorLabelColor : colors.labelColor;
+    const secondColor = error ? colors.errorLabelColorRepeat : colors.labelColorRepeat;
 
-    const errors = [
-        "#7a170e",
-        "#500",
-        "#800",
-        "#a00",
-        "#c00",
-        "#c00",
-        "#c00"
-    ];
+    const color = label === lastFormattedLabel ? secondColor : firstColor;
 
-    return cleanedLabel
-    .split(" ")
-    .filter(Boolean)
-    .map((chunk, index) => {
+    if(label && label.trim()){
+        lastFormattedLabel = label;
+    }
 
-        lastLabelChunks[index] = lastLabelChunks[index] || null;
-
-        const clearedChunk = chunk;
-        const justify = 12;
-        const emoji = index === 0 && emojis[chunk.toLowerCase()] ? ` ${ emojis[chunk.toLowerCase()] }` : "";
-        const formattedChunk = index === 0 ? rjust(`${ clearedChunk }${ emoji }`, justify) : chunk;
-
-        const bgColor = index < colors.length - 1 ? colors[index] : colors[colors.length - 1];
-        const errorBgColor = index < errors.length - 1 ? errors[index] : errors[errors.length - 1];
-        const firstColor = error ? "#eeeeee" : "#eeeeee";
-        const secondColor = error ? "#eeeeee" : "#555555";
-
-        let color = chunk === lastLabelChunks[index] ? secondColor : firstColor;
-
-        color = index === 0 ? color : firstColor;
-
-        if(chunk && chunk.trim()){
-            lastLabelChunks[index] = chunk;
-        }
-
-        return `${ index === 0 ? "" : " " }${ chalk.hex(color).bgHex(error ? errorBgColor : bgColor)(` ${ formattedChunk } `) }`;
-
-    })
-    .join("");
-
+    return `${ chalk.hex(color).bgHex(error ? errorBgColor : bgColor)(` ${ formattedLabel } `) }`;
 
 };
 
@@ -97,14 +76,9 @@ const format = function(label, message = "", color, error = false){
 const inLineFormat = function(line, color){
 
     return line
-    .replace(/(https?:\/\/[a-zA-Z0-9-_:./]*)/gu, chalk.hex(color || "#00b1e1")("$1"));
+    .replace(/(https?:\/\/[a-zA-Z0-9-_:./]*)/gu, chalk.hex(color || colors.urlColor)("$1"));
 
 };
-
-
-let lastLabel = null;
-let started = false;
-
 
 const logger = {
 
@@ -124,7 +98,7 @@ const logger = {
             formattedMessage = formattedMessage.message;
         }
 
-        this.log(`${ formattedLabel }`, formattedMessage, preserveColor ? null : "#ff0000", true);
+        this.log(`${ formattedLabel }`, formattedMessage, preserveColor ? null : colors.errorColor, true);
 
     },
 
@@ -144,7 +118,7 @@ const logger = {
 
                     const errorPointer = `${ errorFile.filePath }:${ error.line }:${ error.column }`;
 
-                    return `${ errorPointer }\n${ chalk.hex("#999999")(error.message) }\n\n${ errorFrame }\n`;
+                    return `${ errorPointer }\n${ chalk.hex(colors.lintErrorMessageColor)(error.message) }\n\n${ errorFrame }\n`;
 
                 }).join("\n");
 

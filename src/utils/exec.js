@@ -3,8 +3,7 @@
 import exec from "child_process";
 
 import through from "through2";
-
-import logger from "./logger";
+import logger from "@sweetlikepete/logger";
 
 
 export default function run(options = {}){

@@ -1,9 +1,8 @@
 
 
-import {
-    exec,
-    logger
-} from "../../utils";
+import logger from "@sweetlikepete/logger";
+
+import { exec } from "../../utils";
 
 
 const brew = async function(formula){

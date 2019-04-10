@@ -2,8 +2,7 @@
 
 import open from "open-browsers";
 import request from "request";
-
-import { logger } from "../../utils";
+import logger from "@sweetlikepete/logger";
 
 
 const label = "server";
