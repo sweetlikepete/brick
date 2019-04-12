@@ -61,10 +61,10 @@
     "request": "^2.88.0",
     "through2": "^3.0.1",
     "touch": "^3.1.0",
-    "typescript": "^3.4.2",
+    "typescript": "^3.4.3",
     "webpack": "^4.29.6",
     "webpack-cli": "^3.3.0",
-    "webpack-dev-server": "^3.3.0"
+    "webpack-dev-server": "^3.3.1"
   },
   "devDependencies": {
     "renamer": "^1.1.1"

@@ -17,6 +17,7 @@ export default function configuration(): IWebpackConfiguration{
     return {
         stats: {
             builtAt: false,
+            colors: true,
             entrypoints: false,
             hash: false,
             modules: false,

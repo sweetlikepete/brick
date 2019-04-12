@@ -25,6 +25,16 @@ export default function configuration(
                     use: [
 
                         /*
+                         * This is a css hot loader, which support hot module replacement
+                         * for an extracted css file.
+                         *
+                         * https://www.npmjs.com/package/css-hot-loader
+                         */
+                        options.watch ? {
+                            loader: "css-hot-loader"
+                        } : null,
+
+                        /*
                          * This plugin extracts CSS into separate files. It creates a CSS
                          * file per JS file which contains CSS. It supports On-Demand-Loading
                          * of CSS and SourceMaps.
@@ -34,7 +44,9 @@ export default function configuration(
                         {
                             loader: MiniCssExtractPlugin.loader,
                             options: {
-                                publicPath
+                                hmr: options.mode === "development",
+                                publicPath,
+                                reloadAll: true
                             }
                         },
 
@@ -93,7 +105,8 @@ export default function configuration(
                                 sourceMap: true
                             }
                         }
-                    ]
+
+                    ].filter(Boolean)
                 }
             ]
         }

@@ -44,7 +44,6 @@ const log = (label2) => (error, stats, configFile) => {
 const webpackTask = task(label, async (config, options) => {
 
     const {
-        serve = false,
         watch = false
     } = options;
 
@@ -58,7 +57,8 @@ const webpackTask = task(label, async (config, options) => {
         const compiler = webpack(webpackConfig({
             mode,
             platform,
-            target
+            target,
+            watch
         }));
 
         if(watch){
@@ -98,7 +98,7 @@ const webpackTask = task(label, async (config, options) => {
         webpackPromise("server", "development", "web")
     ];
 
-    if(watch || serve){
+    if(watch){
 
         await Promise.all(commands.map((command) => command()));
 

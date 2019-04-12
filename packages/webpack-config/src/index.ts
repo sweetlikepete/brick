@@ -21,7 +21,7 @@ const configure = function(
             bundleAnalyzerPort: 3000,
             hashFileNames: false,
             hashLength: 8,
-            watching: false
+            watch: false
         };
 
         const options = {
@@ -31,7 +31,7 @@ const configure = function(
             mode: environment.mode || "development",
             platform: environment.platform || "web",
             target: environment.target || "client",
-            watching: webpackOptions.watching || webpackOptionsDefaults.watching
+            watch: webpackOptions.watch || webpackOptionsDefaults.watch
         };
 
         options.hashFileNames = options.target === "client" && options.mode === "production";

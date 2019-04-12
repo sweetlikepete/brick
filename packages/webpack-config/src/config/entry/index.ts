@@ -18,9 +18,27 @@ export default function configuration(
     options: IWebpackCompiledOptions
 ): IWebpackConfiguration{
 
+    const index = `./${ options.target }/index.ts`;
+
+    if(
+        options.mode === "development" &&
+        options.target === "client"
+    ){
+
+        return {
+            entry: {
+                index: [
+                    "webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000",
+                    index
+                ]
+            }
+        };
+
+    }
+
     return {
         entry: {
-            index: `./${ options.target }/index.ts`
+            index
         }
     };
 

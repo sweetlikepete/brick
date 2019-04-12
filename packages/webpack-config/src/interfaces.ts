@@ -16,7 +16,7 @@ export interface IWebpackOptions {
     bundleAnalyzerPort?: number;
     hashFileNames?: boolean;
     hashLength?: number;
-    watching?: boolean;
+    watch?: boolean;
 }
 
 export interface IWebpackCompiledOptions {
@@ -26,7 +26,7 @@ export interface IWebpackCompiledOptions {
     mode: "development" | "production";
     platform: "desktop" | "mobile" | "web";
     target: "client" | "server";
-    watching: boolean;
+    watch: boolean;
 }
 
 export interface IWebpackConfiguration extends webpack.Configuration{}

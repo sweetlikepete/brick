@@ -59,7 +59,10 @@ const startNodemonServer = function(script, environment){
             env: environment,
             ext: "js json",
             script,
-            stdout: false
+            stdout: false,
+            watch: [
+                "dist/server"
+            ]
         });
 
         nodemon.on("start", () => {
@@ -131,7 +134,9 @@ const server = async function(config){
 
     await startNodemonServer(script, {
         FIRESTORE_EMULATOR_HOST: `${ config.firestore.host }:${ config.firestore.port }`,
-        PORT: config.nodemon.port
+        mode: "development",
+        PORT: config.nodemon.port,
+        watch: true
     });
 
 };

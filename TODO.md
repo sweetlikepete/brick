@@ -1,5 +1,6 @@
 
 
+move hmr to watch instead of development in the config
 
 finish off the webpack hot and dev loader for client code
 

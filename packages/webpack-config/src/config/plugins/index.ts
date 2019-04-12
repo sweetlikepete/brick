@@ -7,7 +7,6 @@ import webpack from "webpack";
 
 import client from "./client";
 import server from "./server";
-import watching from "./watching";
 
 import {
     IWebpackCompiledOptions,
@@ -25,11 +24,12 @@ export default function configuration(
             // Set NODE_ENV based on the provided Webpack environment.
             new webpack.DefinePlugin({
                 "process.env.mode": JSON.stringify(options.mode),
-                "process.env.target": JSON.stringify(options.target)
+                "process.env.target": JSON.stringify(options.target),
+                "process.env.watch": options.watch
             }),
             new DuplicatePackageCheckerPlugin(),
             new MiniCssExtractPlugin({
-                chunkFilename: options.hashFileNames ? `[chunkhash:${ options.hashLength }].css` : "[name].css",
+                chunkFilename: options.hashFileNames ? `[chunkhash:${ options.hashLength }].css` : "[id].css",
                 filename: options.hashFileNames ? `[chunkhash:${ options.hashLength }].css` : "[name].css"
             })
         ]
@@ -37,8 +37,7 @@ export default function configuration(
 
     return merge(
         base,
-        options.watching ? watching : {},
-        options.target === "client" ? client(config) : server()
+        options.target === "client" ? client(config, options) : server()
     );
 
 }
