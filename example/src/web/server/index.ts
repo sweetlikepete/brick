@@ -16,13 +16,13 @@ app.get("*", (request, response, next): void => {
 
             next(error);
 
-        }else{
-
-            response.set("content-type", "text/html");
-            response.send(result);
-            response.end();
+            return;
 
         }
+
+        response.set("content-type", "text/html");
+        response.send(result);
+        response.end();
 
     });
 

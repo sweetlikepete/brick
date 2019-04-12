@@ -33,7 +33,7 @@
   "dependencies": {
     "@babel/polyfill": "^7.4.3",
     "@sweetlikepete/babel": "^1.0.1",
-    "@sweetlikepete/eslint": "^1.0.4",
+    "@sweetlikepete/eslint": "^1.0.5",
     "@sweetlikepete/imagemin": "^1.0.0",
     "@sweetlikepete/logger": "^1.0.0",
     "@sweetlikepete/stylelint": "^1.0.2",

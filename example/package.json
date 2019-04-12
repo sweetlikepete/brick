@@ -12,7 +12,7 @@
   },
   "version": "1.0.0",
   "devDependencies": {
-    "@sweetlikepete/brick": "file:../../sweetlikepete-brick-1.0.13.tgz",
+    "@sweetlikepete/brick": "^1.0.14",
     "babel-tape-runner": "^3.0.0",
     "tape": "^4.10.1",
     "webpack-cli": "^3.2.3"

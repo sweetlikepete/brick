@@ -10,5 +10,7 @@
     "@sweetlikepete/scotch": "file:../../../../sweetlikepete-scotch-1.0.1.tgz",
     "@sweetlikepete/webpack-config": "file:../../../../sweetlikepete-webpack-config-1.0.0.tgz"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "@types/webpack-env": "^1.13.9"
+  }
 }
