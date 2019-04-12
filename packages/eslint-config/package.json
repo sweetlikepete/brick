@@ -1,6 +1,6 @@
 {
   "name": "@sweetlikepete/eslint-config",
-  "version": "1.0.45",
+  "version": "1.0.47",
   "description": "Shared config for eslint",
   "main": "lib/configs",
   "scripts": {
@@ -40,7 +40,7 @@
   ],
   "homepage": "https://github.com/sweetlikepete/brick/tree/master/packages/eslint-config#readme",
   "devDependencies": {
-    "@sweetlikepete/babel": "^1.0.1",
+    "@sweetlikepete/babel": "^1.0.3",
     "@typescript-eslint/eslint-plugin": "^1.6.0",
     "@typescript-eslint/parser": "^1.6.0",
     "babel-tape-runner": "^3.0.0",
@@ -75,12 +75,12 @@
     "eslint-plugin-security": "^1.4.0",
     "eslint-plugin-sort-class-members": "^1.4.0",
     "eslint-plugin-sort-keys-fix": "^1.0.1",
-    "eslint-plugin-unicorn": "^8.0.1",
+    "eslint-plugin-unicorn": "^8.0.2",
     "eslint-plugin-webassembly": "^1.8.5",
     "eslint-plugin-you-dont-need-lodash-underscore": "^6.4.0",
     "eslint-plugin-you-dont-need-momentjs": "^1.4.0",
     "tape": "^4.10.1",
-    "typescript": "^3.4.2"
+    "typescript": "^3.4.3"
   },
   "dependencies": {
     "confusing-browser-globals": "^1.0.6"
@@ -118,10 +118,10 @@
     "eslint-plugin-security": "^1.4.0",
     "eslint-plugin-sort-class-members": "^1.4.0",
     "eslint-plugin-sort-keys-fix": "^1.0.1",
-    "eslint-plugin-unicorn": "^8.0.1",
+    "eslint-plugin-unicorn": "^8.0.2",
     "eslint-plugin-webassembly": "^1.8.5",
     "eslint-plugin-you-dont-need-lodash-underscore": "^6.4.0",
     "eslint-plugin-you-dont-need-momentjs": "^1.4.0",
-    "typescript": "^3.4.2"
+    "typescript": "^3.4.3"
   }
 }

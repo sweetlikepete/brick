@@ -5,7 +5,6 @@ import test from "./test";
 
 import "./index.scss";
 
-console.log(["client process.env.watch", process.env.watch]);
 
 if(process.env.watch){
 

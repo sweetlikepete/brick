@@ -2,6 +2,9 @@
 /src/
 /test/
 .babelrc
+.DS_Store
+.eslintignore
+.huskyrc
 .eslintrc
 .vscode
 README.md

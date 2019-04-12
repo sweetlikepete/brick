@@ -3,6 +3,9 @@
 /test/
 .babelrc
 .eslintrc
+.DS_Store
+.eslintignore
+.huskyrc
 .vscode
 README.md
 TODO.md

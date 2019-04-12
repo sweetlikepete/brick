@@ -76,9 +76,15 @@ export default {
         /*
          * Disallow the use of process.env
          *
+         * This is off for now because it's used extensively in the webpack DefinePlugin
+         * to allow for the deleting of code that only runs depending on certain
+         * environment configuration conditions. If we say something like
+         * if(process.env.mode === "development"){ ... } we want that code completely
+         * stripped if process.env.mode === "production".
+         *
          * https://eslint.org/docs/rules/no-process-env
          */
-        "no-process-env": "error",
+        "no-process-env": "off",
 
         /*
          * Disallow the use of process.exit()

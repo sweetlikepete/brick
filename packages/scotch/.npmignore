@@ -6,6 +6,9 @@
 /test/
 /web/
 .babelrc
+.DS_Store
+.eslintignore
+.huskyrc
 .eslintrc
 .vscode
 babel.config.js

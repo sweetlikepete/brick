@@ -1,6 +1,6 @@
 {
   "name": "@sweetlikepete/eslint",
-  "version": "1.0.5",
+  "version": "1.0.7",
   "description": "Collection of eslint dependencies",
   "browserslist": "node 8",
   "engines": {
@@ -27,7 +27,7 @@
   ],
   "homepage": "https://github.com/sweetlikepete/brick/tree/master/packages/eslint#readme",
   "dependencies": {
-    "@sweetlikepete/eslint-config": "^1.0.45",
+    "@sweetlikepete/eslint-config": "^1.0.47",
     "@typescript-eslint/eslint-plugin": "^1.6.0",
     "@typescript-eslint/parser": "^1.6.0",
     "eslint": "^5.16.0",
@@ -60,10 +60,10 @@
     "eslint-plugin-security": "^1.4.0",
     "eslint-plugin-sort-class-members": "^1.4.0",
     "eslint-plugin-sort-keys-fix": "^1.0.1",
-    "eslint-plugin-unicorn": "^8.0.1",
+    "eslint-plugin-unicorn": "^8.0.2",
     "eslint-plugin-webassembly": "^1.8.5",
     "eslint-plugin-you-dont-need-lodash-underscore": "^6.4.0",
     "eslint-plugin-you-dont-need-momentjs": "^1.4.0",
-    "typescript": "^3.4.2"
+    "typescript": "^3.4.3"
   }
 }
