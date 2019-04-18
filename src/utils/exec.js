@@ -27,7 +27,7 @@ export default function run(options = {}){
         const bashCmd = cmd;
 
         if(!detatch){
-            logger.log(label, bashCmd, "#ff5400");
+            logger.command(label, bashCmd);
         }
 
         const subprocess = exec.exec(cmd, {

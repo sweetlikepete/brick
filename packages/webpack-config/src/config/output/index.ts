@@ -15,11 +15,11 @@ export default function configuration(
 
     return {
         output: {
-            chunkFilename: options.hashFileNames ? `[chunkhash:${ options.hashLength }].js` : "[name].js",
-            filename: options.hashFileNames ? `[chunkhash:${ options.hashLength }].js` : "[name].js",
+            chunkFilename: options.hashFileNames ? `[hash:${ options.hashLength }].js` : "[name].js",
+            filename: options.hashFileNames ? `[hash:${ options.hashLength }].js` : "[name].js",
             hashDigest: "base64",
             path: path.join(process.cwd(), `dist/${ options.target }`),
-            publicPath: "/static/"
+            publicPath: `/${ options.staticFolder }/`
         }
     };
 

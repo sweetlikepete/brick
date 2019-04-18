@@ -16,6 +16,7 @@ export interface IWebpackOptions {
     bundleAnalyzerPort?: number;
     hashFileNames?: boolean;
     hashLength?: number;
+    staticFolder?: string;
     watch?: boolean;
 }
 
@@ -25,6 +26,7 @@ export interface IWebpackCompiledOptions {
     hashLength: number;
     mode: "development" | "production";
     platform: "desktop" | "mobile" | "web";
+    staticFolder?: string;
     target: "client" | "server";
     watch: boolean;
 }

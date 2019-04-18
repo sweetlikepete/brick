@@ -1,3 +1,7 @@
 {
-  "extends": "@sweetlikepete"
+  "extends": "@sweetlikepete",
+  "rules": {
+    "import/group-exports": "off",
+    "import/exports-last": "off"
+  }
 }

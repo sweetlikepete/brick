@@ -11,6 +11,7 @@ import { config } from "../config";
 import build from "../tasks/build";
 import clean from "../tasks/clean";
 import deploy from "../tasks/deploy";
+import tamland from "../tasks/local/tamland";
 import lint from "../tasks/lint";
 import local from "../tasks/local";
 import optimize from "../tasks/optimize";
@@ -38,6 +39,7 @@ program
 .command("build")
 .option("-p, --platform [platform]", "device platform (defaults to 'web')")
 .action((options) => build(config, {
+    mode: "production",
     platform: platform(options.platform)
 }));
 
@@ -51,6 +53,7 @@ program
 .command("deploy")
 .option("-p, --platform [platform]", "device platform (defaults to 'web')")
 .action((options) => deploy(config, {
+    mode: "production",
     platform: platform(options.platform)
 }));
 
@@ -68,15 +71,23 @@ program
 program
 .command("local")
 .option("-p, --platform [platform]", "device platform (defaults to 'web')")
+.option("-m, --mode [mode]", "development or production mode (defaults to 'production')")
+.option("--production", "run the local server as close to production as possible (defaults to false)")
 .action((options) => local(config, {
+    mode: options.production ? "production" : "development",
     platform: platform(options.platform),
-    watch: true
+    watch: !options.production
 }));
 
 
 program
 .command("optimize")
 .action(() => optimize(config));
+
+
+program
+.command("local-tamland")
+.action(() => tamland(config));
 
 
 program
@@ -88,7 +99,7 @@ program
 .command("promote")
 .action(() => {
 
-    console.log("build");
+    console.log("promote");
 
 });
 

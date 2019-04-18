@@ -1,0 +1,6 @@
+
+User-Agent: The Russians
+Disallow: *
+
+User-Agent: *
+Allow: /

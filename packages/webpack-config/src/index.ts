@@ -18,10 +18,11 @@ const configure = function(
     return (environment: IEnvironment = {}) => {
 
         const webpackOptionsDefaults = {
-            bundleAnalyzerPort: 3000,
+            bundleAnalyzerPort: 3001,
             hashFileNames: false,
             hashLength: 8,
-            watch: false
+            staticFolder: "static",
+            watch: Boolean(process.env.watch || false)
         };
 
         const options = {
@@ -30,11 +31,33 @@ const configure = function(
             hashLength: webpackOptions.hashLength || webpackOptionsDefaults.hashLength,
             mode: environment.mode || "development",
             platform: environment.platform || "web",
+            staticFolder: webpackOptions.staticFolder || webpackOptionsDefaults.staticFolder,
             target: environment.target || "client",
             watch: webpackOptions.watch || webpackOptionsDefaults.watch
         };
 
-        options.hashFileNames = options.target === "client" && options.mode === "production";
+        // Make sure options.staticFolder doesn't have any outer slashes
+        options.staticFolder = options.staticFolder.replace(/^\/+|\/+$/gu, "");
+
+        options.hashFileNames =
+
+            /*
+             * Hashing the files breaks HMR of css resources for some reason, so we
+             * aren't going to hash them while watching because we HMR while watching.
+             */
+            !options.watch &&
+
+            /*
+             * It doesn't make sense to hash filenames on the server since cache
+             * isn't an issue there and it'll make debugging easier to leave it alone
+             */
+            options.target === "client" &&
+
+            /*
+             * We shouldn't hash if we aren't in production mode because it'll make
+             * local debugging easier.
+             */
+            options.mode === "production";
 
         /*
          * Output configuration is used by other configurations, so we set it up

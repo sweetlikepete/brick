@@ -52,9 +52,20 @@ export default {
         /*
          * Prefer named exports to be grouped together in a single export declaration
          *
+         * This is off for now because when you create anything that uses an interface
+         * in Typescript, you have to export that interface otherwise you'll get an error
+         * to the tune of:
+         *
+         * 'Default export of the module has or is using private name'
+         *
+         * As of the writing of this comment, you can't export your interface in the
+         * group, because the typescript parser sees that as an undefined variable.
+         * This means that the only option available is to export the interface and
+         * members separately instead of in a group.
+         *
          * https://github.com/benmosher/eslint-plugin-import/blob/HEAD/docs/rules/group-exports.md
          */
-        "import/group-exports": "error",
+        "import/group-exports": "off",
 
         /*
          * Limit the maximum number of dependencies a module can have

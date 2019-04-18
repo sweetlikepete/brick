@@ -1,6 +1,6 @@
 {
   "name": "@sweetlikepete/logger",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "Logger for brick tasks",
   "main": "lib/index.js",
   "scripts": {
@@ -30,8 +30,8 @@
   ],
   "homepage": "https://github.com/sweetlikepete/brick/tree/master/packages/logger#readme",
   "devDependencies": {
-    "@sweetlikepete/babel": "^1.0.1",
-    "@sweetlikepete/eslint": "^1.0.0",
+    "@sweetlikepete/babel": "^1.0.3",
+    "@sweetlikepete/eslint": "^1.0.7",
     "babel-tape-runner": "^3.0.0",
     "tape": "^4.10.1"
   },

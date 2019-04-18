@@ -44,10 +44,12 @@ const log = (label2) => (error, stats, configFile) => {
 const webpackTask = task(label, async (config, options) => {
 
     const {
+        mode = "production",
+        platform = "web",
         watch = false
     } = options;
 
-    const webpackPromise = (target, mode, platform) => () => new Promise((resolve) => {
+    const webpackPromise = (target) => () => new Promise((resolve) => {
 
         const webpackConfigFile = path.join(process.cwd(), "webpack.config.js");
 
@@ -66,8 +68,7 @@ const webpackTask = task(label, async (config, options) => {
             compiler.watch({
                 aggregateTimeout: 600,
                 ignored: [
-                    "node_modules",
-                    `src/${ platform }/node_modules`
+                    "node_modules"
                 ],
                 poll: false
             },
@@ -93,18 +94,18 @@ const webpackTask = task(label, async (config, options) => {
 
     });
 
-    const commands = [
-        // Webpack("client", "production", "web", serve),
-        webpackPromise("server", "development", "web")
-    ];
-
     if(watch){
 
-        await Promise.all(commands.map((command) => command()));
+        await Promise.all([
+            webpackPromise("server")
+        ].map((command) => command()));
 
     }else{
 
-        await sequential(commands);
+        await sequential([
+            webpackPromise("client"),
+            webpackPromise("server")
+        ]);
 
     }
 

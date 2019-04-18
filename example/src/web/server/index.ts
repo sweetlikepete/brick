@@ -2,13 +2,15 @@
 
 import fs from "fs";
 
-import {
-    app,
-    start
-} from "@sweetlikepete/scotch";
+import server from "@sweetlikepete/scotch/lib/server";
 
 
-app.get("*", (request, response, next): void => {
+const app = server.application({
+    hostname: "www.sweetlikepete.com"
+});
+
+
+app.get("/", (request, response, next): void => {
 
     fs.readFile("dist/server/index.html", (error, result): void => {
 
@@ -29,5 +31,5 @@ app.get("*", (request, response, next): void => {
 });
 
 
-start(app);
+server.start(app);
 

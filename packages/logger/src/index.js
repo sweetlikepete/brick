@@ -15,6 +15,7 @@ const nonBreakingCharacter = String.fromCharCode(nonBreakingCharacterCode);
 const emojis = {
     clean: "🧻",
     datastore: "💾",
+    deploy: "💩",
     error: "💥",
     firestore: "🔥",
     lint: "🔎",
@@ -22,6 +23,7 @@ const emojis = {
     optimize: "🌟",
     server: "💻",
     setup: "💿",
+    tamland: "🍆",
     webpack: "📦"
 };
 
@@ -81,6 +83,14 @@ const inLineFormat = function(line, color){
 };
 
 const logger = {
+
+    command(label = "", command = ""){
+
+        const formattedCommand = command.split(" && ").join("\n");
+
+        this.log(label, formattedCommand, "#ff5400");
+
+    },
 
     error(label = "", message = "", preserveColor = false){
 
@@ -152,7 +162,10 @@ const logger = {
 
         formattedMessage.split("\n").forEach((line) => {
 
-            console.log(inLineFormat(line, color));
+            const cursor = getCursorPosition.sync();
+            const output = inLineFormat(line, color);
+
+            console.log(cursor && cursor.col > 1 ? `\n${ output }` : output);
 
         });
 

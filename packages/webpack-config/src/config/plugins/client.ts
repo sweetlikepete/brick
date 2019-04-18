@@ -31,6 +31,7 @@ export default function configuration(
             new HtmlWebPackPlugin({
                 alwaysWriteToDisk: true,
                 chunks: ["index"],
+                filename: "../server/index.html",
                 template: "server/index.html"
             })
         ].concat(options.watch ? [

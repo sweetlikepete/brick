@@ -21,7 +21,7 @@ export default function configuration(
     const index = `./${ options.target }/index.ts`;
 
     if(
-        options.mode === "development" &&
+        options.watch &&
         options.target === "client"
     ){
 

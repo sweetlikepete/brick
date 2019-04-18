@@ -1,9 +1,7 @@
 
 
 /*
-
     eslint
-
     @typescript-eslint/no-require-imports: "off",
     @typescript-eslint/no-var-requires: "off",
     filenames/match-regex: "off",
@@ -12,13 +10,10 @@
     import/unambiguous: "off",
     node/no-extraneous-require: "off",
     no-process-env: "off"
-
 */
 
 
 const config = require("@sweetlikepete/webpack-config");
 
 
-module.exports = config({}, {
-    watch: process.env.watch
-});
+module.exports = config();

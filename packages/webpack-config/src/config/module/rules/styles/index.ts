@@ -14,7 +14,7 @@ export default function configuration(
     options: IWebpackCompiledOptions
 ): IWebpackConfiguration{
 
-    const publicPath = config.output ? config.output.publicPath : "/static/";
+    const publicPath = config.output ? config.output.publicPath : `/${ options.staticFolder }/`;
 
     return merge(config, {
         module: {

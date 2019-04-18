@@ -1,5 +1,6 @@
 
 
+import build from "../../build";
 import { exec } from "../../../utils";
 import prompts from "../../../prompts";
 
@@ -11,10 +12,12 @@ const deployWeb = async function(config, options){
     const project = `--project ${ projectId }`;
     const verbosity = `--verbosity=${ options.verbosity || "error" }`;
 
+    await build(config, options);
+
     await exec({
         command: `
             gcloud app deploy
-            src/web/app.yaml
+            app.yaml
             ${ version }
             ${ project }
             ${ verbosity }

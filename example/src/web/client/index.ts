@@ -14,13 +14,9 @@ if(process.env.watch){
 
 }
 
-console.log("abc");
-
 
 document.addEventListener("DOMContentLoaded", (): void => {
 
-    console.log(`lloadxxxx bitch ${ test() }`);
+    console.log(`loaded ${ test() }`);
 
 });
-
-console.log(["module.hot", module.hot]);
