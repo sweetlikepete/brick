@@ -5,7 +5,6 @@ import test from "./test";
 
 import "./index.scss";
 
-
 if(process.env.watch){
 
     if(typeof module.hot !== "undefined"){
@@ -17,6 +16,6 @@ if(process.env.watch){
 
 document.addEventListener("DOMContentLoaded", (): void => {
 
-    console.log(`loaded ${ test() }`);
+    console.log(`loadedx ${ test() }`);
 
 });

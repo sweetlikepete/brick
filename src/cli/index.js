@@ -11,7 +11,6 @@ import { config } from "../config";
 import build from "../tasks/build";
 import clean from "../tasks/clean";
 import deploy from "../tasks/deploy";
-import tamland from "../tasks/local/tamland";
 import lint from "../tasks/lint";
 import local from "../tasks/local";
 import optimize from "../tasks/optimize";
@@ -26,21 +25,12 @@ process.on("uncaughtException", (error) => logger.error(error));
 program.version(packageJSON.version);
 
 
-const platform = function(id = "web"){
-
-    process.chdir(`src/${ id }`);
-
-    return id;
-
-};
-
-
 program
 .command("build")
 .option("-p, --platform [platform]", "device platform (defaults to 'web')")
 .action((options) => build(config, {
     mode: "production",
-    platform: platform(options.platform)
+    platform: options.platform || "web"
 }));
 
 
@@ -54,7 +44,7 @@ program
 .option("-p, --platform [platform]", "device platform (defaults to 'web')")
 .action((options) => deploy(config, {
     mode: "production",
-    platform: platform(options.platform)
+    platform: options.platform || "web"
 }));
 
 
@@ -63,7 +53,7 @@ program
 .option("-w, --watch", "Watch the lint")
 .option("-p, --platform [platform]", "device platform (defaults to 'web')")
 .action((options) => lint(config, {
-    platform: platform(options.platform),
+    platform: options.platform || "web",
     watch: options.watch || false
 }));
 
@@ -75,7 +65,7 @@ program
 .option("--production", "run the local server as close to production as possible (defaults to false)")
 .action((options) => local(config, {
     mode: options.production ? "production" : "development",
-    platform: platform(options.platform),
+    platform: options.platform || "web",
     watch: !options.production
 }));
 
@@ -83,12 +73,6 @@ program
 program
 .command("optimize")
 .action(() => optimize(config));
-
-
-program
-.command("local-tamland")
-.action(() => tamland(config));
-
 
 program
 .command("setup")

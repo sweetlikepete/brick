@@ -25,7 +25,9 @@ export default function configuration(
             new webpack.DefinePlugin({
                 "process.env.mode": JSON.stringify(options.mode),
                 "process.env.target": JSON.stringify(options.target),
-                "process.env.watch": options.watch
+                // Bug in the linter
+                // eslint-disable-next-line security/detect-non-literal-fs-filename
+                "process.env.watch": JSON.stringify(options.watch)
             }),
             new DuplicatePackageCheckerPlugin(),
             new MiniCssExtractPlugin({

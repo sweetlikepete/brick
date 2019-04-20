@@ -1,6 +1,7 @@
 
 
 figure out why hmr doesn't work in production mode
+add https://github.com/gajus/prepack-webpack-plugin to webpack
 
 move hmr to watch instead of development in the config
 

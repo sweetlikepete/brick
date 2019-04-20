@@ -7,7 +7,7 @@ import { hashElement } from "folder-hash";
 import logger from "@sweetlikepete/logger";
 import sequential from "promise-sequential";
 
-import { exec } from "../../../utils";
+import { exec } from "../../utils";
 
 
 const scope = "@sweetlikepete";
@@ -180,10 +180,16 @@ const installPackage = async function(pack, location, directory){
 
 const tamland = async function(config){
 
-    const packageMap = await getPackageMap(config.targets);
-    const tamlandDirectory = path.normalize(path.join(process.cwd(), config.tamland.path));
+    const tamlandConfig = config.tamland;
 
-    await sequential(packageMap.map((pack) => () => installPackage(pack[1], pack[0], tamlandDirectory)));
+    if(tamlandConfig && tamlandConfig.path){
+
+        const packageMap = await getPackageMap(config.targets);
+        const tamlandDirectory = path.normalize(path.join(process.cwd(), tamlandConfig.path));
+
+        await sequential(packageMap.map((pack) => () => installPackage(pack[1], pack[0], tamlandDirectory)));
+
+    }
 
 };
 

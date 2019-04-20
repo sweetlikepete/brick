@@ -8,7 +8,8 @@
     import/no-commonjs: "off",
     import/no-extraneous-dependencies: "off",
     import/unambiguous: "off",
-    node/no-extraneous-require: "off"
+    node/no-extraneous-require: "off",
+    node/no-unpublished-require: "off"
 */
 
 

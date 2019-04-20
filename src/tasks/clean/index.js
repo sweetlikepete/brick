@@ -31,7 +31,6 @@ const clean = task(label, () => {
     const cwd = process.cwd();
 
     const paths = [
-        path.join(cwd, "node_modules/.cache"),
         path.join(cwd, "dist")
     ];
 
