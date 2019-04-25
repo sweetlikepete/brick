@@ -1,6 +1,6 @@
 {
   "name": "@sweetlikepete/brick",
-  "version": "1.0.16",
+  "version": "1.0.17",
   "description": "Collection of tools, presets and shared configs for @sweetlikepete's projects",
   "main": "lib/index",
   "sideEffects": false,
