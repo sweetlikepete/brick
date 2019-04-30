@@ -75,10 +75,10 @@ const format = function(label, message = "", color, error = false){
 
 };
 
-const inLineFormat = function(line, color){
+const inLineFormat = function(line){
 
     return line
-    .replace(/(https?:\/\/[a-zA-Z0-9-_:./]*)/gu, chalk.hex(color || colors.urlColor)("$1"));
+    .replace(/(https?:\/\/[a-zA-Z0-9-_:./]*)/gu, chalk.hex(colors.urlColor)("$1"));
 
 };
 
@@ -163,7 +163,7 @@ const logger = {
         formattedMessage.split("\n").forEach((line) => {
 
             const cursor = getCursorPosition.sync();
-            const output = inLineFormat(line, color);
+            const output = inLineFormat(line);
 
             console.log(cursor && cursor.col > 1 ? `\n${ output }` : output);
 

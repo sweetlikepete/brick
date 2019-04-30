@@ -74,6 +74,7 @@ program
 .command("optimize")
 .action(() => optimize(config));
 
+
 program
 .command("setup")
 .action(() => setup());

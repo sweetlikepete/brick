@@ -10,11 +10,12 @@
     "local-tamland": "brick local-tamland",
     "optimize": "brick optimize",
     "setup": "brick setup",
-    "start": "npm run build && cd src/web && GCLOUD_PROJECT=brick-example NODE_ENV=production node dist/server/index.js"
+    "start": "npm run build && cd src/web && GCLOUD_PROJECT=brick-example NODE_ENV=production node dist/server/index.js",
+    "test": "brick test"
   },
   "version": "1.0.0",
   "devDependencies": {
-    "@sweetlikepete/brick": "file:../../sweetlikepete-brick-1.0.16.tgz",
+    "@sweetlikepete/brick": "file:node_modules/.cache/sweetlikepete-brick-1.0.17.tgz",
     "@sweetlikepete/postcss-config": "file:node_modules/.cache/sweetlikepete-postcss-config-1.0.0.tgz",
     "@sweetlikepete/webpack-config": "file:node_modules/.cache/sweetlikepete-webpack-config-1.0.0.tgz",
     "babel-tape-runner": "^3.0.0",

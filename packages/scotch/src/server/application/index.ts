@@ -1,9 +1,7 @@
 
 
-import compression from "compression";
 import express from "express";
 
-import { domainMiddleware } from "./middleware/domain";
 import {
     IManifest,
     manifestRouter
@@ -12,6 +10,12 @@ import {
     IStaticFile,
     staticRouter
 } from "./routers/static";
+import { caching } from "./caching";
+import { compression } from "./compression";
+import { domain } from "./domain";
+import { security } from "./security";
+import { cookie } from "./cookie";
+import { jwt } from "./jwt";
 
 
 export interface IScotchServerApplication {
@@ -58,66 +62,43 @@ export interface IScotchServerApplication {
     manifest?: IManifest;
     staticFiles?: IStaticFile[];
     staticFolder?: string;
+
+    /**
+     * Optional.
+     *
+     * Sets the X-Powered-By http response header
+     */
+    xPoweredBy?: string;
 }
 
-export const application = function({
-    cacheExpiration = "1y",
-    hostname,
-    manifest,
-    staticFiles = [],
-    staticFolder = "static"
-}: IScotchServerApplication): express.Express{
+
+export const application = function(config: IScotchServerApplication): express.Express{
 
     const local = process.env.local === "true" || false;
     const cwd = process.cwd();
 
+    const {
+        cacheExpiration = "1y",
+        hostname,
+        manifest,
+        staticFiles = [],
+        staticFolder = "static",
+        xPoweredBy = "https://www.youtube.com/watch?v=e_DqV1xdf-Y"
+    } = config;
+
     // Create the express application
     const app = express();
 
-    /*
-     * By enabling the "trust proxy" setting via app.enable('trust proxy'), Express
-     * will have knowledge that it's sitting behind a proxy and that the X-Forwarded-*
-     * header fields may be trusted, which otherwise may be easily spoofed.
-     *
-     * Enabling this setting has several subtle effects. The first of which is that
-     * X-Forwarded-Proto may be set by the reverse proxy to tell the app that it is
-     * https or simply http. This value is reflected by req.protocol.
-     *
-     * The second change this makes is the req.ip and req.ips values will be populated
-     * with X-Forwarded-For's list of addresses.
-     */
-    app.enable("trust proxy");
+    security(app, { xPoweredBy });
 
-    /*
-     * Redirect to the hostname if request.hostname !== hostname. This prevents
-     * application-id.appspot.com domain from servering the application if the application
-     * has a hostname configured.
-     */
-    app.use(domainMiddleware({
+    domain(app, {
         hostname,
         local
-    }));
+    });
 
-    // Disable etag on the local development server to prevent caching while testing
-    if(local){
-        app.disable("etag");
-    }
+    caching(app, { local });
 
-    /*
-     * This middleware will attempt to compress response bodies for all requests.
-     *
-     * This middleware will never compress responses that include a Cache-Control
-     * header with the no-transform directive, as compressing will transform the body.
-     */
-    app.use(compression({
-
-        /*
-         * The byte threshold for the response body size before compression is considered
-         * for the response, defaults to 1kb. This is a number of bytes or any string
-         * accepted by the bytes module.
-         */
-        threshold: 0
-    }));
+    compression(app);
 
     // Add the static file router
     app.use(staticRouter({
@@ -132,6 +113,12 @@ export const application = function({
     if(manifest){
         app.use(manifestRouter(manifest));
     }
+
+    cookie(app);
+
+    jwt(app, {
+        secret: "wtfweafsdfasdgdfgwer"
+    });
 
     return app;
 

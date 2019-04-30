@@ -46,9 +46,11 @@ export default {
         /*
          * Enforce camelCase naming convention
          *
+         * This is off for now because it's handled by the base elsint/camelcase
+         *
          * https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/camelcase.md
          */
-        "@typescript-eslint/camelcase": "error",
+        "@typescript-eslint/camelcase": "off",
 
         /*
          * Require PascalCased class and interface names (class-name from TSLint)
@@ -248,9 +250,11 @@ export default {
         /*
          * Disallow unused variables (no-unused-variable from TSLint)
          *
+         * Off for now because it's taken care of by base eslint
+         *
          * https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-unused-vars.md
          */
-        "@typescript-eslint/no-unused-vars": "error",
+        "@typescript-eslint/no-unused-vars": "off",
 
         /*
          * Disallow the use of variables before they are defined
