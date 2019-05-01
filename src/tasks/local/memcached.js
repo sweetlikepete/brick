@@ -1,7 +1,7 @@
 
 
 import {
-    exec,
+    spawn,
     kill
 } from "../../utils";
 
@@ -12,7 +12,7 @@ const memcached = async function(){
 
         await kill("memcached");
 
-        await exec({
+        await spawn({
             command: "memcached",
             label: "memcached"
         });

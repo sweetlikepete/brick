@@ -77,7 +77,7 @@ program
 
 program
 .command("setup")
-.action(() => setup());
+.action(() => setup(config));
 
 
 program

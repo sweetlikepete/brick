@@ -5,8 +5,12 @@ import gcloud from "./gcloud";
 import ruby from "./ruby";
 import xcode from "./xcode";
 
+import tamland from "../local/tamland";
 
-const setup = async function(){
+
+const setup = async function(config){
+
+    await tamland(config);
 
     await xcode();
 

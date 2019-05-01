@@ -18,6 +18,7 @@ const emojis = {
     deploy: "💩",
     error: "💥",
     firestore: "🔥",
+    kill: "💀",
     lint: "🔎",
     memcached: "🧠",
     optimize: "🌟",
@@ -184,42 +185,58 @@ const logger = {
 
     },
 
-    write(label = "", message = "", first = false, error = false){
+    write(label = "", message = "", error = false){
 
-        const lbl = formatLabel(label, error);
+        let lbl = formatLabel(label);
+
         const testLabel = `${ label } ${ String(error) }`;
         const blank = started ? formatLabel(`${ nonBreakingCharacter }`) : "";
-        const lblRepeat = formatLabel(label, error);
+        const cursor = getCursorPosition.sync();
 
-        if(first || lastLabel !== testLabel){
+        // Normalize new line characters
+        let output = message
+        .replace(/\r\n/gu, "\n")
+        .replace(/\n\r/gu, "\n")
+        .replace(/\r/gu, "\n");
 
-            if(lastLabel !== testLabel){
+        /*
+         * If this you're writing to the first col and your first character is a
+         * new line, replace it with a label
+         */
+        if(cursor && cursor.col === 1){
+            output = output.replace(/^\n/gu, `${ lbl } `);
+        }
 
-                const cursor = getCursorPosition.sync();
+        // If this is the first of a repeating label series
+        if(lastLabel !== testLabel){
 
-                if(cursor){
-                    console.log(cursor.col > 1 ? `\n${ blank }` : blank);
-                }
+            // Add a blank log above it
+            console.log(cursor.col > 1 ? `\n${ blank }` : blank);
 
-            }
-
+            // Add a label
             process.stdout.write(`${ lbl } `);
+
+            // Set the last label
+            lastLabel = testLabel;
+
+            // Get another label so you won't have double bolding
+            lbl = formatLabel(label);
 
         }
 
-        lastLabel = testLabel;
+        output = output
+        // Replace all new lines with new lines and labels
+        .replace(/\n/gu, `\n${ lbl } `)
+        // Replace all clear lines with positional line writes
+        // eslint-disable-next-line no-control-regex
+        .replace(/[\u001b]\[1G/gu, `\u001B[0K${ lbl }\u001B[${ stripAnsi(lbl).length + 2 }G`);
 
-        const formattedMessage = message.replace(/[\n]+$/gu, "\n");
+        // If a new label was writen into the output set the last label
+        if(output.includes(lbl)){
+            lastLabel = testLabel;
+        }
 
-        process.stdout.write(
-            (error ? chalk.red(formattedMessage) : inLineFormat(formattedMessage))
-            .replace(/\n\r/gu, "\r")
-            .replace(/\r\n/gu, `\r${ lblRepeat } `)
-            .replace(/\n/gu, `\n${ lblRepeat } `)
-            .replace(/\r/gu, `\r${ lblRepeat } `)
-        );
-
-        started = true;
+        process.stdout.write(`${ inLineFormat(output) }`);
 
     }
 

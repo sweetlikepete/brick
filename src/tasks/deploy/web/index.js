@@ -1,7 +1,7 @@
 
 
 import build from "../../build";
-import { exec } from "../../../utils";
+import { spawn } from "../../../utils/subprocess";
 import prompts from "../../../prompts";
 
 
@@ -14,7 +14,7 @@ const deployWeb = async function(config, options){
 
     await build(config, options);
 
-    await exec({
+    await spawn({
         command: `
             gcloud app deploy
             app.yaml

@@ -8,7 +8,6 @@ export default {
     extends: [
         "../rules/plugins/array-func",
         "../rules/plugins/async-await",
-        "../rules/plugins/compat",
         "../rules/plugins/css-modules",
         "../rules/plugins/es",
         "../rules/plugins/eslint-comments",

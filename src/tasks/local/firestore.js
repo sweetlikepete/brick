@@ -1,7 +1,7 @@
 
 
 import {
-    exec,
+    spawn,
     kill
 } from "../../utils";
 
@@ -17,7 +17,7 @@ const firestore = async function(config){
 
         await kill(port);
 
-        await exec({
+        await spawn({
             command: `gcloud beta emulators firestore start --host-port=${ host }:${ port }`,
             filter: /\[firestore\]\s/gu,
             label: "firestore"

@@ -2,7 +2,7 @@
 
 import logger from "@sweetlikepete/logger";
 
-import { exec } from "../../utils";
+import { spawn } from "../../utils";
 
 
 const ruby = async function(){
@@ -10,7 +10,7 @@ const ruby = async function(){
     try{
 
         // Check if ruby is installed
-        await exec({
+        await spawn({
             command: "ruby --version",
             detatch: true
         });

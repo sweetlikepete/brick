@@ -1,6 +1,6 @@
 
 
-import exec from "./exec";
+import { exec } from "./subprocess";
 
 
 const kill = async function(string){
@@ -15,7 +15,7 @@ const kill = async function(string){
             "|",
             "xargs kill -9"
         ].join(""),
-        detatch: true,
+        detatch: false,
         label: "kill"
     });
 

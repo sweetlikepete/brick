@@ -2,7 +2,10 @@
 
 import logger from "@sweetlikepete/logger";
 
-import { exec } from "../../utils";
+import {
+    exec,
+    spawn
+} from "../../utils";
 
 
 const brew = async function(formula){
@@ -32,11 +35,18 @@ const brew = async function(formula){
 
             logger.log("setup", `✔ brew ${ formula }`, "#00ff00");
 
+        }else if(exists){
+
+            await spawn({
+                command: `brew upgrade ${ formula }`,
+                label: "setup"
+            });
+
         }else{
 
-            await exec({
+            await spawn({
                 command: `brew install ${ formula }`,
-                label: `setup brew ${ formula }`
+                label: "setup"
             });
 
         }
@@ -46,7 +56,7 @@ const brew = async function(formula){
         try{
 
             // Check if Homebrew is installed
-            await exec({
+            await spawn({
                 command: "brew --version",
                 detatch: true
             });
@@ -55,9 +65,9 @@ const brew = async function(formula){
 
         }catch(error){
 
-            await exec({
+            await spawn({
                 command: "/usr/bin/ruby -e \"$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)\"",
-                label: "setup brew"
+                label: "setup"
             });
 
         }

@@ -1,6 +1,6 @@
 {
   "name": "@sweetlikepete/eslint-config",
-  "version": "1.0.48",
+  "version": "1.0.49",
   "description": "Shared config for eslint",
   "main": "lib/configs",
   "scripts": {
@@ -48,7 +48,6 @@
     "eslint-find-rules": "sarbbottam/eslint-find-rules#494e2b5a45b1c23441c22188b9119117b2f766f5",
     "eslint-plugin-array-func": "^3.1.3",
     "eslint-plugin-async-await": "^0.0.0",
-    "eslint-plugin-compat": "^3.1.1",
     "eslint-plugin-css-modules": "^2.11.0",
     "eslint-plugin-es": "^1.4.0",
     "eslint-plugin-eslint-comments": "^3.1.1",
@@ -91,7 +90,6 @@
     "eslint": "^5.16.0",
     "eslint-plugin-array-func": "^3.1.3",
     "eslint-plugin-async-await": "^0.0.0",
-    "eslint-plugin-compat": "^3.1.1",
     "eslint-plugin-css-modules": "^2.11.0",
     "eslint-plugin-es": "^1.4.0",
     "eslint-plugin-eslint-comments": "^3.1.1",

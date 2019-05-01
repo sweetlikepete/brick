@@ -1,7 +1,7 @@
 
 import logger from "@sweetlikepete/logger";
 
-import { exec } from "../../utils";
+import { spawn } from "../../utils";
 
 
 const gcloud = async function(){
@@ -11,7 +11,7 @@ const gcloud = async function(){
     try{
 
         // Check if xcode-select is installed
-        installed = await exec({
+        installed = await spawn({
             command: "xcode-select --version",
             detatch: true
         });
@@ -23,9 +23,9 @@ const gcloud = async function(){
     if(!installed){
 
         // Install xcode-select
-        await exec({
+        await spawn({
             command: "xcode-select --install",
-            label: "setup xcode-select"
+            label: "setup"
         });
 
     }

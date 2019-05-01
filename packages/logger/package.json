@@ -8,10 +8,9 @@
     "lint": "eslint src test",
     "prelint": "npm run build",
     "prepublishOnly": "npm run test",
-    "pretest": "npm run lint",
+    "xpretest": "npm run lint",
     "test": "babel-tape-runner ./test/*.js"
   },
-  "browserslist": "node 8",
   "engines": {
     "node": ">= 8"
   },
@@ -30,8 +29,8 @@
   ],
   "homepage": "https://github.com/sweetlikepete/brick/tree/master/packages/logger#readme",
   "devDependencies": {
-    "@sweetlikepete/babel": "^1.0.3",
-    "@sweetlikepete/eslint": "^1.0.7",
+    "@sweetlikepete/babel": "^1.0.4",
+    "@sweetlikepete/eslint": "^1.0.9",
     "babel-tape-runner": "^3.0.0",
     "tape": "^4.10.1"
   },
@@ -40,8 +39,10 @@
     "codeframe": "^0.0.1",
     "get-cursor-position": "^1.0.5",
     "justify-text": "^1.0.1",
+    "node-pty": "^0.8.1",
     "strip-ansi": "^5.2.0",
     "strip-color": "^0.1.0",
-    "text-table": "^0.2.0"
+    "text-table": "^0.2.0",
+    "through2": "^3.0.1"
   }
 }

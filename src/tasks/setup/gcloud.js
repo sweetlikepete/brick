@@ -2,7 +2,10 @@
 
 import logger from "@sweetlikepete/logger";
 
-import { exec } from "../../utils";
+import {
+    exec,
+    spawn
+} from "../../utils";
 
 
 let versions = null;
@@ -31,16 +34,16 @@ const gcloud = async function(component){
 
         }else if(version){
 
-            await exec({
+            await spawn({
                 command: "gcloud components update",
-                label: "setup gcloud"
+                label: "setup"
             });
 
         }else{
 
-            await exec({
+            await spawn({
                 command: `gcloud components install ${ component }`,
-                label: `setup gcloud ${ component }`
+                label: "setup"
             });
 
         }
@@ -52,7 +55,7 @@ const gcloud = async function(component){
         try{
 
             // Check if the Google Cloud SDK is installed
-            installed = await exec({
+            installed = await spawn({
                 command: "gcloud --version",
                 detatch: true
             });
@@ -64,15 +67,15 @@ const gcloud = async function(component){
         if(!installed){
 
             // Install the Google Cloud SDK
-            await exec({
+            await spawn({
                 command: "curl https://sdk.cloud.google.com | bash",
-                label: "setup gcloud"
+                label: "setup"
             });
 
             // Initialized the Google Cloud SDK
-            await exec({
+            await spawn({
                 command: "gcloud init",
-                label: "setup gcloud"
+                label: "setup"
             });
 
         }

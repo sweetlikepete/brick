@@ -7,7 +7,10 @@ import { hashElement } from "folder-hash";
 import logger from "@sweetlikepete/logger";
 import sequential from "promise-sequential";
 
-import { exec } from "../../utils";
+import {
+    exec,
+    spawn
+} from "../../utils";
 
 
 const scope = "@sweetlikepete";
@@ -159,13 +162,14 @@ const installPackage = async function(pack, location, directory){
         logger.log(label, `Updating ${ scope }/${ pack } code`, "#00ff00");
         logger.log(label, "");
 
-        await exec({
-            command: [
-                "cwd=$(pwd)",
-                `cd ${ installDirectory }`,
-                "npm run build",
-                `cp -rf ${ installDirectory }/lib "${ path.join(location, "node_modules/@sweetlikepete", pack) }"`
-            ].join(" && "),
+        await spawn({
+            command: "npm run build",
+            cwd: installDirectory,
+            label
+        });
+
+        await spawn({
+            command: `cp -rf ${ installDirectory }/lib ${ path.join(location, "node_modules/@sweetlikepete", pack) }`,
             label
         });
 
