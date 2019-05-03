@@ -2,9 +2,9 @@
 cwd=$(pwd)
 
 # local install webpack-config
-cd ~/code/brick-test/brick/packages/webpack-config
+cd ~/code/brick/packages/webpack-config
 npm run prepublishOnly
 package=$(npm pack)
-mv $package ~/code/brick-test
+mv $package ~/code/brick
 cd $cwd
-npm install "~/code/brick-test/$package"
+npm install "~/code/brick/$package"

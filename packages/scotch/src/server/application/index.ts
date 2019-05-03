@@ -1,6 +1,7 @@
 
 
 import express from "express";
+import helmet from "helmet";
 
 import {
     IManifest,
@@ -10,15 +11,21 @@ import {
     IStaticFile,
     staticRouter
 } from "./routers/static";
+import { graphqlRouter } from "./routers/graphql";
 import { caching } from "./caching";
 import { compression } from "./compression";
-import { domain } from "./domain";
-import { security } from "./security";
 import { cookie } from "./cookie";
-import { jwt } from "./jwt";
+import { domain } from "./domain";
+import {
+    jwt as jwtSetup,
+    IJWTConfiguration
+} from "./jwt";
+import { logs } from "./logs";
+import { security } from "./security";
+import { uncaught } from "./uncaught";
 
 
-export interface IScotchServerApplication {
+export interface IScotchServerConfig {
 
     /**
      * Optional.
@@ -35,6 +42,19 @@ export interface IScotchServerApplication {
     cacheExpiration?: string | number;
 
     /**
+     * Optional.
+     *
+     * Helmet content security policy.
+     *
+     * Content Security Policy helps prevent unwanted content being injected into
+     * your webpages; this can mitigate cross-site scripting (XSS) vulnerabilities,
+     * malicious frames, unwanted trackers, and more.
+     *
+     * https://github.com/helmetjs/csp
+     */
+    csp?: helmet.IHelmetContentSecurityPolicyConfiguration;
+
+    /**
      * Required.
      *
      * The hostname the application will be served from. If configured, in production,
@@ -45,6 +65,18 @@ export interface IScotchServerApplication {
      * e.g. www.sweetlikepete.com
      */
     hostname: string;
+
+    /**
+     * Optional.
+     *
+     * JWT configuration.
+     *
+     * e.g. {
+     *   cookieName: "jwt-cookie",
+     *   secret: "super-secret-jwt-secret"
+     * }
+     */
+    jwt?: IJWTConfiguration;
 
     /**
      * Optional.
@@ -72,14 +104,14 @@ export interface IScotchServerApplication {
 }
 
 
-export const application = function(config: IScotchServerApplication): express.Express{
+export const application = function(config: IScotchServerConfig): express.Express{
 
     const local = process.env.local === "true" || false;
     const cwd = process.cwd();
-
     const {
         cacheExpiration = "1y",
         hostname,
+        jwt = {},
         manifest,
         staticFiles = [],
         staticFolder = "static",
@@ -109,6 +141,11 @@ export const application = function(config: IScotchServerApplication): express.E
         staticFolder
     }));
 
+    // Add the request logger here so it skips static file requests.
+    logs(app);
+
+    graphqlRouter();
+
     // Add the /manifest.json router
     if(manifest){
         app.use(manifestRouter(manifest));
@@ -116,9 +153,9 @@ export const application = function(config: IScotchServerApplication): express.E
 
     cookie(app);
 
-    jwt(app, {
-        secret: "wtfweafsdfasdgdfgwer"
-    });
+    jwtSetup(app, jwt);
+
+    uncaught({ local });
 
     return app;
 

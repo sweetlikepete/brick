@@ -3,7 +3,15 @@
 import express from "express";
 import helmet from "helmet";
 
+
 export interface ISecurityConfiguration {
+
+    /**
+     * Optional.
+     *
+     * Helmet content security policy
+     */
+    csp?: helmet.IHelmetContentSecurityPolicyConfiguration;
 
     /**
      * Optional.
@@ -13,12 +21,14 @@ export interface ISecurityConfiguration {
     xPoweredBy?: string;
 }
 
+
 export const security = function(
     app: express.Express,
     config: ISecurityConfiguration
 ): void{
 
     const {
+        csp,
         xPoweredBy
     } = config;
 
@@ -42,6 +52,11 @@ export const security = function(
      * https://www.npmjs.com/package/helmet
      */
     app.use(helmet());
+
+    // Set up content security policy if it's configured
+    if(csp){
+        app.use(helmet.contentSecurityPolicy(csp));
+    }
 
     // Set custom response headers
     app.use((

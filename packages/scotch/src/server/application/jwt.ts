@@ -3,6 +3,8 @@
 import express from "express";
 import expressJWT from "express-jwt";
 
+import logger from "../../logger";
+
 
 export interface IJWTConfiguration {
 
@@ -76,7 +78,7 @@ export const jwt = function(
 
     }else{
 
-        console.warn("JWT middleware has not been configured. Missing jwt.secret in scotch configuration.");
+        logger.warn("JWT middleware has not been configured. Missing jwt.secret in scotch configuration.");
 
     }
 

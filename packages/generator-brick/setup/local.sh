@@ -1,8 +1,8 @@
 
 cwd=$(pwd)
-cd ~/code/brick-test/brick
+cd ~/code/brick
 npm run prepublishOnly
 package=$(npm pack)
-mv $package ~/code/brick-test
+mv $package ~/code/brick
 cd $cwd
-npm install "~/code/brick-test/$package" --save-dev
+npm install "~/code/brick/$package" --save-dev

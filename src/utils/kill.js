@@ -15,7 +15,7 @@ const kill = async function(string){
             "|",
             "xargs kill -9"
         ].join(""),
-        detatch: false,
+        detatch: true,
         label: "kill"
     });
 

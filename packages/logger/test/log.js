@@ -35,11 +35,10 @@ const run = function(options = {}){
             logger.command(label, bashCmd);
         }
 
-        logger.log(label, "");
-
         const [cm, ...args] = bashCmd.split(" ");
 
         const term = pty.spawn(cm, args, {
+            cols: 500,
             cwd,
             env: environment
         });
@@ -96,7 +95,7 @@ const run = function(options = {}){
     try{
 
         const result = await run({
-            command: "brew upgrade memcached",
+            command: "npm install ~/code/brick/example/node_modules/.cache/sweetlikepete-brick-1.0.17.tgz",
             label: "tamland"
         });
 

@@ -93,7 +93,7 @@ const logger = {
 
     },
 
-    error(label = "", message = "", preserveColor = false){
+    error(label = "", message = "", color = false){
 
         let formattedLabel = label;
         let formattedMessage = message;
@@ -109,7 +109,7 @@ const logger = {
             formattedMessage = formattedMessage.message;
         }
 
-        this.log(`${ formattedLabel }`, formattedMessage, preserveColor ? null : colors.errorColor, true);
+        this.log(`${ formattedLabel }`, formattedMessage, color === true ? null : color || colors.errorColor, true);
 
     },
 
@@ -225,6 +225,9 @@ const logger = {
         }
 
         output = output
+        // Replace all clear lines with positional line writes
+        // eslint-disable-next-line no-control-regex
+        .replace(/[\u001b]\[K\n/gu, `\u001B[K\u001B[${ stripAnsi(lbl).length + 2 }G`)
         // Replace all new lines with new lines and labels
         .replace(/\n/gu, `\n${ lbl } `)
         // Replace all clear lines with positional line writes
@@ -234,6 +237,8 @@ const logger = {
         // If a new label was writen into the output set the last label
         if(output.includes(lbl)){
             lastLabel = testLabel;
+        }else if(cursor.col === 1){
+            output = `${ lbl } ${ output }`;
         }
 
         process.stdout.write(`${ inLineFormat(output) }`);

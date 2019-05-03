@@ -1,6 +1,7 @@
 lib
 build
 node_modules
+temp
 
 .DS_Store
 # Only apps should have lockfiles

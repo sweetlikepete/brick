@@ -2,9 +2,9 @@
 cwd=$(pwd)
 
 # local install scotch
-cd ~/code/brick-test/brick/packages/scotch
+cd ~/code/brick/packages/scotch
 npm run prepublishOnly
 package=$(npm pack)
-mv $package ~/code/brick-test
+mv $package ~/code/brick
 cd $cwd/src/web
-npm install "~/code/brick-test/$package"
+npm install "~/code/brick/$package"

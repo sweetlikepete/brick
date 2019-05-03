@@ -132,6 +132,7 @@ const spawn = function(options = {}){
         const [cm, ...args] = bashCmd.split(" ");
 
         const term = pty.spawn(cm, args, {
+            cols: 500,
             cwd,
             env: environment
         });

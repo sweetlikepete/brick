@@ -6,7 +6,7 @@
     "start": "GCLOUD_PROJECT=brick-example NODE_ENV=production node dist/server/index.js"
   },
   "dependencies": {
-    "@sweetlikepete/scotch": "file:../../node_modules/.cache/sweetlikepete-scotch-1.0.2.tgz"
+    "@sweetlikepete/scotch": "file:../../node_modules/.cache/sweetlikepete-scotch-1.0.3.tgz"
   },
   "devDependencies": {
     "@sweetlikepete/postcss-config": "file:../../node_modules/.cache/sweetlikepete-postcss-config-1.0.0.tgz",

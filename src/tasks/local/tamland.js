@@ -91,6 +91,45 @@ const setCache = async function(cache){
 };
 
 
+const npmInstallPackage = async function(config){
+
+    const {
+        cacheDirectory,
+        installDirectory,
+        installedDevelopment,
+        location,
+        pack
+    } = config;
+
+    logger.log(label, "");
+    logger.log(label, `Installing ${ scope }/${ pack } into ${ location }`, "#00ff00");
+    logger.log(label, "");
+
+    await spawn({
+        command: "npm run prepublishOnly",
+        cwd: installDirectory,
+        label
+    });
+
+    const npmPack = await exec({
+        command: `cd ${ installDirectory } && npm pack`,
+        label
+    });
+
+    await spawn({
+        command: `mv ${ path.join(installDirectory, npmPack.replace(/\n/gu, "")) } ${ cacheDirectory }`,
+        label
+    });
+
+    await spawn({
+        command: `npm install ${ cacheDirectory }/${ npmPack } ${ installedDevelopment ? "--save-dev" : "" }`,
+        cwd: location,
+        label
+    });
+
+};
+
+
 const installPackage = async function(pack, location, directory){
 
     const installDirectory = path.join(directory, pack === rootPackage ? ".." : "packages", pack);
@@ -135,20 +174,12 @@ const installPackage = async function(pack, location, directory){
         (installed || installedDevelopment)
     ){
 
-        logger.log(label, "");
-        logger.log(label, `Installing ${ scope }/${ pack } into ${ location }`, "#00ff00");
-        logger.log(label, "");
-
-        await exec({
-            command: [
-                `cd ${ installDirectory }`,
-                (packageJSON.scripts || {}).prepublishOnly ? "npm run prepublishOnly" : "echo ''",
-                "package=$(npm pack)",
-                `mv $package ${ cacheDirectory }`,
-                `cd ${ location }`,
-                `npm install ${ cacheDirectory }/$package ${ installedDevelopment ? "--save-dev" : "" }`
-            ].join(" && "),
-            label
+        await npmInstallPackage({
+            cacheDirectory,
+            installDirectory,
+            installedDevelopment,
+            location,
+            pack
         });
 
         cache[cacheKey] = hash;

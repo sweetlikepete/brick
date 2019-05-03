@@ -107,6 +107,31 @@ const startNodemonServer = function(script, environment){
 
                 const string = data.toString();
 
+                try{
+
+                    const log = JSON.parse(string);
+
+                    if(log.message){
+
+                        if(
+                            log.level === "warn" ||
+                            log.level === "error"
+                        ){
+
+                            logger.error(label, log.message, log.level === "warn" ? "#ff5400" : "#ff0000");
+
+                        }else{
+
+                            logger.log(label, log.message, color);
+
+                        }
+
+                        return;
+
+                    }
+
+                }catch(error){}
+
                 if(string){
                     logger.log(label, string, color);
                 }

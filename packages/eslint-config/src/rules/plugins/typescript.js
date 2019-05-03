@@ -250,11 +250,9 @@ export default {
         /*
          * Disallow unused variables (no-unused-variable from TSLint)
          *
-         * Off for now because it's taken care of by base eslint
-         *
          * https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-unused-vars.md
          */
-        "@typescript-eslint/no-unused-vars": "off",
+        "@typescript-eslint/no-unused-vars": "error",
 
         /*
          * Disallow the use of variables before they are defined

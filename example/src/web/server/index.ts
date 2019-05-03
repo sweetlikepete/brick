@@ -7,6 +7,9 @@ import server from "@sweetlikepete/scotch/lib/server";
 
 const app = server.application({
     hostname: "www.sweetlikepete.com",
+    jwt: {
+        secret: "ndB2N7l2sqSpvRNJBXtNdmKfvj6up1VN"
+    },
     manifest: {
         backgroundColor: "#fff",
         description: "",
