@@ -55,6 +55,23 @@ const postJSON = (
 
 });
 
+const graphqlServer = (graphiql: boolean = false): graphqlHTTP.Middleware => graphqlHTTP((
+    request: express.Request,
+    response: express.Response
+): graphqlHTTP.OptionsResult => {
+
+    response.setHeader("Content-Security-Policy", "");
+
+    return {
+        context: {
+            request,
+            response
+        },
+        graphiql,
+        schema: generateSchema()
+    };
+
+});
 
 export const graphqlRouter = (config: IGraphqlRouterConfig = {}): express.Router => {
 
@@ -68,32 +85,7 @@ export const graphqlRouter = (config: IGraphqlRouterConfig = {}): express.Router
         strict: true
     });
 
-    const gqlServer = (
-        request: express.Request,
-        response: express.Response,
-        graphiql = false
-    ): graphqlHTTP.Options => {
-
-        response.setHeader("Content-Security-Policy", "");
-
-        return {
-            context: {
-                request,
-                response
-            },
-            graphiql,
-            schema: generateSchema()
-        };
-
-    };
-
-    router.get(
-        endpoint,
-        (
-            request: express.Request,
-            response: express.Response
-        ): graphqlHTTP.Middleware => graphqlHTTP(gqlServer(request, response, true))
-    );
+    router.get(endpoint, graphqlServer(true));
 
     if(host){
 
@@ -126,13 +118,7 @@ export const graphqlRouter = (config: IGraphqlRouterConfig = {}): express.Router
 
     }else{
 
-        router.post(
-            endpoint,
-            (
-                request: express.Request,
-                response: express.Response
-            ): graphqlHTTP.Middleware => graphqlHTTP(gqlServer(request, response))
-        );
+        router.post(endpoint, graphqlServer());
 
     }
 

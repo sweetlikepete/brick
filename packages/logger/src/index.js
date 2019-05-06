@@ -79,7 +79,7 @@ const format = function(label, message = "", color, error = false){
 const inLineFormat = function(line){
 
     return line
-    .replace(/(https?:\/\/[a-zA-Z0-9-_:./]*)/gu, chalk.hex(colors.urlColor)("$1"));
+    .replace(/(https?:\/\/[a-zA-Z0-9-_:.?=&/]*)/gu, chalk.hex(colors.urlColor)("$1"));
 
 };
 

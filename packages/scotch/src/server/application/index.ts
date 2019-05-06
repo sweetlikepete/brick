@@ -144,7 +144,7 @@ export const application = function(config: IScotchServerConfig): express.Expres
     // Add the request logger here so it skips static file requests.
     logs(app);
 
-    graphqlRouter();
+    app.use(graphqlRouter());
 
     // Add the /manifest.json router
     if(manifest){
