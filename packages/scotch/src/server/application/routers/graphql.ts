@@ -6,11 +6,30 @@ import express from "express";
 import graphqlHTTP from "express-graphql";
 
 import { schema as generateSchema } from "../../../graphql/schema";
+import { IScotchGraphQLFieldConfigMap } from "../../../graphql/types";
 
 
 interface IGraphqlRouterConfig {
+    authorized?: (request: express.Request) => boolean;
     endpoint?: string;
     host?: string | undefined;
+    // These can legitimately be of any type
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    mutations?: IScotchGraphQLFieldConfigMap<any, any, any>;
+    // These can legitimately be of any type
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    queries?: IScotchGraphQLFieldConfigMap<any, any, any>;
+}
+
+interface IGraphqlServerConfig {
+    authorized?: (request: express.Request) => boolean;
+    graphiql?: boolean;
+    // These can legitimately be of any type
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    mutations?: IScotchGraphQLFieldConfigMap<any, any, any>;
+    // These can legitimately be of any type
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    queries?: IScotchGraphQLFieldConfigMap<any, any, any>;
 }
 
 interface IJSONResponse {
@@ -55,10 +74,17 @@ const postJSON = (
 
 });
 
-const graphqlServer = (graphiql: boolean = false): graphqlHTTP.Middleware => graphqlHTTP((
+const graphqlServer = (config: IGraphqlServerConfig): graphqlHTTP.Middleware => graphqlHTTP((
     request: express.Request,
     response: express.Response
 ): graphqlHTTP.OptionsResult => {
+
+    const {
+        authorized = (authRequest: express.Request): boolean => !authRequest,
+        graphiql = false,
+        mutations,
+        queries
+    } = config;
 
     response.setHeader("Content-Security-Policy", "");
 
@@ -68,7 +94,11 @@ const graphqlServer = (graphiql: boolean = false): graphqlHTTP.Middleware => gra
             response
         },
         graphiql,
-        schema: generateSchema()
+        schema: generateSchema({
+            authorized: authorized(request),
+            mutations,
+            queries
+        })
     };
 
 });
@@ -76,6 +106,7 @@ const graphqlServer = (graphiql: boolean = false): graphqlHTTP.Middleware => gra
 export const graphqlRouter = (config: IGraphqlRouterConfig = {}): express.Router => {
 
     const {
+        authorized = (request: express.Request): boolean => !request,
         endpoint = "/graphql/",
         host
     } = config;
@@ -85,7 +116,10 @@ export const graphqlRouter = (config: IGraphqlRouterConfig = {}): express.Router
         strict: true
     });
 
-    router.get(endpoint, graphqlServer(true));
+    router.get(endpoint, graphqlServer({
+        authorized,
+        graphiql: true
+    }));
 
     if(host){
 
@@ -118,7 +152,9 @@ export const graphqlRouter = (config: IGraphqlRouterConfig = {}): express.Router
 
     }else{
 
-        router.post(endpoint, graphqlServer());
+        router.post(endpoint, graphqlServer({
+            authorized
+        }));
 
     }
 

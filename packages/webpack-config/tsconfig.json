@@ -2,12 +2,15 @@
   "compilerOptions": {
     "allowSyntheticDefaultImports": true,
     "declaration": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
     "incremental": true,
     "jsx": "react",
     "lib": [
       "es5",
       "es6",
-      "dom"
+      "dom",
+      "esnext.asynciterable"
     ],
     "module": "commonjs",
     "outDir": "./lib",

@@ -2,6 +2,7 @@
   "extends": "@sweetlikepete",
   "rules": {
     "import/group-exports": "off",
-    "import/exports-last": "off"
+    "import/exports-last": "off",
+    "new-cap": "off"
   }
 }

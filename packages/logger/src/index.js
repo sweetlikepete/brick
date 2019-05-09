@@ -79,7 +79,7 @@ const format = function(label, message = "", color, error = false){
 const inLineFormat = function(line){
 
     return line
-    .replace(/(https?:\/\/[a-zA-Z0-9-_:.?=&/]*)/gu, chalk.hex(colors.urlColor)("$1"));
+    .replace(/(https?:\/\/[^\s]*)/gu, chalk.hex(colors.urlColor)("$1"));
 
 };
 
@@ -237,7 +237,7 @@ const logger = {
         // If a new label was writen into the output set the last label
         if(output.includes(lbl)){
             lastLabel = testLabel;
-        }else if(cursor.col === 1){
+        }else if(cursor && cursor.col === 1){
             output = `${ lbl } ${ output }`;
         }
 

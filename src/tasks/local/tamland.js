@@ -147,7 +147,7 @@ const installPackage = async function(pack, location, directory){
 
     const sourceCodeHash = await hashElement(installDirectory, {
         files: { include: ["*.*"] },
-        folders: { exclude: ["node_modules", ".git"] }
+        folders: { exclude: ["node_modules", "packages", ".git"] }
     });
 
     const packageJSONHash = await hashElement(installDirectory, {

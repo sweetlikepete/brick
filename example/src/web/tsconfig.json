@@ -1,20 +1,23 @@
 {
-    "compilerOptions": {
-      "allowSyntheticDefaultImports": true,
-      "declaration": true,
-      "incremental": true,
-      "jsx": "react",
-      "lib": [
-        "es5",
-        "es6",
-        "dom"
-      ],
-      "module": "commonjs",
-      "outDir": "./dist",
-      "strict": true,
-      "target": "es5"
-    },
-    "include": [
-      "**/*"
-    ]
-  }
+  "compilerOptions": {
+    "allowSyntheticDefaultImports": true,
+    "declaration": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "incremental": true,
+    "jsx": "react",
+    "lib": [
+      "es5",
+      "es6",
+      "dom",
+      "esnext.asynciterable"
+    ],
+    "module": "commonjs",
+    "outDir": "./dist",
+    "strict": true,
+    "target": "es5"
+  },
+  "include": [
+    "**/*"
+  ]
+}

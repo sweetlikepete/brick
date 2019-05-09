@@ -1,44 +1,24 @@
 
 
-import {
-    GraphQLBoolean,
-    GraphQLEnumType,
-    GraphQLFloat,
-    GraphQLInt,
-    GraphQLList,
-    GraphQLNonNull,
-    GraphQLObjectType,
-    GraphQLSchema,
-    GraphQLString
-} from "graphql";
-import {
-    GraphQLDateTime,
-    GraphQLEmail,
-    GraphQLURL,
-    GraphQLUUID
-} from "graphql-custom-types";
-import GraphQLJSON from "graphql-type-json";
+import graphql from "graphql";
 
 
-const graphQLTypes = {
-    boolean: GraphQLBoolean,
-    datetime: GraphQLDateTime,
-    email: GraphQLEmail,
-    enum: GraphQLEnumType,
-    float: GraphQLFloat,
-    int: GraphQLInt,
-    json: GraphQLJSON,
-    list: GraphQLList,
-    nonNull: GraphQLNonNull,
-    object: GraphQLObjectType,
-    schema: GraphQLSchema,
-    string: GraphQLString,
-    url: GraphQLURL,
-    uuid: GraphQLUUID
-};
+// This could be a legitimate any type
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export interface IScotchGraphQLFieldConfig<TSource, TContext, TArgs = { [argName: string]: any }> {
+    args?: graphql.GraphQLFieldConfigArgumentMap;
+    astNode?: null | undefined | graphql.FieldDefinitionNode;
+    description?: null | undefined | string;
+    deprecationReason?: null | undefined | string;
+    public?: null | undefined | boolean;
+    resolve?: graphql.GraphQLFieldResolver<TSource, TContext, TArgs>;
+    subscribe?: graphql.GraphQLFieldResolver<TSource, TContext, TArgs>;
+    type: graphql.GraphQLOutputType;
+}
 
-
-export {
-    graphQLTypes as default
-};
+// This could be a legitimate any type
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export interface IScotchGraphQLFieldConfigMap<TSource, TContext, TArgs = { [key: string]: any }>{
+    [key: string]: IScotchGraphQLFieldConfig<TSource, TContext, TArgs>;
+}
 
