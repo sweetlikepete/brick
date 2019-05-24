@@ -10,6 +10,9 @@ import imagemin from "@sweetlikepete/imagemin";
 import logger from "@sweetlikepete/logger";
 
 
+const label = "optimize";
+
+
 const optimize = async function(globalConfig){
 
     const paths = await globby(globalConfig.optimize.image.paths);
@@ -29,7 +32,7 @@ const optimize = async function(globalConfig){
             const arrow = `${ filesize(sizes[index]) } > ${ filesize(file.data.byteLength) }`;
             const percentage = chalk.hex(diff < 0 ? "#ff0000" : "#00ff00")(`${ (diff / sizes[index] * percentageBase).toFixed(1) }%`);
 
-            logger.log("optimize", `${ percentage } ${ arrow } ${ chalk.hex("#666")(pth) }`);
+            logger.log(`${ percentage } ${ arrow } ${ chalk.hex("#666")(pth) }`, { label });
 
             resolve(diff);
 
@@ -45,11 +48,11 @@ const optimize = async function(globalConfig){
 
         const saved = filesize(savings.reduce((acc, cur) => cur + acc));
 
-        logger.log("optimize", `Saved a total of ${ chalk.hex("#00ff00")(saved) }`);
+        logger.log(`Saved a total of ${ chalk.hex("#00ff00")(saved) }`, { label });
 
     }else{
 
-        logger.log("optimize", "No images found");
+        logger.log("No images found", { label });
 
     }
 

@@ -1,11 +1,13 @@
 
 
-import fs from "fs";
-
 import server from "@sweetlikepete/scotch/lib/server";
+
+import { App } from "../app";
+import { routes } from "../routes";
 
 
 const app = server.application({
+    App,
     hostname: "www.sweetlikepete.com",
     jwt: {
         secret: "ndB2N7l2sqSpvRNJBXtNdmKfvj6up1VN"
@@ -30,28 +32,8 @@ const app = server.application({
         shortName: "Example shortname",
         startUrl: "/",
         themeColor: "#fff"
-    }
-});
-
-
-app.get("/", (request, response, next): void => {
-
-    fs.readFile("dist/server/index.html", (error, result): void => {
-
-        if(error){
-
-            next(error);
-
-            return;
-
-        }
-
-        response.set("content-type", "text/html");
-        response.send(result);
-        response.end();
-
-    });
-
+    },
+    routes
 });
 
 

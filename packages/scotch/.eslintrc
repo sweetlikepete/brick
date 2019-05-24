@@ -3,6 +3,7 @@
   "rules": {
     "import/group-exports": "off",
     "import/exports-last": "off",
+    "max-classes-per-file": "off",
     "new-cap": "off"
   }
 }

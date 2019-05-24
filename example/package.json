@@ -18,11 +18,13 @@
     "@sweetlikepete/brick": "file:node_modules/.cache/sweetlikepete-brick-1.0.17.tgz",
     "@sweetlikepete/postcss-config": "file:node_modules/.cache/sweetlikepete-postcss-config-1.0.0.tgz",
     "@sweetlikepete/webpack-config": "file:node_modules/.cache/sweetlikepete-webpack-config-1.0.0.tgz",
+    "@types/react-loadable": "^5.5.1",
     "babel-tape-runner": "^3.0.0",
     "tape": "^4.10.1",
     "webpack-cli": "^3.2.3"
   },
   "dependencies": {
-    "@types/webpack-env": "^1.13.9"
+    "@types/webpack-env": "^1.13.9",
+    "react-loadable": "^5.5.0"
   }
 }

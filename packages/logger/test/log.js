@@ -70,7 +70,7 @@ const run = function(options = {}){
             });
 
             if(!detatch){
-                logger.write(label, formatted);
+                logger.write(formatted, { label });
             }
 
         });

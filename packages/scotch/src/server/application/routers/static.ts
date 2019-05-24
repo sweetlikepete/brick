@@ -54,6 +54,10 @@ const getStaticFileMap = function(
         {
             path: "/robots.txt",
             source: "robots.txt"
+        },
+        {
+            path: "/favicon.ico",
+            source: "favicon.ico"
         }
 
     /**
@@ -73,15 +77,19 @@ const getStaticFileMap = function(
          * If there is no default static file in the implementing project, check if
          * there is a static file default that can be used and use that instead.
          */
-        if(
-            !fs.existsSync(path.join(cwd, file.source)) &&
-            fs.existsSync(path.join(__dirname, "../../static", file.source))
-        ){
+        if(!fs.existsSync(path.join(cwd, file.source))){
 
-            return {
-                ...file,
-                source: path.relative(cwd, path.join(__dirname, "../../static", file.source))
-            };
+            const packagedAlternative = path.join(__dirname, "../../../static", file.source);
+
+            if(fs.existsSync(packagedAlternative)){
+
+                return {
+                    ...file,
+                    source: path.relative(cwd, packagedAlternative)
+                };
+
+            }
+
 
         }
 
@@ -128,6 +136,7 @@ export const staticRouter = ({
 }: IStaticRouter): express.Router => {
 
     const watch = Boolean(local && process.env.watch === "true");
+    const encodedStaticFolder = staticFolder.split("/").map((sub): string => encodeURIComponent(sub)).join("/");
 
     // Force exact matches on paths
     const router = express.Router({
@@ -147,6 +156,20 @@ export const staticRouter = ({
             etag: true,
             maxAge: cacheExpiration
         }));
+
+    });
+
+    router.use(`/${ encodedStaticFolder }/*`, (
+        request: express.Request,
+        response: express.Response
+    ): void => {
+
+        const notFoundStatusCode = 404;
+
+        response
+        .status(notFoundStatusCode)
+        .send("404")
+        .end();
 
     });
 

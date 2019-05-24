@@ -17,3 +17,4 @@ TODO.md
 tsconfig.json
 yarn-error.log
 yarn.lock
+*.d.ts

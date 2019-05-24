@@ -18,7 +18,7 @@ const openBrowser = async function(config){
             const path = `http://localhost:${ config.nodemon.port }`;
             const retryLogMinimum = 4;
 
-            logger.log(`${ label }`, `Opening ${ path } in your default browser`);
+            logger.log(`Opening ${ path } in your default browser`, { label });
 
             const test = (retry = 1) => {
 
@@ -28,7 +28,7 @@ const openBrowser = async function(config){
 
                         if(retry > retryLogMinimum){
 
-                            logger.log(`${ label }`, `Opening ${ path } in your default browser: retry in ${ retry } ${ retry === 1 ? "second" : "seconds" }`);
+                            logger.log(`Opening ${ path } in your default browser: retry in ${ retry } ${ retry === 1 ? "second" : "seconds" }`, { label });
 
                         }
 

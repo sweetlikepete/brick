@@ -8,6 +8,8 @@ import {
 } from "../../utils";
 
 
+const label = "setup";
+
 let versions = null;
 
 
@@ -30,20 +32,23 @@ const gcloud = async function(component){
 
         if(version.latest_version_string === version.current_version_string){
 
-            logger.log("setup", `✔ gcloud ${ component }`, "#00ff00");
+            logger.log(`✔ gcloud ${ component }`, {
+                color: "#00ff00",
+                label
+            });
 
         }else if(version){
 
             await spawn({
                 command: "gcloud components update",
-                label: "setup"
+                label
             });
 
         }else{
 
             await spawn({
                 command: `gcloud components install ${ component }`,
-                label: "setup"
+                label
             });
 
         }
@@ -60,7 +65,10 @@ const gcloud = async function(component){
                 detatch: true
             });
 
-            logger.log("setup", "✔ gcloud", "#00ff00");
+            logger.log("✔ gcloud", {
+                color: "#00ff00",
+                label
+            });
 
         }catch(error){}
 
@@ -69,13 +77,13 @@ const gcloud = async function(component){
             // Install the Google Cloud SDK
             await spawn({
                 command: "curl https://sdk.cloud.google.com | bash",
-                label: "setup"
+                label
             });
 
             // Initialized the Google Cloud SDK
             await spawn({
                 command: "gcloud init",
-                label: "setup"
+                label
             });
 
         }

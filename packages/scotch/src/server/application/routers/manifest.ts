@@ -3,17 +3,17 @@
 import express from "express";
 
 
-export interface IManifestIcon {
+export interface IManifestConfigurationIcon {
     sizes: string;
     src: string;
     type: string;
 }
 
-export interface IManifest {
+export interface IManifestConfiguration {
     backgroundColor: string;
     description: string;
     display: string;
-    icons: IManifestIcon[];
+    icons: IManifestConfigurationIcon[];
     name: string;
     orientation?: string;
     scope?: string;
@@ -22,7 +22,7 @@ export interface IManifest {
     themeColor: string;
 }
 
-export const manifestRouter = (manifest: IManifest): express.Router => {
+export const manifestRouter = (config: IManifestConfiguration): express.Router => {
 
     // Force exact matches on paths
     const router = express.Router({
@@ -38,16 +38,16 @@ export const manifestRouter = (manifest: IManifest): express.Router => {
         .send(JSON.stringify({
             // We don't get to pick the property names of the manifest.json spec
             /* eslint-disable camelcase */
-            background_color: manifest.backgroundColor,
-            description: manifest.description,
-            display: manifest.display,
-            icons: manifest.icons,
-            name: manifest.name,
-            orientation: manifest.orientation,
-            scope: manifest.scope,
-            short_name: manifest.shortName,
-            start_url: manifest.startUrl,
-            theme_color: manifest.themeColor
+            background_color: config.backgroundColor,
+            description: config.description,
+            display: config.display,
+            icons: config.icons,
+            name: config.name,
+            orientation: config.orientation,
+            scope: config.scope,
+            short_name: config.shortName,
+            start_url: config.startUrl,
+            theme_color: config.themeColor
             /* eslint-enable camelcase */
         }))
         .end();

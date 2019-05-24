@@ -21,11 +21,11 @@ const log = (label2) => (error, stats, configFile) => {
 
     }else{
 
-        logger.log(label, `${ label2 } ${ configFile }`);
+        logger.log(`${ label2 } ${ configFile }`, { label });
 
-        logger.log(label);
+        logger.log("", { label });
 
-        logger.log(label, stats.toString({
+        logger.log(stats.toString({
             builtAt: false,
             colors: true,
             entrypoints: false,
@@ -33,9 +33,9 @@ const log = (label2) => (error, stats, configFile) => {
             modules: false,
             timings: false,
             version: false
-        }));
+        }), { label });
 
-        logger.log(label);
+        logger.log("", { label });
 
     }
 
@@ -48,6 +48,8 @@ const webpackTask = task(label, async (config, options) => {
         platform = "web",
         watch = false
     } = options;
+
+    process.chdir(path.join(config.cwd, `src/${ platform }`));
 
     const webpackPromise = (target) => () => new Promise((resolve) => {
 
@@ -106,6 +108,8 @@ const webpackTask = task(label, async (config, options) => {
             webpackPromise("client"),
             webpackPromise("server")
         ]);
+
+        process.chdir(config.cwd);
 
     }
 

@@ -8,7 +8,7 @@ import logger from "@sweetlikepete/logger";
 const fail = function(label, message){
 
     if(message && typeof message === "string"){
-        logger.log(label, message);
+        logger.log(message, { label });
     }
 
     // Make it beep like a jeep
@@ -24,7 +24,10 @@ const print = function(label, color = "#ffffff"){
             return done();
         }
 
-        logger.log(label ? `${ label }` : "gulp", file.path, color);
+        logger.log(file.path, {
+            color,
+            label: label || "gulp"
+        });
 
         // Not invalid since that function is bound by the through library
         // eslint-disable-next-line no-invalid-this

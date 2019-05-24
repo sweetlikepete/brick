@@ -1,22 +1,24 @@
 
 
-import test from "./test";
-
 import "./index.scss";
 
 
 if(process.env.watch){
 
-    // Needed for Hot Module Replacement
     if(typeof module.hot !== "undefined"){
+
         module.hot.accept();
+
     }
 
 }
 
+const initializeShell = async (): Promise<void> => {
 
-document.addEventListener("DOMContentLoaded", (): void => {
+    const { initialize } = await import("./shell");
 
-    console.log(`loadedx ${ test() }`);
+    initialize();
 
-});
+};
+
+initializeShell();

@@ -1,17 +1,26 @@
 
 
+import "@babel/polyfill";
+
 import express from "express";
 import helmet from "helmet";
+import slash from "express-slash";
 
 import {
-    IManifest,
+    appRouter
+} from "./routers/app";
+import {
+    IManifestConfiguration,
     manifestRouter
 } from "./routers/manifest";
 import {
     IStaticFile,
     staticRouter
 } from "./routers/static";
-import { graphqlRouter } from "./routers/graphql";
+import {
+    graphqlRouter,
+    IGraphqlRouterConfiguration
+} from "./routers/graphql";
 import { caching } from "./caching";
 import { compression } from "./compression";
 import { cookie } from "./cookie";
@@ -24,8 +33,12 @@ import { logs } from "./logs";
 import { security } from "./security";
 import { uncaught } from "./uncaught";
 
+import { Route } from "../../components/route";
+
 
 export interface IScotchServerConfig {
+
+    App: React.ComponentClass;
 
     /**
      * Optional.
@@ -53,6 +66,14 @@ export interface IScotchServerConfig {
      * https://github.com/helmetjs/csp
      */
     csp?: helmet.IHelmetContentSecurityPolicyConfiguration;
+
+    /**
+     * Optional.
+     *
+     * GraphQL configuration.
+     *
+     */
+    graphql?: IGraphqlRouterConfiguration;
 
     /**
      * Required.
@@ -91,7 +112,8 @@ export interface IScotchServerConfig {
      *
      * https://developers.google.com/web/fundamentals/web-app-manifest/
      */
-    manifest?: IManifest;
+    manifest?: IManifestConfiguration;
+    routes: typeof Route[];
     staticFiles?: IStaticFile[];
     staticFolder?: string;
 
@@ -109,10 +131,12 @@ export const application = function(config: IScotchServerConfig): express.Expres
     const local = process.env.local === "true" || false;
     const cwd = process.cwd();
     const {
+        App,
         cacheExpiration = "1y",
         hostname,
         jwt = {},
         manifest,
+        routes,
         staticFiles = [],
         staticFolder = "static",
         xPoweredBy = "https://www.youtube.com/watch?v=e_DqV1xdf-Y"
@@ -150,6 +174,15 @@ export const application = function(config: IScotchServerConfig): express.Expres
     if(manifest){
         app.use(manifestRouter(manifest));
     }
+
+    app.use(slash());
+
+    // Add the app router
+    app.use(appRouter({
+        App,
+        local,
+        routes
+    }));
 
     cookie(app);
 

@@ -5,6 +5,9 @@ import rcfile from "rc-config-loader";
 
 
 const userConfig = rcfile("brick").config || {};
+// This is fine for explicit no operation functions
+// eslint-disable-next-line no-empty-function
+const noop = () => {};
 
 
 const base = {
@@ -16,6 +19,12 @@ const defaults = {
     firestore: {
         host: "127.0.0.1",
         port: 9811
+    },
+    hooks: {
+        build: {
+            post: noop,
+            pre: noop
+        }
     },
     lint: {
         css: [
@@ -49,6 +58,7 @@ const defaults = {
 };
 
 const forced = {
+    cwd: process.cwd(),
     targets: [
         "desktop",
         "mobile",

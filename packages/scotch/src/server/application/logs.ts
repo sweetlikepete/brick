@@ -15,7 +15,7 @@ export const logs = function(app: express.Express): void{
 
         const url = `${ request.protocol }://${ request.get("host") }${ request.originalUrl }`;
 
-        logger.info(`${ request.method.toUpperCase() } ${ url }`, {
+        logger.info(`${ request.method.toUpperCase() } ${ response.statusCode } ${ url }`, {
             httpRequest: {
                 remoteIp: request.connection.remoteAddress,
                 requestMethod: request.method,

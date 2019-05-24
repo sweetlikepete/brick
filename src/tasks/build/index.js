@@ -1,15 +1,19 @@
 
 
+import logger from "@sweetlikepete/logger";
+
 import clean from "../clean";
-import lint from "../lint";
 import webpack from "../webpack";
 
 
-const build = async function(...args){
+const build = async function(config, options){
 
-    await clean(...args);
-    await lint(...args);
-    await webpack(...args);
+    await config.hooks.build.pre(config, options, logger);
+
+    await clean(config, options);
+    await webpack(config, options);
+
+    await config.hooks.build.post(config, options, logger);
 
 };
 

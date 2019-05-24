@@ -13,6 +13,7 @@ const nonBreakingCharacterCode = 160;
 const nonBreakingCharacter = String.fromCharCode(nonBreakingCharacterCode);
 
 const emojis = {
+    anonymous: "🤔",
     clean: "🧻",
     datastore: "💾",
     deploy: "💩",
@@ -39,6 +40,8 @@ const colors = {
     lintErrorMessageColor: "#999999",
     urlColor: "#00b1e1"
 };
+
+const defaultLabel = "anonymous";
 
 let lastFormattedLabel = null;
 let lastLabel = null;
@@ -79,7 +82,7 @@ const format = function(label, message = "", color, error = false){
 const inLineFormat = function(line){
 
     return line
-    .replace(/(https?:\/\/[^\s]*)/gu, chalk.hex(colors.urlColor)("$1"));
+    .replace(/(https?:\/\/[^(\s|")]*)/gu, chalk.hex(colors.urlColor)("$1"));
 
 };
 
@@ -87,13 +90,20 @@ const logger = {
 
     command(label = "", command = ""){
 
-        const formattedCommand = command.split(" && ").join("\n");
-
-        this.log(label, formattedCommand, "#ff5400");
+        this.log(command.split(" && ").join("\n"), {
+            color: "#ff5400",
+            label
+        });
 
     },
 
-    error(label = "", message = "", color = false){
+    error(message = "", options = {}){
+
+        const {
+            color,
+            label = defaultLabel
+        } = options;
+
 
         let formattedLabel = label;
         let formattedMessage = message;
@@ -109,7 +119,11 @@ const logger = {
             formattedMessage = formattedMessage.message;
         }
 
-        this.log(`${ formattedLabel }`, formattedMessage, color === true ? null : color || colors.errorColor, true);
+        this.log(formattedMessage, {
+            color: color === true ? null : color || colors.errorColor,
+            error: true,
+            label: formattedLabel
+        });
 
     },
 
@@ -143,7 +157,13 @@ const logger = {
 
     },
 
-    log(label = "", message = "", color, error = false){
+    log(message = "", options = {}){
+
+        const {
+            label = defaultLabel,
+            color,
+            error = false
+        } = options;
 
         const testLabel = `${ label } ${ String(error) }`;
         const formattedMessage = format(label, String(message), color, error);
@@ -176,16 +196,23 @@ const logger = {
 
     table(label, labels, data, options){
 
-        this.log(label, table([labels.map((lbl) => chalk.bold(lbl))].concat(data), {
+        this.log(table([labels.map((lbl) => chalk.bold(lbl))].concat(data), {
             ...options,
             stringLength(string){
+
                 return stripAnsi(string).length;
+
             }
-        }));
+        }), { label });
 
     },
 
-    write(label = "", message = "", error = false){
+    write(message = "", options = {}){
+
+        const {
+            label = defaultLabel,
+            error = false
+        } = options;
 
         let lbl = formatLabel(label);
 

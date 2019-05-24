@@ -17,11 +17,11 @@ export default function configuration(): IWebpackConfiguration{
                 ".mjs",
                 ".ts",
                 ".tsx",
-                ".js"
+                ".js",
+                ".jsx"
             ],
             modules: [
-                "node_modules",
-                "../../node_modules"
+                "node_modules"
             ],
             symlinks: false
         }

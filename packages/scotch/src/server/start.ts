@@ -1,21 +1,36 @@
 
 
 import express from "express";
+import loadable from "react-loadable";
+
+import logger from "../logger";
 
 
-export const start = function(
+export const start = async function(
     app: express.Application
-): void{
+): Promise<void>{
 
     const port = 8080;
 
     const PORT = Number(process.env.PORT) || port;
+    // Start up the server after the preloads complete
 
-    app.listen(PORT, (): void => {
+    try{
 
-        console.log(`App listening on port ${ PORT }`);
-        console.log("Press Ctrl+ C to quit.");
+        await loadable.preloadAll();
 
-    });
+        app.listen(PORT, (): void => {
+
+            logger.debug(`App listening on port ${ PORT }`);
+            logger.debug("Press Ctrl+ C to quit.");
+
+        });
+
+    }catch(error){
+
+        logger.error("loadable.preloadAll() failed.");
+        logger.error(error);
+
+    }
 
 };

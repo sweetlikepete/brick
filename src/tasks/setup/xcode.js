@@ -4,6 +4,9 @@ import logger from "@sweetlikepete/logger";
 import { spawn } from "../../utils";
 
 
+const label = "setup";
+
+
 const gcloud = async function(){
 
     let installed = false;
@@ -16,7 +19,10 @@ const gcloud = async function(){
             detatch: true
         });
 
-        logger.log("setup", "✔ xcode-select", "#00ff00");
+        logger.log("✔ xcode-select", {
+            color: "#00ff00",
+            label
+        });
 
     }catch(error){}
 
@@ -25,7 +31,7 @@ const gcloud = async function(){
         // Install xcode-select
         await spawn({
             command: "xcode-select --install",
-            label: "setup"
+            label
         });
 
     }

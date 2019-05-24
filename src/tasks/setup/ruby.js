@@ -5,6 +5,9 @@ import logger from "@sweetlikepete/logger";
 import { spawn } from "../../utils";
 
 
+const label = "setup";
+
+
 const ruby = async function(){
 
     try{
@@ -15,17 +18,20 @@ const ruby = async function(){
             detatch: true
         });
 
-        logger.log("setup", "✔ ruby", "#00ff00");
+        logger.log("✔ ruby", {
+            color: "#00ff00",
+            label
+        });
 
     }catch(error){
 
-        logger.error("check installed ruby", [
+        logger.error([
             "",
             "Ruby is not installed on this machine.",
             "",
             "Please install it manually before you proceed.",
             ""
-        ].join("\n"));
+        ].join("\n"), { label });
 
         process.exit();
 

@@ -11,11 +11,13 @@ import { kill } from "../../utils";
 const label = "server";
 
 
-const awaitServerScript = function(){
+const awaitServerScript = function(config){
+
+    process.chdir(path.join(config.cwd, "src/web"));
 
     const intervalTime = 100;
     const maxWaitTime = 10000;
-    const serverScript = path.join(process.cwd(), "dist/server/index.js");
+    const serverScript = "dist/server/index.js";
 
     let waited = 0;
 
@@ -51,8 +53,10 @@ const awaitServerScript = function(){
 
 };
 
+// eslint-disable-next-line max-lines-per-function
 const startNodemonServer = function(script, environment){
 
+    // eslint-disable-next-line max-lines-per-function
     return new Promise(() => {
 
         nodemon({
@@ -67,7 +71,7 @@ const startNodemonServer = function(script, environment){
 
         nodemon.on("start", () => {
 
-            logger.log(label, `Started ${ script }\n`);
+            logger.log(`Started ${ script }\n`, { label });
 
             logger.table(
                 "server",
@@ -78,11 +82,11 @@ const startNodemonServer = function(script, environment){
                 }
             );
 
-            logger.log(label, "");
+            logger.log("", { label });
 
         }).on("quit", () => {
 
-            logger.log(label, `Quit ${ script }`);
+            logger.log(`Quit ${ script }`, { label });
 
             process.exit();
 
@@ -90,12 +94,20 @@ const startNodemonServer = function(script, environment){
 
             if(files.length === 1){
 
-                logger.log(label, `Restarted ${ files[0] }`, "#d3d3d3");
+                logger.log(`Restarted ${ files[0] }`, {
+                    color: "#d3d3d3",
+                    label
+                });
 
             }else{
 
                 files.forEach((file) => {
-                    logger.log(`${ label }`, `Restarted ${ file }`, "#d3d3d3");
+
+                    logger.log(`Restarted ${ file }`, {
+                        color: "#d3d3d3",
+                        label
+                    });
+
                 });
 
             }
@@ -118,11 +130,17 @@ const startNodemonServer = function(script, environment){
                             log.level === "error"
                         ){
 
-                            logger.error(label, log.message, log.level === "warn" ? "#ff5400" : "#ff0000");
+                            logger.error(log.message, {
+                                color: log.level === "warn" ? "#ff5400" : "#ff0000",
+                                label
+                            });
 
                         }else{
 
-                            logger.log(label, log.message, color);
+                            logger.log(log.message, {
+                                color,
+                                label
+                            });
 
                         }
 
@@ -133,7 +151,12 @@ const startNodemonServer = function(script, environment){
                 }catch(error){}
 
                 if(string){
-                    logger.log(label, string, color);
+
+                    logger.log(string, {
+                        color,
+                        label
+                    });
+
                 }
 
             };
@@ -153,7 +176,7 @@ const startNodemonServer = function(script, environment){
 
 const server = async function(config, options){
 
-    const script = await awaitServerScript();
+    const script = await awaitServerScript(config);
 
     await kill(script);
 

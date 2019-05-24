@@ -1,5 +1,10 @@
 
 
+/*
+    eslint
+    @typescript-eslint/no-explicit-any: "off",
+*/
+
 import https from "https";
 
 import express from "express";
@@ -9,41 +14,28 @@ import { schema as generateSchema } from "../../../graphql/schema";
 import { IScotchGraphQLFieldConfigMap } from "../../../graphql/types";
 
 
-interface IGraphqlRouterConfig {
+export interface IGraphqlRouterConfiguration {
     authorized?: (request: express.Request) => boolean;
     endpoint?: string;
     host?: string | undefined;
-    // These can legitimately be of any type
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     mutations?: IScotchGraphQLFieldConfigMap<any, any, any>;
-    // These can legitimately be of any type
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     queries?: IScotchGraphQLFieldConfigMap<any, any, any>;
 }
 
-interface IGraphqlServerConfig {
+interface IGraphqlServerConfiguration {
     authorized?: (request: express.Request) => boolean;
     graphiql?: boolean;
-    // These can legitimately be of any type
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     mutations?: IScotchGraphQLFieldConfigMap<any, any, any>;
-    // These can legitimately be of any type
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     queries?: IScotchGraphQLFieldConfigMap<any, any, any>;
 }
 
 interface IJSONResponse {
-    // It's expected that this could actually be any value
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     data: any;
     status: number | undefined;
 }
 
-
 const postJSON = (
     options: string | https.RequestOptions | URL,
-    // It's expected that this could actually be any value
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     data: any
 ): Promise<IJSONResponse> => new Promise((resolve, reject): void => {
 
@@ -74,7 +66,7 @@ const postJSON = (
 
 });
 
-const graphqlServer = (config: IGraphqlServerConfig): graphqlHTTP.Middleware => graphqlHTTP((
+const graphqlServer = (config: IGraphqlServerConfiguration): graphqlHTTP.Middleware => graphqlHTTP((
     request: express.Request,
     response: express.Response
 ): graphqlHTTP.OptionsResult => {
@@ -103,7 +95,8 @@ const graphqlServer = (config: IGraphqlServerConfig): graphqlHTTP.Middleware => 
 
 });
 
-export const graphqlRouter = (config: IGraphqlRouterConfig = {}): express.Router => {
+
+export const graphqlRouter = (config: IGraphqlRouterConfiguration = {}): express.Router => {
 
     const {
         authorized = (request: express.Request): boolean => !request,

@@ -15,7 +15,10 @@ const remove = async (removePath) => {
 
     const exists = await fs.exists(removePath);
 
-    logger.log(label, removePath, exists ? "#ffffff" : "#777777");
+    logger.log(removePath, {
+        color: exists ? "#ffffff" : "#777777",
+        label
+    });
 
     if(exists){
 
@@ -26,12 +29,14 @@ const remove = async (removePath) => {
 };
 
 
-const clean = task(label, () => {
+const clean = task(label, (config, options) => {
 
-    const cwd = process.cwd();
+    const {
+        platform = "web"
+    } = options;
 
     const paths = [
-        path.join(cwd, "dist")
+        path.join(config.cwd, `src/${ platform }/dist`)
     ];
 
     paths.sort();

@@ -258,6 +258,10 @@ export default {
                     export: {
                         after: true
                     },
+                    extends: {
+                        after: true,
+                        before: true
+                    },
                     from: {
                         after: true,
                         before: true

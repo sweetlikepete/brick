@@ -101,9 +101,12 @@ const npmInstallPackage = async function(config){
         pack
     } = config;
 
-    logger.log(label, "");
-    logger.log(label, `Installing ${ scope }/${ pack } into ${ location }`, "#00ff00");
-    logger.log(label, "");
+    logger.log("", { label });
+    logger.log(`Installing ${ scope }/${ pack } into ${ location }`, {
+        color: "#00ff00",
+        label
+    });
+    logger.log("", { label });
 
     await spawn({
         command: "npm run prepublishOnly",
@@ -167,7 +170,10 @@ const installPackage = async function(pack, location, directory){
         cacheHash.source === hash.source
     ){
 
-        logger.log(label, `Already installed ${ pack }`, "#aaccaa");
+        logger.log(`Already installed ${ pack }`, {
+            color: "#aaccaa",
+            label
+        });
 
     }else if(
         cacheHash.package !== hash.package &&
@@ -189,9 +195,12 @@ const installPackage = async function(pack, location, directory){
         (packageJSON.scripts || {}).build
     ){
 
-        logger.log(label, "");
-        logger.log(label, `Updating ${ scope }/${ pack } code`, "#00ff00");
-        logger.log(label, "");
+        logger.log("", { label });
+        logger.log(`Updating ${ scope }/${ pack } code`, {
+            color: "#00ff00",
+            label
+        });
+        logger.log("", { label });
 
         await spawn({
             command: "npm run build",

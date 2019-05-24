@@ -9,6 +9,12 @@ export default {
     rules: {
 
         /*
+         * Typescript needs unitialed declarations when variables have a type
+         * that can be undefined
+         */
+        "init-declarations": "off",
+
+        /*
          * Use the typescript unused vars check only because it works with
          * imported interfaces
          */

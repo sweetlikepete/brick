@@ -4,8 +4,6 @@ import path from "path";
 
 import AssetsPlugin from "assets-webpack-plugin";
 import { BundleAnalyzerPlugin } from "webpack-bundle-analyzer";
-import HtmlWebPackPlugin from "html-webpack-plugin";
-import HtmlWebpackHarddiskPlugin from "html-webpack-harddisk-plugin";
 import webpack from "webpack";
 
 import {
@@ -27,17 +25,8 @@ export default function configuration(
             new AssetsPlugin({
                 filename: "webpack-assets.json",
                 path: folder
-            }),
-            new HtmlWebPackPlugin({
-                alwaysWriteToDisk: true,
-                chunks: ["index"],
-                filename: "../server/index.html",
-                template: "server/index.html"
             })
         ].concat(options.watch ? [
-            new HtmlWebpackHarddiskPlugin({
-                outputPath: path.relative(process.cwd(), "dist/server")
-            }),
             new webpack.HotModuleReplacementPlugin(),
             new webpack.NoEmitOnErrorsPlugin(),
             new BundleAnalyzerPlugin({

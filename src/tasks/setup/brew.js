@@ -8,6 +8,9 @@ import {
 } from "../../utils";
 
 
+const label = "setup";
+
+
 const brew = async function(formula){
 
     if(formula){
@@ -33,20 +36,23 @@ const brew = async function(formula){
 
         if(exists && updated){
 
-            logger.log("setup", `✔ brew ${ formula }`, "#00ff00");
+            logger.log(`✔ brew ${ formula }`, {
+                color: "#00ff00",
+                label
+            });
 
         }else if(exists){
 
             await spawn({
                 command: `brew upgrade ${ formula }`,
-                label: "setup"
+                label
             });
 
         }else{
 
             await spawn({
                 command: `brew install ${ formula }`,
-                label: "setup"
+                label
             });
 
         }
@@ -61,7 +67,10 @@ const brew = async function(formula){
                 detatch: true
             });
 
-            logger.log("setup", "✔ brew", "#00ff00");
+            logger.log("✔ brew", {
+                color: "#00ff00",
+                label
+            });
 
         }catch(error){
 

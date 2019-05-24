@@ -48,7 +48,7 @@ const exec = function(options = {}){
 
                     console.log("");
 
-                    logger.error(label, error.stack);
+                    logger.error(error.stack, { label });
 
                 }
 
@@ -77,7 +77,7 @@ const exec = function(options = {}){
                 });
 
                 if(!detatch){
-                    logger.write(label, formattedString);
+                    logger.write(formattedString, { label });
                 }
 
                 done();
@@ -154,7 +154,7 @@ const spawn = function(options = {}){
             });
 
             if(!detatch){
-                logger.write(label, formatted);
+                logger.write(formatted, { label });
             }
 
         });

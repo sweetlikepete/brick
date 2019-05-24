@@ -3,7 +3,9 @@
   "name": "generator-brick-template-web",
   "version": "1.0.0",
   "dependencies": {
-    "express": "^4.16.4"
+    "@types/react-router-dom": "^4.3.3",
+    "express": "^4.16.4",
+    "react-router-dom": "^5.0.0"
   },
   "devDependencies": {
     "@types/express": "^4.16.1"
