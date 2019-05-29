@@ -21,6 +21,25 @@ export default {
         ],
 
         /*
+         * Enforce the style of file extensions in import declarations
+         *
+         * https://github.com/mysticatea/eslint-plugin-node/blob/HEAD/docs/rules/file-extension-in-import.md
+         */
+        "node/file-extension-in-import": [
+            "error",
+            "never",
+            {
+                tryExtensions: [
+                    ".js",
+                    ".jsx",
+                    ".json",
+                    ".ts",
+                    ".tsx"
+                ]
+            }
+        ],
+
+        /*
          * Enforce either Buffer or require("buffer").Buffer
          *
          * https://github.com/mysticatea/eslint-plugin-node/blob/master/docs/rules/prefer-global/buffer.md
@@ -67,6 +86,21 @@ export default {
          *
          * https://github.com/mysticatea/eslint-plugin-node/blob/master/docs/rules/prefer-global/url-search-params.md
          */
-        "node/prefer-global/url-search-params": "error"
+        "node/prefer-global/url-search-params": "error",
+
+        /*
+         * Enforce require("dns").promises
+         *
+         * https://github.com/mysticatea/eslint-plugin-node/blob/HEAD/docs/rules/prefer-promises/dns.md
+         */
+        "node/prefer-promises/dns": "error",
+
+        /*
+         * Enforce require("fs").promises
+         *
+         * https://github.com/mysticatea/eslint-plugin-node/blob/HEAD/docs/rules/prefer-promises/fs.md
+         */
+        "node/prefer-promises/fs": "error"
+
     }
 };

@@ -18,20 +18,17 @@ import express from "express";
 import compression from "compression";
 import { renderToString } from "react-dom/server";
 import {
+    Link,
     matchPath,
-    StaticRouter
+    StaticRouter,
+    Router
 } from "react-router-dom";
 import { Provider } from "react-redux";
 import { ConnectedRouter } from "connected-react-router";
 
 import { Route as PageRoute } from "../../../components/route";
 import logger from "../../../logger";
-import
-createStore,
-{
-    context,
-    history
-} from "../../../store";
+import createStore from "../../../store";
 
 
 export interface IAppRouterConfiguration {
@@ -114,7 +111,10 @@ export const appRouter = (config: IAppRouterConfiguration): express.Router => {
     router.get("*/", async (request, response): Promise<void> => {
 
         const assets = getAssets(local);
-        const store = createStore();
+        const {
+            history,
+            store
+        } = createStore(request.path);
 
         let getData: (() => Promise<object>) = (): Promise<object> => new Promise((resolve): void => {
             resolve({});
@@ -147,9 +147,15 @@ export const appRouter = (config: IAppRouterConfiguration): express.Router => {
 
         const content = renderToString(
             <Provider store={ store }>
-                <ConnectedRouter history={ history }>
+                <Router history={ history }>
+                    <Link to="/">
+                        { "Home" }
+                    </Link>
+                    <Link to="/x/">
+                        { "X" }
+                    </Link>
                     <App />
-                </ConnectedRouter>
+                </Router>
             </Provider>
         );
 

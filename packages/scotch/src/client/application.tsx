@@ -3,27 +3,56 @@
 /*
  * Import { Frontload } from "react-frontload";
  */
-import { ConnectedRouter } from "connected-react-router";
 import { Provider } from "react-redux";
 import React from "react";
 import ReactDOM from "react-dom";
+import {
+    Link,
+    Router
+} from "react-router-dom";
 
-import
-createStore,
-{
-    context,
-    history
-} from "../store";
+import createStore from "../store";
 
 
 export interface IScotchClientConfig {
     App: React.ComponentClass;
 }
 
-const store = createStore();
+const Appx = function(): JSX.Element{
 
-console.log(store.getState());
+    const greeting = "Hello Function Component! /";
 
+    return (
+        <h1>
+            { greeting }
+        </h1>
+    );
+
+};
+
+const Foo = function(): JSX.Element{
+
+    const greeting = "Hello Function Component! /x/";
+
+    return (
+        <h1>
+            { greeting }
+        </h1>
+    );
+
+};
+
+const Bar = function(): JSX.Element{
+
+    const greeting = "Hello Function Component! /bar";
+
+    return (
+        <h1>
+            { greeting }
+        </h1>
+    );
+
+};
 
 export const application = function(config: IScotchClientConfig): void{
 
@@ -31,12 +60,25 @@ export const application = function(config: IScotchClientConfig): void{
         App
     } = config;
 
-    ReactDOM.render((
+    const {
+        history,
+        store
+    } = createStore(window.location.pathname);
+
+    const app = (
         <Provider store={ store }>
-            <ConnectedRouter history={ history }>
+            <Router history={ history }>
+                <Link to="/">
+                    { "Home" }
+                </Link>
+                <Link to="/x/">
+                    { "X" }
+                </Link>
                 <App />
-            </ConnectedRouter>
+            </Router>
         </Provider>
-    ), document.querySelector("#app"));
+    );
+
+    ReactDOM.render(app, document.querySelector("#app"));
 
 };

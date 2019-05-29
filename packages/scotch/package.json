@@ -32,8 +32,8 @@
   },
   "homepage": "https://github.com/sweetlikepete/brick/tree/master/packages/scotch#readme",
   "devDependencies": {
-    "@sweetlikepete/babel": "^1.0.4",
-    "@sweetlikepete/eslint": "^1.0.15",
+    "@sweetlikepete/babel": "^1.0.5",
+    "@sweetlikepete/eslint": "^1.0.16",
     "@types/common-tags": "^1.8.0",
     "@types/compression": "^0.0.36",
     "@types/cookie-parser": "^1.4.1",
@@ -44,7 +44,7 @@
     "@types/helmet": "^0.0.43",
     "@types/js-cookie": "^2.2.2",
     "@types/path-to-regexp": "^1.7.0",
-    "@types/react": "16.8.17",
+    "@types/react": "16.8.19",
     "@types/react-dom": "^16.8.4",
     "@types/react-frontload": "^1.0.0",
     "@types/react-loadable": "^5.5.1",
@@ -56,7 +56,7 @@
     "@types/webpack-hot-middleware": "^2.16.5",
     "babel-tape-runner": "^3.0.0",
     "renamer": "^1.1.1",
-    "tape": "^4.10.1"
+    "tape": "^4.10.2"
   },
   "dependencies": {
     "@babel/polyfill": "^7.4.4",
@@ -68,7 +68,7 @@
     "connected-react-router": "^6.4.0",
     "cookie-parser": "^1.4.4",
     "deepmerge": "^3.2.0",
-    "express": "^4.17.0",
+    "express": "^4.17.1",
     "express-graphql": "^0.8.0",
     "express-jwt": "^5.3.1",
     "express-slash": "^2.0.1",
@@ -81,6 +81,7 @@
     "react-frontload": "^1.0.7",
     "react-loadable": "^5.5.0",
     "react-redux": "^7.0.3",
+    "react-router": "^5.0.0",
     "react-router-dom": "^5.0.0",
     "react-ssr-prepass": "^1.0.5",
     "redux": "^4.0.1",

@@ -30,6 +30,13 @@ export default {
         "@typescript-eslint/array-type": "error",
 
         /*
+         * Disallows awaiting a value that is not a Promise (await-thenable)
+         *
+         * https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/await-thenable.md
+         */
+        "@typescript-eslint/await-thenable": "error",
+
+        /*
          * Bans “// @ts-ignore” comments from being used (ban-ts-ignore)
          *
          * https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/ban-ts-ignore.md
@@ -72,6 +79,13 @@ export default {
          * https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/explicit-member-accessibility.md
          */
         "@typescript-eslint/explicit-member-accessibility": "error",
+
+        /*
+         * Require or disallow spacing between function identifiers and their invocations (func-call-spacing)
+         *
+         * https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/func-call-spacing.md
+         */
+        "@typescript-eslint/func-call-spacing": "error",
 
         /*
          * Enforces naming of generic type variables
@@ -150,6 +164,13 @@ export default {
         "@typescript-eslint/no-explicit-any": "error",
 
         /*
+         * Disallow unnecessary parentheses
+         *
+         * https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-extra-parens.md
+         */
+        "@typescript-eslint/no-extra-parens": "error",
+
+        /*
          * Forbids the use of classes as namespaces (no-unnecessary-class from TSLint)
          *
          * https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-extraneous-class.md
@@ -169,6 +190,25 @@ export default {
          * https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-inferrable-types.md
          */
         "@typescript-eslint/no-inferrable-types": "error",
+
+        /*
+         * Disallow Magic Numbers
+         *
+         * https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-magic-numbers.md
+         */
+        "@typescript-eslint/no-magic-numbers": [
+            "error",
+            {
+                detectObjects: false,
+                ignore: [
+                    -1,
+                    0,
+                    1,
+                    2
+                ],
+                ignoreArrayIndexes: true
+            }
+        ],
 
         /*
          * Enforce valid definition of new and constructor. (no-misused-new from TSLint)
@@ -276,11 +316,25 @@ export default {
         "@typescript-eslint/no-var-requires": "error",
 
         /*
+         * Use for-of loops instead of standard for loops over arrays
+         *
+         * https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/prefer-for-of.md
+         */
+        "@typescript-eslint/prefer-for-of": "error",
+
+        /*
          * Use function types instead of interfaces with call signatures
          *
          * https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/prefer-function-type.md
          */
         "@typescript-eslint/prefer-function-type": "error",
+
+        /*
+         * Enforce includes method over indexOf method
+         *
+         * https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/prefer-includes.md
+         */
+        "@typescript-eslint/prefer-includes": "error",
 
         /*
          * Prefer an interface declaration over a type literal (type T = { ... }) (interface-over-type-literal from TSLint)
@@ -295,6 +349,20 @@ export default {
          * https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/prefer-namespace-keyword.md
          */
         "@typescript-eslint/prefer-namespace-keyword": "error",
+
+        /*
+         * Enforce to use RegExp#exec over String#match
+         *
+         * https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/prefer-regexp-exec.md
+         */
+        "@typescript-eslint/prefer-regexp-exec": "error",
+
+        /*
+         * Enforce the use of String#startsWith and String#endsWith instead of other equivalent methods of checking substrings
+         *
+         * https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/prefer-string-starts-ends-with.md
+         */
+        "@typescript-eslint/prefer-string-starts-ends-with": "error",
 
         /*
          * Functions that return promises must be async
@@ -320,11 +388,25 @@ export default {
         "@typescript-eslint/restrict-plus-operands": "error",
 
         /*
+         * Require or disallow semicolons instead of ASI
+         *
+         * https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/semi.md
+         */
+        "@typescript-eslint/semi": "error",
+
+        /*
          * Require consistent spacing around type annotations (typedef-whitespace from TSLint)
          *
          * https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/type-annotation-spacing.md
          */
         "@typescript-eslint/type-annotation-spacing": "error",
+
+        /*
+         * Enforces unbound methods are called with their expected scope.
+         *
+         * https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/unbound-method.md
+         */
+        "@typescript-eslint/unbound-method": "error",
 
         /*
          * Warns for any two overloads that could be unified into one by using a union or an optional/rest parameter.

@@ -1,6 +1,6 @@
 {
   "name": "@sweetlikepete/babel",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Collection of babel dependencies",
   "browserslist": "node 8",
   "engines": {
@@ -28,7 +28,7 @@
   "homepage": "https://github.com/sweetlikepete/brick/tree/master/packages/babel#readme",
   "dependencies": {
     "@babel/cli": "^7.4.4",
-    "@babel/core": "^7.4.4",
-    "@sweetlikepete/babel-preset": "^1.0.19"
+    "@babel/core": "^7.4.5",
+    "@sweetlikepete/babel-preset": "^1.0.20"
   }
 }

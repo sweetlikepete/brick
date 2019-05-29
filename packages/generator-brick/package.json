@@ -1,6 +1,6 @@
 {
   "name": "@sweetlikepete/generator-brick",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Yeoman generator for @sweetlikepete/brick",
   "main": "lib",
   "scripts": {
@@ -42,12 +42,12 @@
     "app"
   ],
   "devDependencies": {
-    "@sweetlikepete/babel": "^1.0.1",
-    "@sweetlikepete/eslint": "^1.0.0",
+    "@sweetlikepete/babel": "^1.0.5",
+    "@sweetlikepete/eslint": "^1.0.16",
     "babel-tape-runner": "^3.0.0",
-    "tape": "^4.10.1"
+    "tape": "^4.10.2"
   },
   "dependencies": {
-    "yeoman-generator": "^3.2.0"
+    "yeoman-generator": "^4.0.0"
   }
 }

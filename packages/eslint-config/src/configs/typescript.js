@@ -18,7 +18,13 @@ export default {
          * Use the typescript unused vars check only because it works with
          * imported interfaces
          */
-        "no-unused-vars": "off"
+        "no-unused-vars": "off",
+
+        /*
+         * Overridden by @typescript-eslint/semi
+         */
+        semi: "off"
+
     }
 };
 

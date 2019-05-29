@@ -28,6 +28,19 @@ export default {
         "at-rule-no-vendor-prefix": true,
 
         /*
+         * Specify a requirelist of properties for an at-rule.
+         *
+         * https://stylelint.io/user-guide/rules/at-rule-property-requirelist/
+         */
+        "at-rule-property-requirelist": {
+            "font-face": [
+                "font-display",
+                "font-family",
+                "font-style"
+            ]
+        },
+
+        /*
          * Specify a whitelist of allowed at-rules.
          *
          * https://stylelint.io/user-guide/rules/at-rule-whitelist/

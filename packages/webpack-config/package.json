@@ -1,6 +1,6 @@
 {
   "name": "@sweetlikepete/webpack-config",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Shared config for webpack",
   "main": "lib",
   "scripts": {
@@ -32,8 +32,8 @@
     "@babel/plugin-syntax-dynamic-import": "^7.2.0",
     "assets-webpack-plugin": "^3.9.10",
     "awesome-typescript-loader": "^5.2.1",
-    "babel-loader": "^8.0.5",
-    "clean-css-loader": "^1.1.0",
+    "babel-loader": "^8.0.6",
+    "clean-css-loader": "^2.0.0",
     "css-hot-loader": "^1.4.4",
     "css-loader": "^2.1.1",
     "duplicate-package-checker-webpack-plugin": "^3.0.0",
@@ -41,41 +41,41 @@
     "html-loader": "^0.5.5",
     "inspect-loader": "^1.0.0",
     "merge": "^1.2.1",
-    "mini-css-extract-plugin": "^0.5.0",
+    "mini-css-extract-plugin": "^0.6.0",
     "modernizr": "^3.7.1",
     "modernizr-loader": "^1.0.1",
-    "node-sass": "^4.11.0",
+    "node-sass": "^4.12.0",
     "optimize-css-assets-webpack-plugin": "^5.0.1",
     "postcss-loader": "^3.0.0",
     "rc-config-loader": "^2.0.2",
     "react-loadable": "^5.5.0",
     "sass-loader": "^7.1.0",
     "style-loader": "^0.23.1",
-    "terser-webpack-plugin": "^1.2.3",
-    "webpack-bundle-analyzer": "^3.1.0",
-    "webpack-dev-middleware": "^3.6.1",
+    "terser-webpack-plugin": "^1.3.0",
+    "webpack-bundle-analyzer": "^3.3.2",
+    "webpack-dev-middleware": "^3.7.0",
     "webpack-merge": "^4.2.1",
     "webpack-node-externals": "^1.7.2"
   },
   "devDependencies": {
-    "@sweetlikepete/babel": "^1.0.0",
-    "@sweetlikepete/eslint": "^1.0.0",
+    "@sweetlikepete/babel": "^1.0.5",
+    "@sweetlikepete/eslint": "^1.0.16",
     "@types/assets-webpack-plugin": "^3.9.0",
-    "@types/autoprefixer": "^9.4.0",
+    "@types/autoprefixer": "^9.5.0",
     "@types/duplicate-package-checker-webpack-plugin": "^2.1.0",
     "@types/html-webpack-plugin": "^3.2.0",
     "@types/mini-css-extract-plugin": "^0.2.0",
     "@types/optimize-css-assets-webpack-plugin": "^1.3.4",
     "@types/terser-webpack-plugin": "^1.2.1",
-    "@types/webpack": "^4.4.27",
+    "@types/webpack": "^4.4.32",
     "@types/webpack-bundle-analyzer": "^2.13.1",
-    "@types/webpack-merge": "^4.1.3",
+    "@types/webpack-merge": "^4.1.5",
     "@types/webpack-node-externals": "^1.6.3",
     "babel-tape-runner": "^3.0.0",
     "renamer": "^1.1.1",
-    "tape": "^4.10.1"
+    "tape": "^4.10.2"
   },
   "peerDependencies": {
-    "webpack": "^4.29.6"
+    "webpack": "^4.32.2"
   }
 }

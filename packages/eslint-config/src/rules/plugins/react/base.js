@@ -259,6 +259,15 @@ export default {
         "react/prefer-es6-class": "error",
 
         /*
+         * Enforce that props are read-only
+         *
+         * Off for now because this only works in Flow
+         *
+         * https://github.com/yannickcr/eslint-plugin-react/blob/HEAD/docs/rules/prefer-read-only-props.md
+         */
+        "react/prefer-read-only-props": "off",
+
+        /*
          * Enforce stateless React Components to be written as a pure function
          *
          * https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/prefer-stateless-function.md
@@ -325,6 +334,20 @@ export default {
          * https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/sort-prop-types.md
          */
         "react/sort-prop-types": "error",
+
+        /*
+         * This rule will enforce the state initialization style to be either in a constructor or with a class property.
+         *
+         * https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/state-in-constructor.md
+         */
+        "react/state-in-constructor": "error",
+
+        /*
+         * Enforces where React component static properties should be positioned.
+         *
+         * https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/static-property-placement.md
+         */
+        "react/static-property-placement": "error",
 
         /*
          * Enforce style prop value being an object

@@ -93,6 +93,15 @@ export default {
         "import/no-unresolved": "error",
 
         /*
+         * Forbid modules without any export, and exports not imported by any modules
+         *
+         * Off because it doesn't currently support dynamic imports
+         *
+         * https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/no-unused-modules.md
+         */
+        "import/no-unused-modules": "off",
+
+        /*
          * Prevent unnecessary path segments in import and require statements
          *
          * https://github.com/benmosher/eslint-plugin-import/blob/HEAD/docs/rules/no-useless-path-segments.md

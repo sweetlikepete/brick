@@ -209,6 +209,13 @@ export default {
         "react/jsx-props-no-multi-spaces": "error",
 
         /*
+         * Disallow JSX props spreading
+         *
+         * https://github.com/yannickcr/eslint-plugin-react/blob/HEAD/docs/rules/jsx-props-no-spreading.md
+         */
+        "react/jsx-props-no-spreading": "error",
+
+        /*
          * Enforce default props alphabetical sorting
          *
          * https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-sort-default-props.md
