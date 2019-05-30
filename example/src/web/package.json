@@ -14,8 +14,8 @@
     "react-router-dom": "^5.0.0"
   },
   "devDependencies": {
-    "@sweetlikepete/postcss-config": "file:../../node_modules/.cache/sweetlikepete-postcss-config-1.0.0.tgz",
-    "@sweetlikepete/webpack-config": "file:../../node_modules/.cache/sweetlikepete-webpack-config-1.0.0.tgz",
+    "@sweetlikepete/postcss-config": "file:../../node_modules/.cache/sweetlikepete-postcss-config-1.0.1.tgz",
+    "@sweetlikepete/webpack-config": "file:../../node_modules/.cache/sweetlikepete-webpack-config-1.0.2.tgz",
     "@types/express": "^4.16.1",
     "@types/react": "^16.8.18",
     "@types/react-loadable": "^5.5.1",

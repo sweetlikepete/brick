@@ -1,6 +1,6 @@
 {
   "name": "@sweetlikepete/eslint",
-  "version": "1.0.16",
+  "version": "1.0.18",
   "description": "Collection of eslint dependencies",
   "browserslist": "node 8",
   "engines": {
@@ -27,7 +27,7 @@
   ],
   "homepage": "https://github.com/sweetlikepete/brick/tree/master/packages/eslint#readme",
   "dependencies": {
-    "@sweetlikepete/eslint-config": "^1.0.57",
+    "@sweetlikepete/eslint-config": "^1.0.60",
     "@typescript-eslint/eslint-plugin": "^1.9.0",
     "@typescript-eslint/parser": "^1.9.0",
     "eslint": "^5.16.0",

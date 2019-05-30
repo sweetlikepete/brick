@@ -3,7 +3,7 @@
 import express from "express";
 import expressJWT from "express-jwt";
 
-import logger from "../../logger";
+import logger from "../logger";
 
 
 export interface IJWTConfiguration {

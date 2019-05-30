@@ -10,8 +10,8 @@ import https from "https";
 import express from "express";
 import graphqlHTTP from "express-graphql";
 
-import { schema as generateSchema } from "../../../graphql/schema";
-import { IScotchGraphQLFieldConfigMap } from "../../../graphql/types";
+import { schema as generateSchema } from "../../graphql/schema";
+import { IScotchGraphQLFieldConfigMap } from "../../graphql/types";
 
 
 export interface IGraphqlRouterConfiguration {

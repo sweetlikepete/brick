@@ -1,6 +1,6 @@
 {
   "name": "@sweetlikepete/eslint-config",
-  "version": "1.0.58",
+  "version": "1.0.60",
   "description": "Shared config for eslint",
   "main": "lib/configs",
   "scripts": {

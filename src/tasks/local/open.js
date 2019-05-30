@@ -48,7 +48,6 @@ const openBrowser = async function(config){
 
             test();
 
-
         });
 
     }catch(error){}

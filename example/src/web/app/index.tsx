@@ -1,7 +1,6 @@
 
 
 import * as React from "react";
-import { App as ScotchApp } from "@sweetlikepete/scotch/lib/app";
 import { Router } from "@sweetlikepete/scotch/lib/components/router";
 // Import Loadable from "react-loadable";
 
@@ -53,13 +52,7 @@ import { routes } from "../routes";
  */
 
 
-export class App extends ScotchApp{
-
-    public componentWillMount(): void{
-
-        console.log("componentWillMount");
-
-    }
+export class App extends React.PureComponent{
 
     public render(): JSX.Element{
 

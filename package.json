@@ -33,11 +33,11 @@
   "dependencies": {
     "@babel/polyfill": "^7.4.4",
     "@sweetlikepete/babel": "^1.0.5",
-    "@sweetlikepete/eslint": "^1.0.16",
+    "@sweetlikepete/eslint": "^1.0.18",
     "@sweetlikepete/imagemin": "^1.0.1",
     "@sweetlikepete/logger": "^1.0.3",
     "@sweetlikepete/stylelint": "^1.0.3",
-    "@sweetlikepete/webpack-config": "^1.0.1",
+    "@sweetlikepete/webpack-config": "^1.0.2",
     "chalk": "^2.4.2",
     "commander": "^2.20.0",
     "filesize": "^4.1.2",

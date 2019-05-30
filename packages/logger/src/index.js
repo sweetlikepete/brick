@@ -38,6 +38,10 @@ const colors = {
     labelColor: "#eeeeee",
     labelColorRepeat: "#555555",
     lintErrorMessageColor: "#999999",
+    status200: "#00ff00",
+    status300: "#ffff00",
+    status400: "#ff0000",
+    status500: "#ff0000",
     urlColor: "#00b1e1"
 };
 
@@ -82,7 +86,11 @@ const format = function(label, message = "", color, error = false){
 const inLineFormat = function(line){
 
     return line
-    .replace(/(https?:\/\/[^(\s|")]*)/gu, chalk.hex(colors.urlColor)("$1"));
+    .replace(/(https?:\/\/[^(\s|")]*)/gu, chalk.hex(colors.urlColor)("$1"))
+    .replace(/info:\s(POST|GET|PUT|PATCH|DELETE)\s(2\d\d)\s/gu, `info: $1 ${ chalk.hex(colors.status200)("$2") } `)
+    .replace(/info:\s(POST|GET|PUT|PATCH|DELETE)\s(3\d\d)\s/gu, `info: $1 ${ chalk.hex(colors.status300)("$2") } `)
+    .replace(/info:\s(POST|GET|PUT|PATCH|DELETE)\s(4\d\d)\s/gu, `info: $1 ${ chalk.hex(colors.status400)("$2") } `)
+    .replace(/info:\s(POST|GET|PUT|PATCH|DELETE)\s(5\d\d)\s/gu, `info: $1 ${ chalk.hex(colors.status500)("$2") } `);
 
 };
 

@@ -47,8 +47,10 @@ export class Router extends React.Component<IRouterProps>{
                             // eslint-disable-next-line react/jsx-no-bind, react-perf/jsx-no-new-function-as-prop
                             render={ (properties): JSX.Element => (
                                 <Component
+                                    // eslint-disable-next-line react/jsx-props-no-spreading
                                     { ...properties }
                                     data={ this.props.initial === instance.path ? this.props.data : null }
+                                    // eslint-disable-next-line @typescript-eslint/unbound-method
                                     getData={ instance.getData }
                                 />
                             ) }

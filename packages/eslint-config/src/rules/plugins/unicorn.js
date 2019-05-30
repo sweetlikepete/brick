@@ -266,6 +266,10 @@ export default {
                     },
                     envs: {
                         environments: true
+                    },
+                    props: {
+                        // This is used extremely frequently in react and we don't want to change it
+                        properties: false
                     }
                 }
             }

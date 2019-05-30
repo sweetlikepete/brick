@@ -1,5 +1,26 @@
 
 
+@tamland/core
+@tamland/babel
+@tamland/babel-preset
+@tamland/eslint
+@tamland/eslint-config
+@tamland/generator-tamland
+@tamland/imagemin
+@tamland/logger
+@tamland/postcss-config
+@tamland/stylelint
+@tamland/stylelint-config
+@tamland/webpack-config
+@tamland/brick
+    - server
+    - client
+    - router
+    - route
+
+
+
+
 
 figure out why hmr doesn't work in production mode
 add https://github.com/gajus/prepack-webpack-plugin to webpack
@@ -63,12 +84,4 @@ create the application
     - use https://github.com/jamiebuilds/react-loadable
 
 
-create a babel preset
-create a eslint preset
-create a stylelint preset
-
-build it in typescript
-
 make it an npm module
-
-make a script to publish to npm

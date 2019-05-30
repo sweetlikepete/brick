@@ -1,24 +1,57 @@
 
 
 import * as React from "react";
+import PropTypes from "prop-types";
+import {
+    Helmet,
+    HelmetProvider
+} from "react-helmet-async";
+import { History } from "history";
+import { Store } from "redux";
+import { Provider } from "react-redux";
+import {
+    Link,
+    Router
+} from "react-router-dom";
 
 
-export class App extends React.Component{
+interface IScotchAppProps {
+    helmetContext?: {} | undefined;
+    history: History;
+    store: Store;
+}
 
-    public shouldComponentUpdate(): boolean{
 
-        return false;
+export class Scotch extends React.PureComponent<IScotchAppProps>{
 
-    }
+    public static propTypes = {
+        children: PropTypes.oneOfType([
+            PropTypes.arrayOf(PropTypes.node),
+            PropTypes.node
+        ]).isRequired
+    };
 
     public render(): JSX.Element{
 
         return (
-            <div>
-                <p>
-                    { "Hello World!" }
-                </p>
-            </div>
+            <Provider store={ this.props.store }>
+                <HelmetProvider context={ this.props.helmetContext }>
+                    <Helmet>
+                        <title>
+                            { "wtf" }
+                        </title>
+                    </Helmet>
+                    <Router history={ this.props.history }>
+                        <Link to="/">
+                            { "Home" }
+                        </Link>
+                        <Link to="/x/">
+                            { "X" }
+                        </Link>
+                        { this.props.children }
+                    </Router>
+                </HelmetProvider>
+            </Provider>
         );
 
     }

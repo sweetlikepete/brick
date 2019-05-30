@@ -17,22 +17,17 @@ import * as React from "react";
 import express from "express";
 import compression from "compression";
 import { renderToString } from "react-dom/server";
-import {
-    Link,
-    matchPath,
-    StaticRouter,
-    Router
-} from "react-router-dom";
-import { Provider } from "react-redux";
-import { ConnectedRouter } from "connected-react-router";
+import { matchPath } from "react-router-dom";
+import { HelmetData } from "react-helmet";
 
-import { Route as PageRoute } from "../../../components/route";
-import logger from "../../../logger";
-import createStore from "../../../store";
+import { Route as PageRoute } from "../../components/route";
+import logger from "../../logger";
+import createStore from "../../store";
+import { Scotch } from "../../app";
 
 
 export interface IAppRouterConfiguration {
-    App: React.ComponentClass;
+    Component: React.ComponentClass;
     local: boolean;
     routes: typeof PageRoute[];
 }
@@ -92,10 +87,30 @@ const styleTag = function(styles: string | string[]): string{
 };
 
 
+const minifyHTML = function(html: string): string{
+
+    return html
+    .replace(/^\s*/gmu, "")
+    .replace(/(?:\r\n|\r|\n)/gu, " ")
+    .replace(/>\s*</gu, "><")
+    .replace(/\s*></gu, "><")
+    // You can't escape that character, it causes a parsing error
+    // eslint-disable-next-line no-div-regex
+    .replace(/="(.[^\s]*?)"/gu, "=$1");
+
+};
+
+
+const helmetContext: {
+    helmet?: HelmetData;
+} = {};
+
+
+// eslint-disable-next-line max-lines-per-function
 export const appRouter = (config: IAppRouterConfiguration): express.Router => {
 
     const {
-        App,
+        Component,
         local,
         routes
     } = config;
@@ -135,7 +150,7 @@ export const appRouter = (config: IAppRouterConfiguration): express.Router => {
             });
 
             if(match){
-                getData = route.getData;
+                getData = (): Promise<object> => route.getData();
                 initial = route.path;
             }
 
@@ -146,45 +161,46 @@ export const appRouter = (config: IAppRouterConfiguration): express.Router => {
         const data = match ? await getData() : {};
 
         const content = renderToString(
-            <Provider store={ store }>
-                <Router history={ history }>
-                    <Link to="/">
-                        { "Home" }
-                    </Link>
-                    <Link to="/x/">
-                        { "X" }
-                    </Link>
-                    <App />
-                </Router>
-            </Provider>
+            <Scotch
+                helmetContext={ helmetContext }
+                history={ history }
+                store={ store }
+            >
+                <Component />
+            </Scotch>
         );
 
-        // <PageRouter data={ data } initial={ initial } routes={ routes } />
+        const { helmet } = helmetContext;
 
-        const html = `
-            <!doctype html>
-                <html>
-                <head>
-                    <base href="/">
-                    <meta name="generator" content="Idle Hands">
-                    <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1,user-scalable=0,viewport-fit=cover">
-                    <script id="app-state-data" type="application/json">${ JSON.stringify(data) }</script>
-                    ${ styleTag(assets.index.css) }
-                </head>
-                <body>
-                    <div id="app">${ content }</div>
-                    ${ scriptTag(assets.index.js) }
-                </body>
-            </html>`;
-        // .replace(/^\s*/gmu, "")
-        // .replace(/(?:\r\n|\r|\n)/gu, " ")
-        // .replace(/>\s*</gu, "><")
-        // .replace(/\s*></gu, "><")
-        // // You can't escape that character, it causes a parsing error
-        // // eslint-disable-next-line no-div-regex
-        // .replace(/="(.[^\s]*?)"/gu, "=$1");
+        if(helmet){
 
-        response.send(html);
+            // <PageRouter data={ data } initial={ initial } routes={ routes } />
+
+            response.send(minifyHTML(`
+                <!doctype html>
+                    <html ${ helmet.htmlAttributes.toString() }>
+                    <head>
+                        ${ helmet.title.toString() }
+                        ${ helmet.meta.toString() }
+                        ${ helmet.link.toString() }
+                        <base href="/">
+                        <meta name="generator" content="Idle Hands">
+                        <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1,user-scalable=0,viewport-fit=cover">
+                        <script id="app-state-data" type="application/json">${ JSON.stringify(data) }</script>
+                        ${ styleTag(assets.index.css) }
+                    </head>
+                    <body ${ helmet.bodyAttributes.toString() }>
+                        <div id="app">${ content }</div>
+                        ${ scriptTag(assets.index.js) }
+                    </body>
+                </html>
+            `));
+
+        }else{
+
+            throw new Error("Could not initialize helmet data");
+
+        }
 
         response.end();
 

@@ -1,15 +1,15 @@
 
 
-import client from "@sweetlikepete/scotch/lib/client";
+import { Client } from "@sweetlikepete/scotch";
 
 import { App } from "../app";
 
 
 export const initialize = function(): void{
 
-    client.application({
-        App
-    });
+    const client = new Client(App);
+
+    client.start();
 
     console.log("shell initialized");
 

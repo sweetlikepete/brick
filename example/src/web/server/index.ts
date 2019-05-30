@@ -1,13 +1,12 @@
 
 
-import server from "@sweetlikepete/scotch/lib/server";
+import { Server } from "@sweetlikepete/scotch/lib/server";
 
 import { App } from "../app";
 import { routes } from "../routes";
 
 
-const app = server.application({
-    App,
+const server = new Server(App, {
     hostname: "www.sweetlikepete.com",
     jwt: {
         secret: "ndB2N7l2sqSpvRNJBXtNdmKfvj6up1VN"
@@ -36,6 +35,4 @@ const app = server.application({
     routes
 });
 
-
-server.start(app);
-
+server.start();

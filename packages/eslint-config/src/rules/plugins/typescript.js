@@ -166,9 +166,11 @@ export default {
         /*
          * Disallow unnecessary parentheses
          *
+         * This is off for now because it conflicts with react/jsx-wrap-multilines
+         *
          * https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-extra-parens.md
          */
-        "@typescript-eslint/no-extra-parens": "error",
+        "@typescript-eslint/no-extra-parens": "off",
 
         /*
          * Forbids the use of classes as namespaces (no-unnecessary-class from TSLint)
