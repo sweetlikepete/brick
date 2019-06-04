@@ -1,8 +1,6 @@
 
 
-import {
-    IWebpackConfiguration
-} from "../../interfaces";
+import { Configuration } from "webpack";
 
 
 /*
@@ -12,7 +10,7 @@ import {
  *
  * https://webpack.js.org/configuration/stats/
  */
-export default function configuration(): IWebpackConfiguration{
+export default function configuration(): Configuration{
 
     return {
         stats: {

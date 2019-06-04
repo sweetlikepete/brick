@@ -1,9 +1,8 @@
 
 
-import {
-    IWebpackCompiledOptions,
-    IWebpackConfiguration
-} from "../../interfaces";
+import { Configuration } from "webpack";
+
+import { IWebpackCompiledOptions } from "../../interfaces";
 
 
 /*
@@ -13,9 +12,9 @@ import {
  * https://webpack.js.org/concepts/mode/
  */
 export default function configuration(
-    config: IWebpackConfiguration,
+    config: Configuration,
     options: IWebpackCompiledOptions
-): IWebpackConfiguration{
+): Configuration{
 
     /*
      * Set common development options.

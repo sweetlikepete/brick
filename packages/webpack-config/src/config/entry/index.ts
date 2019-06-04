@@ -1,9 +1,8 @@
 
 
-import {
-    IWebpackCompiledOptions,
-    IWebpackConfiguration
-} from "../../interfaces";
+import { Configuration } from "webpack";
+
+import { IWebpackCompiledOptions } from "../../interfaces";
 
 
 /*
@@ -14,9 +13,9 @@ import {
  * https://webpack.js.org/configuration/externals/#externals
  */
 export default function configuration(
-    config: IWebpackConfiguration,
+    config: Configuration,
     options: IWebpackCompiledOptions
-): IWebpackConfiguration{
+): Configuration{
 
     const index = `./${ options.target }/index.ts`;
 

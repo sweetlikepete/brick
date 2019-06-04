@@ -2,18 +2,15 @@
 
 import OptimizeCSSAssetsPlugin from "optimize-css-assets-webpack-plugin";
 import TerserPlugin from "terser-webpack-plugin";
-import webpack from "webpack";
+import { Configuration } from "webpack";
 
-import {
-    IWebpackCompiledOptions,
-    IWebpackConfiguration
-} from "../../interfaces";
+import { IWebpackCompiledOptions } from "../../interfaces";
 
 
 export default function configuration(
-    config: IWebpackConfiguration,
+    config: Configuration,
     options: IWebpackCompiledOptions
-): webpack.Configuration{
+): Configuration{
 
     return {
         optimization: {

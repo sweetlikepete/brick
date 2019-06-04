@@ -1,11 +1,10 @@
 
 
 import merge from "webpack-merge";
+import { Configuration } from "webpack";
 
-import { IWebpackConfiguration } from "../../../../interfaces";
 
-
-export default function configuration(config: IWebpackConfiguration): IWebpackConfiguration{
+export default function configuration(config: Configuration): Configuration{
 
     return merge(config, {
         module: {

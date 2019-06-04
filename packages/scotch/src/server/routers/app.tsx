@@ -19,6 +19,7 @@ import compression from "compression";
 import { renderToString } from "react-dom/server";
 import { matchPath } from "react-router-dom";
 import { HelmetData } from "react-helmet";
+import { ChunkExtractor } from "@loadable/server";
 
 import { Route as PageRoute } from "../../components/route";
 import logger from "../../logger";
@@ -123,7 +124,11 @@ export const appRouter = (config: IAppRouterConfiguration): express.Router => {
 
     router.use(compression());
 
+    // I'll get back to this
+    // eslint-disable-next-line max-lines-per-function
     router.get("*/", async (request, response): Promise<void> => {
+
+        const statsFile = path.resolve("../web/dist/client/loadable-stats.json");
 
         const assets = getAssets(local);
         const {
@@ -159,8 +164,14 @@ export const appRouter = (config: IAppRouterConfiguration): express.Router => {
         });
 
         const data = match ? await getData() : {};
+        const extractor = new ChunkExtractor({
+            entrypoints: [
+                "index"
+            ],
+            statsFile
+        });
 
-        const content = renderToString(
+        const jsx = extractor.collectChunks(
             <Scotch
                 helmetContext={ helmetContext }
                 history={ history }
@@ -170,7 +181,15 @@ export const appRouter = (config: IAppRouterConfiguration): express.Router => {
             </Scotch>
         );
 
+        const content = renderToString(jsx);
+
         const { helmet } = helmetContext;
+
+        const scriptTags = extractor.getScriptTags();
+        // You can also collect your "preload/prefetch" links
+        const linkTags = extractor.getLinkTags();
+        // And you can even collect your style tags (if you use "mini-css-extract-plugin")
+        const styleTags = extractor.getStyleTags();
 
         if(helmet){
 
@@ -187,11 +206,12 @@ export const appRouter = (config: IAppRouterConfiguration): express.Router => {
                         <meta name="generator" content="Idle Hands">
                         <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1,user-scalable=0,viewport-fit=cover">
                         <script id="app-state-data" type="application/json">${ JSON.stringify(data) }</script>
-                        ${ styleTag(assets.index.css) }
+                        ${ linkTags }
+                        ${ styleTags }
                     </head>
                     <body ${ helmet.bodyAttributes.toString() }>
                         <div id="app">${ content }</div>
-                        ${ scriptTag(assets.index.js) }
+                        ${ scriptTags }
                     </body>
                 </html>
             `));

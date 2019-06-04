@@ -1,11 +1,9 @@
 
 
 import nodeExternals from "webpack-node-externals";
+import { Configuration } from "webpack";
 
-import {
-    IWebpackCompiledOptions,
-    IWebpackConfiguration
-} from "../../interfaces";
+import { IWebpackCompiledOptions } from "../../interfaces";
 
 
 /*
@@ -16,9 +14,9 @@ import {
  * https://webpack.js.org/configuration/externals/#externals
  */
 export default function configuration(
-    config: IWebpackConfiguration,
+    config: Configuration,
     options: IWebpackCompiledOptions
-): IWebpackConfiguration{
+): Configuration{
 
     const server = {
         externals: [

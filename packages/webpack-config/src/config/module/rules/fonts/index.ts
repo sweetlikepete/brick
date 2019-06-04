@@ -1,18 +1,16 @@
 
 
 import merge from "webpack-merge";
+import { Configuration } from "webpack";
 
 import fileLoader from "../../../../shared/loaders/file";
-import {
-    IWebpackCompiledOptions,
-    IWebpackConfiguration
-} from "../../../../interfaces";
+import { IWebpackCompiledOptions } from "../../../../interfaces";
 
 
 export default function configuration(
-    config: IWebpackConfiguration,
+    config: Configuration,
     options: IWebpackCompiledOptions
-): IWebpackConfiguration{
+): Configuration{
 
     return merge(config, {
         module: {

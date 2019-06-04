@@ -79,7 +79,7 @@ const getStaticFileMap = function(
          */
         if(!fs.existsSync(path.join(cwd, file.source))){
 
-            const packagedAlternative = path.join(__dirname, "../../../static", file.source);
+            const packagedAlternative = path.join(__dirname, "../../static", file.source);
 
             if(fs.existsSync(packagedAlternative)){
 

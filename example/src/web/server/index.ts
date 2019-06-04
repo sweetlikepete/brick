@@ -1,6 +1,6 @@
 
 
-import { Server } from "@sweetlikepete/scotch/lib/server";
+import { Server } from "@sweetlikepete/scotch";
 
 import { App } from "../app";
 import { routes } from "../routes";

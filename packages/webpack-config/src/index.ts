@@ -1,21 +1,21 @@
 
 
 import merge from "webpack-merge";
+import { Configuration } from "webpack";
 
 import config from "./config";
 import {
     IEnvironment,
-    IWebpackOptions,
-    IWebpackConfiguration
+    IWebpackOptions
 } from "./interfaces";
 
 
 const configure = function(
-    webpackConfig: IWebpackConfiguration = {},
+    webpackConfig: Configuration = {},
     webpackOptions: IWebpackOptions = {}
-): (environment: IEnvironment) => IWebpackConfiguration{
+): (environment: IEnvironment) => Configuration{
 
-    return (environment: IEnvironment = {}) => {
+    return (environment: IEnvironment = {}): Configuration => {
 
         const webpackOptionsDefaults = {
             bundleAnalyzerPort: 3001,

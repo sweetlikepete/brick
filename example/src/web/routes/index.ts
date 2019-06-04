@@ -1,6 +1,6 @@
 
 
-import { Route as PageRoute } from "@sweetlikepete/scotch/lib/components/route";
+import { Route as PageRoute } from "@sweetlikepete/scotch";
 
 
 import HomePageRoute from "./home";

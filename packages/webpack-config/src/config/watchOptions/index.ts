@@ -1,9 +1,9 @@
 
 
-import { IWebpackConfiguration } from "../../interfaces";
+import { Configuration } from "webpack";
 
 
-export default function configuration(): IWebpackConfiguration{
+export default function configuration(): Configuration{
 
     return {
         watchOptions: {

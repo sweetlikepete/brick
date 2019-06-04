@@ -29,6 +29,7 @@ export default declare((api, options) => {
             "@babel/plugin-proposal-class-properties",
             "@babel/plugin-syntax-dynamic-import",
             "@babel/plugin-transform-named-capturing-groups-regex",
+            "@loadable/babel-plugin",
             "jsx-control-statements",
             addModuleExports ? "add-module-exports" : null,
             shebang ? [

@@ -32,7 +32,7 @@ export class Router extends React.Component<IRouterProps>{
                 { this.props.routes.map((PageRouteClass): JSX.Element => {
 
                     const instance = new PageRouteClass({});
-                    const Component = instance.component;
+                    // Const Component = instance.component;
 
                     return (
                         <PageRouteClass
@@ -45,15 +45,21 @@ export class Router extends React.Component<IRouterProps>{
                              * the render method and I can't think of how to do this without a function
                              */
                             // eslint-disable-next-line react/jsx-no-bind, react-perf/jsx-no-new-function-as-prop
-                            render={ (properties): JSX.Element => (
-                                <Component
-                                    // eslint-disable-next-line react/jsx-props-no-spreading
-                                    { ...properties }
-                                    data={ this.props.initial === instance.path ? this.props.data : null }
-                                    // eslint-disable-next-line @typescript-eslint/unbound-method
-                                    getData={ instance.getData }
-                                />
-                            ) }
+                            render={ (): JSX.Element => {
+
+                                const Page = instance.page;
+
+                                // { ...properties }
+
+                                /*
+                                 * Data={ this.props.initial === instance.path ? this.props.data : null }
+                                 * getData={ instance.getData }
+                                 */
+                                return (
+                                    <Page />
+                                );
+
+                            } }
                             sensitive={ instance.sensitive }
                             strict={ instance.strict }
                         />

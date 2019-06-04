@@ -1,5 +1,16 @@
 
 
+use connected router to get over rerender
+  - finish @loadable implementation
+
+@typescript-eslint/interface-name-prefix
+    - get rid of all I prefixes
+    - get rid of prefer interface over type
+
+- add jasmine tests to everything like the documentation of typescript shows
+
+
+
 @tamland/core
 @tamland/babel
 @tamland/babel-preset
@@ -17,7 +28,6 @@
     - client
     - router
     - route
-
 
 
 

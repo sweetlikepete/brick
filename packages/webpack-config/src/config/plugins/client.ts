@@ -4,24 +4,26 @@ import path from "path";
 
 import AssetsPlugin from "assets-webpack-plugin";
 import { BundleAnalyzerPlugin } from "webpack-bundle-analyzer";
-import webpack from "webpack";
+import webpack, { Configuration } from "webpack";
+import LoadablePlugin from "@loadable/webpack-plugin";
 
-import {
-    IWebpackConfiguration,
-    IWebpackCompiledOptions
-} from "../../interfaces";
+import { IWebpackCompiledOptions } from "../../interfaces";
 
 
 export default function configuration(
-    config: IWebpackConfiguration,
+    config: Configuration,
     options: IWebpackCompiledOptions
-): IWebpackConfiguration{
+): Configuration{
 
     const output = config.output || {};
     const folder = output.path ? path.relative(process.cwd(), output.path) : "dist";
 
     return {
         plugins: [
+            new LoadablePlugin({
+                filename: "loadable-stats.json",
+                writeToDisk: true
+            }),
             new AssetsPlugin({
                 filename: "webpack-assets.json",
                 path: folder

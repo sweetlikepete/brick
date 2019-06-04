@@ -1,30 +1,26 @@
 
 
 import React from "react";
-import { Route as PageRoute } from "@sweetlikepete/scotch/lib/components/route";
-import { Helmet } from "@sweetlikepete/scotch/lib/components/helmet";
+import { Route as PageRoute } from "@sweetlikepete/scotch";
+import loadable from "@loadable/component";
 
 
-export interface IRouteData{
+// Required for @loadable/components to work correctly
+// eslint-disable-next-line no-inline-comments
+const AsyncPage = loadable((): Promise<{ default: React.ComponentType }> => import(/* webpackChunkName: "page-home" */ "./page"));
+
+
+export interface RouteData{
     test: string;
 }
 
-export default class Route extends PageRoute<IRouteData>{
+export default class Route extends PageRoute<RouteData>{
 
     public path = "/";
 
-    public component = (): JSX.Element => (
-        <div>
-            <Helmet>
-                <title>
-                    { "homepage biatch" }
-                </title>
-            </Helmet>
-            { "Home Page" }
-        </div>
-    );
+    public page = AsyncPage;
 
-    public getData(): Promise<IRouteData>{
+    public getData(): Promise<RouteData>{
 
         return new Promise((resolve): void => {
 

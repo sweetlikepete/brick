@@ -111,7 +111,7 @@ export default {
          */
         "@typescript-eslint/interface-name-prefix": [
             "error",
-            "always"
+            "never"
         ],
 
         /*
@@ -273,7 +273,12 @@ export default {
          *
          * https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-type-alias.md
          */
-        "@typescript-eslint/no-type-alias": "error",
+        "@typescript-eslint/no-type-alias": [
+            "error",
+            {
+                allowLiterals: "in-unions-and-intersections"
+            }
+        ],
 
         /*
          * Warns when a namespace qualifier is unnecessary.

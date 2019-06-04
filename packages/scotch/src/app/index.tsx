@@ -38,7 +38,15 @@ export class Scotch extends React.PureComponent<IScotchAppProps>{
                 <HelmetProvider context={ this.props.helmetContext }>
                     <Helmet>
                         <title>
-                            { "wtf" }
+                            {
+
+                                /*
+                                 * This needs to be an empty space so that if a
+                                 * Route doesn't implement a title the title is
+                                 * blanked out
+                                 */
+                            }
+                            { " " }
                         </title>
                     </Helmet>
                     <Router history={ this.props.history }>

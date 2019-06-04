@@ -3,6 +3,7 @@ import { Store } from "redux";
 import { History } from "history";
 import React from "react";
 import ReactDOM from "react-dom";
+import { loadableReady } from "@loadable/component";
 
 import createStore from "../store";
 import { Scotch } from "../app";
@@ -48,7 +49,15 @@ export class Client{
             </Scotch>
         );
 
-        ReactDOM.hydrate(app, document.querySelector("#app"));
+        console.log("WTF BRO");
+
+        loadableReady((): void => {
+
+            console.log("WTF BRO 2");
+
+            ReactDOM.hydrate(app, document.querySelector("#app"));
+
+        });
 
     }
 

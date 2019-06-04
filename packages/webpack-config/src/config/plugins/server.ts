@@ -1,11 +1,9 @@
 
 
-import webpack from "webpack";
-
-import { IWebpackConfiguration } from "../../interfaces";
+import webpack, { Configuration } from "webpack";
 
 
-export default function configuration(): IWebpackConfiguration{
+export default function configuration(): Configuration{
 
     return {
         plugins: [

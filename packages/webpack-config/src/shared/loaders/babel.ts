@@ -1,16 +1,17 @@
 
 
 import {
-    IWebpackCompiledOptions,
-    IWebpackConfiguration,
-    IWebpackLoader
-} from "../../interfaces";
+    Configuration,
+    NewLoader
+} from "webpack";
+
+import { IWebpackCompiledOptions } from "../../interfaces";
 
 
 export default function loader(
-    config: IWebpackConfiguration,
+    config: Configuration,
     options: IWebpackCompiledOptions
-): IWebpackLoader{
+): NewLoader{
 
     /*
      * This loader transpiles JavaScript files using Babel.

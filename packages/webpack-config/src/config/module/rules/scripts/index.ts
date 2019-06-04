@@ -3,18 +3,16 @@
 import path from "path";
 
 import merge from "webpack-merge";
+import { Configuration } from "webpack";
 
 import babelLoader from "../../../../shared/loaders/babel";
-import {
-    IWebpackCompiledOptions,
-    IWebpackConfiguration
-} from "../../../../interfaces";
+import { IWebpackCompiledOptions } from "../../../../interfaces";
 
 
 export default function configuration(
-    config: IWebpackConfiguration,
+    config: Configuration,
     options: IWebpackCompiledOptions
-): IWebpackConfiguration{
+): Configuration{
 
     const loader = babelLoader(config, options);
 

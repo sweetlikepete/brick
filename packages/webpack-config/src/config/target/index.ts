@@ -1,15 +1,14 @@
 
 
-import {
-    IWebpackCompiledOptions,
-    IWebpackConfiguration
-} from "../../interfaces";
+import { Configuration } from "webpack";
+
+import { IWebpackCompiledOptions } from "../../interfaces";
 
 
 export default function configuration(
-    config: IWebpackConfiguration,
+    config: Configuration,
     options: IWebpackCompiledOptions
-): IWebpackConfiguration{
+): Configuration{
 
     return {
         target: options.target === "client" ? "web" : "node"

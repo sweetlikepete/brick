@@ -1,13 +1,11 @@
 
 
 import merge from "webpack-merge";
+import { Configuration } from "webpack";
 
 import rules from "./rules";
 
-import {
-    IWebpackCompiledOptions,
-    IWebpackConfiguration
-} from "../../interfaces";
+import { IWebpackCompiledOptions } from "../../interfaces";
 
 
 /*
@@ -17,9 +15,9 @@ import {
  * https://webpack.js.org/configuration/module/
  */
 export default function configuration(
-    config: IWebpackConfiguration,
+    config: Configuration,
     options: IWebpackCompiledOptions
-): IWebpackConfiguration{
+): Configuration{
 
     return merge(
         rules(config, options)

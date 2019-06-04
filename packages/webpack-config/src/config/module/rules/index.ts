@@ -1,6 +1,7 @@
 
 
 import merge from "webpack-merge";
+import { Configuration } from "webpack";
 
 import files from "./files";
 import fonts from "./fonts";
@@ -9,10 +10,7 @@ import images from "./images";
 import scripts from "./scripts";
 import styles from "./styles";
 
-import {
-    IWebpackCompiledOptions,
-    IWebpackConfiguration
-} from "../../../interfaces";
+import { IWebpackCompiledOptions } from "../../../interfaces";
 
 
 /*
@@ -23,9 +21,9 @@ import {
  * https://webpack.js.org/configuration/module/#modulerules
  */
 export default function configuration(
-    config: IWebpackConfiguration,
+    config: Configuration,
     options: IWebpackCompiledOptions
-): IWebpackConfiguration{
+): Configuration{
 
     return merge(
         files(config, options),
