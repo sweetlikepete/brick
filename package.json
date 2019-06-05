@@ -31,11 +31,12 @@
   },
   "homepage": "https://github.com/sweetlikepete/brick/tree/master#readme",
   "dependencies": {
+    "@babel/cli": "^7.4.4",
     "@babel/polyfill": "^7.4.4",
     "@sweetlikepete/babel": "^1.0.8",
     "@sweetlikepete/eslint": "^1.0.21",
     "@sweetlikepete/imagemin": "^1.0.1",
-    "@sweetlikepete/logger": "^1.0.3",
+    "@sweetlikepete/logger": "^1.0.4",
     "@sweetlikepete/stylelint": "^1.0.5",
     "@sweetlikepete/webpack-config": "^1.0.2",
     "chalk": "^2.4.2",

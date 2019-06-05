@@ -1,6 +1,6 @@
 {
   "name": "@sweetlikepete/logger",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Logger for brick tasks",
   "main": "lib/index.js",
   "scripts": {
