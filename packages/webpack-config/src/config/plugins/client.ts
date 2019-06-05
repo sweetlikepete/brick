@@ -7,12 +7,12 @@ import { BundleAnalyzerPlugin } from "webpack-bundle-analyzer";
 import webpack, { Configuration } from "webpack";
 import LoadablePlugin from "@loadable/webpack-plugin";
 
-import { IWebpackCompiledOptions } from "../../interfaces";
+import { Options } from "../..";
 
 
 export default function configuration(
     config: Configuration,
-    options: IWebpackCompiledOptions
+    options: Options
 ): Configuration{
 
     const output = config.output || {};

@@ -7,12 +7,17 @@ import {
     RuleSetUseItem
 } from "webpack";
 
-import { IWebpackCompiledOptions } from "../../../../interfaces";
+import { Options } from "../../../..";
 
 
+/*
+ * This function is pretty simple and contains a lot of comments, so it's ok
+ * that we don't break it up.
+ */
+// eslint-disable-next-line max-lines-per-function
 export default function configuration(
     config: Configuration,
-    options: IWebpackCompiledOptions
+    options: Options
 ): Configuration{
 
     const publicPath = config.output ? config.output.publicPath : `/${ options.staticFolder }/`;

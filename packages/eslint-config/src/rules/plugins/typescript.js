@@ -271,14 +271,11 @@ export default {
         /*
          * Disallow the use of type aliases (interface-over-type-literal from TSLint)
          *
+         * Off for now because these seem like they're too useful to pass up
+         *
          * https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-type-alias.md
          */
-        "@typescript-eslint/no-type-alias": [
-            "error",
-            {
-                allowLiterals: "in-unions-and-intersections"
-            }
-        ],
+        "@typescript-eslint/no-type-alias": "off",
 
         /*
          * Warns when a namespace qualifier is unnecessary.

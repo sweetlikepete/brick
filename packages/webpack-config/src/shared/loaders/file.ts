@@ -5,12 +5,12 @@ import {
     NewLoader
 } from "webpack";
 
-import { IWebpackCompiledOptions } from "../../interfaces";
+import { Options } from "../..";
 
 
 export default function loader(
     config: Configuration,
-    options: IWebpackCompiledOptions
+    options: Options
 ): NewLoader{
 
     /*

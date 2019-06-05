@@ -5,7 +5,7 @@ import graphql from "graphql";
 
 // This could be a legitimate any type
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export interface IScotchGraphQLFieldConfig<TSource, TContext, TArgs = { [argName: string]: any }> {
+export interface ScotchGraphQLFieldConfig<TSource, TContext, TArgs = { [argName: string]: any }> {
     args?: graphql.GraphQLFieldConfigArgumentMap;
     astNode?: null | undefined | graphql.FieldDefinitionNode;
     description?: null | undefined | string;
@@ -18,7 +18,7 @@ export interface IScotchGraphQLFieldConfig<TSource, TContext, TArgs = { [argName
 
 // This could be a legitimate any type
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export interface IScotchGraphQLFieldConfigMap<TSource, TContext, TArgs = { [key: string]: any }>{
-    [key: string]: IScotchGraphQLFieldConfig<TSource, TContext, TArgs>;
+export interface ScotchGraphQLFieldConfigMap<TSource, TContext, TArgs = { [key: string]: any }>{
+    [key: string]: ScotchGraphQLFieldConfig<TSource, TContext, TArgs>;
 }
 

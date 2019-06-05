@@ -5,7 +5,7 @@
   "main": "lib/index.js",
   "scripts": {
     "build": "rm -rf lib && babel src --config-file --out-dir lib",
-    "lint": "eslint src test",
+    "lint": "eslint src test --ext .jsx,.js,.tsx,.ts --ignore-pattern *.d.ts",
     "prelint": "npm run build",
     "prepublishOnly": "npm run test",
     "xpretest": "npm run lint",
@@ -29,10 +29,10 @@
   ],
   "homepage": "https://github.com/sweetlikepete/brick/tree/master/packages/logger#readme",
   "devDependencies": {
-    "@sweetlikepete/babel": "^1.0.4",
-    "@sweetlikepete/eslint": "^1.0.9",
+    "@sweetlikepete/babel": "^1.0.8",
+    "@sweetlikepete/eslint": "^1.0.19",
     "babel-tape-runner": "^3.0.0",
-    "tape": "^4.10.1"
+    "tape": "^4.10.2"
   },
   "dependencies": {
     "chalk": "^2.4.2",

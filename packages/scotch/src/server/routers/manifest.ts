@@ -3,17 +3,17 @@
 import express from "express";
 
 
-export interface IManifestConfigurationIcon {
+export interface ManifestConfigurationIcon {
     sizes: string;
     src: string;
     type: string;
 }
 
-export interface IManifestConfiguration {
+export interface ManifestConfiguration {
     backgroundColor: string;
     description: string;
     display: string;
-    icons: IManifestConfigurationIcon[];
+    icons: ManifestConfigurationIcon[];
     name: string;
     orientation?: string;
     scope?: string;
@@ -22,7 +22,7 @@ export interface IManifestConfiguration {
     themeColor: string;
 }
 
-export const manifestRouter = (config: IManifestConfiguration): express.Router => {
+export const manifestRouter = (config: ManifestConfiguration): express.Router => {
 
     // Force exact matches on paths
     const router = express.Router({

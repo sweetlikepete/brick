@@ -8,12 +8,7 @@ import {
 import loadable from "@loadable/component";
 
 
-// Required for @loadable/components to work correctly
-// eslint-disable-next-line no-inline-comments
-const AsyncPage = loadable((): Promise<{ default: React.ComponentType }> => import(/* webpackChunkName: "product" */ "./page"));
-
-
-export interface IRouteComponentProperties<T> extends RouteComponentProps{
+export interface RouteComponentProperties<T> extends RouteComponentProps{
     data?: T;
     getData: () => Promise<T>;
 }
@@ -25,11 +20,13 @@ export class Route<T> extends ReactRouterDomRoute{
 
     public path = "/";
 
-    public page = AsyncPage;
-
     public sensitive = true;
 
     public strict = true;
+
+    // Required for @loadable/components to work correctly
+    // eslint-disable-next-line no-inline-comments
+    public page = /* #__LOADABLE__ */ (): Promise<{ default: React.ComponentType }> => import(/* webpackChunkName: "product" */ "./page");
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     public component = (properties: any): JSX.Element => (

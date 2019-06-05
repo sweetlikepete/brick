@@ -22,12 +22,12 @@ export default {
                 accessorPairPositioning: "getThenSet",
                 order: [
                     "[static-properties]",
-                    "[static-methods]",
-                    "[properties]",
                     "[conventional-private-properties]",
+                    "[properties]",
                     "constructor",
-                    "[methods]",
-                    "[conventional-private-methods]"
+                    "[static-methods]",
+                    "[conventional-private-methods]",
+                    "[methods]"
                 ]
             }
         ]

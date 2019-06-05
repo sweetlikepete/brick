@@ -1,38 +1,28 @@
 
 
 /*
- * SCSS specific linting rules: @function
+ * SCSS specific linting rules: Function
  *
  * https://github.com/kristerkari/stylelint-scss#-function
  */
-
-
-import { idPattern } from "../../../config";
 
 
 export default {
     rules: {
 
         /*
-         * Require named parameters in SCSS function call rule.
+         * Disallow quoted strings inside the quote function (Autofixable).
          *
-         * https://github.com/kristerkari/stylelint-scss/blob/master/src/rules//README.md
+         * https://github.com/kristerkari/stylelint-scss/blob/master/src/rules/function-quote-no-quoted-strings-inside/README.md
          */
-        "scss/at-function-named-arguments": "always",
+        "scss/function-quote-no-quoted-strings-inside": true,
 
         /*
-         * Require or disallow a space before @function parentheses (Autofixable).
+         * Disallow unquoted strings inside the unquote function (Autofixable).
          *
-         * https://github.com/kristerkari/stylelint-scss/blob/master/src/rules//README.md
+         * https://github.com/kristerkari/stylelint-scss/blob/master/src/rules/function-unquote-no-unquoted-strings-inside/README.md
          */
-        "scss/at-function-parentheses-space-before": "never",
-
-        /*
-         * Specify a pattern for Sass/SCSS-like function names.
-         *
-         * https://github.com/kristerkari/stylelint-scss/blob/master/src/rules//README.md
-         */
-        "scss/at-function-pattern": idPattern
+        "scss/function-unquote-no-unquoted-strings-inside": true
 
     }
 };

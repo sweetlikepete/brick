@@ -4,37 +4,68 @@ import merge from "webpack-merge";
 import { Configuration } from "webpack";
 
 import config from "./config";
-import {
-    IEnvironment,
-    IWebpackOptions
-} from "./interfaces";
 
 
-const configure = function(
+export type Mode = "development" | "production";
+
+export type Platform = "desktop" | "mobile" | "web";
+
+export type Target = "client" | "server";
+
+export interface ConfigurationOptions {
+    bundleAnalyzerPort?: number;
+    hashFileNames?: boolean;
+    hashLength?: number;
+    staticFolder?: string;
+    watch?: boolean;
+}
+
+export interface Environment {
+    mode?: Mode;
+    platform?: Platform;
+    target?: Target;
+}
+
+export interface Options {
+    bundleAnalyzerPort: number;
+    hashFileNames: boolean;
+    hashLength: number;
+    mode: Mode;
+    platform: Platform;
+    staticFolder: string;
+    target: Target;
+    watch: boolean;
+}
+
+
+export default function configure(
     webpackConfig: Configuration = {},
-    webpackOptions: IWebpackOptions = {}
-): (environment: IEnvironment) => Configuration{
+    webpackOptions: ConfigurationOptions = {}
+): (environment: Environment) => Configuration{
 
-    return (environment: IEnvironment = {}): Configuration => {
+    return (environment: Environment = {}): Configuration => {
 
-        const webpackOptionsDefaults = {
+        const optionsDefaults: Options = {
             bundleAnalyzerPort: 3001,
             hashFileNames: false,
             hashLength: 8,
+            mode: "development",
+            platform: "web",
             staticFolder: "static",
+            target: "client",
             watch: Boolean(process.env.watch || false)
         };
 
-        const options = {
-            bundleAnalyzerPort: webpackOptions.bundleAnalyzerPort || webpackOptionsDefaults.bundleAnalyzerPort,
-            hashFileNames: webpackOptions.hashFileNames || webpackOptionsDefaults.hashFileNames,
-            hashLength: webpackOptions.hashLength || webpackOptionsDefaults.hashLength,
-            mode: environment.mode || "development",
-            platform: environment.platform || "web",
-            staticFolder: webpackOptions.staticFolder || webpackOptionsDefaults.staticFolder,
-            target: environment.target || "client",
-            watch: webpackOptions.watch || webpackOptionsDefaults.watch
-        };
+        const options: Options = Object.assign(optionsDefaults, {
+            bundleAnalyzerPort: webpackOptions.bundleAnalyzerPort,
+            hashFileNames: webpackOptions.hashFileNames || optionsDefaults.hashFileNames,
+            hashLength: webpackOptions.hashLength || optionsDefaults.hashLength,
+            mode: environment.mode || optionsDefaults.mode,
+            platform: environment.platform || optionsDefaults.platform,
+            staticFolder: webpackOptions.staticFolder || optionsDefaults.staticFolder,
+            target: environment.target || optionsDefaults.target,
+            watch: webpackOptions.watch || optionsDefaults.watch
+        });
 
         // Make sure options.staticFolder doesn't have any outer slashes
         options.staticFolder = options.staticFolder.replace(/^\/+|\/+$/gu, "");
@@ -82,7 +113,4 @@ const configure = function(
 
     };
 
-};
-
-
-export default configure;
+}

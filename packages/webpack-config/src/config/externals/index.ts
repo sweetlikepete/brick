@@ -3,7 +3,7 @@
 import nodeExternals from "webpack-node-externals";
 import { Configuration } from "webpack";
 
-import { IWebpackCompiledOptions } from "../../interfaces";
+import { Options } from "../..";
 
 
 /*
@@ -15,7 +15,7 @@ import { IWebpackCompiledOptions } from "../../interfaces";
  */
 export default function configuration(
     config: Configuration,
-    options: IWebpackCompiledOptions
+    options: Options
 ): Configuration{
 
     const server = {

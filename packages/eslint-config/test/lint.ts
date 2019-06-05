@@ -3,7 +3,7 @@
 import testImport from "./test-import";
 
 
-interface IConfig {
+interface Config {
     name?: string;
     globs?: string | string[];
 }
@@ -15,7 +15,7 @@ abstract class Task{
 
     public name?: string;
 
-    public constructor(config: IConfig = {}){
+    public constructor(config: Config = {}){
 
         this.globs = config.globs;
         this.name = config.name;

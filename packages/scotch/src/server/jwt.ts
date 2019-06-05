@@ -6,7 +6,7 @@ import expressJWT from "express-jwt";
 import logger from "../logger";
 
 
-export interface IJWTConfiguration {
+export interface JWTConfiguration {
 
     /**
      * Optional.
@@ -29,7 +29,7 @@ export interface IJWTConfiguration {
 
 export const jwt = function(
     app: express.Express,
-    config: IJWTConfiguration
+    config: JWTConfiguration
 ): void{
 
     const {

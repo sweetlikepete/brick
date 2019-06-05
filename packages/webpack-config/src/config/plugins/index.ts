@@ -6,24 +6,19 @@ import MiniCssExtractPlugin from "mini-css-extract-plugin";
 import webpack, { Configuration } from "webpack";
 
 
-import LoadablePlugin from "@loadable/webpack-plugin";
 import client from "./client";
 import server from "./server";
 
-import { IWebpackCompiledOptions } from "../../interfaces";
+import { Options } from "../..";
 
 
 export default function configuration(
     config: Configuration,
-    options: IWebpackCompiledOptions
+    options: Options
 ): Configuration{
 
     const base: Configuration = {
         plugins: [
-            new LoadablePlugin({
-                filename: "loadable-stats.json",
-                writeToDisk: true
-            }),
             // Set NODE_ENV based on the provided Webpack environment.
             new webpack.DefinePlugin({
                 "process.env.mode": JSON.stringify(options.mode),

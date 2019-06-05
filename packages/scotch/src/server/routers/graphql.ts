@@ -11,25 +11,25 @@ import express from "express";
 import graphqlHTTP from "express-graphql";
 
 import { schema as generateSchema } from "../../graphql/schema";
-import { IScotchGraphQLFieldConfigMap } from "../../graphql/types";
+import { ScotchGraphQLFieldConfigMap } from "../../graphql/types";
 
 
-export interface IGraphqlRouterConfiguration {
+export interface GraphqlRouterConfiguration {
     authorized?: (request: express.Request) => boolean;
     endpoint?: string;
     host?: string | undefined;
-    mutations?: IScotchGraphQLFieldConfigMap<any, any, any>;
-    queries?: IScotchGraphQLFieldConfigMap<any, any, any>;
+    mutations?: ScotchGraphQLFieldConfigMap<any, any, any>;
+    queries?: ScotchGraphQLFieldConfigMap<any, any, any>;
 }
 
-interface IGraphqlServerConfiguration {
+interface GraphqlServerConfiguration {
     authorized?: (request: express.Request) => boolean;
     graphiql?: boolean;
-    mutations?: IScotchGraphQLFieldConfigMap<any, any, any>;
-    queries?: IScotchGraphQLFieldConfigMap<any, any, any>;
+    mutations?: ScotchGraphQLFieldConfigMap<any, any, any>;
+    queries?: ScotchGraphQLFieldConfigMap<any, any, any>;
 }
 
-interface IJSONResponse {
+interface JSONResponse {
     data: any;
     status: number | undefined;
 }
@@ -37,7 +37,7 @@ interface IJSONResponse {
 const postJSON = (
     options: string | https.RequestOptions | URL,
     data: any
-): Promise<IJSONResponse> => new Promise((resolve, reject): void => {
+): Promise<JSONResponse> => new Promise((resolve, reject): void => {
 
     const request = https.request(options, (response): void => {
 
@@ -66,7 +66,7 @@ const postJSON = (
 
 });
 
-const graphqlServer = (config: IGraphqlServerConfiguration): graphqlHTTP.Middleware => graphqlHTTP((
+const graphqlServer = (config: GraphqlServerConfiguration): graphqlHTTP.Middleware => graphqlHTTP((
     request: express.Request,
     response: express.Response
 ): graphqlHTTP.OptionsResult => {
@@ -96,7 +96,7 @@ const graphqlServer = (config: IGraphqlServerConfiguration): graphqlHTTP.Middlew
 });
 
 
-export const graphqlRouter = (config: IGraphqlRouterConfiguration = {}): express.Router => {
+export const graphqlRouter = (config: GraphqlRouterConfiguration = {}): express.Router => {
 
     const {
         authorized = (request: express.Request): boolean => !request,

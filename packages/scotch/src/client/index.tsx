@@ -9,11 +9,6 @@ import createStore from "../store";
 import { Scotch } from "../app";
 
 
-export interface IClientOptions {
-    Application: React.ComponentClass;
-}
-
-
 export class Client{
 
     private Application: React.ComponentClass;

@@ -3,7 +3,7 @@
 import logger from "../logger";
 
 
-export interface IDomainConfiguration {
+export interface DomainConfiguration {
 
     /**
      * Optional.
@@ -16,7 +16,7 @@ export interface IDomainConfiguration {
 }
 
 
-export const uncaught = function(config: IDomainConfiguration): void{
+export const uncaught = function(config: DomainConfiguration): void{
 
     /*
      * Listen for unhandled promise rejections and log the errors. If this isn't

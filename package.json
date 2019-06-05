@@ -10,7 +10,7 @@
     "build:script:cli": "BUILD_SHEBANG=1 babel src/cli --out-dir lib/cli --extensions '.js,.ts'",
     "build:script:common": "babel src --ignore src/cli --out-dir lib --extensions '.js,.ts'",
     "build:script:module": "BUILD_MJS=1 npm run build:script:common && renamer --find js --replace mjs \"lib/**\"",
-    "lint": "eslint src",
+    "lint": "eslint src --ext .jsx,.js,.tsx,.ts --ignore-pattern *.d.ts",
     "prepublishOnly": "npm run build"
   },
   "browserslist": "node 8",
@@ -32,11 +32,11 @@
   "homepage": "https://github.com/sweetlikepete/brick/tree/master#readme",
   "dependencies": {
     "@babel/polyfill": "^7.4.4",
-    "@sweetlikepete/babel": "^1.0.5",
-    "@sweetlikepete/eslint": "^1.0.18",
+    "@sweetlikepete/babel": "^1.0.8",
+    "@sweetlikepete/eslint": "^1.0.21",
     "@sweetlikepete/imagemin": "^1.0.1",
     "@sweetlikepete/logger": "^1.0.3",
-    "@sweetlikepete/stylelint": "^1.0.3",
+    "@sweetlikepete/stylelint": "^1.0.5",
     "@sweetlikepete/webpack-config": "^1.0.2",
     "chalk": "^2.4.2",
     "commander": "^2.20.0",
@@ -63,10 +63,10 @@
     "request": "^2.88.0",
     "through2": "^3.0.1",
     "touch": "^3.1.0",
-    "typescript": "^3.4.5",
-    "webpack": "^4.32.2",
+    "typescript": "^3.5.1",
+    "webpack": "^4.33.0",
     "webpack-cli": "^3.3.2",
-    "webpack-dev-server": "^3.4.1"
+    "webpack-dev-server": "^3.5.1"
   },
   "devDependencies": {
     "renamer": "^1.1.1"

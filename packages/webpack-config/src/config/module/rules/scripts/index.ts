@@ -6,12 +6,12 @@ import merge from "webpack-merge";
 import { Configuration } from "webpack";
 
 import babelLoader from "../../../../shared/loaders/babel";
-import { IWebpackCompiledOptions } from "../../../../interfaces";
+import { Options } from "../../../..";
 
 
 export default function configuration(
     config: Configuration,
-    options: IWebpackCompiledOptions
+    options: Options
 ): Configuration{
 
     const loader = babelLoader(config, options);

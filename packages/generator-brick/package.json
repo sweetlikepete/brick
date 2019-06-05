@@ -9,7 +9,7 @@
     "build:templates": "rsync -av src/generators/app/templates lib/generators/app --exclude node_modules",
     "clean": "rm -rf lib",
     "link": "npm run build && npm link",
-    "lint": "eslint src --ext .jsx,.js,.tsx,.ts",
+    "lint": "eslint src --ext .jsx,.js,.tsx,.ts --ignore-pattern *.d.ts",
     "prelint": "npm run build",
     "prepublishOnly": "npm run lint"
   },
@@ -42,12 +42,12 @@
     "app"
   ],
   "devDependencies": {
-    "@sweetlikepete/babel": "^1.0.5",
-    "@sweetlikepete/eslint": "^1.0.16",
+    "@sweetlikepete/babel": "^1.0.8",
+    "@sweetlikepete/eslint": "^1.0.19",
     "babel-tape-runner": "^3.0.0",
     "tape": "^4.10.2"
   },
   "dependencies": {
-    "yeoman-generator": "^4.0.0"
+    "yeoman-generator": "^4.0.1"
   }
 }

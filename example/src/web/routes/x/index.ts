@@ -1,12 +1,6 @@
 
 
 import { Route as PageRoute } from "@sweetlikepete/scotch";
-import loadable from "@loadable/component";
-
-
-// Required for @loadable/components to work correctly
-// eslint-disable-next-line no-inline-comments
-const AsyncPage = loadable((): Promise<{ default: React.ComponentType }> => import(/* webpackChunkName: "page-pageNotFound" */ "./page"));
 
 
 export interface RouteData{
@@ -17,7 +11,7 @@ export default class Route extends PageRoute<RouteData>{
 
     public path = "/x/";
 
-    public page = AsyncPage;
+    public page = /* #__LOADABLE__ */ (): Promise<{ default: React.ComponentType }> => import(/* webpackChunkName: "page-x" */ "./page");
 
     public getData(): Promise<RouteData>{
 

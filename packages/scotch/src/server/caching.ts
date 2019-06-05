@@ -3,7 +3,7 @@
 import express from "express";
 
 
-export interface ICachingConfiguration {
+export interface CachingConfiguration {
 
     /**
      * Optional.
@@ -18,7 +18,7 @@ export interface ICachingConfiguration {
 
 export const caching = function(
     app: express.Express,
-    config: ICachingConfiguration
+    config: CachingConfiguration
 ): void{
 
     const {

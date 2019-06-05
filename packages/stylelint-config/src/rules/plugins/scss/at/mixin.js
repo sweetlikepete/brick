@@ -7,7 +7,7 @@
  */
 
 
-import { idPattern } from "../../../config";
+import { idPattern } from "../../../../config";
 
 
 export default {

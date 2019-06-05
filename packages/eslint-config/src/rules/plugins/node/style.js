@@ -29,10 +29,10 @@ export default {
             "error",
             "never",
             {
+                ".json": "always",
                 tryExtensions: [
                     ".js",
                     ".jsx",
-                    ".json",
                     ".ts",
                     ".tsx"
                 ]

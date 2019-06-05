@@ -27,65 +27,11 @@ import createStore from "../../store";
 import { Scotch } from "../../app";
 
 
-export interface IAppRouterConfiguration {
+export interface AppRouterConfiguration {
     Component: React.ComponentClass;
     local: boolean;
     routes: typeof PageRoute[];
 }
-
-
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-let assetCache: any = null;
-
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const getAssets = function(local: boolean): any{
-
-    if(local || !assetCache){
-
-        try{
-
-            // It's ok because it only happens once per restart
-            // eslint-disable-next-line no-sync, security/detect-non-literal-fs-filename
-            assetCache = JSON.parse(fs.readFileSync(path.join(process.cwd(), "dist/client/webpack-assets.json")).toString());
-
-        }catch(error){
-
-            logger.error(error);
-
-        }
-
-    }
-
-    return assetCache;
-
-};
-
-const scriptTag = function(scripts: string | string[]): string{
-
-    return (typeof scripts === "string" ? [scripts] : scripts)
-    .map((script: string): string => `
-        <script
-            type="text/javascript"
-            src="${ script }"
-        >
-        </script>
-    `)
-    .join("");
-
-};
-
-const styleTag = function(styles: string | string[]): string{
-
-    return (typeof styles === "string" ? [styles] : styles)
-    .map((style: string): string => `
-        <link
-            rel="stylesheet"
-            type="text/css"
-            href="${ style }"
-        >`)
-    .join("");
-
-};
 
 
 const minifyHTML = function(html: string): string{
@@ -108,7 +54,7 @@ const helmetContext: {
 
 
 // eslint-disable-next-line max-lines-per-function
-export const appRouter = (config: IAppRouterConfiguration): express.Router => {
+export const appRouter = (config: AppRouterConfiguration): express.Router => {
 
     const {
         Component,
@@ -124,13 +70,10 @@ export const appRouter = (config: IAppRouterConfiguration): express.Router => {
 
     router.use(compression());
 
-    // I'll get back to this
-    // eslint-disable-next-line max-lines-per-function
     router.get("*/", async (request, response): Promise<void> => {
 
         const statsFile = path.resolve("../web/dist/client/loadable-stats.json");
 
-        const assets = getAssets(local);
         const {
             history,
             store
@@ -165,13 +108,11 @@ export const appRouter = (config: IAppRouterConfiguration): express.Router => {
 
         const data = match ? await getData() : {};
         const extractor = new ChunkExtractor({
-            entrypoints: [
-                "index"
-            ],
+            entrypoints: ["index"],
             statsFile
         });
 
-        const jsx = extractor.collectChunks(
+        const content = renderToString(extractor.collectChunks(
             <Scotch
                 helmetContext={ helmetContext }
                 history={ history }
@@ -179,17 +120,9 @@ export const appRouter = (config: IAppRouterConfiguration): express.Router => {
             >
                 <Component />
             </Scotch>
-        );
-
-        const content = renderToString(jsx);
+        ));
 
         const { helmet } = helmetContext;
-
-        const scriptTags = extractor.getScriptTags();
-        // You can also collect your "preload/prefetch" links
-        const linkTags = extractor.getLinkTags();
-        // And you can even collect your style tags (if you use "mini-css-extract-plugin")
-        const styleTags = extractor.getStyleTags();
 
         if(helmet){
 
@@ -206,12 +139,12 @@ export const appRouter = (config: IAppRouterConfiguration): express.Router => {
                         <meta name="generator" content="Idle Hands">
                         <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1,user-scalable=0,viewport-fit=cover">
                         <script id="app-state-data" type="application/json">${ JSON.stringify(data) }</script>
-                        ${ linkTags }
-                        ${ styleTags }
+                        ${ extractor.getLinkTags() }
+                        ${ extractor.getStyleTags() }
                     </head>
                     <body ${ helmet.bodyAttributes.toString() }>
                         <div id="app">${ content }</div>
-                        ${ scriptTags }
+                        ${ extractor.getScriptTags() }
                     </body>
                 </html>
             `));

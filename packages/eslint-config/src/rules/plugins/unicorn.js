@@ -180,6 +180,13 @@ export default {
         "unicorn/prefer-add-event-listener": "error",
 
         /*
+         * Prefer KeyboardEvent#key over KeyboardEvent#keyCode
+         *
+         * https://github.com/sindresorhus/eslint-plugin-unicorn/blob/master/docs/rules/prefer-event-key.md
+         */
+        "unicorn/prefer-event-key": "error",
+
+        /*
          * Prefer the exponentiation operator over Math.pow() (fixable)
          *
          * https://github.com/sindresorhus/eslint-plugin-unicorn/blob/master/docs/rules/prefer-exponentiation-operator.md

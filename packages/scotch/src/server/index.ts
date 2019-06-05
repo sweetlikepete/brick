@@ -10,16 +10,16 @@ import {
     appRouter
 } from "./routers/app";
 import {
-    IManifestConfiguration,
+    ManifestConfiguration,
     manifestRouter
 } from "./routers/manifest";
 import {
-    IStaticFile,
+    StaticFile,
     staticRouter
 } from "./routers/static";
 import {
     graphqlRouter,
-    IGraphqlRouterConfiguration
+    GraphqlRouterConfiguration
 } from "./routers/graphql";
 import { caching } from "./caching";
 import { compression } from "./compression";
@@ -27,7 +27,7 @@ import { cookie } from "./cookie";
 import { domain } from "./domain";
 import {
     jwt as jwtSetup,
-    IJWTConfiguration
+    JWTConfiguration
 } from "./jwt";
 import { logs } from "./logs";
 import { security } from "./security";
@@ -37,7 +37,7 @@ import logger from "../logger";
 import { Route } from "../components/route";
 
 
-export interface IScotchServerOptions {
+export interface ScotchServerOptions {
 
     /**
      * Optional.
@@ -72,7 +72,7 @@ export interface IScotchServerOptions {
      * GraphQL configuration.
      *
      */
-    graphql?: IGraphqlRouterConfiguration;
+    graphql?: GraphqlRouterConfiguration;
 
     /**
      * Required.
@@ -96,7 +96,7 @@ export interface IScotchServerOptions {
      *   secret: "super-secret-jwt-secret"
      * }
      */
-    jwt?: IJWTConfiguration;
+    jwt?: JWTConfiguration;
 
     /**
      * Optional.
@@ -111,9 +111,9 @@ export interface IScotchServerOptions {
      *
      * https://developers.google.com/web/fundamentals/web-app-manifest/
      */
-    manifest?: IManifestConfiguration;
+    manifest?: ManifestConfiguration;
     routes: typeof Route[];
-    staticFiles?: IStaticFile[];
+    staticFiles?: StaticFile[];
     staticFolder?: string;
 
     /**
@@ -132,7 +132,7 @@ export class Server{
 
     private app: express.Application;
 
-    public constructor(Component: React.ComponentClass, options: IScotchServerOptions){
+    public constructor(Component: React.ComponentClass, options: ScotchServerOptions){
 
         const defaultPort = 8080;
 

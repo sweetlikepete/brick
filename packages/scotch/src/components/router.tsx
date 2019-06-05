@@ -4,11 +4,12 @@ import {
     Switch
 } from "react-router-dom";
 import React from "react";
+import loadable from "@loadable/component";
 
 import { Route as PageRoute } from "./route";
 
 
-export interface IRouterProps{
+export interface RouterProps{
     // This can be anything
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     data?: any;
@@ -17,7 +18,7 @@ export interface IRouterProps{
 }
 
 
-export class Router extends React.Component<IRouterProps>{
+export class Router extends React.Component<RouterProps>{
 
     public shouldComponentUpdate(): boolean{
 
@@ -47,7 +48,7 @@ export class Router extends React.Component<IRouterProps>{
                             // eslint-disable-next-line react/jsx-no-bind, react-perf/jsx-no-new-function-as-prop
                             render={ (): JSX.Element => {
 
-                                const Page = instance.page;
+                                const Page = loadable(instance.page);
 
                                 // { ...properties }
 

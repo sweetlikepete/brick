@@ -9,7 +9,7 @@
     "build:script:common": "babel src --ignore src/cli --out-dir lib --extensions '.js,.ts'",
     "build:script:module": "BUILD_MJS=1 npm run build:script:common && renamer --find js --replace mjs \"lib/**\"",
     "build:types": "tsc --emitDeclarationOnly",
-    "lint": "eslint src test",
+    "lint": "eslint src test --ext .jsx,.js,.tsx,.ts --ignore-pattern *.d.ts",
     "prelint": "npm run build",
     "prepublishOnly": "npm run test",
     "pretest": "npm run lint",
@@ -61,8 +61,8 @@
     "webpack-node-externals": "^1.7.2"
   },
   "devDependencies": {
-    "@sweetlikepete/babel": "^1.0.5",
-    "@sweetlikepete/eslint": "^1.0.18",
+    "@sweetlikepete/babel": "^1.0.8",
+    "@sweetlikepete/eslint": "^1.0.20",
     "@types/assets-webpack-plugin": "^3.9.0",
     "@types/autoprefixer": "^9.5.0",
     "@types/duplicate-package-checker-webpack-plugin": "^2.1.0",
@@ -79,6 +79,6 @@
     "tape": "^4.10.2"
   },
   "peerDependencies": {
-    "webpack": "^4.32.2"
+    "webpack": "^4.33.0"
   }
 }

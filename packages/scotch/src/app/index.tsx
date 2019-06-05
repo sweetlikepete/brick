@@ -15,14 +15,11 @@ import {
 } from "react-router-dom";
 
 
-interface IScotchAppProps {
+export class Scotch extends React.PureComponent<{
     helmetContext?: {} | undefined;
     history: History;
     store: Store;
-}
-
-
-export class Scotch extends React.PureComponent<IScotchAppProps>{
+}>{
 
     public static propTypes = {
         children: PropTypes.oneOfType([

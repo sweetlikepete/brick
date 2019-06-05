@@ -4,7 +4,7 @@ import express from "express";
 import helmet from "helmet";
 
 
-export interface ISecurityConfiguration {
+export interface SecurityConfiguration {
 
     /**
      * Optional.
@@ -24,7 +24,7 @@ export interface ISecurityConfiguration {
 
 export const security = function(
     app: express.Express,
-    config: ISecurityConfiguration
+    config: SecurityConfiguration
 ): void{
 
     const {

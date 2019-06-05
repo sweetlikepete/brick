@@ -14,14 +14,14 @@ import { createRootReducer } from "./reducers";
 import { createBrowserHistory } from "../history";
 
 
-interface IStoreResponse{
+export interface ConfigureStoreResponse{
     history: History;
     store: Store;
 }
 
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export default function configureStore(path: string, preloadedState?: any): IStoreResponse{
+export default function configureStore(path: string, preloadedState?: any): ConfigureStoreResponse{
 
     const history = createBrowserHistory(path);
 

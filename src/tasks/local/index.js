@@ -1,7 +1,5 @@
 
 
-import path from "path";
-
 import firestore from "./firestore";
 import memcached from "./memcached";
 import open from "./open";

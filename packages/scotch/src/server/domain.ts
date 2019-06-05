@@ -3,7 +3,7 @@
 import express from "express";
 
 
-export interface IDomainConfiguration {
+export interface DomainConfiguration {
 
 
     /**
@@ -31,7 +31,7 @@ export interface IDomainConfiguration {
 
 export const domain = function(
     app: express.Express,
-    config: IDomainConfiguration
+    config: DomainConfiguration
 ): void{
 
     const {

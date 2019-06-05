@@ -9,23 +9,23 @@ import { stripIndent } from "common-tags";
 import defaultQueries from "./queries";
 import defaultMutations from "./mutations";
 import {
-    IScotchGraphQLFieldConfig,
-    IScotchGraphQLFieldConfigMap
+    ScotchGraphQLFieldConfig,
+    ScotchGraphQLFieldConfigMap
 } from "./types";
 
 
-interface IGraphqlSchemaConfig {
+interface GraphqlSchemaConfig {
     authorized?: boolean;
     // These can legitimately be of any type
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    mutations?: IScotchGraphQLFieldConfigMap<any, any, any>;
+    mutations?: ScotchGraphQLFieldConfigMap<any, any, any>;
     // These can legitimately be of any type
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    queries?: IScotchGraphQLFieldConfigMap<any, any, any>;
+    queries?: ScotchGraphQLFieldConfigMap<any, any, any>;
 }
 
 
-export const schema = function(config: IGraphqlSchemaConfig): GraphQLSchema{
+export const schema = function(config: GraphqlSchemaConfig): GraphQLSchema{
 
     const {
         authorized = false,
@@ -35,15 +35,15 @@ export const schema = function(config: IGraphqlSchemaConfig): GraphQLSchema{
 
     // These can legitimately be of any type
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const accumulator: { [index: string]: IScotchGraphQLFieldConfig<any, any, any> } = {};
+    const accumulator: { [index: string]: ScotchGraphQLFieldConfig<any, any, any> } = {};
 
     const filter = (
         // These can legitimately be of any type
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        object: IScotchGraphQLFieldConfigMap<any, any, any>
+        object: ScotchGraphQLFieldConfigMap<any, any, any>
     // These can legitimately be of any type
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    ): IScotchGraphQLFieldConfigMap<any, any, any> => Object.keys(object).reduce((acc, value): IScotchGraphQLFieldConfigMap<any, any, any> => {
+    ): ScotchGraphQLFieldConfigMap<any, any, any> => Object.keys(object).reduce((acc, value): ScotchGraphQLFieldConfigMap<any, any, any> => {
 
         if(authorized || object[value].public){
 

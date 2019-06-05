@@ -1,11 +1,11 @@
 {
   "name": "@sweetlikepete/babel-preset",
-  "version": "1.0.20",
+  "version": "1.0.23",
   "description": "Shared preset for babel",
   "main": "lib/index.js",
   "scripts": {
     "build": "rm -rf lib && babel src --config-file --out-dir lib",
-    "lint": "eslint src test",
+    "lint": "eslint src test --ext .jsx,.js,.tsx,.ts --ignore-pattern *.d.ts",
     "prelint": "npm run build",
     "prepublishOnly": "npm run test",
     "pretest": "npm run lint",
@@ -34,6 +34,7 @@
     "@babel/preset-env": "^7.4.5",
     "@babel/preset-react": "^7.0.0",
     "@babel/preset-typescript": "^7.3.3",
+    "@loadable/babel-plugin": "^5.10.0",
     "babel-plugin-add-module-exports": "^1.0.2",
     "babel-plugin-jsx-control-statements": "^4.0.0",
     "babel-plugin-shebang": "^1.0.0"
@@ -41,7 +42,7 @@
   "devDependencies": {
     "@babel/cli": "^7.4.4",
     "@babel/core": "^7.4.5",
-    "@sweetlikepete/eslint": "^1.0.16",
+    "@sweetlikepete/eslint": "^1.0.18",
     "babel-tape-runner": "^3.0.0",
     "tape": "^4.10.2"
   },

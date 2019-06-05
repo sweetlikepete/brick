@@ -2,12 +2,12 @@
 
 import { Configuration } from "webpack";
 
-import { IWebpackCompiledOptions } from "../../interfaces";
+import { Options } from "../..";
 
 
 export default function configuration(
     config: Configuration,
-    options: IWebpackCompiledOptions
+    options: Options
 ): Configuration{
 
     return {

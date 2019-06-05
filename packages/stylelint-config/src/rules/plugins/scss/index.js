@@ -9,20 +9,22 @@
 
 export default {
     extends: [
+        "./at/each",
+        "./at/else",
+        "./at/extend",
+        "./at/function",
+        "./at/import",
+        "./at/mixin",
+        "./at/rule",
         "./comment",
         "./declaration",
-        "./else",
-        "./extend",
         "./function",
         "./general",
-        "./if",
-        "./import",
+        "./at/if",
         "./media-feature",
-        "./mixin",
         "./operator",
         "./partial",
         "./placeholder",
-        "./rule",
         "./selector",
         "./variable"
     ].map(require.resolve),

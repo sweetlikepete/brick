@@ -1,5 +1,4 @@
 
-
 /*
     eslint
     @typescript-eslint/no-require-imports: "off",
@@ -20,37 +19,37 @@ import webpackDevMiddleware from "webpack-dev-middleware";
 import webpackHotMiddleware from "webpack-hot-middleware";
 
 
-export interface IStaticFile {
+export interface StaticFile {
     path: string;
     source: string;
 }
 
-export interface IStaticRouter {
+export interface StaticRouter {
     cacheExpiration?: string | number;
     cwd?: string;
     local?: boolean;
-    staticFiles?: IStaticFile[];
+    staticFiles?: StaticFile[];
     staticFolder: string;
 }
 
 
 const getStaticFileMap = function(
-    staticFiles: IStaticFile[],
+    staticFiles: StaticFile[],
     staticFolder: string,
     cwd: string,
     watch: boolean
-): IStaticFile[]{
+): StaticFile[]{
 
     // Static public url base and source
     const source = "dist/client";
     const encodedStaticFolder = staticFolder.split("/").map((sub): string => encodeURIComponent(sub)).join("/");
 
-    const customStaticFiles: IStaticFile[] = staticFiles.map((file): IStaticFile => ({
+    const customStaticFiles: StaticFile[] = staticFiles.map((file): StaticFile => ({
         path: file.path,
         source: file.source.replace(`/${ staticFolder }`, source)
     }));
 
-    const defaultStaticFiles: IStaticFile[] = [
+    const defaultStaticFiles: StaticFile[] = [
         {
             path: "/robots.txt",
             source: "robots.txt"
@@ -71,7 +70,7 @@ const getStaticFileMap = function(
 
         return duplicates.length === 0;
 
-    }).map((file): IStaticFile => {
+    }).map((file): StaticFile => {
 
         /**
          * If there is no default static file in the implementing project, check if
@@ -133,7 +132,7 @@ export const staticRouter = ({
     local = false,
     staticFiles = [],
     staticFolder
-}: IStaticRouter): express.Router => {
+}: StaticRouter): express.Router => {
 
     const watch = Boolean(local && process.env.watch === "true");
     const encodedStaticFolder = staticFolder.split("/").map((sub): string => encodeURIComponent(sub)).join("/");
