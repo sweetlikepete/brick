@@ -5,7 +5,6 @@ import {
     RouteComponentProps,
     Route as ReactRouterDomRoute
 } from "react-router-dom";
-import loadable from "@loadable/component";
 
 
 export interface RouteComponentProperties<T> extends RouteComponentProps{

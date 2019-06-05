@@ -15,7 +15,7 @@
   },
   "version": "1.0.0",
   "devDependencies": {
-    "@sweetlikepete/brick": "^1.0.18",
+    "@sweetlikepete/brick": "file:node_modules/.cache/sweetlikepete-brick-1.0.19.tgz",
     "@types/react-loadable": "^5.5.1",
     "babel-tape-runner": "^3.0.0",
     "tape": "^4.10.2",
