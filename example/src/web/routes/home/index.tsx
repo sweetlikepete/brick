@@ -1,5 +1,7 @@
 
 
+import path from "path";
+
 import React from "react";
 import { Route as PageRoute } from "@sweetlikepete/scotch";
 
@@ -8,11 +10,19 @@ export interface RouteData{
     test: string;
 }
 
+
 export default class Route extends PageRoute<RouteData>{
 
     public path = "/";
 
-    public page = /* #__LOADABLE__ */ (): Promise<{ default: React.ComponentType }> => import(/* webpackChunkName: "page-home" */ "./page");
+    public component =
+
+        /* #__LOADABLE__ */
+        (): Promise<{ default: React.ComponentType }> => import(
+
+            /* webpackChunkName: "page-home" */
+            "./page"
+        );
 
     public getData(): Promise<RouteData>{
 

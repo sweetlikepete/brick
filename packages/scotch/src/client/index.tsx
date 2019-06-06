@@ -44,11 +44,7 @@ export class Client{
             </Scotch>
         );
 
-        console.log("WTF BRO");
-
         loadableReady((): void => {
-
-            console.log("WTF BRO 2");
 
             ReactDOM.hydrate(app, document.querySelector("#app"));
 

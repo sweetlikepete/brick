@@ -33,7 +33,6 @@ export class Router extends React.Component<RouterProps>{
                 { this.props.routes.map((PageRouteClass): JSX.Element => {
 
                     const instance = new PageRouteClass({});
-                    // Const Component = instance.component;
 
                     return (
                         <PageRouteClass
@@ -48,7 +47,7 @@ export class Router extends React.Component<RouterProps>{
                             // eslint-disable-next-line react/jsx-no-bind, react-perf/jsx-no-new-function-as-prop
                             render={ (): JSX.Element => {
 
-                                const Page = loadable(instance.page);
+                                const Page = loadable(instance.component);
 
                                 // { ...properties }
 

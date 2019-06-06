@@ -11,7 +11,10 @@ export default class Route extends PageRoute<RouteData>{
 
     public path = "/x/";
 
-    public page = /* #__LOADABLE__ */ (): Promise<{ default: React.ComponentType }> => import(/* webpackChunkName: "page-x" */ "./page");
+    public component = /* #__LOADABLE__ */ (): Promise<{ default: React.ComponentType }> => import(
+        /* webpackChunkName: "page-x" */
+        "./page"
+    );
 
     public getData(): Promise<RouteData>{
 

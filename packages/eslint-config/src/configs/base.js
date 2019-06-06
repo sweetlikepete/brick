@@ -30,7 +30,6 @@ export default {
         "../rules/plugins/react-redux",
         "../rules/plugins/react-ssr",
         "../rules/plugins/security",
-        "../rules/plugins/sort-class-members",
         "../rules/plugins/sort-keys-fix",
         "../rules/plugins/unicorn",
         "../rules/plugins/webassembly",

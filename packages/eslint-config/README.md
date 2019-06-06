@@ -43,7 +43,6 @@ Our default export contains all of our ESLint rules, including ECMAScript 6+ and
     eslint-plugin-react-redux
     eslint-plugin-react-ssr
     eslint-plugin-security
-    eslint-plugin-sort-class-members
     eslint-plugin-sort-keys-fix
     eslint-plugin-unicorn
     eslint-plugin-webassembly

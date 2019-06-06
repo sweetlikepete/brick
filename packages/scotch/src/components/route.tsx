@@ -13,9 +13,11 @@ export interface RouteComponentProperties<T> extends RouteComponentProps{
 }
 
 
-export class Route<T> extends ReactRouterDomRoute{
+export class Route extends ReactRouterDomRoute{
 
     public exact = true;
+
+    public id = "home";
 
     public path = "/";
 
@@ -25,15 +27,7 @@ export class Route<T> extends ReactRouterDomRoute{
 
     // Required for @loadable/components to work correctly
     // eslint-disable-next-line no-inline-comments
-    public page = /* #__LOADABLE__ */ (): Promise<{ default: React.ComponentType }> => import(/* webpackChunkName: "product" */ "./page");
-
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    public component = (properties: any): JSX.Element => (
-        <div>
-            { "Empty Page" }
-            { properties.data ? properties.data.test : "NO TEST DATA" }
-        </div>
-    );
+    public component = /* #__LOADABLE__ */ (): Promise<{ default: React.ComponentType }> => import(/* webpackChunkName: "product" */ "./page");
 
     public getData(): Promise<object>{
 

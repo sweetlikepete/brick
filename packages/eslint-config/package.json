@@ -1,6 +1,6 @@
 {
   "name": "@sweetlikepete/eslint-config",
-  "version": "1.0.65",
+  "version": "1.0.66",
   "description": "Shared config for eslint",
   "main": "lib/configs",
   "scripts": {
@@ -70,7 +70,6 @@
     "eslint-plugin-react-redux": "^3.0.1",
     "eslint-plugin-react-ssr": "^1.0.3",
     "eslint-plugin-security": "^1.4.0",
-    "eslint-plugin-sort-class-members": "^1.4.0",
     "eslint-plugin-sort-keys-fix": "^1.0.1",
     "eslint-plugin-unicorn": "^9.0.0",
     "eslint-plugin-webassembly": "^1.8.5",
@@ -110,7 +109,6 @@
     "eslint-plugin-react-redux": "^3.0.1",
     "eslint-plugin-react-ssr": "^1.0.3",
     "eslint-plugin-security": "^1.4.0",
-    "eslint-plugin-sort-class-members": "^1.4.0",
     "eslint-plugin-sort-keys-fix": "^1.0.1",
     "eslint-plugin-unicorn": "^9.0.0",
     "eslint-plugin-webassembly": "^1.8.5",

@@ -1,6 +1,6 @@
 {
   "name": "@sweetlikepete/eslint",
-  "version": "1.0.21",
+  "version": "1.0.22",
   "description": "Collection of eslint dependencies",
   "browserslist": "node 8",
   "engines": {
@@ -27,7 +27,7 @@
   ],
   "homepage": "https://github.com/sweetlikepete/brick/tree/master/packages/eslint#readme",
   "dependencies": {
-    "@sweetlikepete/eslint-config": "^1.0.65",
+    "@sweetlikepete/eslint-config": "^1.0.66",
     "@typescript-eslint/eslint-plugin": "^1.9.0",
     "@typescript-eslint/parser": "^1.9.0",
     "eslint": "^5.16.0",
@@ -56,7 +56,6 @@
     "eslint-plugin-react-redux": "^3.0.1",
     "eslint-plugin-react-ssr": "^1.0.3",
     "eslint-plugin-security": "^1.4.0",
-    "eslint-plugin-sort-class-members": "^1.4.0",
     "eslint-plugin-sort-keys-fix": "^1.0.1",
     "eslint-plugin-unicorn": "^9.0.0",
     "eslint-plugin-webassembly": "^1.8.5",

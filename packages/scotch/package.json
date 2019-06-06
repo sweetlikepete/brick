@@ -33,7 +33,7 @@
   "homepage": "https://github.com/sweetlikepete/brick/tree/master/packages/scotch#readme",
   "devDependencies": {
     "@sweetlikepete/babel": "^1.0.8",
-    "@sweetlikepete/eslint": "^1.0.19",
+    "@sweetlikepete/eslint": "^1.0.22",
     "@types/common-tags": "^1.8.0",
     "@types/compression": "^0.0.36",
     "@types/cookie-parser": "^1.4.1",

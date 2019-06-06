@@ -133,7 +133,38 @@ export default {
          *
          * https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/member-ordering.md
          */
-        "@typescript-eslint/member-ordering": "error",
+        "@typescript-eslint/member-ordering": [
+            "error",
+            {
+                default: [
+                    "public-static-field",
+                    "protected-static-field",
+                    "private-static-field",
+                    "public-instance-field",
+                    "protected-instance-field",
+                    "private-instance-field",
+                    "public-field",
+                    "protected-field",
+                    "private-field",
+                    "static-field",
+                    "instance-field",
+                    "field",
+                    "constructor",
+                    "public-static-method",
+                    "protected-static-method",
+                    "private-static-method",
+                    "public-instance-method",
+                    "protected-instance-method",
+                    "private-instance-method",
+                    "public-method",
+                    "protected-method",
+                    "private-method",
+                    "static-method",
+                    "instance-method",
+                    "method"
+                ]
+            }
+        ],
 
         /*
          * Enforces the use of as Type assertions instead of <Type> assertions (no-angle-bracket-type-assertion from TSLint)
