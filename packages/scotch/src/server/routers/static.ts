@@ -143,7 +143,7 @@ export const staticRouter = ({
         strict: true
     });
 
-    if(watch){
+    if(watch && cwd === "3"){
 
         setupWebpackMiddleware(router, cwd);
 

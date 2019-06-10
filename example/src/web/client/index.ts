@@ -13,12 +13,14 @@ if(process.env.watch){
 
 }
 
-const initializeShell = async (): Promise<void> => {
+(async (): Promise<void> => {
 
-    const { initialize } = await import("./shell");
+    const { initialize } = await import(
+
+        /* webpackChunkName: "shell" */
+        "./shell"
+    );
 
     initialize();
 
-};
-
-initializeShell();
+})();

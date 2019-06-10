@@ -1,9 +1,6 @@
 
 
-import path from "path";
-
-import React from "react";
-import { Route as PageRoute } from "@sweetlikepete/scotch";
+import { Route } from "../../route";
 
 
 export interface RouteData{
@@ -11,18 +8,11 @@ export interface RouteData{
 }
 
 
-export default class Route extends PageRoute<RouteData>{
+export default class HomeRoute extends Route{
+
+    public id = "home";
 
     public path = "/";
-
-    public component =
-
-        /* #__LOADABLE__ */
-        (): Promise<{ default: React.ComponentType }> => import(
-
-            /* webpackChunkName: "page-home" */
-            "./page"
-        );
 
     public getData(): Promise<RouteData>{
 

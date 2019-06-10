@@ -3,19 +3,21 @@
 import React from "react";
 import { Helmet } from "@sweetlikepete/scotch";
 
+import style from "./page.scss";
+
 
 export default class Page extends React.PureComponent{
 
     public render(): JSX.Element{
 
         return (
-            <div>
+            <div className={ style.page }>
                 <Helmet>
                     <title>
-                        { "homepage biatch" }
+                        { "homepaxge biatch" }
                     </title>
                 </Helmet>
-                { "HOME PAGE | BABOOOM BITCH TITS" }
+                { "HOMExx Page | BABOOOM BITCH TITS" }
             </div>
         );
 

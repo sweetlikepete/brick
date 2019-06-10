@@ -5,6 +5,7 @@ import {
     RouteComponentProps,
     Route as ReactRouterDomRoute
 } from "react-router-dom";
+import loadable from "@loadable/component";
 
 
 export interface RouteComponentProperties<T> extends RouteComponentProps{
@@ -13,21 +14,17 @@ export interface RouteComponentProperties<T> extends RouteComponentProps{
 }
 
 
-export class Route extends ReactRouterDomRoute{
+export class Route{
 
-    public exact = true;
+    public exact: boolean = true;
 
-    public id = "home";
+    public id: string;
 
-    public path = "/";
+    public path: string;
 
-    public sensitive = true;
+    public sensitive: boolean = true;
 
-    public strict = true;
-
-    // Required for @loadable/components to work correctly
-    // eslint-disable-next-line no-inline-comments
-    public component = /* #__LOADABLE__ */ (): Promise<{ default: React.ComponentType }> => import(/* webpackChunkName: "product" */ "./page");
+    public strict: boolean = true;
 
     public getData(): Promise<object>{
 
@@ -36,6 +33,55 @@ export class Route extends ReactRouterDomRoute{
             resolve({});
 
         });
+
+    }
+
+    public loadable(): (() => Promise<{ default: React.ComponentType }>) | undefined{
+
+        // We'll let this slide here
+        // eslint-disable-next-line no-undefined
+        return undefined;
+
+    }
+
+    public render(): JSX.Element{
+
+        return (
+            <ReactRouterDomRoute
+                exact={ this.exact }
+                key={ this.path }
+                path={ this.path }
+
+                /*
+                 * We're going to let this one slide for now, because we need to override
+                 * the render method and I can't think of how to do this without a function
+                 */
+                // eslint-disable-next-line react/jsx-no-bind, react-perf/jsx-no-new-function-as-prop
+                render={ (): JSX.Element => {
+
+                    const loadableComponent = this.loadable();
+
+                    if(loadableComponent){
+
+                        const Page = loadable(loadableComponent);
+
+                        return (
+                            <Page />
+                        );
+
+                    }
+
+                    return (
+                        <div>
+                            {" blank "}
+                        </div>
+                    );
+
+                } }
+                sensitive={ this.sensitive }
+                strict={ this.strict }
+            />
+        );
 
     }
 

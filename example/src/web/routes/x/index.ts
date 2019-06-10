@@ -1,27 +1,25 @@
 
 
-import { Route as PageRoute } from "@sweetlikepete/scotch";
+import { Route } from "../../route";
 
 
 export interface RouteData{
     test: string;
 }
 
-export default class Route extends PageRoute<RouteData>{
+
+export default class XRoute extends Route{
+
+    public id = "x";
 
     public path = "/x/";
-
-    public component = /* #__LOADABLE__ */ (): Promise<{ default: React.ComponentType }> => import(
-        /* webpackChunkName: "page-x" */
-        "./page"
-    );
 
     public getData(): Promise<RouteData>{
 
         return new Promise((resolve): void => {
 
             resolve({
-                test: "X page"
+                test: "x page"
             });
 
         });

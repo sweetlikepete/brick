@@ -31,7 +31,17 @@ const awaitServerScript = function(config){
 
                 clearInterval(interval);
 
-                resolve(serverScript);
+                const delay = 100;
+
+                /*
+                 * Sometimes nodemon doesn't pick up the script so we're hacking
+                 * a little delay to try to fix that.
+                 */
+                setTimeout(() => {
+
+                    resolve(serverScript);
+
+                }, delay);
 
             }else{
 
@@ -65,7 +75,8 @@ const startNodemonServer = function(script, environment){
             script,
             stdout: false,
             watch: [
-                "dist/server"
+                // Needed to prevent reloading invalidating the hot module loader
+                "dist/server/fake.js"
             ]
         });
 
@@ -92,14 +103,14 @@ const startNodemonServer = function(script, environment){
 
         }).on("restart", (files) => {
 
-            if(files.length === 1){
+            if(files && files.length === 1){
 
                 logger.log(`Restarted ${ files[0] }`, {
                     color: "#d3d3d3",
                     label
                 });
 
-            }else{
+            }else if(files){
 
                 files.forEach((file) => {
 
@@ -108,6 +119,13 @@ const startNodemonServer = function(script, environment){
                         label
                     });
 
+                });
+
+            }else{
+
+                logger.log("Restarted", {
+                    color: "#d3d3d3",
+                    label
                 });
 
             }

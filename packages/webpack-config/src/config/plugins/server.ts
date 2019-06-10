@@ -7,9 +7,6 @@ export default function configuration(): Configuration{
 
     return {
         plugins: [
-            new webpack.optimize.LimitChunkCountPlugin({
-                maxChunks: 1
-            }),
             new webpack.BannerPlugin({
                 banner: "require(\"source-map-support\").install();",
                 entryOnly: false,

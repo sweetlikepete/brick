@@ -4,31 +4,28 @@ import React from "react";
 import { Route as PageRoute } from "@sweetlikepete/scotch";
 
 
-export default class Route<T> extends PageRoute{
+export class Route extends PageRoute{
 
-    public id = "";
+    public loadable(): () => Promise<{ default: React.ComponentType }>{
 
-    public path = "/";
+        /*
+         * Webpack's static analyzer needs a single variable to figurer out a
+         * dynamic lazy loading path. Don't use this.id, use the variable id.
+         */
+        const id: string = this.id;
 
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    public constructor(props: any){
+        /*
+         * Needed for @loadable/components to wrap this during babel transpilation
+         *
+         * https://www.smooth-code.com/open-source/loadable-components/docs/babel-plugin/#magic-comments
+         *
+         */
+        // eslint-disable-next-line no-inline-comments
+        return /* #__LOADABLE__ */ (): Promise<{ default: React.ComponentType }> => import(
 
-        super(props);
-
-        if(!this.id){
-
-            throw new Error("Route does not have a valid id");
-
-        }
-
-        this.component =
-
-            /* #__LOADABLE__ */
-            (): Promise<{ default: React.ComponentType }> => import(
-
-                /* webpackChunkName: "page-home" */
-                `../routes/${ this.id }/page`
-            );
+            /* webpackChunkName: "[request]" */
+            `./../routes/${ id }/page`
+        );
 
     }
 

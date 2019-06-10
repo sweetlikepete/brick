@@ -8,8 +8,8 @@ import PageNotFoundRoute from "./pageNotFound";
 import XPageRoute from "./x";
 
 
-export const routes: typeof PageRoute[] = [
-    HomePageRoute,
-    XPageRoute,
-    PageNotFoundRoute
+export const routes: PageRoute[] = [
+    new HomePageRoute(),
+    new XPageRoute(),
+    new PageNotFoundRoute()
 ];

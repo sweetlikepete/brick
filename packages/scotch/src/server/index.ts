@@ -112,7 +112,7 @@ export interface ScotchServerOptions {
      * https://developers.google.com/web/fundamentals/web-app-manifest/
      */
     manifest?: ManifestConfiguration;
-    routes: typeof Route[];
+    routes: Route[];
     staticFiles?: StaticFile[];
     staticFolder?: string;
 

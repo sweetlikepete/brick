@@ -10,7 +10,6 @@
 
 */
 
-import fs from "fs";
 import path from "path";
 
 import * as React from "react";
@@ -21,16 +20,15 @@ import { matchPath } from "react-router-dom";
 import { HelmetData } from "react-helmet";
 import { ChunkExtractor } from "@loadable/server";
 
-import { Route as PageRoute } from "../../components/route";
-import logger from "../../logger";
-import createStore from "../../store";
-import { Scotch } from "../../app";
+import { Route as PageRoute } from "../../../components/route";
+import createStore from "../../../store";
+import { Scotch } from "../../../app";
 
 
 export interface AppRouterConfiguration {
     Component: React.ComponentClass;
     local: boolean;
-    routes: typeof PageRoute[];
+    routes: PageRoute[];
 }
 
 
@@ -86,9 +84,7 @@ export const appRouter = (config: AppRouterConfiguration): express.Router => {
         let initial = "/";
         let match = null;
 
-        routes.some((routeClass: typeof PageRoute): boolean => {
-
-            const route = new routeClass({});
+        routes.some((route: PageRoute): boolean => {
 
             // Use `matchPath` here
             match = matchPath(request.path, {

@@ -1,6 +1,6 @@
 
 
-import { Route as PageRoute } from "@sweetlikepete/scotch";
+import { Route } from "../../route";
 
 
 export interface RouteData{
@@ -8,21 +8,18 @@ export interface RouteData{
 }
 
 
-export default class Route extends PageRoute<RouteData>{
+export default class PageNotFoundRoute extends Route{
+
+    public id = "pageNotFound";
 
     public path = "*";
-
-    public component = /* #__LOADABLE__ */ (): Promise<{ default: React.ComponentType }> => import(
-        /* webpackChunkName: "page-pageNotFound" */
-        "./page"
-    );
 
     public getData(): Promise<RouteData>{
 
         return new Promise((resolve): void => {
 
             resolve({
-                test: "Page not found"
+                test: "Page not found page"
             });
 
         });

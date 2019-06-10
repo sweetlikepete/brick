@@ -30,6 +30,7 @@ export default {
             "never",
             {
                 ".json": "always",
+                ".scss": "always",
                 tryExtensions: [
                     ".js",
                     ".jsx",

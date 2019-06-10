@@ -33,7 +33,7 @@
   "homepage": "https://github.com/sweetlikepete/brick/tree/master/packages/scotch#readme",
   "devDependencies": {
     "@sweetlikepete/babel": "^1.0.8",
-    "@sweetlikepete/eslint": "^1.0.22",
+    "@sweetlikepete/eslint": "^1.0.23",
     "@types/common-tags": "^1.8.0",
     "@types/compression": "^0.0.36",
     "@types/cookie-parser": "^1.4.1",
@@ -57,7 +57,7 @@
     "@types/webpack-env": "^1.13.9",
     "@types/webpack-hot-middleware": "^2.16.5",
     "babel-tape-runner": "^3.0.0",
-    "renamer": "^1.1.1",
+    "renamer": "^1.1.2",
     "tape": "^4.10.2"
   },
   "dependencies": {
@@ -66,7 +66,7 @@
     "@loadable/component": "^5.10.1",
     "@loadable/server": "^5.9.0",
     "@types/react-helmet": "^5.0.8",
-    "apollo-client": "^2.6.1",
+    "apollo-client": "^2.6.2",
     "body-parser": "^1.19.0",
     "common-tags": "^1.8.0",
     "compression": "^1.7.4",
