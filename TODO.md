@@ -1,4 +1,9 @@
 
+Implemented https local testing option
+    - use spdy
+    - https://webapplog.com/http2-node/
+    - WebpackDevServer has an https option
+
 
 use connected router to get over rerender
   - finish @loadable implementation

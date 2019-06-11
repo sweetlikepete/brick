@@ -4,9 +4,12 @@ import path from "path";
 
 import sequential from "promise-sequential";
 import webpack from "webpack";
-import WebpackDevServer from "webpack-dev-server";
 import logger from "@sweetlikepete/logger";
 
+import {
+    kill,
+    spawn
+} from "../../utils";
 import { task } from "../../utils/task";
 
 
@@ -21,9 +24,11 @@ const statsOptions = {
 };
 
 
-const log = (target, label2) => (error, stats, configFile) => {
+const log = (label1, label2) => (error, stats, configFile) => {
 
-    const label = `webpack ${ target[0].toUpperCase() }`;
+    const options = {
+        label: label1
+    };
 
     if(error){
 
@@ -33,18 +38,17 @@ const log = (target, label2) => (error, stats, configFile) => {
 
     }else{
 
-        logger.log(`${ label2 } ${ configFile }`, { label });
+        logger.log(`${ label2 } ${ configFile }`, options);
 
-        logger.log("", { label });
+        logger.log("", options);
 
-        logger.log(stats.toString(statsOptions), { label });
+        logger.log(stats.toString(statsOptions), options);
 
-        logger.log("", { label });
+        logger.log("", options);
 
     }
 
 };
-
 
 const webpackTask = task("webpack", async (config, options) => {
 
@@ -56,8 +60,11 @@ const webpackTask = task("webpack", async (config, options) => {
 
     process.chdir(path.join(config.cwd, `src/${ platform }`));
 
-    const webpackPromise = (target) => () => new Promise((resolve) => {
+    // We'll allow this for now
+    // eslint-disable-next-line no-async-promise-executor
+    const webpackPromise = (target) => () => new Promise(async (resolve) => {
 
+        const label = "webpack";
         const webpackConfigFile = path.join(process.cwd(), "webpack.config.js");
 
         // This doesn't present any danger and is necessary in this case.
@@ -75,17 +82,18 @@ const webpackTask = task("webpack", async (config, options) => {
 
             if(webpackConfig.devServer){
 
-                const developmentServerConfig = {
-                    ...webpackConfig.devServer,
-                    hot: true,
-                    port: 9000,
-                    stats: statsOptions
-                };
+                await kill("webpack-dev-server");
 
-                const developmentServer = new WebpackDevServer(compiler, developmentServerConfig);
-
-                developmentServer.listen(developmentServerConfig.port, "127.0.0.1", () => {
-                    console.log(`Starting server on http://localhost:${ developmentServerConfig.port }`);
+                await spawn({
+                    command: [
+                        "webpack-dev-server",
+                        `--mode=${ mode }`,
+                        `--env.mode=${ mode }`,
+                        `--env.watch=${ watch }`,
+                        `--env.platform=${ platform }`,
+                        `--env.target=${ target }`
+                    ].join(" "),
+                    label
                 });
 
             }else{
@@ -99,9 +107,9 @@ const webpackTask = task("webpack", async (config, options) => {
                 },
                 (error, stats) => {
 
-                    log(target, "Watching")(error, stats, webpackConfigFile);
+                    log(label, "Watching")(error, stats, webpackConfigFile);
 
-                    resolve();
+                    logger.log("");
 
                 });
 
@@ -111,7 +119,7 @@ const webpackTask = task("webpack", async (config, options) => {
 
             compiler.run((error, stats) => {
 
-                log(target, "Running")(error, stats, webpackConfigFile);
+                log(label, "Running")(error, stats, webpackConfigFile);
 
                 resolve();
 

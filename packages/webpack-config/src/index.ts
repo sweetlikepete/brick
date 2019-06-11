@@ -61,7 +61,9 @@ export default function configure(
             platform: environment.platform || optionsDefaults.platform,
             staticFolder: webpackOptions.staticFolder || optionsDefaults.staticFolder,
             target: environment.target || optionsDefaults.target,
-            watch: environment.watch || optionsDefaults.watch
+            // Bug in the linter
+            // eslint-disable-next-line security/detect-non-literal-fs-filename
+            watch: Boolean(environment.watch) || optionsDefaults.watch
         });
 
         // Make sure options.staticFolder doesn't have any outer slashes

@@ -18,6 +18,10 @@ const awaitServerScript = function(config){
     const intervalTime = 100;
     const maxWaitTime = 10000;
     const serverScript = "dist/server/index.js";
+    const awaitFiles = [
+        serverScript,
+        "dist/client/loadable-stats.json"
+    ];
 
     let waited = 0;
 
@@ -25,7 +29,8 @@ const awaitServerScript = function(config){
 
         const interval = setInterval(async () => {
 
-            const exists = await fs.exists(serverScript);
+            const existsArray = await Promise.all(awaitFiles.map(fs.exists));
+            const exists = existsArray.filter((item) => item !== true).length === 0;
 
             if(exists){
 

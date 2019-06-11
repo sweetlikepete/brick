@@ -26,9 +26,7 @@ const emojis = {
     server: "💻",
     setup: "💿",
     tamland: "🍆",
-    webpack: "📦",
-    "webpack c": "📦",
-    "webpack s": "📦"
+    webpack: "📦"
 };
 
 const colors = {
@@ -170,7 +168,7 @@ const logger = {
     log(message = "", options = {}){
 
         const {
-            label = defaultLabel,
+            label = message ? defaultLabel : "",
             color,
             error = false
         } = options;
@@ -179,7 +177,7 @@ const logger = {
         const formattedMessage = format(label, String(message), color, error);
         const blank = started ? formatLabel(`${ nonBreakingCharacter }`) : "";
 
-        if(lastLabel !== testLabel && started){
+        if(lastLabel !== testLabel && label && started){
 
             const cursor = getCursorPosition.sync();
 
