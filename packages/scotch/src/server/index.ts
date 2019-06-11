@@ -2,6 +2,7 @@
 
 import "@babel/polyfill";
 
+
 import express from "express";
 import helmet from "helmet";
 import slash from "express-slash";
@@ -126,6 +127,9 @@ export interface ScotchServerOptions {
 }
 
 
+const local = process.env.local === "true" || false;
+
+
 export class Server{
 
     public port: number;
@@ -136,7 +140,6 @@ export class Server{
 
         const defaultPort = 8080;
 
-        const local = process.env.local === "true" || false;
         const cwd = process.cwd();
         const {
             cacheExpiration = "1y",
@@ -207,21 +210,12 @@ export class Server{
 
         await new Promise((): void => {
 
-            try{
+            this.app.listen(this.port, (): void => {
 
-                this.app.listen(this.port, (): void => {
+                logger.debug(`App listening on port ${ this.port }`);
+                logger.debug("Press Ctrl+ C to quit.");
 
-                    logger.debug(`App listening on port ${ this.port }`);
-                    logger.debug("Press Ctrl+ C to quit.");
-
-                });
-
-            }catch(error){
-
-                logger.error("loadable.preloadAll() failed.");
-                logger.error(error);
-
-            }
+            });
 
         });
 

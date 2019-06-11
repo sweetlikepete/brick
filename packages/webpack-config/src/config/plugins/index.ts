@@ -17,6 +17,10 @@ export default function configuration(
     options: Options
 ): Configuration{
 
+    const hash =
+        options.mode !== "development" ||
+        options.watch !== true;
+
     const base: Configuration = {
         plugins: [
             // Set NODE_ENV based on the provided Webpack environment.
@@ -29,8 +33,8 @@ export default function configuration(
             }),
             new DuplicatePackageCheckerPlugin(),
             new MiniCssExtractPlugin({
-                chunkFilename: options.hashFileNames ? `[chunkhash:${ options.hashLength }].css` : "[id].css",
-                filename: options.hashFileNames ? `[chunkhash:${ options.hashLength }].css` : "[name].css"
+                chunkFilename: hash ? `[chunkhash:${ options.hashLength }].css` : "[id].css",
+                filename: hash ? `[chunkhash:${ options.hashLength }].css` : "[name].css"
             })
         ]
     };

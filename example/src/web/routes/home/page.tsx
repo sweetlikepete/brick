@@ -14,10 +14,11 @@ export default class Page extends React.PureComponent{
             <div className={ style.page }>
                 <Helmet>
                     <title>
-                        { "homepaxge biatch" }
+                        { "home" }
                     </title>
+                    <meta content="BusinessLIVE" property="og:site_name" />
                 </Helmet>
-                { "HOMExx Page | BABOOOM BITCH TITS" }
+                { "NEW CONTENT" }
             </div>
         );
 

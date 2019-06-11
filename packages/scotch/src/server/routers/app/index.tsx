@@ -1,15 +1,5 @@
 
 
-/*
-    eslint
-    react/require-optimization: "off",
-    react/jsx-no-literals: "off",
-    @typescript-eslint/no-unused-vars: "off",
-    react/no-multi-comp: "off",
-    max-classes-per-file: "off"
-
-*/
-
 import path from "path";
 
 import * as React from "react";
@@ -56,7 +46,6 @@ export const appRouter = (config: AppRouterConfiguration): express.Router => {
 
     const {
         Component,
-        local,
         routes
     } = config;
 
@@ -81,7 +70,6 @@ export const appRouter = (config: AppRouterConfiguration): express.Router => {
             resolve({});
         });
 
-        let initial = "/";
         let match = null;
 
         routes.some((route: PageRoute): boolean => {
@@ -95,7 +83,6 @@ export const appRouter = (config: AppRouterConfiguration): express.Router => {
 
             if(match){
                 getData = (): Promise<object> => route.getData();
-                initial = route.path;
             }
 
             return Boolean(match);
@@ -118,11 +105,22 @@ export const appRouter = (config: AppRouterConfiguration): express.Router => {
             </Scotch>
         ));
 
+        // Set the http2 link header with assets that need to be pushed
+        response.setHeader("link", extractor.getLinkElements().map((element): string => {
+
+            const link = element.props as {
+                as: string;
+                href: string;
+                rel: string;
+            };
+
+            return `<${ link.href }>;rel=${ link.rel };as=${ link.as }`;
+
+        }).join(","));
+
         const { helmet } = helmetContext;
 
         if(helmet){
-
-            // <PageRouter data={ data } initial={ initial } routes={ routes } />
 
             response.send(minifyHTML(`
                 <!doctype html>

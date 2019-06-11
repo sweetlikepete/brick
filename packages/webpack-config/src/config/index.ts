@@ -1,5 +1,6 @@
 
 
+import devServer from "./devServer";
 import devtool from "./devtool";
 import entry from "./entry";
 import externals from "./externals";
@@ -15,6 +16,7 @@ import watchOptions from "./watchOptions";
 
 
 export default {
+    devServer,
     devtool,
     entry,
     externals,

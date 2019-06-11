@@ -29,7 +29,6 @@ export default function configuration(
                 path: folder
             })
         ].concat(options.watch ? [
-            new webpack.HotModuleReplacementPlugin(),
             new webpack.NoEmitOnErrorsPlugin(),
             new BundleAnalyzerPlugin({
                 analyzerHost: "127.0.0.1",

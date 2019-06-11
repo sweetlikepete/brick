@@ -14,7 +14,6 @@ export type Target = "client" | "server";
 
 export interface ConfigurationOptions {
     bundleAnalyzerPort?: number;
-    hashFileNames?: boolean;
     hashLength?: number;
     staticFolder?: string;
     watch?: boolean;
@@ -24,11 +23,11 @@ export interface Environment {
     mode?: Mode;
     platform?: Platform;
     target?: Target;
+    watch?: boolean;
 }
 
 export interface Options {
     bundleAnalyzerPort: number;
-    hashFileNames: boolean;
     hashLength: number;
     mode: Mode;
     platform: Platform;
@@ -47,7 +46,6 @@ export default function configure(
 
         const optionsDefaults: Options = {
             bundleAnalyzerPort: 3001,
-            hashFileNames: false,
             hashLength: 8,
             mode: "development",
             platform: "web",
@@ -58,37 +56,16 @@ export default function configure(
 
         const options: Options = Object.assign(optionsDefaults, {
             bundleAnalyzerPort: webpackOptions.bundleAnalyzerPort,
-            hashFileNames: webpackOptions.hashFileNames || optionsDefaults.hashFileNames,
             hashLength: webpackOptions.hashLength || optionsDefaults.hashLength,
             mode: environment.mode || optionsDefaults.mode,
             platform: environment.platform || optionsDefaults.platform,
             staticFolder: webpackOptions.staticFolder || optionsDefaults.staticFolder,
             target: environment.target || optionsDefaults.target,
-            watch: webpackOptions.watch || optionsDefaults.watch
+            watch: environment.watch || optionsDefaults.watch
         });
 
         // Make sure options.staticFolder doesn't have any outer slashes
         options.staticFolder = options.staticFolder.replace(/^\/+|\/+$/gu, "");
-
-        options.hashFileNames =
-
-            /*
-             * Hashing the files breaks HMR of css resources for some reason, so we
-             * aren't going to hash them while watching because we HMR while watching.
-             */
-            !options.watch &&
-
-            /*
-             * It doesn't make sense to hash filenames on the server since cache
-             * isn't an issue there and it'll make debugging easier to leave it alone
-             */
-            options.target === "client" &&
-
-            /*
-             * We shouldn't hash if we aren't in production mode because it'll make
-             * local debugging easier.
-             */
-            options.mode === "production";
 
         /*
          * Output configuration is used by other configurations, so we set it up
@@ -97,6 +74,7 @@ export default function configure(
         const configuration = merge(config.output(webpackConfig, options), webpackConfig);
 
         return merge(
+            config.devServer(configuration, options),
             config.devtool(configuration, options),
             config.entry(configuration, options),
             config.externals(configuration, options),

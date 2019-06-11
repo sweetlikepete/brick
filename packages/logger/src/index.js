@@ -26,7 +26,9 @@ const emojis = {
     server: "💻",
     setup: "💿",
     tamland: "🍆",
-    webpack: "📦"
+    webpack: "📦",
+    "webpack c": "📦",
+    "webpack s": "📦"
 };
 
 const colors = {

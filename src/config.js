@@ -54,6 +54,11 @@ const defaults = {
         web: {
             environments: []
         }
+    },
+    webpack: {
+        devServer: {
+            port: 9000
+        }
     }
 };
 

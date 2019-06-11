@@ -75,8 +75,7 @@ const startNodemonServer = function(script, environment){
             script,
             stdout: false,
             watch: [
-                // Needed to prevent reloading invalidating the hot module loader
-                "dist/server/fake.js"
+                script
             ]
         });
 

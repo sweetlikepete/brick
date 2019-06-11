@@ -14,9 +14,7 @@ import fs from "fs";
 import path from "path";
 
 import express from "express";
-import webpack from "webpack";
-import webpackDevMiddleware from "webpack-dev-middleware";
-import webpackHotMiddleware from "webpack-hot-middleware";
+import proxy from "express-http-proxy";
 
 
 export interface StaticFile {
@@ -107,25 +105,6 @@ const getStaticFileMap = function(
 
 };
 
-const setupWebpackMiddleware = function(
-    router: express.Router,
-    cwd: string
-): void{
-
-    const webpackConfig = require(path.join(cwd, "webpack.config.js"));
-    const config = webpackConfig(process.env);
-    const compiler = webpack(config);
-
-    router.use(webpackDevMiddleware(compiler, {
-        publicPath: config.output.publicPath,
-        serverSideRender: true,
-        stats: config.stats
-    }));
-
-    router.use(webpackHotMiddleware(compiler));
-
-};
-
 export const staticRouter = ({
     cacheExpiration = "1y",
     cwd = process.cwd(),
@@ -143,12 +122,6 @@ export const staticRouter = ({
         strict: true
     });
 
-    if(watch && cwd === "3"){
-
-        setupWebpackMiddleware(router, cwd);
-
-    }
-
     getStaticFileMap(staticFiles, staticFolder, cwd, watch).forEach((file): void => {
 
         router.use(file.path, express.static(path.join(cwd, file.source), {
@@ -158,19 +131,28 @@ export const staticRouter = ({
 
     });
 
-    router.use(`/${ encodedStaticFolder }/*`, (
-        request: express.Request,
-        response: express.Response
-    ): void => {
+    if(watch){
 
-        const notFoundStatusCode = 404;
+        router.use(`/${ encodedStaticFolder }`, proxy("localhost:9000"));
 
-        response
-        .status(notFoundStatusCode)
-        .send("404")
-        .end();
+    }else{
 
-    });
+        router.use(`/${ encodedStaticFolder }/*`, (
+            request: express.Request,
+            response: express.Response
+        ): void => {
+
+            const notFoundStatusCode = 404;
+
+            response
+            .status(notFoundStatusCode)
+            .send("404")
+            .end();
+
+        });
+
+    }
+
 
     return router;
 

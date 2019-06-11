@@ -4,14 +4,26 @@ import path from "path";
 
 import sequential from "promise-sequential";
 import webpack from "webpack";
+import WebpackDevServer from "webpack-dev-server";
 import logger from "@sweetlikepete/logger";
 
 import { task } from "../../utils/task";
 
 
-const label = "webpack";
+const statsOptions = {
+    builtAt: false,
+    colors: true,
+    entrypoints: false,
+    hash: false,
+    modules: false,
+    timings: false,
+    version: false
+};
 
-const log = (label2) => (error, stats, configFile) => {
+
+const log = (target, label2) => (error, stats, configFile) => {
+
+    const label = `webpack ${ target[0].toUpperCase() }`;
 
     if(error){
 
@@ -25,15 +37,7 @@ const log = (label2) => (error, stats, configFile) => {
 
         logger.log("", { label });
 
-        logger.log(stats.toString({
-            builtAt: false,
-            colors: true,
-            entrypoints: false,
-            hash: false,
-            modules: false,
-            timings: false,
-            version: false
-        }), { label });
+        logger.log(stats.toString(statsOptions), { label });
 
         logger.log("", { label });
 
@@ -41,7 +45,8 @@ const log = (label2) => (error, stats, configFile) => {
 
 };
 
-const webpackTask = task(label, async (config, options) => {
+
+const webpackTask = task("webpack", async (config, options) => {
 
     const {
         mode = "production",
@@ -57,36 +62,56 @@ const webpackTask = task(label, async (config, options) => {
 
         // This doesn't present any danger and is necessary in this case.
         // eslint-disable-next-line import/no-dynamic-require, security/detect-non-literal-require, global-require
-        const webpackConfig = require(webpackConfigFile);
-        const compiler = webpack(webpackConfig({
+        const webpackConfig = require(webpackConfigFile)({
             mode,
             platform,
             target,
             watch
-        }));
+        });
+
+        const compiler = webpack(webpackConfig);
 
         if(watch){
 
-            compiler.watch({
-                aggregateTimeout: 600,
-                ignored: [
-                    "node_modules"
-                ],
-                poll: false
-            },
-            (error, stats) => {
+            if(webpackConfig.devServer){
 
-                log("Watching")(error, stats, webpackConfigFile);
+                const developmentServerConfig = {
+                    ...webpackConfig.devServer,
+                    hot: true,
+                    port: 9000,
+                    stats: statsOptions
+                };
 
-                resolve();
+                const developmentServer = new WebpackDevServer(compiler, developmentServerConfig);
 
-            });
+                developmentServer.listen(developmentServerConfig.port, "127.0.0.1", () => {
+                    console.log(`Starting server on http://localhost:${ developmentServerConfig.port }`);
+                });
+
+            }else{
+
+                compiler.watch({
+                    aggregateTimeout: 600,
+                    ignored: [
+                        "node_modules"
+                    ],
+                    poll: false
+                },
+                (error, stats) => {
+
+                    log(target, "Watching")(error, stats, webpackConfigFile);
+
+                    resolve();
+
+                });
+
+            }
 
         }else{
 
             compiler.run((error, stats) => {
 
-                log("Running")(error, stats, webpackConfigFile);
+                log(target, "Running")(error, stats, webpackConfigFile);
 
                 resolve();
 
@@ -99,7 +124,8 @@ const webpackTask = task(label, async (config, options) => {
     if(watch){
 
         await Promise.all([
-            webpackPromise("server")
+            webpackPromise("server"),
+            webpackPromise("client")
         ].map((command) => command()));
 
     }else{
