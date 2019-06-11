@@ -33,6 +33,7 @@ const defaults = {
         ],
         js: [
             `${ base.include }.{js,jsx,ts,tsx}`,
+            `!${ base.include }.d.ts`,
             `${ base.exclude }.{js,jsx,ts,tsx}`
         ]
     },

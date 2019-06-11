@@ -155,7 +155,9 @@ const logger = {
 
                 }).join("\n");
 
-                this.error("lint", errorOutput, true);
+                this.log(errorOutput, {
+                    label: "lint"
+                });
 
                 process.stdout.write("\u0007");
 
